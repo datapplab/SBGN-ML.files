@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="92" h="62" x="181" y="240.788383248865"/>
+    </glyph>
+    <glyph class="compartment" id="endoplasmic_reticulum_lumen" if.within.compartment="">
+      <label text="endoplasmic reticulum lumen"/>
+      <bbox w="339.5" h="204.894191624432" x="100" y="198"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_b8c196eab1f3672e5886ed246f6d2140" compartmentRef="endoplasmic_reticulum_lumen" if.within.compartment="">
+      <label text="DAG1"/>
+      <bbox w="70" h="40" x="358.5" y="351.894191624432"/>
+      <glyph class="state variable" id="Protein_b8c196eab1f3672e5886ed246f6d2140.info.1" if.within.compartment="">
+        <state value="x[30 - 653]"/>
+        <bbox w="35" h="17.5" x="358.5" y="343.144191624432"/>
+      </glyph>
+      <glyph class="state variable" id="Protein_b8c196eab1f3672e5886ed246f6d2140.state.2" if.within.compartment="">
+        <state value="O-mannosyl-L-serine"/>
+        <bbox w="35" h="17.5" x="358.5" y="383.144191624432"/>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-5617096_LEFT_TO_RIGHT" compartmentRef="endoplasmic_reticulum_lumen" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="209"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_592285b6b572ad2fc451d0a76ec5bf1a" compartmentRef="cytosol" if.within.compartment="">
+      <label text="UDP-GlcNAc"/>
+      <bbox w="70" h="40" x="192" y="251.788383248865"/>
+    </glyph>
+    <arc class="consumption" id="Protein_b8c196eab1f3672e5886ed246f6d2140--to--reactome_R-HSA-5617096_LEFT_TO_RIGHT-input" source="Protein_b8c196eab1f3672e5886ed246f6d2140" target="reactome_R-HSA-5617096_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_592285b6b572ad2fc451d0a76ec5bf1a--to--reactome_R-HSA-5617096_LEFT_TO_RIGHT-input" source="SmallMolecule_592285b6b572ad2fc451d0a76ec5bf1a" target="reactome_R-HSA-5617096_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Protein_b8c196eab1f3672e5886ed246f6d2140--to--reactome_R-HSA-5617096_LEFT_TO_RIGHT" source="Protein_b8c196eab1f3672e5886ed246f6d2140" target="reactome_R-HSA-5617096_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="315" start.y="353" end.x="358" end.y="364" class="consumption"/>
+
+
+<spline s.x="358.000000"  s.y="364.000000" c1.x="315.000000" c1.y="353.000000" c2.x="242.000000" c2.y="331.000000" e.x="188.000000"  e.y="294.000000" />
+<spline s.x="188.000000"  s.y="294.000000" c1.x="165.000000" c1.y="278.000000" c2.x="144.000000" c2.y="252.000000" e.x="133.000000"  e.y="235.000000" />
+<target.arc start.x="144" start.y="252" end.x="133" end.y="235" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_592285b6b572ad2fc451d0a76ec5bf1a--to--reactome_R-HSA-5617096_LEFT_TO_RIGHT" source="SmallMolecule_592285b6b572ad2fc451d0a76ec5bf1a" target="reactome_R-HSA-5617096_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="173" start.y="245" end.x="191" end.y="254" class="consumption"/>
+
+
+<spline s.x="138.000000"  s.y="229.000000" c1.x="151.000000" c1.y="235.000000" c2.x="173.000000" c2.y="245.000000" e.x="191.000000"  e.y="254.000000" />
+<target.arc start.x="151" start.y="235" end.x="138" end.y="229" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>endoplasmic_reticulum_lumen-compartment.layer.info-cytosol</compartment.layer.info>
+</sbgn>

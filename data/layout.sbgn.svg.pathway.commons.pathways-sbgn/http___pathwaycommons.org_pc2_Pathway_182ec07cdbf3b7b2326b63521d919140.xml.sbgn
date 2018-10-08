@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="plasma_membrane" if.within.compartment="">
+      <label text="plasma membrane"/>
+      <bbox w="369.871948338887" h="214.485669681002" x="100" y="212.977029063665"/>
+    </glyph>
+    <glyph class="compartment" id="plasma_membrane__integral_to_plasma_membrane_" if.within.compartment="">
+      <label text="plasma membrane (integral to plasma membrane)"/>
+      <bbox w="92" h="62" x="381.489327569428" y="262"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_811b97772cdcbc435d3f77dc066c4666" compartmentRef="plasma_membrane__integral_to_plasma_membrane_" if.within.compartment="">
+      <label text="adenylate cyclase"/>
+      <bbox w="70" h="40" x="392.489327569428" y="273"/>
+    </glyph>
+    <glyph class="complex" id="Complex_745b0f78b7d4dcb9ac78419bd50bdf8c" compartmentRef="plasma_membrane" if.within.compartment="">
+      <label text="G alpha i_GTP"/>
+      <bbox w="81" h="99.75" x="111" y="259.977029063665"/>
+      <glyph class="macromolecule" id="Protein_5d281906843cb7e503f6f368e8923800_Complex_745b0f78b7d4dcb9ac78419bd50bdf8c" compartmentRef="plasma_membrane" if.within.compartment="">
+        <label text="G alpha i"/>
+        <bbox w="70" h="40" x="116.5" y="265.477029063665"/>
+      </glyph>
+      <glyph class="simple chemical" id="SmallMolecule_66f0c7d569d0a4184cf4e72f45ee2f71_Complex_745b0f78b7d4dcb9ac78419bd50bdf8c" compartmentRef="plasma_membrane" if.within.compartment="">
+        <label text="GTP"/>
+        <bbox w="70" h="40" x="116.5" y="314.227029063665"/>
+      </glyph>
+    </glyph>
+    <glyph class="complex" id="Complex_fb449030e7fe9ee49e9dbb65d469b80b" compartmentRef="plasma_membrane" if.within.compartment="">
+      <label text="adenylate cyclase:G alpha i_GTP"/>
+      <bbox w="81" h="148.5" x="220.15206046885" y="267.962698744667"/>
+      <glyph class="macromolecule" id="Protein_cf84d14da391eca0c2c9051a594c8be6_Complex_fb449030e7fe9ee49e9dbb65d469b80b" compartmentRef="plasma_membrane" if.within.compartment="">
+        <label text="G alpha i"/>
+        <bbox w="70" h="40" x="225.65206046885" y="273.462698744667"/>
+      </glyph>
+      <glyph class="simple chemical" id="SmallMolecule_8683ab04148c679ba859a3ceb96caf5e_Complex_fb449030e7fe9ee49e9dbb65d469b80b" compartmentRef="plasma_membrane" if.within.compartment="">
+        <label text="GTP"/>
+        <bbox w="70" h="40" x="225.65206046885" y="322.212698744667"/>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_72c48c0ad925192b0bcaf3babab2d793_Complex_fb449030e7fe9ee49e9dbb65d469b80b" compartmentRef="plasma_membrane" if.within.compartment="">
+        <label text="adenylate cyclase"/>
+        <bbox w="70" h="40" x="225.65206046885" y="370.962698744667"/>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT" compartmentRef="plasma_membrane" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="432.20528167222" y="355.136894489999"/>
+    </glyph>
+    <arc class="production" id="ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT-output--to--Complex_fb449030e7fe9ee49e9dbb65d469b80b" source="ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT" target="Complex_fb449030e7fe9ee49e9dbb65d469b80b">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Complex_745b0f78b7d4dcb9ac78419bd50bdf8c--to--ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT-input" source="Complex_745b0f78b7d4dcb9ac78419bd50bdf8c" target="ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Protein_811b97772cdcbc435d3f77dc066c4666--to--ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT-input" source="Protein_811b97772cdcbc435d3f77dc066c4666" target="ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT--to--Complex_fb449030e7fe9ee49e9dbb65d469b80b" source="ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT" target="Complex_fb449030e7fe9ee49e9dbb65d469b80b" class="production">
+<source.arc start.x="404" start.y="362" end.x="431" end.y="366" class="consumption"/>
+
+
+<spline s.x="301.000000"  s.y="347.000000" c1.x="342.000000" c1.y="353.000000" c2.x="404.000000" c2.y="362.000000" e.x="431.000000"  e.y="366.000000" />
+<target.arc start.x="342" start.y="353" end.x="301" end.y="347" class="production"/>
+
+</arc.spline>
+<arc.spline id="Complex_745b0f78b7d4dcb9ac78419bd50bdf8c--to--ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT" source="Complex_745b0f78b7d4dcb9ac78419bd50bdf8c" target="ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="199" start.y="271" end.x="192" end.y="276" class="consumption"/>
+
+
+<spline s.x="192.000000"  s.y="276.000000" c1.x="199.000000" c1.y="271.000000" c2.x="208.000000" c2.y="267.000000" e.x="216.000000"  e.y="264.000000" />
+<spline s.x="216.000000"  s.y="264.000000" c1.x="254.000000" c1.y="252.000000" c2.x="267.000000" c2.y="252.000000" e.x="304.000000"  e.y="264.000000" />
+<spline s.x="304.000000"  s.y="264.000000" c1.x="333.000000" c1.y="273.000000" c2.x="402.000000" c2.y="331.000000" e.x="431.000000"  e.y="356.000000" />
+<target.arc start.x="402" start.y="331" end.x="431" end.y="356" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Protein_811b97772cdcbc435d3f77dc066c4666--to--ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT" source="Protein_811b97772cdcbc435d3f77dc066c4666" target="ComplexAssembly_036662ee6d834e8ac321fa585b78f0af_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="435" start.y="326" end.x="432" end.y="313" class="consumption"/>
+
+
+<spline s.x="432.000000"  s.y="313.000000" c1.x="435.000000" c1.y="326.000000" c2.x="439.000000" c2.y="343.000000" e.x="442.000000"  e.y="354.000000" />
+<target.arc start.x="439" start.y="343" end.x="442" end.y="354" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>plasma_membrane-compartment.layer.info-plasma_membrane__integral_to_plasma_membrane_</compartment.layer.info>
+</sbgn>

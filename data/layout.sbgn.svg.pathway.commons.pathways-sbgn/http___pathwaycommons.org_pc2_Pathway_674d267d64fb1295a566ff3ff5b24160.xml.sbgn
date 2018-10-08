@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="simple chemical" id="SmallMolecule_6648d83f7e5fcd45e77fd5976d020549" if.within.compartment="">
+      <label text="Acetyl-CoA"/>
+      <bbox w="70" h="40" x="100" y="315"/>
+    </glyph>
+    <glyph class="omitted process" id="Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="265" y="150"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_96d9eaf1562be97e98e771eb8d4edf8a" if.within.compartment="">
+      <label text="Lauroyl-CoA"/>
+      <bbox w="70" h="40" x="430" y="315"/>
+    </glyph>
+    <glyph class="compartment" id="peroxisome" if.within.compartment="">
+      <label text="peroxisome"/>
+      <bbox w="92" h="62" x="254" y="226"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_584c7d566871048c99c6972b8c9f351c" compartmentRef="peroxisome" if.within.compartment="">
+      <label text="Hexacosanoyl-CoA "/>
+      <bbox w="70" h="40" x="265" y="237"/>
+    </glyph>
+    <arc class="interaction" id="SmallMolecule_96d9eaf1562be97e98e771eb8d4edf8a--to--Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8-input" source="SmallMolecule_96d9eaf1562be97e98e771eb8d4edf8a" target="Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="SmallMolecule_584c7d566871048c99c6972b8c9f351c--to--Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8-input" source="SmallMolecule_584c7d566871048c99c6972b8c9f351c" target="Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="SmallMolecule_6648d83f7e5fcd45e77fd5976d020549--to--Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8-input" source="SmallMolecule_6648d83f7e5fcd45e77fd5976d020549" target="Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule_96d9eaf1562be97e98e771eb8d4edf8a--to--Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8" source="SmallMolecule_96d9eaf1562be97e98e771eb8d4edf8a" target="Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8" class="interaction">
+<source.arc start.x="404" start.y="279" end.x="443" end.y="314" class="consumption"/>
+
+
+<spline s.x="292.000000"  s.y="175.000000" c1.x="324.000000" c1.y="205.000000" c2.x="404.000000" c2.y="279.000000" e.x="443.000000"  e.y="314.000000" />
+<target.arc start.x="324" start.y="205" end.x="292" end.y="175" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_584c7d566871048c99c6972b8c9f351c--to--Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8" source="SmallMolecule_584c7d566871048c99c6972b8c9f351c" target="Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8" class="interaction">
+<source.arc start.x="291" start.y="218" end.x="295" end.y="236" class="consumption"/>
+
+
+<spline s.x="281.000000"  s.y="177.000000" c1.x="285.000000" c1.y="192.000000" c2.x="291.000000" c2.y="218.000000" e.x="295.000000"  e.y="236.000000" />
+<target.arc start.x="285" start.y="192" end.x="281" end.y="177" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_6648d83f7e5fcd45e77fd5976d020549--to--Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8" source="SmallMolecule_6648d83f7e5fcd45e77fd5976d020549" target="Interaction_29f6dc6d4bd29506fe8d1d6d2a7b53d8" class="interaction">
+<source.arc start.x="181" start.y="279" end.x="151" end.y="314" class="consumption"/>
+
+
+<spline s.x="151.000000"  s.y="314.000000" c1.x="181.000000" c1.y="279.000000" c2.x="241.000000" c2.y="206.000000" e.x="267.000000"  e.y="176.000000" />
+<target.arc start.x="241" start.y="206" end.x="267" end.y="176" class="interaction"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>peroxisome</compartment.layer.info>
+</sbgn>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="endosome_membrane" if.within.compartment="">
+      <label text="endosome membrane"/>
+      <bbox w="339.5" h="204.894191624432" x="100" y="198"/>
+    </glyph>
+    <glyph class="compartment" id="go_0031904" if.within.compartment="">
+      <label text="go:0031904"/>
+      <bbox w="92" h="76" x="181" y="240.788383248865"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_076b44130e113e792612e73805054929" compartmentRef="endosome_membrane" if.within.compartment="">
+      <label text="TLR3 variants"/>
+      <bbox w="70" h="40" x="358.5" y="351.894191624432"/>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-5602549_LEFT_TO_RIGHT" compartmentRef="endosome_membrane" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="209"/>
+    </glyph>
+    <glyph class="unspecified entity" id="PhysicalEntity_2409e663962f5a44f0b3c5517dba8684" compartmentRef="go_0031904" if.within.compartment="">
+      <label text="viral double-stranded RNA"/>
+      <bbox w="70" h="40" x="192" y="258.788383248865"/>
+    </glyph>
+    <arc class="consumption" id="Protein_076b44130e113e792612e73805054929--to--reactome_R-HSA-5602549_LEFT_TO_RIGHT-input" source="Protein_076b44130e113e792612e73805054929" target="reactome_R-HSA-5602549_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="PhysicalEntity_2409e663962f5a44f0b3c5517dba8684--to--reactome_R-HSA-5602549_LEFT_TO_RIGHT-input" source="PhysicalEntity_2409e663962f5a44f0b3c5517dba8684" target="reactome_R-HSA-5602549_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Protein_076b44130e113e792612e73805054929--to--reactome_R-HSA-5602549_LEFT_TO_RIGHT" source="Protein_076b44130e113e792612e73805054929" target="reactome_R-HSA-5602549_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="354" start.y="325" end.x="377" end.y="351" class="consumption"/>
+
+
+<spline s.x="377.000000"  s.y="351.000000" c1.x="354.000000" c1.y="325.000000" c2.x="311.000000" c2.y="280.000000" e.x="265.000000"  e.y="255.000000" />
+<spline s.x="265.000000"  s.y="255.000000" c1.x="222.000000" c1.y="233.000000" c2.x="164.000000" c2.y="225.000000" e.x="137.000000"  e.y="223.000000" />
+<target.arc start.x="164" start.y="225" end.x="137" end.y="223" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="PhysicalEntity_2409e663962f5a44f0b3c5517dba8684--to--reactome_R-HSA-5602549_LEFT_TO_RIGHT" source="PhysicalEntity_2409e663962f5a44f0b3c5517dba8684" target="reactome_R-HSA-5602549_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="173" start.y="249" end.x="191" end.y="259" class="consumption"/>
+
+
+<spline s.x="138.000000"  s.y="229.000000" c1.x="151.000000" c1.y="237.000000" c2.x="173.000000" c2.y="249.000000" e.x="191.000000"  e.y="259.000000" />
+<target.arc start.x="151" start.y="237" end.x="138" end.y="229" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>endosome_membrane-compartment.layer.info-go_0031904</compartment.layer.info>
+</sbgn>

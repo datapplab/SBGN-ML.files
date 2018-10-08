@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="endoplasmic_reticulum_membrane" if.within.compartment="">
+      <label text="endoplasmic reticulum membrane"/>
+      <bbox w="422" h="62" x="100" y="198"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_ec2a6a9936bc0c1c8fa79632fcb9fe61" compartmentRef="endoplasmic_reticulum_membrane" if.within.compartment="">
+      <label text="TLR3"/>
+      <bbox w="70" h="40" x="441" y="209"/>
+      <glyph class="state variable" id="Protein_ec2a6a9936bc0c1c8fa79632fcb9fe61.info.1" if.within.compartment="">
+        <state value="x[24 - 904]"/>
+        <bbox w="35" h="17.5" x="441" y="200.25"/>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-5607838_LEFT_TO_RIGHT" compartmentRef="endoplasmic_reticulum_membrane" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="209"/>
+    </glyph>
+    <arc class="consumption" id="Protein_ec2a6a9936bc0c1c8fa79632fcb9fe61--to--reactome_R-HSA-5607838_LEFT_TO_RIGHT-input" source="Protein_ec2a6a9936bc0c1c8fa79632fcb9fe61" target="reactome_R-HSA-5607838_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Protein_ec2a6a9936bc0c1c8fa79632fcb9fe61--to--reactome_R-HSA-5607838_LEFT_TO_RIGHT" source="Protein_ec2a6a9936bc0c1c8fa79632fcb9fe61" target="reactome_R-HSA-5607838_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="365" start.y="226" end.x="440" end.y="228" class="consumption"/>
+
+
+<spline s.x="440.000000"  s.y="228.000000" c1.x="365.000000" c1.y="226.000000" c2.x="188.000000" c2.y="223.000000" e.x="137.000000"  e.y="222.000000" />
+<target.arc start.x="188" start.y="223" end.x="137" end.y="222" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>endoplasmic_reticulum_membrane-compartment.layer.info-endoplasmic_reticulum_membrane-compartment.layer.info-Protein_ec2a6a9936bc0c1c8fa79632fcb9fe61-compartment.layer.info-reactome_R-HSA-5607838_LEFT_TO_RIGHT</compartment.layer.info>
+</sbgn>

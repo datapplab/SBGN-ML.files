@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytoplasm" if.within.compartment="">
+      <label text="cytoplasm"/>
+      <bbox w="92" h="392" x="108" y="198"/>
+    </glyph>
+    <glyph class="compartment" id="cell_membrane" if.within.compartment="">
+      <label text="cell membrane"/>
+      <bbox w="175.977601083586" h="63.163485740798" x="105" y="363"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_2efb80a052422820cb41b7f17b2a9068" compartmentRef="cytoplasm" if.within.compartment="">
+      <label text="T-DHT"/>
+      <bbox w="70" h="40" x="119" y="539"/>
+    </glyph>
+    <glyph class="process" id="BiochemicalReaction_844fdb79524d23d3ea9f8e28afd08454_LEFT_TO_RIGHT" compartmentRef="cytoplasm" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="119" y="209"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_5b7ed3b2aca9f351b51987a60212e6dc" compartmentRef="cell_membrane" if.within.compartment="">
+      <label text="T-DHT"/>
+      <bbox w="70" h="40" x="199.977601083586" y="375.163485740798"/>
+    </glyph>
+    <glyph class="process" id="BiochemicalReaction_a1a555221dccd00e198b12ff59d49bb9_LEFT_TO_RIGHT" compartmentRef="cell_membrane" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="116" y="374"/>
+    </glyph>
+    <arc class="consumption" id="SmallMolecule_5b7ed3b2aca9f351b51987a60212e6dc--to--BiochemicalReaction_a1a555221dccd00e198b12ff59d49bb9_LEFT_TO_RIGHT-input" source="SmallMolecule_5b7ed3b2aca9f351b51987a60212e6dc" target="BiochemicalReaction_a1a555221dccd00e198b12ff59d49bb9_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_2efb80a052422820cb41b7f17b2a9068--to--BiochemicalReaction_844fdb79524d23d3ea9f8e28afd08454_LEFT_TO_RIGHT-input" source="SmallMolecule_2efb80a052422820cb41b7f17b2a9068" target="BiochemicalReaction_844fdb79524d23d3ea9f8e28afd08454_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule_5b7ed3b2aca9f351b51987a60212e6dc--to--BiochemicalReaction_a1a555221dccd00e198b12ff59d49bb9_LEFT_TO_RIGHT" source="SmallMolecule_5b7ed3b2aca9f351b51987a60212e6dc" target="BiochemicalReaction_a1a555221dccd00e198b12ff59d49bb9_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="180" start.y="391" end.x="199" end.y="392" class="consumption"/>
+
+
+<spline s.x="199.000000"  s.y="392.000000" c1.x="180.000000" c1.y="391.000000" c2.x="157.000000" c2.y="389.000000" e.x="142.000000"  e.y="388.000000" />
+<target.arc start.x="157" start.y="389" end.x="142" end.y="388" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_2efb80a052422820cb41b7f17b2a9068--to--BiochemicalReaction_844fdb79524d23d3ea9f8e28afd08454_LEFT_TO_RIGHT" source="SmallMolecule_2efb80a052422820cb41b7f17b2a9068" target="BiochemicalReaction_844fdb79524d23d3ea9f8e28afd08454_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="152" start.y="504" end.x="153" end.y="538" class="consumption"/>
+
+
+<spline s.x="153.000000"  s.y="538.000000" c1.x="152.000000" c1.y="504.000000" c2.x="150.000000" c2.y="431.000000" e.x="146.000000"  e.y="370.000000" />
+<spline s.x="146.000000"  s.y="370.000000" c1.x="142.000000" c1.y="321.000000" c2.x="136.000000" c2.y="262.000000" e.x="133.000000"  e.y="236.000000" />
+<target.arc start.x="136" start.y="262" end.x="133" end.y="236" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cytoplasm-compartment.layer.info-cell_membrane</compartment.layer.info>
+</sbgn>

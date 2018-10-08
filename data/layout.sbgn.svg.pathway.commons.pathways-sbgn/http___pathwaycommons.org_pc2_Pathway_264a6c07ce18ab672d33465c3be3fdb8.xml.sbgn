@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="339.5" h="347.788383248865" x="100" y="198"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_c9408de153c5889dc575edece1af5a83" compartmentRef="cytosol" if.within.compartment="">
+      <label text="dCTP"/>
+      <bbox w="70" h="40" x="358.5" y="351.894191624432"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_d611056347382242d2ea35ac8490d917" compartmentRef="cytosol" if.within.compartment="">
+      <label text="Thymidine 5'-triphosphate"/>
+      <bbox w="70" h="40" x="111" y="494.788383248865"/>
+    </glyph>
+    <glyph class="omitted process" id="Interaction_1af03a9d3777cd66896530fd5580b3bd" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="209"/>
+    </glyph>
+    <arc class="interaction" id="SmallMolecule_c9408de153c5889dc575edece1af5a83--to--Interaction_1af03a9d3777cd66896530fd5580b3bd-input" source="SmallMolecule_c9408de153c5889dc575edece1af5a83" target="Interaction_1af03a9d3777cd66896530fd5580b3bd">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="SmallMolecule_d611056347382242d2ea35ac8490d917--to--Interaction_1af03a9d3777cd66896530fd5580b3bd-input" source="SmallMolecule_d611056347382242d2ea35ac8490d917" target="Interaction_1af03a9d3777cd66896530fd5580b3bd">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule_c9408de153c5889dc575edece1af5a83--to--Interaction_1af03a9d3777cd66896530fd5580b3bd" source="SmallMolecule_c9408de153c5889dc575edece1af5a83" target="Interaction_1af03a9d3777cd66896530fd5580b3bd" class="interaction">
+<source.arc start.x="298" start.y="318" end.x="358" end.y="352" class="consumption"/>
+
+
+<spline s.x="358.000000"  s.y="352.000000" c1.x="298.000000" c1.y="318.000000" c2.x="178.000000" c2.y="252.000000" e.x="137.000000"  e.y="229.000000" />
+<target.arc start.x="178" start.y="252" end.x="137" end.y="229" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_d611056347382242d2ea35ac8490d917--to--Interaction_1af03a9d3777cd66896530fd5580b3bd" source="SmallMolecule_d611056347382242d2ea35ac8490d917" target="Interaction_1af03a9d3777cd66896530fd5580b3bd" class="interaction">
+<source.arc start.x="140" start.y="438" end.x="144" end.y="494" class="consumption"/>
+
+
+<spline s.x="144.000000"  s.y="494.000000" c1.x="140.000000" c1.y="438.000000" c2.x="128.000000" c2.y="283.000000" e.x="125.000000"  e.y="236.000000" />
+<target.arc start.x="128" start.y="283" end.x="125" end.y="236" class="interaction"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cytosol-compartment.layer.info-cytosol-compartment.layer.info-SmallMolecule_c9408de153c5889dc575edece1af5a83-compartment.layer.info-SmallMolecule_d611056347382242d2ea35ac8490d917-compartment.layer.info-Interaction_1af03a9d3777cd66896530fd5580b3bd</compartment.layer.info>
+</sbgn>

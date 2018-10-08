@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="nucleoplasm" if.within.compartment="">
+      <label text="nucleoplasm"/>
+      <bbox w="266.25" h="197.25" x="100" y="198"/>
+    </glyph>
+    <glyph class="complex" id="Complex_cfa2d41dbb25db79051acf8220bde292" compartmentRef="nucleoplasm" if.within.compartment="">
+      <label text="CCDC59:TTF1:SFTPB mutants"/>
+      <bbox w="81" h="157.25" x="274.25" y="227"/>
+      <glyph class="macromolecule" id="Protein_d8126171a20b43cceea6432d2fda3760_Complex_cfa2d41dbb25db79051acf8220bde292" compartmentRef="nucleoplasm" if.within.compartment="">
+        <label text="CCDC59"/>
+        <bbox w="70" h="40" x="279.75" y="232.5"/>
+        <glyph class="state variable" id="Protein_d8126171a20b43cceea6432d2fda3760_Complex_cfa2d41dbb25db79051acf8220bde292.info.1" compartmentRef="nucleoplasm" if.within.compartment="">
+          <state value="x[1 - 241]"/>
+          <bbox w="35" h="17.5" x="279.75" y="223.75"/>
+        </glyph>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_5f338312023ea220ed50ba53edcf8ec8_Complex_cfa2d41dbb25db79051acf8220bde292" compartmentRef="nucleoplasm" if.within.compartment="">
+        <label text="pro-SFTPB mutants"/>
+        <bbox w="70" h="40" x="279.75" y="281.25"/>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_952ca95aebb091b5058486672b185aaa_Complex_cfa2d41dbb25db79051acf8220bde292" compartmentRef="nucleoplasm" if.within.compartment="">
+        <label text="TTF1"/>
+        <bbox w="70" h="40" x="279.75" y="338.75"/>
+        <glyph class="state variable" id="Protein_952ca95aebb091b5058486672b185aaa_Complex_cfa2d41dbb25db79051acf8220bde292.info.1" compartmentRef="nucleoplasm" if.within.compartment="">
+          <state value="x[1 - 905]"/>
+          <bbox w="35" h="17.5" x="279.75" y="330"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-5688025_LEFT_TO_RIGHT" compartmentRef="nucleoplasm" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="241.5"/>
+    </glyph>
+    <arc class="consumption" id="Complex_cfa2d41dbb25db79051acf8220bde292--to--reactome_R-HSA-5688025_LEFT_TO_RIGHT-input" source="Complex_cfa2d41dbb25db79051acf8220bde292" target="reactome_R-HSA-5688025_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Complex_cfa2d41dbb25db79051acf8220bde292--to--reactome_R-HSA-5688025_LEFT_TO_RIGHT" source="Complex_cfa2d41dbb25db79051acf8220bde292" target="reactome_R-HSA-5688025_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="231" start.y="283" end.x="273" end.y="294" class="consumption"/>
+
+
+<spline s.x="273.000000"  s.y="294.000000" c1.x="231.000000" c1.y="283.000000" c2.x="166.000000" c2.y="265.000000" e.x="138.000000"  e.y="258.000000" />
+<target.arc start.x="166" start.y="265" end.x="138" end.y="258" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>nucleoplasm-compartment.layer.info-nucleoplasm-compartment.layer.info-Complex_cfa2d41dbb25db79051acf8220bde292-compartment.layer.info-Protein_d8126171a20b43cceea6432d2fda3760_Complex_cfa2d41dbb25db79051acf8220bde292-compartment.layer.info-Protein_5f338312023ea220ed50ba53edcf8ec8_Complex_cfa2d41dbb25db79051acf8220bde292-compartment.layer.info-Protein_952ca95aebb091b5058486672b185aaa_Complex_cfa2d41dbb25db79051acf8220bde292-compartment.layer.info-reactome_R-HSA-5688025_LEFT_TO_RIGHT</compartment.layer.info>
+</sbgn>

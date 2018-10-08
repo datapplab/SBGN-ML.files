@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="422" h="227" x="100" y="198"/>
+    </glyph>
+    <glyph class="compartment" id="transport_vesicle_membrane" if.within.compartment="">
+      <label text="transport vesicle membrane"/>
+      <bbox w="92" h="62" x="346" y="285"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_c23dbeeaaf1bbf19bbf385f78c5d5362" compartmentRef="cytosol" if.within.compartment="">
+      <label text="ATP"/>
+      <bbox w="70" h="40" x="111" y="374"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_bfe0d4cd6c12bac80101dff1b5e1f783" compartmentRef="cytosol" if.within.compartment="">
+      <label text="H2O"/>
+      <bbox w="70" h="40" x="441" y="374"/>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-5682111_LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="276" y="209"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_0a978fe5b885a45fd5802a9ed7299b8e" compartmentRef="transport_vesicle_membrane" if.within.compartment="">
+      <label text="CHOL"/>
+      <bbox w="70" h="40" x="357" y="296"/>
+    </glyph>
+    <arc class="consumption" id="SmallMolecule_bfe0d4cd6c12bac80101dff1b5e1f783--to--reactome_R-HSA-5682111_LEFT_TO_RIGHT-input" source="SmallMolecule_bfe0d4cd6c12bac80101dff1b5e1f783" target="reactome_R-HSA-5682111_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_0a978fe5b885a45fd5802a9ed7299b8e--to--reactome_R-HSA-5682111_LEFT_TO_RIGHT-input" source="SmallMolecule_0a978fe5b885a45fd5802a9ed7299b8e" target="reactome_R-HSA-5682111_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_c23dbeeaaf1bbf19bbf385f78c5d5362--to--reactome_R-HSA-5682111_LEFT_TO_RIGHT-input" source="SmallMolecule_c23dbeeaaf1bbf19bbf385f78c5d5362" target="reactome_R-HSA-5682111_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule_bfe0d4cd6c12bac80101dff1b5e1f783--to--reactome_R-HSA-5682111_LEFT_TO_RIGHT" source="SmallMolecule_bfe0d4cd6c12bac80101dff1b5e1f783" target="reactome_R-HSA-5682111_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="414" start.y="376" end.x="440" end.y="384" class="consumption"/>
+
+
+<spline s.x="440.000000"  s.y="384.000000" c1.x="414.000000" c1.y="376.000000" c2.x="378.000000" c2.y="362.000000" e.x="353.000000"  e.y="339.000000" />
+<spline s.x="353.000000"  s.y="339.000000" c1.x="321.000000" c1.y="309.000000" c2.x="301.000000" c2.y="259.000000" e.x="293.000000"  e.y="236.000000" />
+<target.arc start.x="301" start.y="259" end.x="293" end.y="236" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_0a978fe5b885a45fd5802a9ed7299b8e--to--reactome_R-HSA-5682111_LEFT_TO_RIGHT" source="SmallMolecule_0a978fe5b885a45fd5802a9ed7299b8e" target="reactome_R-HSA-5682111_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="349" start.y="277" end.x="369" end.y="295" class="consumption"/>
+
+
+<spline s.x="302.000000"  s.y="234.000000" c1.x="319.000000" c1.y="250.000000" c2.x="349.000000" c2.y="277.000000" e.x="369.000000"  e.y="295.000000" />
+<target.arc start.x="319" start.y="250" end.x="302" end.y="234" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_c23dbeeaaf1bbf19bbf385f78c5d5362--to--reactome_R-HSA-5682111_LEFT_TO_RIGHT" source="SmallMolecule_c23dbeeaaf1bbf19bbf385f78c5d5362" target="reactome_R-HSA-5682111_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="192" start.y="338" end.x="162" end.y="373" class="consumption"/>
+
+
+<spline s.x="162.000000"  s.y="373.000000" c1.x="192.000000" c1.y="338.000000" c2.x="252.000000" c2.y="265.000000" e.x="278.000000"  e.y="235.000000" />
+<target.arc start.x="252" start.y="265" end.x="278" end.y="235" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cytosol-compartment.layer.info-transport_vesicle_membrane</compartment.layer.info>
+</sbgn>

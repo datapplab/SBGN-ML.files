@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="endoplasmic_reticulum_membrane" if.within.compartment="">
+      <label text="endoplasmic reticulum membrane"/>
+      <bbox w="339.5" h="347.788383248865" x="100" y="198"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_5a4822cd50263a50e07be4e460036053" compartmentRef="endoplasmic_reticulum_membrane" if.within.compartment="">
+      <label text="Acenocoumarol"/>
+      <bbox w="70" h="40" x="358.5" y="351.894191624432"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_ab609f6a60f2c2cde8837d766d7ea64a" compartmentRef="endoplasmic_reticulum_membrane" if.within.compartment="">
+      <label text="VKORC1"/>
+      <bbox w="70" h="40" x="111" y="494.788383248865"/>
+    </glyph>
+    <glyph class="omitted process" id="Interaction_ad924d4e97e4e0d07c8bd99807d1b997" compartmentRef="endoplasmic_reticulum_membrane" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="209"/>
+    </glyph>
+    <arc class="interaction" id="SmallMolecule_5a4822cd50263a50e07be4e460036053--to--Interaction_ad924d4e97e4e0d07c8bd99807d1b997-input" source="SmallMolecule_5a4822cd50263a50e07be4e460036053" target="Interaction_ad924d4e97e4e0d07c8bd99807d1b997">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="Protein_ab609f6a60f2c2cde8837d766d7ea64a--to--Interaction_ad924d4e97e4e0d07c8bd99807d1b997-input" source="Protein_ab609f6a60f2c2cde8837d766d7ea64a" target="Interaction_ad924d4e97e4e0d07c8bd99807d1b997">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule_5a4822cd50263a50e07be4e460036053--to--Interaction_ad924d4e97e4e0d07c8bd99807d1b997" source="SmallMolecule_5a4822cd50263a50e07be4e460036053" target="Interaction_ad924d4e97e4e0d07c8bd99807d1b997" class="interaction">
+<source.arc start.x="298" start.y="318" end.x="358" end.y="352" class="consumption"/>
+
+
+<spline s.x="358.000000"  s.y="352.000000" c1.x="298.000000" c1.y="318.000000" c2.x="178.000000" c2.y="252.000000" e.x="137.000000"  e.y="229.000000" />
+<target.arc start.x="178" start.y="252" end.x="137" end.y="229" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="Protein_ab609f6a60f2c2cde8837d766d7ea64a--to--Interaction_ad924d4e97e4e0d07c8bd99807d1b997" source="Protein_ab609f6a60f2c2cde8837d766d7ea64a" target="Interaction_ad924d4e97e4e0d07c8bd99807d1b997" class="interaction">
+<source.arc start.x="140" start.y="438" end.x="144" end.y="494" class="consumption"/>
+
+
+<spline s.x="144.000000"  s.y="494.000000" c1.x="140.000000" c1.y="438.000000" c2.x="128.000000" c2.y="283.000000" e.x="125.000000"  e.y="236.000000" />
+<target.arc start.x="128" start.y="283" end.x="125" end.y="236" class="interaction"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>endoplasmic_reticulum_membrane-compartment.layer.info-endoplasmic_reticulum_membrane-compartment.layer.info-SmallMolecule_5a4822cd50263a50e07be4e460036053-compartment.layer.info-Protein_ab609f6a60f2c2cde8837d766d7ea64a-compartment.layer.info-Interaction_ad924d4e97e4e0d07c8bd99807d1b997</compartment.layer.info>
+</sbgn>

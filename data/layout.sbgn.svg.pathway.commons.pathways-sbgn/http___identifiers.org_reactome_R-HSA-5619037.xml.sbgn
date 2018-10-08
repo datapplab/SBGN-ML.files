@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="92" h="62" x="106.5" y="404.894191624432"/>
+    </glyph>
+    <glyph class="compartment" id="golgi_lumen" if.within.compartment="">
+      <label text="golgi lumen"/>
+      <bbox w="92" h="347.788383248865" x="102" y="262"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_32689662a9a393332125d26ae70a52ff" compartmentRef="golgi_lumen" if.within.compartment="">
+      <label text="CMP"/>
+      <bbox w="70" h="40" x="113" y="558.788383248865"/>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-5651942_LEFT_TO_RIGHT" compartmentRef="golgi_lumen" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="113" y="273"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_7e673ef24bc0f09188fa7429e06c2ff3" compartmentRef="cytosol" if.within.compartment="">
+      <label text="CMP-Neu5Ac"/>
+      <bbox w="70" h="40" x="117.5" y="415.894191624432"/>
+    </glyph>
+    <arc class="consumption" id="SmallMolecule_7e673ef24bc0f09188fa7429e06c2ff3--to--reactome_R-HSA-5651942_LEFT_TO_RIGHT-input" source="SmallMolecule_7e673ef24bc0f09188fa7429e06c2ff3" target="reactome_R-HSA-5651942_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_32689662a9a393332125d26ae70a52ff--to--reactome_R-HSA-5651942_LEFT_TO_RIGHT-input" source="SmallMolecule_32689662a9a393332125d26ae70a52ff" target="reactome_R-HSA-5651942_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule_7e673ef24bc0f09188fa7429e06c2ff3--to--reactome_R-HSA-5651942_LEFT_TO_RIGHT" source="SmallMolecule_7e673ef24bc0f09188fa7429e06c2ff3" target="reactome_R-HSA-5651942_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="143" start.y="384" end.x="148" end.y="415" class="consumption"/>
+
+
+<spline s.x="128.000000"  s.y="299.000000" c1.x="133.000000" c1.y="326.000000" c2.x="143.000000" c2.y="384.000000" e.x="148.000000"  e.y="415.000000" />
+<target.arc start.x="133" start.y="326" end.x="128" end.y="299" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_32689662a9a393332125d26ae70a52ff--to--reactome_R-HSA-5651942_LEFT_TO_RIGHT" source="SmallMolecule_32689662a9a393332125d26ae70a52ff" target="reactome_R-HSA-5651942_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="132" start.y="534" end.x="140" end.y="558" class="consumption"/>
+
+
+<spline s.x="140.000000"  s.y="558.000000" c1.x="132.000000" c1.y="534.000000" c2.x="119.000000" c2.y="494.000000" e.x="114.000000"  e.y="459.000000" />
+<spline s.x="114.000000"  s.y="459.000000" c1.x="106.000000" c1.y="400.000000" c2.x="117.000000" c2.y="329.000000" e.x="123.000000"  e.y="299.000000" />
+<target.arc start.x="117" start.y="329" end.x="123" end.y="299" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>golgi_lumen-compartment.layer.info-cytosol</compartment.layer.info>
+</sbgn>

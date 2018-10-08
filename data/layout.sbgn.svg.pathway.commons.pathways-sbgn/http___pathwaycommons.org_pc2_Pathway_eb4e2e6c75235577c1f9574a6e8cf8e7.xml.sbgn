@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="213.666666666667" h="62" x="100" y="240.788383248865"/>
+    </glyph>
+    <glyph class="compartment" id="nucleus" if.within.compartment="">
+      <label text="nucleus"/>
+      <bbox w="339.5" h="218.894191624432" x="260.5" y="198"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_b0c4721108f0b35523579263cf742858" compartmentRef="cytosol" if.within.compartment="">
+      <label text="Ci/Gli"/>
+      <bbox w="70" h="40" x="111" y="251.788383248865"/>
+    </glyph>
+    <glyph class="process" id="Transport_951a48ffbe8b816e97bbe5d9aeb1357e_LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="276" y="251.788383248865"/>
+    </glyph>
+    <glyph class="nucleic acid feature" id="Dna_4e875beabdcd8317cc291dbd352ddbca" compartmentRef="nucleus" if.within.compartment="">
+      <label text="coding region of Hh target gene"/>
+      <bbox w="70" h="40" x="519" y="216"/>
+      <glyph class="unit of information" id="Dna_4e875beabdcd8317cc291dbd352ddbca.info.1" if.within.compartment="">
+        <label text="mt:DNA"/>
+        <bbox w="35" h="17.5" x="519" y="207.25"/>
+      </glyph>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_60e1cc0de2bd92286ac1a33216230b30" compartmentRef="nucleus" if.within.compartment="">
+      <label text="Ci/Gli"/>
+      <bbox w="70" h="40" x="354" y="209"/>
+    </glyph>
+    <glyph class="nucleic acid feature" id="Rna_8b105d19d3206a8a66cd2f4cdbaebe74" compartmentRef="nucleus" if.within.compartment="">
+      <label text="transcript of Hh target gene"/>
+      <bbox w="70" h="40" x="271.5" y="358.894191624432"/>
+      <glyph class="unit of information" id="Rna_8b105d19d3206a8a66cd2f4cdbaebe74.info.1" if.within.compartment="">
+        <label text="mt:RNA"/>
+        <bbox w="35" h="17.5" x="271.5" y="350.144191624432"/>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="TemplateReaction_e87cea4a1f048d3c9a7dad71bdc46095" compartmentRef="nucleus" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="418.644977623313" y="288.208297351933"/>
+    </glyph>
+    <arc class="production" id="TemplateReaction_e87cea4a1f048d3c9a7dad71bdc46095-output--to--Rna_8b105d19d3206a8a66cd2f4cdbaebe74" source="TemplateReaction_e87cea4a1f048d3c9a7dad71bdc46095" target="Rna_8b105d19d3206a8a66cd2f4cdbaebe74">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="Transport_951a48ffbe8b816e97bbe5d9aeb1357e_LEFT_TO_RIGHT-output--to--Protein_60e1cc0de2bd92286ac1a33216230b30" source="Transport_951a48ffbe8b816e97bbe5d9aeb1357e_LEFT_TO_RIGHT" target="Protein_60e1cc0de2bd92286ac1a33216230b30">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="TemplateReaction_e87cea4a1f048d3c9a7dad71bdc46095-input--to--Dna_4e875beabdcd8317cc291dbd352ddbca" source="TemplateReaction_e87cea4a1f048d3c9a7dad71bdc46095" target="Dna_4e875beabdcd8317cc291dbd352ddbca">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Protein_b0c4721108f0b35523579263cf742858--to--Transport_951a48ffbe8b816e97bbe5d9aeb1357e_LEFT_TO_RIGHT-input" source="Protein_b0c4721108f0b35523579263cf742858" target="Transport_951a48ffbe8b816e97bbe5d9aeb1357e_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="TemplateReaction_e87cea4a1f048d3c9a7dad71bdc46095--to--Rna_8b105d19d3206a8a66cd2f4cdbaebe74" source="TemplateReaction_e87cea4a1f048d3c9a7dad71bdc46095" target="Rna_8b105d19d3206a8a66cd2f4cdbaebe74" class="production">
+<source.arc start.x="399" start.y="321" end.x="418" end.y="309" class="consumption"/>
+
+
+<spline s.x="339.000000"  s.y="358.000000" c1.x="364.000000" c1.y="342.000000" c2.x="399.000000" c2.y="321.000000" e.x="418.000000"  e.y="309.000000" />
+<target.arc start.x="364" start.y="342" end.x="339" end.y="358" class="production"/>
+
+</arc.spline>
+<arc.spline id="Transport_951a48ffbe8b816e97bbe5d9aeb1357e_LEFT_TO_RIGHT--to--Protein_60e1cc0de2bd92286ac1a33216230b30" source="Transport_951a48ffbe8b816e97bbe5d9aeb1357e_LEFT_TO_RIGHT" target="Protein_60e1cc0de2bd92286ac1a33216230b30" class="production">
+<source.arc start.x="316" start.y="255" end.x="303" end.y="260" class="consumption"/>
+
+
+<spline s.x="303.000000"  s.y="260.000000" c1.x="316.000000" c1.y="255.000000" c2.x="336.000000" c2.y="248.000000" e.x="353.000000"  e.y="241.000000" />
+<target.arc start.x="336" start.y="248" end.x="353" end.y="241" class="production"/>
+
+</arc.spline>
+<arc.spline id="TemplateReaction_e87cea4a1f048d3c9a7dad71bdc46095--to--Dna_4e875beabdcd8317cc291dbd352ddbca" source="TemplateReaction_e87cea4a1f048d3c9a7dad71bdc46095" target="Dna_4e875beabdcd8317cc291dbd352ddbca" class="interaction">
+<source.arc start.x="463" start.y="284" end.x="445" end.y="294" class="consumption"/>
+
+
+<spline s.x="518.000000"  s.y="254.000000" c1.x="494.000000" c1.y="268.000000" c2.x="463.000000" c2.y="284.000000" e.x="445.000000"  e.y="294.000000" />
+<target.arc start.x="494" start.y="268" end.x="518" end.y="254" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="Protein_b0c4721108f0b35523579263cf742858--to--Transport_951a48ffbe8b816e97bbe5d9aeb1357e_LEFT_TO_RIGHT" source="Protein_b0c4721108f0b35523579263cf742858" target="Transport_951a48ffbe8b816e97bbe5d9aeb1357e_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="211" start.y="268" end.x="181" end.y="270" class="consumption"/>
+
+
+<spline s.x="181.000000"  s.y="270.000000" c1.x="211.000000" c1.y="268.000000" c2.x="254.000000" c2.y="266.000000" e.x="275.000000"  e.y="265.000000" />
+<target.arc start.x="254" start.y="266" end.x="275" end.y="265" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>nucleus-compartment.layer.info-cytosol</compartment.layer.info>
+</sbgn>

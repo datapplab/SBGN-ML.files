@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="plasma membrane (extrinsic to internal side of plasma membrane)"/>
+      <bbox w="92" h="62" x="261" y="425.015433371742"/>
+    </glyph>
+    <glyph class="compartment" id="plasma_membrane" if.within.compartment="">
+      <label text="plasma membrane"/>
+      <bbox w="103" h="139.75" x="132.5" y="346.560987463263"/>
+    </glyph>
+    <glyph class="compartment" id="plasma_membrane__integral_to_plasma_membrane_" if.within.compartment="">
+      <label text="plasma membrane (integral to plasma membrane)"/>
+      <bbox w="276.475608143733" h="121.939758560443" x="124.512195928134" y="198"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_cecf35ede1ce3c3d9c43e4f598f2f308" compartmentRef="plasma_membrane__integral_to_plasma_membrane_" if.within.compartment="">
+      <label text="Type I receptor"/>
+      <bbox w="70" h="40" x="319.987804071867" y="268.939758560443"/>
+    </glyph>
+    <glyph class="process" id="ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT" compartmentRef="plasma_membrane__integral_to_plasma_membrane_" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="135.512195928134" y="209"/>
+    </glyph>
+    <glyph class="complex" id="Complex_a87359bb482741f6cb57a730da8fe0fb" compartmentRef="plasma_membrane" if.within.compartment="">
+      <label text="smad6/7:TGF type I receptor"/>
+      <bbox w="81" h="99.75" x="143.5" y="375.560987463263"/>
+      <glyph class="macromolecule" id="Protein_a0da11afa11e424575277f213f2993de_Complex_a87359bb482741f6cb57a730da8fe0fb" compartmentRef="plasma_membrane" if.within.compartment="">
+        <label text="Type I receptor"/>
+        <bbox w="70" h="40" x="149" y="381.060987463263"/>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_883278c49e687d75e083752c26e8bc8d_Complex_a87359bb482741f6cb57a730da8fe0fb" compartmentRef="plasma_membrane" if.within.compartment="">
+        <label text="Smad6/7"/>
+        <bbox w="70" h="40" x="149" y="429.810987463263"/>
+      </glyph>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_a40956b1be0e334e50493b74cdecda47" compartmentRef="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="Smad6/7"/>
+      <bbox w="70" h="40" x="272" y="436.015433371742"/>
+    </glyph>
+    <arc class="consumption" id="Protein_a40956b1be0e334e50493b74cdecda47--to--ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT-input" source="Protein_a40956b1be0e334e50493b74cdecda47" target="ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Protein_cecf35ede1ce3c3d9c43e4f598f2f308--to--ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT-input" source="Protein_cecf35ede1ce3c3d9c43e4f598f2f308" target="ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT-output--to--Complex_a87359bb482741f6cb57a730da8fe0fb" source="ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT" target="Complex_a87359bb482741f6cb57a730da8fe0fb">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Protein_a40956b1be0e334e50493b74cdecda47--to--ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT" source="Protein_a40956b1be0e334e50493b74cdecda47" target="ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="261" start.y="388" end.x="293" end.y="435" class="consumption"/>
+
+
+<spline s.x="158.000000"  s.y="235.000000" c1.x="184.000000" c1.y="275.000000" c2.x="261.000000" c2.y="388.000000" e.x="293.000000"  e.y="435.000000" />
+<target.arc start.x="184" start.y="275" end.x="158" end.y="235" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Protein_cecf35ede1ce3c3d9c43e4f598f2f308--to--ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT" source="Protein_cecf35ede1ce3c3d9c43e4f598f2f308" target="ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="273" start.y="262" end.x="319" end.y="277" class="consumption"/>
+
+
+<spline s.x="319.000000"  s.y="277.000000" c1.x="273.000000" c1.y="262.000000" c2.x="194.000000" c2.y="237.000000" e.x="162.000000"  e.y="226.000000" />
+<target.arc start.x="194" start.y="237" end.x="162" end.y="226" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT--to--Complex_a87359bb482741f6cb57a730da8fe0fb" source="ComplexAssembly_621200fa99582efa9925c8095ad1d49c_LEFT_TO_RIGHT" target="Complex_a87359bb482741f6cb57a730da8fe0fb" class="production">
+<source.arc start.x="156" start.y="263" end.x="151" end.y="235" class="consumption"/>
+
+
+<spline s.x="151.000000"  s.y="235.000000" c1.x="156.000000" c1.y="263.000000" c2.x="167.000000" c2.y="329.000000" e.x="175.000000"  e.y="375.000000" />
+<target.arc start.x="167" start.y="329" end.x="175" end.y="375" class="production"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>plasma_membrane__integral_to_plasma_membrane_-compartment.layer.info-plasma_membrane-compartment.layer.info-plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_</compartment.layer.info>
+</sbgn>

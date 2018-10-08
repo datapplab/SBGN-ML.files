@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="257" h="227" x="155.25" y="198"/>
+    </glyph>
+    <glyph class="compartment" id="endosome_membrane" if.within.compartment="">
+      <label text="endosome membrane"/>
+      <bbox w="103" h="166.5" x="156.5" y="308"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_d42d1b018a5f73820e8f152fdd175d48" compartmentRef="cytosol" if.within.compartment="">
+      <label text="TICAM1 variants"/>
+      <bbox w="70" h="40" x="331.25" y="374"/>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-5602712_LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="166.25" y="209"/>
+    </glyph>
+    <glyph class="complex" id="Complex_fca3199c0de46f4d5a47290572c92291" compartmentRef="endosome_membrane" if.within.compartment="">
+      <label text="viral dsRNA :TLR3"/>
+      <bbox w="81" h="108.5" x="167.5" y="355"/>
+      <glyph class="unspecified entity" id="PhysicalEntity_a11ce9279ad2267711e0b023b09cc9fd_Complex_fca3199c0de46f4d5a47290572c92291" compartmentRef="endosome_membrane" if.within.compartment="">
+        <label text="viral dsRNA"/>
+        <bbox w="70" h="40" x="173" y="360.5"/>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_2a8b250a20c64b6861640c59a25a6e4d_Complex_fca3199c0de46f4d5a47290572c92291" compartmentRef="endosome_membrane" if.within.compartment="">
+        <label text="TLR3"/>
+        <bbox w="70" h="40" x="173" y="418"/>
+        <glyph class="state variable" id="Protein_2a8b250a20c64b6861640c59a25a6e4d_Complex_fca3199c0de46f4d5a47290572c92291.info.1" compartmentRef="endosome_membrane" if.within.compartment="">
+          <state value="x[24 - 904]"/>
+          <bbox w="35" h="17.5" x="173" y="409.25"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <arc class="consumption" id="Complex_fca3199c0de46f4d5a47290572c92291--to--reactome_R-HSA-5602712_LEFT_TO_RIGHT-input" source="Complex_fca3199c0de46f4d5a47290572c92291" target="reactome_R-HSA-5602712_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Protein_d42d1b018a5f73820e8f152fdd175d48--to--reactome_R-HSA-5602712_LEFT_TO_RIGHT-input" source="Protein_d42d1b018a5f73820e8f152fdd175d48" target="reactome_R-HSA-5602712_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Complex_fca3199c0de46f4d5a47290572c92291--to--reactome_R-HSA-5602712_LEFT_TO_RIGHT" source="Complex_fca3199c0de46f4d5a47290572c92291" target="reactome_R-HSA-5602712_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="193" start.y="313" end.x="199" end.y="354" class="consumption"/>
+
+
+<spline s.x="181.000000"  s.y="236.000000" c1.x="185.000000" c1.y="260.000000" c2.x="193.000000" c2.y="313.000000" e.x="199.000000"  e.y="354.000000" />
+<target.arc start.x="185" start.y="260" end.x="181" end.y="236" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Protein_d42d1b018a5f73820e8f152fdd175d48--to--reactome_R-HSA-5602712_LEFT_TO_RIGHT" source="Protein_d42d1b018a5f73820e8f152fdd175d48" target="reactome_R-HSA-5602712_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="305" start.y="338" end.x="344" end.y="373" class="consumption"/>
+
+
+<spline s.x="344.000000"  s.y="373.000000" c1.x="305.000000" c1.y="338.000000" c2.x="225.000000" c2.y="264.000000" e.x="193.000000"  e.y="234.000000" />
+<target.arc start.x="225" start.y="264" end.x="193" end.y="234" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cytosol-compartment.layer.info-endosome_membrane</compartment.layer.info>
+</sbgn>

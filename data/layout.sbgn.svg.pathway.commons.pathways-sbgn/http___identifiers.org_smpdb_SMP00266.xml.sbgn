@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cell_membrane" if.within.compartment="">
+      <label text="cell membrane"/>
+      <bbox w="103" h="139.75" x="180.168257129601" y="285.488800541793"/>
+    </glyph>
+    <glyph class="compartment" id="extracellular_space" if.within.compartment="">
+      <label text="extracellular space"/>
+      <bbox w="422" h="62" x="100" y="198"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_889d944441c8f2781b97b19d7dc7f5cf" compartmentRef="extracellular_space" if.within.compartment="">
+      <label text="Eptifibatide"/>
+      <bbox w="70" h="40" x="441" y="209"/>
+    </glyph>
+    <glyph class="omitted process" id="Interaction_0b17a1ea4a7e749f996829761137f073" compartmentRef="extracellular_space" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="209"/>
+    </glyph>
+    <glyph class="complex" id="Complex_4aff68c10a9a231a4531a2d5cc06f958" compartmentRef="cell_membrane" if.within.compartment="">
+      <label text="Integrin"/>
+      <bbox w="81" h="99.75" x="191.168257129601" y="314.488800541793"/>
+      <glyph class="macromolecule" id="Protein_5fb82f77ca4717b73a451f51863b019c_Complex_4aff68c10a9a231a4531a2d5cc06f958" compartmentRef="cell_membrane" if.within.compartment="">
+        <label text="ITGB3"/>
+        <bbox w="70" h="40" x="196.668257129601" y="319.988800541793"/>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_5d6a484c8a2d67f3dd3b0c90aabe5454_Complex_4aff68c10a9a231a4531a2d5cc06f958" compartmentRef="cell_membrane" if.within.compartment="">
+        <label text="ITGA2B"/>
+        <bbox w="70" h="40" x="196.668257129601" y="368.738800541793"/>
+      </glyph>
+    </glyph>
+    <arc class="interaction" id="Protein_889d944441c8f2781b97b19d7dc7f5cf--to--Interaction_0b17a1ea4a7e749f996829761137f073-input" source="Protein_889d944441c8f2781b97b19d7dc7f5cf" target="Interaction_0b17a1ea4a7e749f996829761137f073">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="Complex_4aff68c10a9a231a4531a2d5cc06f958--to--Interaction_0b17a1ea4a7e749f996829761137f073-input" source="Complex_4aff68c10a9a231a4531a2d5cc06f958" target="Interaction_0b17a1ea4a7e749f996829761137f073">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Protein_889d944441c8f2781b97b19d7dc7f5cf--to--Interaction_0b17a1ea4a7e749f996829761137f073" source="Protein_889d944441c8f2781b97b19d7dc7f5cf" target="Interaction_0b17a1ea4a7e749f996829761137f073" class="interaction">
+<source.arc start.x="365" start.y="226" end.x="440" end.y="228" class="consumption"/>
+
+
+<spline s.x="440.000000"  s.y="228.000000" c1.x="365.000000" c1.y="226.000000" c2.x="188.000000" c2.y="223.000000" e.x="137.000000"  e.y="222.000000" />
+<target.arc start.x="188" start.y="223" end.x="137" end.y="222" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="Complex_4aff68c10a9a231a4531a2d5cc06f958--to--Interaction_0b17a1ea4a7e749f996829761137f073" source="Complex_4aff68c10a9a231a4531a2d5cc06f958" target="Interaction_0b17a1ea4a7e749f996829761137f073" class="interaction">
+<source.arc start.x="172" start.y="286" end.x="193" end.y="314" class="consumption"/>
+
+
+<spline s.x="134.000000"  s.y="235.000000" c1.x="148.000000" c1.y="253.000000" c2.x="172.000000" c2.y="286.000000" e.x="193.000000"  e.y="314.000000" />
+<target.arc start.x="148" start.y="253" end.x="134" end.y="235" class="interaction"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>extracellular_space-compartment.layer.info-cell_membrane</compartment.layer.info>
+</sbgn>

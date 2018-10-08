@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="plasma membrane (extrinsic to internal side of plasma membrane)"/>
+      <bbox w="378.666666666667" h="392" x="100" y="198"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_e0a5327059dd87ff612d9778b309e2e8" compartmentRef="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="Smad1_p"/>
+      <bbox w="70" h="40" x="276" y="209"/>
+      <glyph class="state variable" id="Protein_e0a5327059dd87ff612d9778b309e2e8.info.1" if.within.compartment="">
+        <state value="phosphorylated"/>
+        <bbox w="35" h="17.5" x="276" y="200.25"/>
+      </glyph>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_c7309bb353f5c180289e532abefd238e" compartmentRef="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="MAPK"/>
+      <bbox w="70" h="40" x="276" y="539"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_75c545d23e67e771a483c9eb5d322c1a" compartmentRef="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="Smad1"/>
+      <bbox w="70" h="40" x="111" y="374"/>
+    </glyph>
+    <glyph class="process" id="BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT" compartmentRef="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="441" y="374"/>
+    </glyph>
+    <arc class="production" id="BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT-output--to--Protein_e0a5327059dd87ff612d9778b309e2e8" source="BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT" target="Protein_e0a5327059dd87ff612d9778b309e2e8">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="catalysis" id="Protein_c7309bb353f5c180289e532abefd238e--to--BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT" source="Protein_c7309bb353f5c180289e532abefd238e" target="BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Protein_75c545d23e67e771a483c9eb5d322c1a--to--BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT-input" source="Protein_75c545d23e67e771a483c9eb5d322c1a" target="BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT--to--Protein_e0a5327059dd87ff612d9778b309e2e8" source="BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT" target="Protein_e0a5327059dd87ff612d9778b309e2e8" class="production">
+<source.arc start.x="416" start.y="345" end.x="441" end.y="373" class="consumption"/>
+
+
+<spline s.x="329.000000"  s.y="249.000000" c1.x="358.000000" c1.y="281.000000" c2.x="416.000000" c2.y="345.000000" e.x="441.000000"  e.y="373.000000" />
+<target.arc start.x="358" start.y="281" end.x="329" end.y="249" class="production"/>
+
+</arc.spline>
+<arc.spline id="Protein_c7309bb353f5c180289e532abefd238e--to--BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT" source="Protein_c7309bb353f5c180289e532abefd238e" target="BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT" class="catalysis">
+<source.arc start.x="357" start.y="503" end.x="327" end.y="538" class="consumption"/>
+
+
+<spline s.x="327.000000"  s.y="538.000000" c1.x="357.000000" c1.y="503.000000" c2.x="417.000000" c2.y="430.000000" e.x="443.000000"  e.y="400.000000" />
+<target.arc start.x="417" start.y="430" end.x="443" end.y="400" class="catalysis"/>
+
+</arc.spline>
+<arc.spline id="Protein_75c545d23e67e771a483c9eb5d322c1a--to--BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT" source="Protein_75c545d23e67e771a483c9eb5d322c1a" target="BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="248" start.y="391" end.x="181" end.y="393" class="consumption"/>
+
+
+<spline s.x="181.000000"  s.y="393.000000" c1.x="248.000000" c1.y="391.000000" c2.x="395.000000" c2.y="388.000000" e.x="440.000000"  e.y="387.000000" />
+<target.arc start.x="395" start.y="388" end.x="440" end.y="387" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_-compartment.layer.info-plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_-compartment.layer.info-Protein_e0a5327059dd87ff612d9778b309e2e8-compartment.layer.info-Protein_c7309bb353f5c180289e532abefd238e-compartment.layer.info-Protein_75c545d23e67e771a483c9eb5d322c1a-compartment.layer.info-BiochemicalReaction_95e5ee8df1f4aa5892a485f390785787_LEFT_TO_RIGHT</compartment.layer.info>
+</sbgn>

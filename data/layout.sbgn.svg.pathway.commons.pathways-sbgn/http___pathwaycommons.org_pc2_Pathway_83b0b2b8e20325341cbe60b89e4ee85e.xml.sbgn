@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="extracellular" if.within.compartment="">
+      <label text="extracellular"/>
+      <bbox w="156.959465403834" h="62.6304133205637" x="474.576215106756" y="334.313309201582"/>
+    </glyph>
+    <glyph class="compartment" id="endoplasmic_reticulum___integral_to_membrane__" if.within.compartment="">
+      <label text="endoplasmic reticulum ( integral to membrane )"/>
+      <bbox w="92" h="62" x="126" y="372.906320763204"/>
+    </glyph>
+    <glyph class="compartment" id="endoplasmic_reticulum" if.within.compartment="">
+      <label text="endoplasmic reticulum"/>
+      <bbox w="341.661666800129" h="152.338737312521" x="189.99819640377" y="198"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_6f6c08b5e1fd947017371440eba35b68" compartmentRef="extracellular" if.within.compartment="">
+      <label text="Wnt"/>
+      <bbox w="70" h="40" x="550.53568051059" y="345.313309201582"/>
+      <glyph class="state variable" id="Protein_6f6c08b5e1fd947017371440eba35b68.info.1" if.within.compartment="">
+        <state value="palmitoylated"/>
+        <bbox w="35" h="17.5" x="550.53568051059" y="336.563309201582"/>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="Transport_7bd29cb583ae615ac020de4f851308a7_LEFT_TO_RIGHT" compartmentRef="extracellular" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="485.576215106756" y="359.277055855479"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_5a28ad8159cf759b53f92541838c0497" compartmentRef="endoplasmic_reticulum" if.within.compartment="">
+      <label text="Wnt"/>
+      <bbox w="70" h="40" x="450.659863203899" y="231.315503808807"/>
+      <glyph class="state variable" id="Protein_5a28ad8159cf759b53f92541838c0497.info.1" if.within.compartment="">
+        <state value="palmitoylated"/>
+        <bbox w="35" h="17.5" x="450.659863203899" y="222.565503808807"/>
+      </glyph>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_38e5bdefb39bddd965b507e65adaffed" compartmentRef="endoplasmic_reticulum" if.within.compartment="">
+      <label text="Wnt"/>
+      <bbox w="70" h="40" x="200.99819640377" y="209"/>
+      <glyph class="state variable" id="Protein_38e5bdefb39bddd965b507e65adaffed.info.1" if.within.compartment="">
+        <state value="palmitoylated"/>
+        <bbox w="35" h="17.5" x="200.99819640377" y="200.25"/>
+      </glyph>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_654379aa364949dfcbf1fc08f6069dd2" compartmentRef="endoplasmic_reticulum" if.within.compartment="">
+      <label text="Wnt"/>
+      <bbox w="70" h="40" x="310.388350326314" y="299.338737312521"/>
+    </glyph>
+    <glyph class="process" id="BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT" compartmentRef="endoplasmic_reticulum" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="316.153008396816" y="240.799554462894"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_d5db00e1eaba45efcbc351f86e40303d" compartmentRef="endoplasmic_reticulum___integral_to_membrane__" if.within.compartment="">
+      <label text="Porcupine"/>
+      <bbox w="70" h="40" x="137" y="383.906320763204"/>
+    </glyph>
+    <arc class="consumption" id="Protein_5a28ad8159cf759b53f92541838c0497--to--Transport_7bd29cb583ae615ac020de4f851308a7_LEFT_TO_RIGHT-input" source="Protein_5a28ad8159cf759b53f92541838c0497" target="Transport_7bd29cb583ae615ac020de4f851308a7_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT-output--to--Protein_38e5bdefb39bddd965b507e65adaffed" source="BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT" target="Protein_38e5bdefb39bddd965b507e65adaffed">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Protein_654379aa364949dfcbf1fc08f6069dd2--to--BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT-input" source="Protein_654379aa364949dfcbf1fc08f6069dd2" target="BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="catalysis" id="Protein_d5db00e1eaba45efcbc351f86e40303d--to--BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT" source="Protein_d5db00e1eaba45efcbc351f86e40303d" target="BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="Transport_7bd29cb583ae615ac020de4f851308a7_LEFT_TO_RIGHT-output--to--Protein_6f6c08b5e1fd947017371440eba35b68" source="Transport_7bd29cb583ae615ac020de4f851308a7_LEFT_TO_RIGHT" target="Protein_6f6c08b5e1fd947017371440eba35b68">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Protein_5a28ad8159cf759b53f92541838c0497--to--Transport_7bd29cb583ae615ac020de4f851308a7_LEFT_TO_RIGHT" source="Protein_5a28ad8159cf759b53f92541838c0497" target="Transport_7bd29cb583ae615ac020de4f851308a7_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="490" start.y="296" end.x="487" end.y="271" class="consumption"/>
+
+
+<spline s.x="497.000000"  s.y="358.000000" c1.x="495.000000" c1.y="337.000000" c2.x="490.000000" c2.y="296.000000" e.x="487.000000"  e.y="271.000000" />
+<target.arc start.x="495" start.y="337" end.x="497" end.y="358" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT--to--Protein_38e5bdefb39bddd965b507e65adaffed" source="BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT" target="Protein_38e5bdefb39bddd965b507e65adaffed" class="production">
+<source.arc start.x="304" start.y="247" end.x="315" end.y="250" class="consumption"/>
+
+
+<spline s.x="271.000000"  s.y="238.000000" c1.x="286.000000" c1.y="242.000000" c2.x="304.000000" c2.y="247.000000" e.x="315.000000"  e.y="250.000000" />
+<target.arc start.x="286" start.y="242" end.x="271" end.y="238" class="production"/>
+
+</arc.spline>
+<arc.spline id="Protein_654379aa364949dfcbf1fc08f6069dd2--to--BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT" source="Protein_654379aa364949dfcbf1fc08f6069dd2" target="BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="337" start.y="288" end.x="340" end.y="299" class="consumption"/>
+
+
+<spline s.x="340.000000"  s.y="299.000000" c1.x="337.000000" c1.y="288.000000" c2.x="335.000000" c2.y="276.000000" e.x="332.000000"  e.y="267.000000" />
+<target.arc start.x="335" start.y="276" end.x="332" end.y="267" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Protein_d5db00e1eaba45efcbc351f86e40303d--to--BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT" source="Protein_d5db00e1eaba45efcbc351f86e40303d" target="BiochemicalReaction_cd7b66e7117e576b7d5f5db1e378a3d6_LEFT_TO_RIGHT" class="catalysis">
+<source.arc start.x="226" start.y="352" end.x="193" end.y="383" class="consumption"/>
+
+
+<spline s.x="316.000000"  s.y="266.000000" c1.x="288.000000" c1.y="292.000000" c2.x="226.000000" c2.y="352.000000" e.x="193.000000"  e.y="383.000000" />
+<target.arc start.x="288" start.y="292" end.x="316" end.y="266" class="catalysis"/>
+
+</arc.spline>
+<arc.spline id="Transport_7bd29cb583ae615ac020de4f851308a7_LEFT_TO_RIGHT--to--Protein_6f6c08b5e1fd947017371440eba35b68" source="Transport_7bd29cb583ae615ac020de4f851308a7_LEFT_TO_RIGHT" target="Protein_6f6c08b5e1fd947017371440eba35b68" class="production">
+<source.arc start.x="522" start.y="370" end.x="512" end.y="371" class="consumption"/>
+
+
+<spline s.x="550.000000"  s.y="368.000000" c1.x="536.000000" c1.y="369.000000" c2.x="522.000000" c2.y="370.000000" e.x="512.000000"  e.y="371.000000" />
+<target.arc start.x="536" start.y="369" end.x="550" end.y="368" class="production"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>endoplasmic_reticulum-compartment.layer.info-extracellular-compartment.layer.info-endoplasmic_reticulum___integral_to_membrane__</compartment.layer.info>
+</sbgn>

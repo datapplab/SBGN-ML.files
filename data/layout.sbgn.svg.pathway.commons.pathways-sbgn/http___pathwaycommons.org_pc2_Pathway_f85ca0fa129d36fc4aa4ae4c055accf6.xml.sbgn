@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="nucleus" if.within.compartment="">
+      <label text="nucleus"/>
+      <bbox w="348.75" h="218.880352372341" x="100" y="198"/>
+    </glyph>
+    <glyph class="complex" id="Complex_43b4ff4f66521d9e8747a98cbe4196b1" compartmentRef="nucleus" if.within.compartment="">
+      <label text="TAp63a (tetramer)"/>
+      <bbox w="81" h="51" x="233.928593860755" y="354.880352372341"/>
+      <glyph class="macromolecule" id="Protein_191024c00c407bc971aecfa8e61447b1_Complex_43b4ff4f66521d9e8747a98cbe4196b1" compartmentRef="nucleus" if.within.compartment="">
+        <label text="TP63"/>
+        <bbox w="70" h="40" x="239.428593860755" y="360.380352372341"/>
+      </glyph>
+    </glyph>
+    <glyph class="complex" id="Complex_5fda34e10978c3544421986effa85e65" compartmentRef="nucleus" if.within.compartment="">
+      <label text="dNp63a (tetramer)"/>
+      <bbox w="81" h="51" x="356.75" y="350.5"/>
+      <glyph class="macromolecule" id="Protein_191024c00c407bc971aecfa8e61447b1_Complex_5fda34e10978c3544421986effa85e65" compartmentRef="nucleus" if.within.compartment="">
+        <label text="TP63"/>
+        <bbox w="70" h="40" x="362.25" y="356"/>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="ComplexAssembly_2551d1fc14dab831a5fd64c9ec766362_LEFT_TO_RIGHT" compartmentRef="nucleus" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="276" y="209"/>
+    </glyph>
+    <glyph class="process" id="ComplexAssembly_cc1282a07c1279698003eae940990824_LEFT_TO_RIGHT" compartmentRef="nucleus" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="374"/>
+    </glyph>
+    <arc class="consumption" id="Complex_5fda34e10978c3544421986effa85e65--to--ComplexAssembly_cc1282a07c1279698003eae940990824_LEFT_TO_RIGHT-input" source="Complex_5fda34e10978c3544421986effa85e65" target="ComplexAssembly_cc1282a07c1279698003eae940990824_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Complex_43b4ff4f66521d9e8747a98cbe4196b1--to--ComplexAssembly_2551d1fc14dab831a5fd64c9ec766362_LEFT_TO_RIGHT-input" source="Complex_43b4ff4f66521d9e8747a98cbe4196b1" target="ComplexAssembly_2551d1fc14dab831a5fd64c9ec766362_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Complex_5fda34e10978c3544421986effa85e65--to--ComplexAssembly_cc1282a07c1279698003eae940990824_LEFT_TO_RIGHT" source="Complex_5fda34e10978c3544421986effa85e65" target="ComplexAssembly_cc1282a07c1279698003eae940990824_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="344" start.y="401" end.x="356" end.y="396" class="consumption"/>
+
+
+<spline s.x="356.000000"  s.y="396.000000" c1.x="344.000000" c1.y="401.000000" c2.x="330.000000" c2.y="406.000000" e.x="318.000000"  e.y="409.000000" />
+<spline s.x="318.000000"  s.y="409.000000" c1.x="251.000000" c1.y="422.000000" c2.x="169.000000" c2.y="401.000000" e.x="138.000000"  e.y="391.000000" />
+<target.arc start.x="169" start.y="401" end.x="138" end.y="391" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Complex_43b4ff4f66521d9e8747a98cbe4196b1--to--ComplexAssembly_2551d1fc14dab831a5fd64c9ec766362_LEFT_TO_RIGHT" source="Complex_43b4ff4f66521d9e8747a98cbe4196b1" target="ComplexAssembly_2551d1fc14dab831a5fd64c9ec766362_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="280" start.y="320" end.x="276" end.y="354" class="consumption"/>
+
+
+<spline s.x="276.000000"  s.y="354.000000" c1.x="280.000000" c1.y="320.000000" c2.x="285.000000" c2.y="262.000000" e.x="288.000000"  e.y="235.000000" />
+<target.arc start.x="285" start.y="262" end.x="288" end.y="235" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>nucleus-compartment.layer.info-nucleus-compartment.layer.info-Complex_43b4ff4f66521d9e8747a98cbe4196b1-compartment.layer.info-Protein_191024c00c407bc971aecfa8e61447b1_Complex_43b4ff4f66521d9e8747a98cbe4196b1-compartment.layer.info-Complex_5fda34e10978c3544421986effa85e65-compartment.layer.info-Protein_191024c00c407bc971aecfa8e61447b1_Complex_5fda34e10978c3544421986effa85e65-compartment.layer.info-ComplexAssembly_2551d1fc14dab831a5fd64c9ec766362_LEFT_TO_RIGHT-compartment.layer.info-ComplexAssembly_cc1282a07c1279698003eae940990824_LEFT_TO_RIGHT</compartment.layer.info>
+</sbgn>

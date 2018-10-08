@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="extracellular" if.within.compartment="">
+      <label text="extracellular"/>
+      <bbox w="266.25" h="192.394191624432" x="100" y="198"/>
+    </glyph>
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="92" h="76" x="100" y="321.788383248865"/>
+    </glyph>
+    <glyph class="complex" id="Complex_c30688546811482a1332614d0b2787c4" compartmentRef="extracellular" if.within.compartment="">
+      <label text="Dimeric TGFB1"/>
+      <bbox w="81" h="51" x="274.25" y="328.394191624432"/>
+      <glyph class="macromolecule" id="Protein_635e67ff15de2c426c5b8526858451c7_Complex_c30688546811482a1332614d0b2787c4" compartmentRef="extracellular" if.within.compartment="">
+        <label text="TGFB1"/>
+        <bbox w="70" h="40" x="279.75" y="333.894191624432"/>
+        <glyph class="state variable" id="Protein_635e67ff15de2c426c5b8526858451c7_Complex_c30688546811482a1332614d0b2787c4.info.1" compartmentRef="extracellular" if.within.compartment="">
+          <state value="x[279 - 390]"/>
+          <bbox w="35" h="17.5" x="279.75" y="325.144191624432"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-3642203_LEFT_TO_RIGHT" compartmentRef="extracellular" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="209"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_23c526b1c29a708881d7cbc849034ded" compartmentRef="cytosol" if.within.compartment="">
+      <label text="TGFBR2 BAT-RII Mutants"/>
+      <bbox w="70" h="40" x="111" y="339.788383248865"/>
+    </glyph>
+    <arc class="consumption" id="Complex_c30688546811482a1332614d0b2787c4--to--reactome_R-HSA-3642203_LEFT_TO_RIGHT-input" source="Complex_c30688546811482a1332614d0b2787c4" target="reactome_R-HSA-3642203_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Protein_23c526b1c29a708881d7cbc849034ded--to--reactome_R-HSA-3642203_LEFT_TO_RIGHT-input" source="Protein_23c526b1c29a708881d7cbc849034ded" target="reactome_R-HSA-3642203_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Complex_c30688546811482a1332614d0b2787c4--to--reactome_R-HSA-3642203_LEFT_TO_RIGHT" source="Complex_c30688546811482a1332614d0b2787c4" target="reactome_R-HSA-3642203_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="234" start.y="298" end.x="277" end.y="328" class="consumption"/>
+
+
+<spline s.x="277.000000"  s.y="328.000000" c1.x="234.000000" c1.y="298.000000" c2.x="167.000000" c2.y="251.000000" e.x="138.000000"  e.y="231.000000" />
+<target.arc start.x="167" start.y="251" end.x="138" end.y="231" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Protein_23c526b1c29a708881d7cbc849034ded--to--reactome_R-HSA-3642203_LEFT_TO_RIGHT" source="Protein_23c526b1c29a708881d7cbc849034ded" target="reactome_R-HSA-3642203_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="138" start.y="311" end.x="142" end.y="339" class="consumption"/>
+
+
+<spline s.x="126.000000"  s.y="236.000000" c1.x="130.000000" c1.y="260.000000" c2.x="138.000000" c2.y="311.000000" e.x="142.000000"  e.y="339.000000" />
+<target.arc start.x="130" start.y="260" end.x="126" end.y="236" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>extracellular-compartment.layer.info-cytosol</compartment.layer.info>
+</sbgn>

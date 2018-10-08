@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="endoplasmic_reticulum___integral_to_membrane__" if.within.compartment="">
+      <label text="endoplasmic reticulum ( integral to membrane )"/>
+      <bbox w="369.565572007046" h="187.589965339973" x="256.09070747435" y="303.538353539852"/>
+    </glyph>
+    <glyph class="compartment" id="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="plasma membrane (extrinsic to internal side of plasma membrane)"/>
+      <bbox w="205.537323018656" h="118.426413370044" x="100" y="247.605219416822"/>
+    </glyph>
+    <glyph class="compartment" id="endoplasmic_reticulum___inner_space__" if.within.compartment="">
+      <label text="endoplasmic reticulum ( inner space )"/>
+      <bbox w="166.668352070926" h="78.7304352517747" x="339.471637833099" y="521.971677188587"/>
+    </glyph>
+    <glyph class="compartment" id="plasma_membrane" if.within.compartment="">
+      <label text="plasma membrane"/>
+      <bbox w="103" h="139.75" x="589.934758472841" y="262"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_07ddb3d6a5a7831178e3cc9baae18e7e" compartmentRef="endoplasmic_reticulum___inner_space__" if.within.compartment="">
+      <label text="calcium ion"/>
+      <bbox w="70" h="40" x="425.139989904025" y="532.971677188587"/>
+    </glyph>
+    <glyph class="process" id="Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT" compartmentRef="endoplasmic_reticulum___inner_space__" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="350.471637833099" y="563.035445773695"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_6bce1b3ac90014604f43aa9cd8cb6517" compartmentRef="endoplasmic_reticulum___integral_to_membrane__" if.within.compartment="">
+      <label text="IP3R"/>
+      <bbox w="70" h="40" x="267.09070747435" y="427.405000837323"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_9d06c3a449ea53cedbda6f1e463765d8" compartmentRef="endoplasmic_reticulum___integral_to_membrane__" if.within.compartment="">
+      <label text="IP3R"/>
+      <bbox w="70" h="40" x="544.656279481396" y="440.128318879825"/>
+    </glyph>
+    <glyph class="process" id="ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT" compartmentRef="endoplasmic_reticulum___integral_to_membrane__" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="348.09070747435" y="314.538353539852"/>
+    </glyph>
+    <glyph class="complex" id="Complex_67af9663b171e93562b313a53c7bfd3a" compartmentRef="plasma_membrane" if.within.compartment="">
+      <label text="IP3:IP3R"/>
+      <bbox w="81" h="99.75" x="600.934758472841" y="291"/>
+      <glyph class="simple chemical" id="SmallMolecule_e26ec5626f4629056d1d860d42a18027_Complex_67af9663b171e93562b313a53c7bfd3a" compartmentRef="plasma_membrane" if.within.compartment="">
+        <label text="IP3"/>
+        <bbox w="70" h="40" x="606.434758472841" y="296.5"/>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_0b26dc81aa1a0b4abf994f1048ff5ba4_Complex_67af9663b171e93562b313a53c7bfd3a" compartmentRef="plasma_membrane" if.within.compartment="">
+        <label text="IP3R"/>
+        <bbox w="70" h="40" x="606.434758472841" y="345.25"/>
+      </glyph>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_c9f1e3d81f59dda0398798c8ab8c14af" compartmentRef="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="IP3"/>
+      <bbox w="70" h="40" x="224.537323018656" y="315.031632786866"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_aaff0c9864550a5a5ddc4c7ebcf096e3" compartmentRef="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="calcium ion"/>
+      <bbox w="70" h="40" x="111" y="258.605219416822"/>
+    </glyph>
+    <arc class="consumption" id="SmallMolecule_07ddb3d6a5a7831178e3cc9baae18e7e--to--Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT-input" source="SmallMolecule_07ddb3d6a5a7831178e3cc9baae18e7e" target="Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_c9f1e3d81f59dda0398798c8ab8c14af--to--ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT-input" source="SmallMolecule_c9f1e3d81f59dda0398798c8ab8c14af" target="ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="stimulation" id="Protein_9d06c3a449ea53cedbda6f1e463765d8--to--Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT" source="Protein_9d06c3a449ea53cedbda6f1e463765d8" target="Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT-output--to--SmallMolecule_aaff0c9864550a5a5ddc4c7ebcf096e3" source="Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT" target="SmallMolecule_aaff0c9864550a5a5ddc4c7ebcf096e3">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Protein_6bce1b3ac90014604f43aa9cd8cb6517--to--ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT-input" source="Protein_6bce1b3ac90014604f43aa9cd8cb6517" target="ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT-output--to--Complex_67af9663b171e93562b313a53c7bfd3a" source="ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT" target="Complex_67af9663b171e93562b313a53c7bfd3a">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule_07ddb3d6a5a7831178e3cc9baae18e7e--to--Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT" source="SmallMolecule_07ddb3d6a5a7831178e3cc9baae18e7e" target="Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="408" start.y="565" end.x="425" end.y="561" class="consumption"/>
+
+
+<spline s.x="425.000000"  s.y="561.000000" c1.x="408.000000" c1.y="565.000000" c2.x="389.000000" c2.y="570.000000" e.x="377.000000"  e.y="573.000000" />
+<target.arc start.x="389" start.y="570" end.x="377" end.y="573" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_c9f1e3d81f59dda0398798c8ab8c14af--to--ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT" source="SmallMolecule_c9f1e3d81f59dda0398798c8ab8c14af" target="ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="313" start.y="331" end.x="294" end.y="332" class="consumption"/>
+
+
+<spline s.x="348.000000"  s.y="328.000000" c1.x="334.000000" c1.y="329.000000" c2.x="313.000000" c2.y="331.000000" e.x="294.000000"  e.y="332.000000" />
+<target.arc start.x="334" start.y="329" end.x="348" end.y="328" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Protein_9d06c3a449ea53cedbda6f1e463765d8--to--Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT" source="Protein_9d06c3a449ea53cedbda6f1e463765d8" target="Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT" class="stimulation">
+<source.arc start.x="511" start.y="484" end.x="544" end.y="472" class="consumption"/>
+
+
+<spline s.x="377.000000"  s.y="563.000000" c1.x="388.000000" c1.y="553.000000" c2.x="405.000000" c2.y="539.000000" e.x="421.000000"  e.y="529.000000" />
+<spline s.x="421.000000"  s.y="529.000000" c1.x="461.000000" c1.y="505.000000" c2.x="511.000000" c2.y="484.000000" e.x="544.000000"  e.y="472.000000" />
+<target.arc start.x="388" start.y="553" end.x="377" end.y="563" class="stimulation"/>
+
+</arc.spline>
+<arc.spline id="Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT--to--SmallMolecule_aaff0c9864550a5a5ddc4c7ebcf096e3" source="Transport_bbc7172d05de3d1ff8c233bbd749abbc_LEFT_TO_RIGHT" target="SmallMolecule_aaff0c9864550a5a5ddc4c7ebcf096e3" class="production">
+<source.arc start.x="330" start.y="544" end.x="350" end.y="563" class="consumption"/>
+
+
+<spline s.x="350.000000"  s.y="563.000000" c1.x="330.000000" c1.y="544.000000" c2.x="291.000000" c2.y="506.000000" e.x="263.000000"  e.y="470.000000" />
+<spline s.x="263.000000"  s.y="470.000000" c1.x="218.000000" c1.y="411.000000" c2.x="175.000000" c2.y="334.000000" e.x="156.000000"  e.y="298.000000" />
+<target.arc start.x="175" start.y="334" end.x="156" end.y="298" class="production"/>
+
+</arc.spline>
+<arc.spline id="Protein_6bce1b3ac90014604f43aa9cd8cb6517--to--ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT" source="Protein_6bce1b3ac90014604f43aa9cd8cb6517" target="ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="324" start.y="403" end.x="312" end.y="427" class="consumption"/>
+
+
+<spline s.x="312.000000"  s.y="427.000000" c1.x="324.000000" c1.y="403.000000" c2.x="344.000000" c2.y="362.000000" e.x="354.000000"  e.y="341.000000" />
+<target.arc start.x="344" start.y="362" end.x="354" end.y="341" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT--to--Complex_67af9663b171e93562b313a53c7bfd3a" source="ComplexAssembly_1de68aaae46b2043786b3cf9687a5ecb_LEFT_TO_RIGHT" target="Complex_67af9663b171e93562b313a53c7bfd3a" class="production">
+<source.arc start.x="415" start.y="330" end.x="374" end.y="328" class="consumption"/>
+
+
+<spline s.x="374.000000"  s.y="328.000000" c1.x="415.000000" c1.y="330.000000" c2.x="536.000000" c2.y="336.000000" e.x="600.000000"  e.y="338.000000" />
+<target.arc start.x="536" start.y="336" end.x="600" end.y="338" class="production"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>endoplasmic_reticulum___integral_to_membrane__-compartment.layer.info-plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_-compartment.layer.info-endoplasmic_reticulum___inner_space__-compartment.layer.info-plasma_membrane</compartment.layer.info>
+</sbgn>

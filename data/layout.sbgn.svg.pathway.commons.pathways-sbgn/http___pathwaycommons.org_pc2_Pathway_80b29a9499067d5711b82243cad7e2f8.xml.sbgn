@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytoplasm" if.within.compartment="">
+      <label text="cytoplasm"/>
+      <bbox w="276.475608143733" h="315.908891816958" x="100" y="198"/>
+    </glyph>
+    <glyph class="compartment" id="peroxisome" if.within.compartment="">
+      <label text="peroxisome"/>
+      <bbox w="92" h="62" x="317.487804071866" y="294.984566628258"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_a47b3d42f719cd6b54f23d38a46f855f" compartmentRef="cytoplasm" if.within.compartment="">
+      <label text="Isobutyryl-CoA"/>
+      <bbox w="70" h="40" x="111" y="209"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_28f1567a3f788391db86bbcb4c8cd777" compartmentRef="cytoplasm" if.within.compartment="">
+      <label text="Propionyl-CoA"/>
+      <bbox w="70" h="40" x="295.475608143733" y="462.908891816958"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_c02933b0ba911ebaf9621f4a2e7bc3a9" compartmentRef="cytoplasm" if.within.compartment="">
+      <label text="Acetyl-CoA"/>
+      <bbox w="70" h="40" x="111" y="402.969133256516"/>
+    </glyph>
+    <glyph class="omitted process" id="Interaction_5d8f1f69beb33b33d29b15b03c524527" compartmentRef="cytoplasm" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="213.714000576786" y="312.611230053802"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_20df1c4509cd2718fa2c1acec6838590" compartmentRef="peroxisome" if.within.compartment="">
+      <label text="Pristanic acid"/>
+      <bbox w="70" h="40" x="328.487804071866" y="305.984566628258"/>
+    </glyph>
+    <arc class="interaction" id="SmallMolecule_20df1c4509cd2718fa2c1acec6838590--to--Interaction_5d8f1f69beb33b33d29b15b03c524527-input" source="SmallMolecule_20df1c4509cd2718fa2c1acec6838590" target="Interaction_5d8f1f69beb33b33d29b15b03c524527">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="SmallMolecule_28f1567a3f788391db86bbcb4c8cd777--to--Interaction_5d8f1f69beb33b33d29b15b03c524527-input" source="SmallMolecule_28f1567a3f788391db86bbcb4c8cd777" target="Interaction_5d8f1f69beb33b33d29b15b03c524527">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="SmallMolecule_c02933b0ba911ebaf9621f4a2e7bc3a9--to--Interaction_5d8f1f69beb33b33d29b15b03c524527-input" source="SmallMolecule_c02933b0ba911ebaf9621f4a2e7bc3a9" target="Interaction_5d8f1f69beb33b33d29b15b03c524527">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="SmallMolecule_a47b3d42f719cd6b54f23d38a46f855f--to--Interaction_5d8f1f69beb33b33d29b15b03c524527-input" source="SmallMolecule_a47b3d42f719cd6b54f23d38a46f855f" target="Interaction_5d8f1f69beb33b33d29b15b03c524527">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule_20df1c4509cd2718fa2c1acec6838590--to--Interaction_5d8f1f69beb33b33d29b15b03c524527" source="SmallMolecule_20df1c4509cd2718fa2c1acec6838590" target="Interaction_5d8f1f69beb33b33d29b15b03c524527" class="interaction">
+<source.arc start.x="299" start.y="325" end.x="328" end.y="325" class="consumption"/>
+
+
+<spline s.x="240.000000"  s.y="325.000000" c1.x="260.000000" c1.y="325.000000" c2.x="299.000000" c2.y="325.000000" e.x="328.000000"  e.y="325.000000" />
+<target.arc start.x="260" start.y="325" end.x="240" end.y="325" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_28f1567a3f788391db86bbcb4c8cd777--to--Interaction_5d8f1f69beb33b33d29b15b03c524527" source="SmallMolecule_28f1567a3f788391db86bbcb4c8cd777" target="Interaction_5d8f1f69beb33b33d29b15b03c524527" class="interaction">
+<source.arc start.x="295" start.y="430" end.x="317" end.y="462" class="consumption"/>
+
+
+<spline s.x="317.000000"  s.y="462.000000" c1.x="295.000000" c1.y="430.000000" c2.x="254.000000" c2.y="367.000000" e.x="236.000000"  e.y="339.000000" />
+<target.arc start.x="254" start.y="367" end.x="236" end.y="339" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_c02933b0ba911ebaf9621f4a2e7bc3a9--to--Interaction_5d8f1f69beb33b33d29b15b03c524527" source="SmallMolecule_c02933b0ba911ebaf9621f4a2e7bc3a9" target="Interaction_5d8f1f69beb33b33d29b15b03c524527" class="interaction">
+<source.arc start.x="178" start.y="383" end.x="162" end.y="402" class="consumption"/>
+
+
+<spline s.x="162.000000"  s.y="402.000000" c1.x="178.000000" c1.y="383.000000" c2.x="201.000000" c2.y="355.000000" e.x="215.000000"  e.y="339.000000" />
+<target.arc start.x="201" start.y="355" end.x="215" end.y="339" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_a47b3d42f719cd6b54f23d38a46f855f--to--Interaction_5d8f1f69beb33b33d29b15b03c524527" source="SmallMolecule_a47b3d42f719cd6b54f23d38a46f855f" target="Interaction_5d8f1f69beb33b33d29b15b03c524527" class="interaction">
+<source.arc start.x="178" start.y="268" end.x="162" end.y="249" class="consumption"/>
+
+
+<spline s.x="162.000000"  s.y="249.000000" c1.x="178.000000" c1.y="268.000000" c2.x="201.000000" c2.y="295.000000" e.x="215.000000"  e.y="312.000000" />
+<target.arc start.x="201" start.y="295" end.x="215" end.y="312" class="interaction"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cytoplasm-compartment.layer.info-peroxisome</compartment.layer.info>
+</sbgn>

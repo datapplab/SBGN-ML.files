@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="162.6788625948" h="205.590991855367" x="100" y="223.651349622599"/>
+    </glyph>
+    <glyph class="compartment" id="cell_membrane" if.within.compartment="">
+      <label text="cell membrane"/>
+      <bbox w="103" h="91" x="258.75" y="262"/>
+    </glyph>
+    <glyph class="compartment" id="extracellular_space" if.within.compartment="">
+      <label text="extracellular space"/>
+      <bbox w="92" h="62" x="320.524391856267" y="445.591108183041"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_00fb5d72f6a05c5a1b4051c33d09af76" compartmentRef="cytosol" if.within.compartment="">
+      <label text="Gefitinib"/>
+      <bbox w="70" h="40" x="132.098023703566" y="339.202255265977"/>
+    </glyph>
+    <glyph class="process" id="Transport_afb8ad907464270345d93f0fbf0a69c5_LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="225.012195928133" y="391.575674811299"/>
+    </glyph>
+    <glyph class="omitted process" id="Interaction_061d250010493068025ba7411cfbd7de" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="234.651349622599"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_37b455fb69aea63c336400dd2640f788" compartmentRef="extracellular_space" if.within.compartment="">
+      <label text="Gefitinib"/>
+      <bbox w="70" h="40" x="331.524391856267" y="456.591108183041"/>
+    </glyph>
+    <glyph class="complex" id="Complex_21d7baa2b43af37ee3b608af30fc7d69" compartmentRef="cell_membrane" if.within.compartment="">
+      <label text="Epidermal growth factor receptor"/>
+      <bbox w="81" h="51" x="269.75" y="291"/>
+      <glyph class="macromolecule" id="Protein_f7ba62be1e8f75e325208f42f5f1b84a_Complex_21d7baa2b43af37ee3b608af30fc7d69" compartmentRef="cell_membrane" if.within.compartment="">
+        <label text="EGFR"/>
+        <bbox w="70" h="40" x="275.25" y="296.5"/>
+      </glyph>
+    </glyph>
+    <arc class="production" id="Transport_afb8ad907464270345d93f0fbf0a69c5_LEFT_TO_RIGHT-output--to--SmallMolecule_00fb5d72f6a05c5a1b4051c33d09af76" source="Transport_afb8ad907464270345d93f0fbf0a69c5_LEFT_TO_RIGHT" target="SmallMolecule_00fb5d72f6a05c5a1b4051c33d09af76">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="Complex_21d7baa2b43af37ee3b608af30fc7d69--to--Interaction_061d250010493068025ba7411cfbd7de-input" source="Complex_21d7baa2b43af37ee3b608af30fc7d69" target="Interaction_061d250010493068025ba7411cfbd7de">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="SmallMolecule_00fb5d72f6a05c5a1b4051c33d09af76--to--Interaction_061d250010493068025ba7411cfbd7de-input" source="SmallMolecule_00fb5d72f6a05c5a1b4051c33d09af76" target="Interaction_061d250010493068025ba7411cfbd7de">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_37b455fb69aea63c336400dd2640f788--to--Transport_afb8ad907464270345d93f0fbf0a69c5_LEFT_TO_RIGHT-input" source="SmallMolecule_37b455fb69aea63c336400dd2640f788" target="Transport_afb8ad907464270345d93f0fbf0a69c5_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Transport_afb8ad907464270345d93f0fbf0a69c5_LEFT_TO_RIGHT--to--SmallMolecule_00fb5d72f6a05c5a1b4051c33d09af76" source="Transport_afb8ad907464270345d93f0fbf0a69c5_LEFT_TO_RIGHT" target="SmallMolecule_00fb5d72f6a05c5a1b4051c33d09af76" class="production">
+<source.arc start.x="217" start.y="391" end.x="224" end.y="396" class="consumption"/>
+
+
+<spline s.x="198.000000"  s.y="379.000000" c1.x="207.000000" c1.y="385.000000" c2.x="217.000000" c2.y="391.000000" e.x="224.000000"  e.y="396.000000" />
+<target.arc start.x="207" start.y="385" end.x="198" end.y="379" class="production"/>
+
+</arc.spline>
+<arc.spline id="Complex_21d7baa2b43af37ee3b608af30fc7d69--to--Interaction_061d250010493068025ba7411cfbd7de" source="Complex_21d7baa2b43af37ee3b608af30fc7d69" target="Interaction_061d250010493068025ba7411cfbd7de" class="interaction">
+<source.arc start.x="227" start.y="286" end.x="269" end.y="301" class="consumption"/>
+
+
+<spline s.x="137.000000"  s.y="252.000000" c1.x="164.000000" c1.y="262.000000" c2.x="227.000000" c2.y="286.000000" e.x="269.000000"  e.y="301.000000" />
+<target.arc start.x="164" start.y="262" end.x="137" end.y="252" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_00fb5d72f6a05c5a1b4051c33d09af76--to--Interaction_061d250010493068025ba7411cfbd7de" source="SmallMolecule_00fb5d72f6a05c5a1b4051c33d09af76" target="Interaction_061d250010493068025ba7411cfbd7de" class="interaction">
+<source.arc start.x="150" start.y="316" end.x="159" end.y="339" class="consumption"/>
+
+
+<spline s.x="159.000000"  s.y="339.000000" c1.x="150.000000" c1.y="316.000000" c2.x="137.000000" c2.y="281.000000" e.x="129.000000"  e.y="261.000000" />
+<target.arc start.x="137" start.y="281" end.x="129" end.y="261" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_37b455fb69aea63c336400dd2640f788--to--Transport_afb8ad907464270345d93f0fbf0a69c5_LEFT_TO_RIGHT" source="SmallMolecule_37b455fb69aea63c336400dd2640f788" target="Transport_afb8ad907464270345d93f0fbf0a69c5_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="305" start.y="442" end.x="331" end.y="456" class="consumption"/>
+
+
+<spline s.x="252.000000"  s.y="412.000000" c1.x="270.000000" c1.y="423.000000" c2.x="305.000000" c2.y="442.000000" e.x="331.000000"  e.y="456.000000" />
+<target.arc start.x="270" start.y="423" end.x="252" end.y="412" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cytosol-compartment.layer.info-cell_membrane-compartment.layer.info-extracellular_space</compartment.layer.info>
+</sbgn>

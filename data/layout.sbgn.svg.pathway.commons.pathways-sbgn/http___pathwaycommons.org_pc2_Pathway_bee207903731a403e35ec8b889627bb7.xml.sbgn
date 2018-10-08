@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytoplasm" if.within.compartment="">
+      <label text="cytoplasm"/>
+      <bbox w="422" h="62" x="100" y="198"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_cf7eda1de010d69e541b5beef375ae74" compartmentRef="cytoplasm" if.within.compartment="">
+      <label text="PRKACB"/>
+      <bbox w="70" h="40" x="441" y="209"/>
+    </glyph>
+    <glyph class="omitted process" id="Interaction_35e553859494b0af8c2533ece1c5a095" compartmentRef="cytoplasm" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="209"/>
+    </glyph>
+    <arc class="interaction" id="Protein_cf7eda1de010d69e541b5beef375ae74--to--Interaction_35e553859494b0af8c2533ece1c5a095-input" source="Protein_cf7eda1de010d69e541b5beef375ae74" target="Interaction_35e553859494b0af8c2533ece1c5a095">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Protein_cf7eda1de010d69e541b5beef375ae74--to--Interaction_35e553859494b0af8c2533ece1c5a095" source="Protein_cf7eda1de010d69e541b5beef375ae74" target="Interaction_35e553859494b0af8c2533ece1c5a095" class="interaction">
+<source.arc start.x="365" start.y="226" end.x="440" end.y="228" class="consumption"/>
+
+
+<spline s.x="440.000000"  s.y="228.000000" c1.x="365.000000" c1.y="226.000000" c2.x="188.000000" c2.y="223.000000" e.x="137.000000"  e.y="222.000000" />
+<target.arc start.x="188" start.y="223" end.x="137" end.y="222" class="interaction"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cytoplasm-compartment.layer.info-cytoplasm-compartment.layer.info-Protein_cf7eda1de010d69e541b5beef375ae74-compartment.layer.info-Interaction_35e553859494b0af8c2533ece1c5a095</compartment.layer.info>
+</sbgn>

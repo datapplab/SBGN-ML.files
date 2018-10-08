@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="192.362007622741" h="62" x="249.478021483114" y="331.792685305697"/>
+    </glyph>
+    <glyph class="compartment" id="nucleus" if.within.compartment="">
+      <label text="nucleus"/>
+      <bbox w="92" h="62" x="337.685558367322" y="198"/>
+    </glyph>
+    <glyph class="compartment" id="plasma_membrane__integral_to_plasma_membrane_" if.within.compartment="">
+      <label text="plasma membrane (integral to plasma membrane)"/>
+      <bbox w="98.32233302211" h="120.187669208195" x="110.838833488945" y="268.091108183042"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_2f8c2416379a4963cf1133f63ad1265b" compartmentRef="plasma_membrane__integral_to_plasma_membrane_" if.within.compartment="">
+      <label text="Sef"/>
+      <bbox w="70" h="40" x="128.161166511055" y="279.091108183042"/>
+    </glyph>
+    <glyph class="process" id="TemplateReaction_fbfb58a6dea7fbe6fee5624c4ec11ad2" compartmentRef="plasma_membrane__integral_to_plasma_membrane_" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="121.838833488945" y="350.61211072457"/>
+    </glyph>
+    <glyph class="nucleic acid feature" id="Rna_12db584aca5ba9da53221ed577313fc2" compartmentRef="cytosol" if.within.compartment="">
+      <label text="Mkp3"/>
+      <bbox w="70" h="40" x="260.478021483114" y="342.792685305697"/>
+      <glyph class="unit of information" id="Rna_12db584aca5ba9da53221ed577313fc2.info.1" if.within.compartment="">
+        <label text="mt:RNA"/>
+        <bbox w="35" h="17.5" x="260.478021483114" y="334.042685305697"/>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="404.173362439188" y="355.015433371742"/>
+    </glyph>
+    <glyph class="nucleic acid feature" id="Rna_37f37f9c9b0f5896f7cfba097c58c9b5" compartmentRef="nucleus" if.within.compartment="">
+      <label text="Sef"/>
+      <bbox w="70" h="40" x="348.685558367322" y="209"/>
+      <glyph class="unit of information" id="Rna_37f37f9c9b0f5896f7cfba097c58c9b5.info.1" if.within.compartment="">
+        <label text="mt:RNA"/>
+        <bbox w="35" h="17.5" x="348.685558367322" y="200.25"/>
+      </glyph>
+    </glyph>
+    <arc class="production" id="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT-output--to--Rna_12db584aca5ba9da53221ed577313fc2" source="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT" target="Rna_12db584aca5ba9da53221ed577313fc2">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="TemplateReaction_fbfb58a6dea7fbe6fee5624c4ec11ad2-output--to--Protein_2f8c2416379a4963cf1133f63ad1265b" source="TemplateReaction_fbfb58a6dea7fbe6fee5624c4ec11ad2" target="Protein_2f8c2416379a4963cf1133f63ad1265b">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="TemplateReaction_fbfb58a6dea7fbe6fee5624c4ec11ad2-input--to--Rna_12db584aca5ba9da53221ed577313fc2" source="TemplateReaction_fbfb58a6dea7fbe6fee5624c4ec11ad2" target="Rna_12db584aca5ba9da53221ed577313fc2">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Rna_37f37f9c9b0f5896f7cfba097c58c9b5--to--Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT-input" source="Rna_37f37f9c9b0f5896f7cfba097c58c9b5" target="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT--to--Rna_12db584aca5ba9da53221ed577313fc2" source="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT" target="Rna_12db584aca5ba9da53221ed577313fc2" class="production">
+<source.arc start.x="386" start.y="366" end.x="403" end.y="367" class="consumption"/>
+
+
+<spline s.x="330.000000"  s.y="364.000000" c1.x="355.000000" c1.y="365.000000" c2.x="386.000000" c2.y="366.000000" e.x="403.000000"  e.y="367.000000" />
+<target.arc start.x="355" start.y="365" end.x="330" end.y="364" class="production"/>
+
+</arc.spline>
+<arc.spline id="TemplateReaction_fbfb58a6dea7fbe6fee5624c4ec11ad2--to--Protein_2f8c2416379a4963cf1133f63ad1265b" source="TemplateReaction_fbfb58a6dea7fbe6fee5624c4ec11ad2" target="Protein_2f8c2416379a4963cf1133f63ad1265b" class="production">
+<source.arc start.x="144" start.y="341" end.x="141" end.y="350" class="consumption"/>
+
+
+<spline s.x="154.000000"  s.y="319.000000" c1.x="150.000000" c1.y="329.000000" c2.x="144.000000" c2.y="341.000000" e.x="141.000000"  e.y="350.000000" />
+<target.arc start.x="150" start.y="329" end.x="154" end.y="319" class="production"/>
+
+</arc.spline>
+<arc.spline id="TemplateReaction_fbfb58a6dea7fbe6fee5624c4ec11ad2--to--Rna_12db584aca5ba9da53221ed577313fc2" source="TemplateReaction_fbfb58a6dea7fbe6fee5624c4ec11ad2" target="Rna_12db584aca5ba9da53221ed577313fc2" class="interaction">
+<source.arc start.x="173" start.y="363" end.x="148" end.y="363" class="consumption"/>
+
+
+<spline s.x="148.000000"  s.y="363.000000" c1.x="173.000000" c1.y="363.000000" c2.x="225.000000" c2.y="363.000000" e.x="260.000000"  e.y="363.000000" />
+<target.arc start.x="225" start.y="363" end.x="260" end.y="363" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="Rna_37f37f9c9b0f5896f7cfba097c58c9b5--to--Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT" source="Rna_37f37f9c9b0f5896f7cfba097c58c9b5" target="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="395" start.y="277" end.x="388" end.y="249" class="consumption"/>
+
+
+<spline s.x="414.000000"  s.y="354.000000" c1.x="408.000000" c1.y="330.000000" c2.x="395.000000" c2.y="277.000000" e.x="388.000000"  e.y="249.000000" />
+<target.arc start.x="408" start.y="330" end.x="414" end.y="354" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cytosol-compartment.layer.info-plasma_membrane__integral_to_plasma_membrane_-compartment.layer.info-nucleus</compartment.layer.info>
+</sbgn>

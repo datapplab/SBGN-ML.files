@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cell_membrane" if.within.compartment="">
+      <label text="cell membrane"/>
+      <bbox w="103" h="91" x="177.75" y="289.288383248865"/>
+    </glyph>
+    <glyph class="compartment" id="extracellular_space" if.within.compartment="">
+      <label text="extracellular space"/>
+      <bbox w="339.5" h="204.894191624432" x="100" y="198"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_e5379fa07725afcc0aad6b44c099593b" compartmentRef="extracellular_space" if.within.compartment="">
+      <label text="Trastuzumab"/>
+      <bbox w="70" h="40" x="358.5" y="351.894191624432"/>
+    </glyph>
+    <glyph class="omitted process" id="Interaction_b4278bcb80bd3d6752a4b77e47f23ab6" compartmentRef="extracellular_space" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="209"/>
+    </glyph>
+    <glyph class="complex" id="Complex_21d7baa2b43af37ee3b608af30fc7d69" compartmentRef="cell_membrane" if.within.compartment="">
+      <label text="Epidermal growth factor receptor"/>
+      <bbox w="81" h="51" x="188.75" y="318.288383248865"/>
+      <glyph class="macromolecule" id="Protein_f7ba62be1e8f75e325208f42f5f1b84a_Complex_21d7baa2b43af37ee3b608af30fc7d69" compartmentRef="cell_membrane" if.within.compartment="">
+        <label text="EGFR"/>
+        <bbox w="70" h="40" x="194.25" y="323.788383248865"/>
+      </glyph>
+    </glyph>
+    <arc class="interaction" id="Protein_e5379fa07725afcc0aad6b44c099593b--to--Interaction_b4278bcb80bd3d6752a4b77e47f23ab6-input" source="Protein_e5379fa07725afcc0aad6b44c099593b" target="Interaction_b4278bcb80bd3d6752a4b77e47f23ab6">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="Complex_21d7baa2b43af37ee3b608af30fc7d69--to--Interaction_b4278bcb80bd3d6752a4b77e47f23ab6-input" source="Complex_21d7baa2b43af37ee3b608af30fc7d69" target="Interaction_b4278bcb80bd3d6752a4b77e47f23ab6">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Protein_e5379fa07725afcc0aad6b44c099593b--to--Interaction_b4278bcb80bd3d6752a4b77e47f23ab6" source="Protein_e5379fa07725afcc0aad6b44c099593b" target="Interaction_b4278bcb80bd3d6752a4b77e47f23ab6" class="interaction">
+<source.arc start.x="298" start.y="318" end.x="358" end.y="352" class="consumption"/>
+
+
+<spline s.x="358.000000"  s.y="352.000000" c1.x="298.000000" c1.y="318.000000" c2.x="178.000000" c2.y="252.000000" e.x="137.000000"  e.y="229.000000" />
+<target.arc start.x="178" start.y="252" end.x="137" end.y="229" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="Complex_21d7baa2b43af37ee3b608af30fc7d69--to--Interaction_b4278bcb80bd3d6752a4b77e47f23ab6" source="Complex_21d7baa2b43af37ee3b608af30fc7d69" target="Interaction_b4278bcb80bd3d6752a4b77e47f23ab6" class="interaction">
+<source.arc start.x="185" start.y="293" end.x="207" end.y="318" class="consumption"/>
+
+
+<spline s.x="136.000000"  s.y="236.000000" c1.x="153.000000" c1.y="256.000000" c2.x="185.000000" c2.y="293.000000" e.x="207.000000"  e.y="318.000000" />
+<target.arc start.x="153" start.y="256" end.x="136" end.y="236" class="interaction"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>extracellular_space-compartment.layer.info-cell_membrane</compartment.layer.info>
+</sbgn>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="plasma membrane (extrinsic to internal side of plasma membrane)"/>
+      <bbox w="257" h="227" x="123" y="198"/>
+    </glyph>
+    <glyph class="compartment" id="plasma_membrane__integral_to_plasma_membrane_" if.within.compartment="">
+      <label text="plasma membrane (integral to plasma membrane)"/>
+      <bbox w="92" h="62" x="126" y="285"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_de9e15db00f1064a95dfedeaabe541fd" compartmentRef="plasma_membrane__integral_to_plasma_membrane_" if.within.compartment="">
+      <label text="Rap1"/>
+      <bbox w="70" h="40" x="137" y="296"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_1589449ad0084e53e2a1666fa86dacab" compartmentRef="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="B-Raf"/>
+      <bbox w="70" h="40" x="134" y="374"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_13b4a2dcbb509598ebd10d179336f20a" compartmentRef="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="B-Raf_act"/>
+      <bbox w="70" h="40" x="299" y="209"/>
+    </glyph>
+    <glyph class="process" id="Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT" compartmentRef="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="276.93436801783" y="320.237430198184"/>
+    </glyph>
+    <arc class="production" id="Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT-output--to--Protein_13b4a2dcbb509598ebd10d179336f20a" source="Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT" target="Protein_13b4a2dcbb509598ebd10d179336f20a">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="stimulation" id="Protein_de9e15db00f1064a95dfedeaabe541fd--to--Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT" source="Protein_de9e15db00f1064a95dfedeaabe541fd" target="Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Protein_1589449ad0084e53e2a1666fa86dacab--to--Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT-input" source="Protein_1589449ad0084e53e2a1666fa86dacab" target="Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT--to--Protein_13b4a2dcbb509598ebd10d179336f20a" source="Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT" target="Protein_13b4a2dcbb509598ebd10d179336f20a" class="production">
+<source.arc start.x="303" start.y="301" end.x="296" end.y="319" class="consumption"/>
+
+
+<spline s.x="325.000000"  s.y="249.000000" c1.x="316.000000" c1.y="269.000000" c2.x="303.000000" c2.y="301.000000" e.x="296.000000"  e.y="319.000000" />
+<target.arc start.x="316" start.y="269" end.x="325" end.y="249" class="production"/>
+
+</arc.spline>
+<arc.spline id="Protein_de9e15db00f1064a95dfedeaabe541fd--to--Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT" source="Protein_de9e15db00f1064a95dfedeaabe541fd" target="Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT" class="stimulation">
+<source.arc start.x="230" start.y="324" end.x="207" end.y="321" class="consumption"/>
+
+
+<spline s.x="207.000000"  s.y="321.000000" c1.x="230.000000" c1.y="324.000000" c2.x="259.000000" c2.y="329.000000" e.x="276.000000"  e.y="331.000000" />
+<target.arc start.x="259" start.y="329" end.x="276" end.y="331" class="stimulation"/>
+
+</arc.spline>
+<arc.spline id="Protein_1589449ad0084e53e2a1666fa86dacab--to--Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT" source="Protein_1589449ad0084e53e2a1666fa86dacab" target="Conversion_7b8866ba3bf7cbe690242dbac76f7820_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="228" start.y="364" end.x="204" end.y="376" class="consumption"/>
+
+
+<spline s.x="204.000000"  s.y="376.000000" c1.x="228.000000" c1.y="364.000000" c2.x="259.000000" c2.y="348.000000" e.x="276.000000"  e.y="340.000000" />
+<target.arc start.x="259" start.y="348" end.x="276" end.y="340" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_-compartment.layer.info-plasma_membrane__integral_to_plasma_membrane_</compartment.layer.info>
+</sbgn>
