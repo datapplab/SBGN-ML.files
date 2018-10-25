@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn xmlns="http://sbgn.org/libsbgn/pd/0.1">
+    <map>
+        <glyph id="glyph0" class="compartment">
+            <label text="mitochondrion">
+                <bbox y="56.0" x="116.0" h="16.0" w="88.0"/>
+            </label>
+            <bbox y="50.0" x="50.0" h="290.0" w="220.0"/>
+        </glyph>
+        <glyph id="glyph4" class="simple chemical">
+            <label text="tetrahydrofolate"/>
+            <bbox y="115.0" x="195.0" h="30.0" w="30.0"/>
+        </glyph>
+        <glyph id="glyph2" class="simple chemical">
+            <label text="L-serine"/>
+            <bbox y="85.0" x="145.0" h="30.0" w="30.0"/>
+        </glyph>
+        <glyph id="glyph6" class="simple chemical">
+            <label text="L-glycine"/>
+            <bbox y="285.0" x="145.0" h="30.0" w="30.0"/>
+        </glyph>
+        <glyph id="glyph5" class="simple chemical">
+            <label text="H2O"/>
+            <bbox y="225.0" x="215.0" h="30.0" w="30.0"/>
+        </glyph>
+        <glyph id="glyph3" class="simple chemical">
+            <label text="5,10-methylenetetra-&#xA;hydrofolate"/>
+            <bbox y="255.0" x="195.0" h="30.0" w="30.0"/>
+        </glyph>
+        <glyph id="glyph1" class="macromolecule">
+            <label text="2.1.2.1"/>
+            <bbox y="185.0" x="71.0" h="30.0" w="54.0"/>
+        </glyph>
+        <glyph id="glyph7" orientation="vertical" class="process">
+            <bbox y="195.0" x="155.0" h="10.0" w="10.0"/>
+            <port y="190.0" x="160.0" id="glyph7.1"/>
+            <port y="210.0" x="160.0" id="glyph7.2"/>
+        </glyph>
+        <arc target="glyph4" source="glyph7.1" class="production">
+            <start y="190.0" x="160.0"/>
+            <end y="141.52332" x="200.39723"/>
+        </arc>
+        <arc target="glyph2" source="glyph7.1" class="production">
+            <start y="190.0" x="160.0"/>
+            <end y="115.0" x="160.0"/>
+        </arc>
+        <arc target="glyph6" source="glyph7.2" class="production">
+            <start y="210.0" x="160.0"/>
+            <end y="285.0" x="160.0"/>
+        </arc>
+        <arc target="glyph5" source="glyph7.2" class="production">
+            <start y="210.0" x="160.0"/>
+            <end y="232.55792" x="216.97635"/>
+        </arc>
+        <arc target="glyph3" source="glyph7.2" class="production">
+            <start y="210.0" x="160.0"/>
+            <end y="257.794" x="201.28143"/>
+        </arc>
+        <arc target="glyph7" source="glyph1" class="catalysis">
+            <start y="200.0" x="125.0"/>
+            <end y="200.0" x="155.0"/>
+        </arc>
+    </map>
+</sbgn>
