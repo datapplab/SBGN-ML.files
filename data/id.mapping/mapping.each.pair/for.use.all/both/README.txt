@@ -1,3 +1,4 @@
+ID mapping tables can be found at https://github.com/datapplab/SBGN-ML.files/tree/master/data/id.mapping/mapping.each.pair/for.use.all/both
 Each RData here is a list containing one pairwise ID mapping table. 
 The name of the list is "mapping.list". Try this:
 >variable.name = load("pathwayCommons_UNIPROT.RData")
@@ -20,8 +21,8 @@ Data generation:
 
 2. Protein/gene:
     2.1 pathwayCommons:
-        2.1.1 Map UNIPROT to pathwayCommons Biopax protein ID.
-              2.1.1.1 The mapping was extracted from BIOPAX files such as: http://www.pathwaycommons.org/archives/PC2/v10/PathwayCommons10.reactome.BIOPAX.owl.gz
+        2.1.1 Map UNIPROT to pathwayCommons Biopax protein ID (i.e. glyph ID in SBGN-ML files).
+              2.1.1.1 The mapping was extracted from BIOPAX files such as: http://www.pathwaycommons.org/archives/PC3/v10/PathwayCommons10.reactome.BIOPAX.owl.gz
                         pathwayCommons only curated huamn pathways, therefore all the UNIPROT IDs are from human.
               2.1.1.2 We used the ortholog mapping from Reactome to map UNIPROT of other species to UNIPROT of human:
                         The mapping was extracted from https://reactome.org/download/current/UniProt2Reactome_PE_Pathway.txt
@@ -30,9 +31,27 @@ Data generation:
         2.1.2 Map other IDs to pathwayCommons biopax protein IDs through UNIPROT, using pathview
                         Note: currently pathwview supports only several species (not the same as the species in Reactome). Therefore some species in UNIPROT-TO-pathwayCommons mapping may be lost.
     2.2 MetaCyc
-        2.2.1 Map UNIPROT to MetaCyc Biopax protein ID.
-                Extracted from downloaded BIOPAX files. For example : https://metacyc.org/META/pathway-biopax?type=3&object=PWY-7754
-                It has UNIPROT from all supported species.
+        2.2.1 Map UNIPROT to MetaCyc Biopax protein ID (i.e. glyph ID in SBGN-ML files, because the SBGN-ML files were generated from the BIOPAX files using "PaxtoolsR").
+                2.2.1.1 MetaCyc protein ID to glyph ID: This is extracted from downloaded BIOPAX files. For example : https://metacyc.org/META/pathway-biopax?type=3&object=PWY-7754
+                2.2.1.2 MetaCyc protein ID to UNIPROT: 
+                        Used the following files from MetaCyc: 
+                               uniprot-seq-ids.dat
+                               reactions.dat
+                               proteins.dat
+                               protein-links.dat
+                               gene-links.dat
+                2.2.1.3 Map UNIPROT to glyph IDs by merging the above two tables.
                 Result is in this RData "metacyc.SBGN_UNIPROT.RData"
         2.2.2 Use pathview to map other ID types to UNIPROT, then map to MetaCyc Biopax protein IDs.
          Note: currently pathwview supports only several species (not the same as the species in Reactome). Therefore some species in UNIPROT-TO-metacyc mapping may be lost.
+         
+        2.2.3 Map uniref to glyph ID:
+                2.2.1.1 MetaCyc protein ID to glyph ID: This is extracted from downloaded BIOPAX files. For example : https://metacyc.org/META/pathway-biopax?type=3&object=PWY-7754
+                2.2.1.2 MetaCyc protein ID to uniref: 
+                        Used the following files from humann2 package: metacyc_reactions_level4ec_only.uniref (https://pypi.python.org/pypi/humann2)
+                        Used the following files from MetaCyc: 
+                               reactions.dat
+                               proteins.dat
+                               protein-links.dat
+                               gene-links.dat
+                2.2.1.3 Map UNIPROT to glyph IDs by merging the above two tables.
