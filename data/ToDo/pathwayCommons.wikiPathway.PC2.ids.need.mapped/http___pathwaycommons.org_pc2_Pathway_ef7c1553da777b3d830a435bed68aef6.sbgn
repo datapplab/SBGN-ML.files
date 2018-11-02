@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="plasma membrane (extrinsic to internal side of plasma membrane)"/>
+      <bbox w="92" h="62" x="126" y="289.151349622599"/>
+    </glyph>
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="347.154470738533" h="145.651233294925" x="184.524391856267" y="284.075674811299"/>
+    </glyph>
+    <glyph class="compartment" id="nucleus" if.within.compartment="">
+      <label text="nucleus"/>
+      <bbox w="92" h="62" x="450" y="198"/>
+    </glyph>
+    <glyph class="nucleic acid feature" id="Rna_12db584aca5ba9da53221ed577313fc2" compartmentRef="cytosol" if.within.compartment="">
+      <label text="Mkp3"/>
+      <bbox w="70" h="40" x="334.190547697963" y="318.841251924198"/>
+      <glyph class="unit of information" id="Rna_12db584aca5ba9da53221ed577313fc2.info.1" if.within.compartment="">
+        <label text="mt:RNA"/>
+        <bbox w="35" h="17.5" x="334.190547697963" y="310.091251924198"/>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="TemplateReaction_ca0f77c9251321df6b85fe4af6e341ea" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="195.524391856267" y="392.060241439557"/>
+    </glyph>
+    <glyph class="process" id="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="494.012195928133" y="295.075674811299"/>
+    </glyph>
+    <glyph class="nucleic acid feature" id="Rna_37f37f9c9b0f5896f7cfba097c58c9b5" compartmentRef="nucleus" if.within.compartment="">
+      <label text="Sef"/>
+      <bbox w="70" h="40" x="461" y="209"/>
+      <glyph class="unit of information" id="Rna_37f37f9c9b0f5896f7cfba097c58c9b5.info.1" if.within.compartment="">
+        <label text="mt:RNA"/>
+        <bbox w="35" h="17.5" x="461" y="200.25"/>
+      </glyph>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_f9dd0e48b9fb750fb482a78f8985bf45" compartmentRef="plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_" if.within.compartment="">
+      <label text="Sprouty2"/>
+      <bbox w="70" h="40" x="137" y="300.151349622599"/>
+    </glyph>
+    <arc class="production" id="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT-output--to--Rna_12db584aca5ba9da53221ed577313fc2" source="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT" target="Rna_12db584aca5ba9da53221ed577313fc2">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Rna_37f37f9c9b0f5896f7cfba097c58c9b5--to--Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT-input" source="Rna_37f37f9c9b0f5896f7cfba097c58c9b5" target="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="TemplateReaction_ca0f77c9251321df6b85fe4af6e341ea-input--to--Rna_12db584aca5ba9da53221ed577313fc2" source="TemplateReaction_ca0f77c9251321df6b85fe4af6e341ea" target="Rna_12db584aca5ba9da53221ed577313fc2">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="TemplateReaction_ca0f77c9251321df6b85fe4af6e341ea-output--to--Protein_f9dd0e48b9fb750fb482a78f8985bf45" source="TemplateReaction_ca0f77c9251321df6b85fe4af6e341ea" target="Protein_f9dd0e48b9fb750fb482a78f8985bf45">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT--to--Rna_12db584aca5ba9da53221ed577313fc2" source="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT" target="Rna_12db584aca5ba9da53221ed577313fc2" class="production">
+<source.arc start.x="473" start.y="315" end.x="493" end.y="311" class="consumption"/>
+
+
+<spline s.x="404.000000"  s.y="331.000000" c1.x="433.000000" c1.y="324.000000" c2.x="473.000000" c2.y="315.000000" e.x="493.000000"  e.y="311.000000" />
+<target.arc start.x="433" start.y="324" end.x="404" end.y="331" class="production"/>
+
+</arc.spline>
+<arc.spline id="Rna_37f37f9c9b0f5896f7cfba097c58c9b5--to--Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT" source="Rna_37f37f9c9b0f5896f7cfba097c58c9b5" target="Transport_2c57e94282fb2eaa383761b29fe487b5_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="500" start.y="263" end.x="498" end.y="249" class="consumption"/>
+
+
+<spline s.x="505.000000"  s.y="294.000000" c1.x="503.000000" c1.y="282.000000" c2.x="500.000000" c2.y="263.000000" e.x="498.000000"  e.y="249.000000" />
+<target.arc start.x="503" start.y="282" end.x="505" end.y="294" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="TemplateReaction_ca0f77c9251321df6b85fe4af6e341ea--to--Rna_12db584aca5ba9da53221ed577313fc2" source="TemplateReaction_ca0f77c9251321df6b85fe4af6e341ea" target="Rna_12db584aca5ba9da53221ed577313fc2" class="interaction">
+<source.arc start.x="247" start.y="389" end.x="222" end.y="399" class="consumption"/>
+
+
+<spline s.x="334.000000"  s.y="353.000000" c1.x="298.000000" c1.y="367.000000" c2.x="247.000000" c2.y="389.000000" e.x="222.000000"  e.y="399.000000" />
+<target.arc start.x="298" start.y="367" end.x="334" end.y="353" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="TemplateReaction_ca0f77c9251321df6b85fe4af6e341ea--to--Protein_f9dd0e48b9fb750fb482a78f8985bf45" source="TemplateReaction_ca0f77c9251321df6b85fe4af6e341ea" target="Protein_f9dd0e48b9fb750fb482a78f8985bf45" class="production">
+<source.arc start.x="196" start.y="377" end.x="202" end.y="391" class="consumption"/>
+
+
+<spline s.x="202.000000"  s.y="391.000000" c1.x="196.000000" c1.y="377.000000" c2.x="187.000000" c2.y="356.000000" e.x="180.000000"  e.y="340.000000" />
+<target.arc start.x="187" start.y="356" end.x="180" end.y="340" class="production"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cytosol-compartment.layer.info-plasma_membrane__extrinsic_to_internal_side_of_plasma_membrane_-compartment.layer.info-nucleus</compartment.layer.info>
+</sbgn>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cell" if.within.compartment="">
+      <label text="cell"/>
+      <bbox w="658.529234462663" h="294.453922464398" x="100" y="198"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_b27231da59a2650a283062bf8588b5a2" compartmentRef="cell" if.within.compartment="">
+      <label text="PDHX"/>
+      <bbox w="70" h="40" x="556.719493143018" y="233.481564056021"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_486477631b4c62a382ce06b30ce37508" compartmentRef="cell" if.within.compartment="">
+      <label text="Dihydro-lipoamide"/>
+      <bbox w="70" h="40" x="677.529234462663" y="374.060454350203"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_1f0d7d4e8387582cdfd34c01aec6c157" compartmentRef="cell" if.within.compartment="">
+      <label text="6-S-Acetyl-dihydro-lipoamide"/>
+      <bbox w="70" h="40" x="362.53568051059" y="240.860910902776"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_f1e3f3a8684871f8d75787958244d68e" compartmentRef="cell" if.within.compartment="">
+      <label text="Acetyl-CoA"/>
+      <bbox w="70" h="40" x="111" y="298.272288555604"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_054496cc3a425b3e4c3c0f32fcd72cf0" compartmentRef="cell" if.within.compartment="">
+      <label text="DLAT"/>
+      <bbox w="70" h="40" x="111" y="441.453922464398"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_0c51d03a948aae8827b3cb83569a9c09" compartmentRef="cell" if.within.compartment="">
+      <label text="CoA"/>
+      <bbox w="70" h="40" x="222.943909101107" y="209"/>
+    </glyph>
+    <glyph class="process" id="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" compartmentRef="cell" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="370.13565326312" y="400.353679257857"/>
+    </glyph>
+    <arc class="stimulation" id="Protein_b27231da59a2650a283062bf8588b5a2--to--BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" source="Protein_b27231da59a2650a283062bf8588b5a2" target="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_486477631b4c62a382ce06b30ce37508--to--BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT-input" source="SmallMolecule_486477631b4c62a382ce06b30ce37508" target="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT-output--to--SmallMolecule_0c51d03a948aae8827b3cb83569a9c09" source="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" target="SmallMolecule_0c51d03a948aae8827b3cb83569a9c09">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="catalysis" id="Protein_054496cc3a425b3e4c3c0f32fcd72cf0--to--BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" source="Protein_054496cc3a425b3e4c3c0f32fcd72cf0" target="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_f1e3f3a8684871f8d75787958244d68e--to--BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT-input" source="SmallMolecule_f1e3f3a8684871f8d75787958244d68e" target="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT-output--to--SmallMolecule_1f0d7d4e8387582cdfd34c01aec6c157" source="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" target="SmallMolecule_1f0d7d4e8387582cdfd34c01aec6c157">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Protein_b27231da59a2650a283062bf8588b5a2--to--BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" source="Protein_b27231da59a2650a283062bf8588b5a2" target="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" class="stimulation">
+<source.arc start.x="520" start.y="308" end.x="565" end.y="273" class="consumption"/>
+
+
+<spline s.x="565.000000"  s.y="273.000000" c1.x="520.000000" c1.y="308.000000" c2.x="431.000000" c2.y="376.000000" e.x="397.000000"  e.y="402.000000" />
+<target.arc start.x="431" start.y="376" end.x="397" end.y="402" class="stimulation"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_486477631b4c62a382ce06b30ce37508--to--BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" source="SmallMolecule_486477631b4c62a382ce06b30ce37508" target="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="605" start.y="400" end.x="677" end.y="396" class="consumption"/>
+
+
+<spline s.x="677.000000"  s.y="396.000000" c1.x="605.000000" c1.y="400.000000" c2.x="444.000000" c2.y="410.000000" e.x="396.000000"  e.y="412.000000" />
+<target.arc start.x="444" start.y="410" end.x="396" end.y="412" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT--to--SmallMolecule_0c51d03a948aae8827b3cb83569a9c09" source="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" target="SmallMolecule_0c51d03a948aae8827b3cb83569a9c09" class="production">
+<source.arc start.x="352" start.y="367" end.x="374" end.y="399" class="consumption"/>
+
+
+<spline s.x="271.000000"  s.y="249.000000" c1.x="297.000000" c1.y="286.000000" c2.x="352.000000" c2.y="367.000000" e.x="374.000000"  e.y="399.000000" />
+<target.arc start.x="297" start.y="286" end.x="271" end.y="249" class="production"/>
+
+</arc.spline>
+<arc.spline id="Protein_054496cc3a425b3e4c3c0f32fcd72cf0--to--BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" source="Protein_054496cc3a425b3e4c3c0f32fcd72cf0" target="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" class="catalysis">
+<source.arc start.x="234" start.y="443" end.x="181" end.y="454" class="consumption"/>
+
+
+<spline s.x="181.000000"  s.y="454.000000" c1.x="234.000000" c1.y="443.000000" c2.x="334.000000" c2.y="423.000000" e.x="370.000000"  e.y="416.000000" />
+<target.arc start.x="334" start.y="423" end.x="370" end.y="416" class="catalysis"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_f1e3f3a8684871f8d75787958244d68e--to--BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" source="SmallMolecule_f1e3f3a8684871f8d75787958244d68e" target="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="234" start.y="353" end.x="181" end.y="332" class="consumption"/>
+
+
+<spline s.x="181.000000"  s.y="332.000000" c1.x="234.000000" c1.y="353.000000" c2.x="334.000000" c2.y="393.000000" e.x="370.000000"  e.y="408.000000" />
+<target.arc start.x="334" start.y="393" end.x="370" end.y="408" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT--to--SmallMolecule_1f0d7d4e8387582cdfd34c01aec6c157" source="BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT" target="SmallMolecule_1f0d7d4e8387582cdfd34c01aec6c157" class="production">
+<source.arc start.x="387" start.y="373" end.x="384" end.y="400" class="consumption"/>
+
+
+<spline s.x="395.000000"  s.y="281.000000" c1.x="392.000000" c1.y="312.000000" c2.x="387.000000" c2.y="373.000000" e.x="384.000000"  e.y="400.000000" />
+<target.arc start.x="392" start.y="312" end.x="395" end.y="281" class="production"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cell-compartment.layer.info-cell-compartment.layer.info-Protein_b27231da59a2650a283062bf8588b5a2-compartment.layer.info-SmallMolecule_486477631b4c62a382ce06b30ce37508-compartment.layer.info-SmallMolecule_1f0d7d4e8387582cdfd34c01aec6c157-compartment.layer.info-SmallMolecule_f1e3f3a8684871f8d75787958244d68e-compartment.layer.info-Protein_054496cc3a425b3e4c3c0f32fcd72cf0-compartment.layer.info-SmallMolecule_0c51d03a948aae8827b3cb83569a9c09-compartment.layer.info-BiochemicalReaction_adddec99db7fb95e49f0050e821604c1_LEFT_TO_RIGHT</compartment.layer.info>
+</sbgn>

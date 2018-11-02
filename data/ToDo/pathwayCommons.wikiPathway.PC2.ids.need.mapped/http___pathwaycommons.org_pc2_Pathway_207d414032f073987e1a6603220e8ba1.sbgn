@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="extracellular" if.within.compartment="">
+      <label text="extracellular"/>
+      <bbox w="92" h="62" x="303.491503690438" y="270.407550670387"/>
+    </glyph>
+    <glyph class="compartment" id="cell_membrane" if.within.compartment="">
+      <label text="cell membrane"/>
+      <bbox w="328.503699618571" h="220.483225481686" x="100" y="198"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_c493d964577e695eeaff0e2cbfac6c2b" compartmentRef="extracellular" if.within.compartment="">
+      <label text="MDK"/>
+      <bbox w="70" h="40" x="314.491503690438" y="281.407550670387"/>
+    </glyph>
+    <glyph class="complex" id="Complex_30b53f7da53b9ecfb11763fb7521720d" compartmentRef="cell_membrane" if.within.compartment="">
+      <label text="GPC2/Midkine"/>
+      <bbox w="81" h="99.75" x="111" y="227"/>
+      <glyph class="state variable" id="Complex_30b53f7da53b9ecfb11763fb7521720d.info.1" compartmentRef="cell_membrane" if.within.compartment="">
+        <state value="Act"/>
+        <bbox w="40.5" h="20.25" x="111" y="216.875"/>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_c493d964577e695eeaff0e2cbfac6c2b_Complex_30b53f7da53b9ecfb11763fb7521720d" compartmentRef="cell_membrane" if.within.compartment="">
+        <label text="MDK"/>
+        <bbox w="70" h="40" x="116.5" y="232.5"/>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_e58c9892b890fa1c61a22a539bd87a1b_Complex_30b53f7da53b9ecfb11763fb7521720d" compartmentRef="cell_membrane" if.within.compartment="">
+        <label text="GPC2"/>
+        <bbox w="70" h="40" x="116.5" y="281.25"/>
+      </glyph>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_e58c9892b890fa1c61a22a539bd87a1b" compartmentRef="cell_membrane" if.within.compartment="">
+      <label text="GPC2"/>
+      <bbox w="70" h="40" x="347.503699618571" y="367.483225481686"/>
+    </glyph>
+    <glyph class="process" id="ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT" compartmentRef="cell_membrane" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="178.407414026184" y="353.954733605881"/>
+    </glyph>
+    <arc class="consumption" id="Protein_e58c9892b890fa1c61a22a539bd87a1b--to--ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT-input" source="Protein_e58c9892b890fa1c61a22a539bd87a1b" target="ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Protein_c493d964577e695eeaff0e2cbfac6c2b--to--ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT-input" source="Protein_c493d964577e695eeaff0e2cbfac6c2b" target="ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT-output--to--Complex_30b53f7da53b9ecfb11763fb7521720d" source="ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT" target="Complex_30b53f7da53b9ecfb11763fb7521720d">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Protein_e58c9892b890fa1c61a22a539bd87a1b--to--ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT" source="Protein_e58c9892b890fa1c61a22a539bd87a1b" target="ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="304" start.y="379" end.x="347" end.y="383" class="consumption"/>
+
+
+<spline s.x="347.000000"  s.y="383.000000" c1.x="304.000000" c1.y="379.000000" c2.x="234.000000" c2.y="371.000000" e.x="205.000000"  e.y="368.000000" />
+<target.arc start.x="234" start.y="371" end.x="205" end.y="368" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Protein_c493d964577e695eeaff0e2cbfac6c2b--to--ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT" source="Protein_c493d964577e695eeaff0e2cbfac6c2b" target="ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="280" start.y="330" end.x="314" end.y="316" class="consumption"/>
+
+
+<spline s.x="314.000000"  s.y="316.000000" c1.x="280.000000" c1.y="330.000000" c2.x="229.000000" c2.y="351.000000" e.x="205.000000"  e.y="361.000000" />
+<target.arc start.x="229" start.y="351" end.x="205" end.y="361" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT--to--Complex_30b53f7da53b9ecfb11763fb7521720d" source="ComplexAssembly_922491838f766c2e2a89817f89558c16_LEFT_TO_RIGHT" target="Complex_30b53f7da53b9ecfb11763fb7521720d" class="production">
+<source.arc start.x="182" start.y="346" end.x="185" end.y="353" class="consumption"/>
+
+
+<spline s.x="173.000000"  s.y="327.000000" c1.x="178.000000" c1.y="336.000000" c2.x="182.000000" c2.y="346.000000" e.x="185.000000"  e.y="353.000000" />
+<target.arc start.x="178" start.y="336" end.x="173" end.y="327" class="production"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cell_membrane-compartment.layer.info-extracellular</compartment.layer.info>
+</sbgn>
