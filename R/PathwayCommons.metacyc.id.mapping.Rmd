@@ -1,0 +1,400 @@
+---
+title: "PathwayCommons id mapping"
+author: "Xiaoxi Dong"
+date: "October 12, 2018"
+output:
+        html_document:
+                toc: yes
+
+---
+# Id mapping procedures
+## proteins
+### pathwayCommons to entrez
+1. pathwayCommons to uniprot
+
+script: 
+
+```{r , echo = TRUE, message = FALSE, warning = FALSE}
+source("./pathway.commons_SBGN.id.to.uniprot.chebi.using.biopax.R")
+biopax.folder = "C:/xiaoxi/work/papers/SBGNview/package/data.package/pathway.commons/raw.data/v9"
+if(!file.exists(paste(biopax.folder,"/small.molecules.mapping.list.rds",sep=""))){
+    print("need to generate mapping file")
+    biopax.files.to.id.mapping(biopax.folder)
+}else{
+    print("mapping file generated")}
+```
+
+```{r , echo = TRUE, message = FALSE, warning = FALSE}
+protein.mapping =  readRDS(paste(biopax.folder,"/proteins.mapping.list.rds",sep=""))
+names(protein.mapping)
+protein.mapping$duplicated.ids
+nrow(protein.mapping$mappings.no.database.id)
+head(protein.mapping$mappings.database.id.name)
+pathwayCommons_UNIPROT_human = protein.mapping$mappings.database.id.name[,2:1]
+colnames(pathwayCommons_UNIPROT_human) = c("UNIPROT","pathwayCommons")
+head(pathwayCommons_UNIPROT_human)
+```
+
+map other species to pathwayCommons
+```{r}
+mapping.nonHuman.to.human = read.table("C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/pathway.commons/reactome.other.species/non.human.uniprot.to.human.uniprot.txt",
+                                       stringsAsFactors = F,
+                                       header=T,
+                                       sep=" "
+            )
+head(mapping.nonHuman.to.human)
+pathwayCommons_UNIPROT_human = cbind(pathwayCommons_UNIPROT_human,"Homo sapiens")
+head(pathwayCommons_UNIPROT_human)
+non.human.uniprot.to.pathwayCommons = merge(mapping.nonHuman.to.human,pathwayCommons_UNIPROT_human
+                                            ,by.x = "uniprot.human"
+                                            ,by.y="UNIPROT"
+                                            )
+dim(non.human.uniprot.to.pathwayCommons)
+head(non.human.uniprot.to.pathwayCommons)
+colnames(non.human.uniprot.to.pathwayCommons)[2:3] = c("uniprot","species")
+head(non.human.uniprot.to.pathwayCommons)
+```
+merge human mapping and other species mapping
+```{r}
+uniprot.to.pathwayCommons.all.species = pathwayCommons_UNIPROT_human
+colnames(uniprot.to.pathwayCommons.all.species)[3] = "species"
+colnames(uniprot.to.pathwayCommons.all.species)[1] = "uniprot"
+head(uniprot.to.pathwayCommons.all.species)
+head(non.human.uniprot.to.pathwayCommons)
+uniprot.to.pathwayCommons.all.species = rbind(uniprot.to.pathwayCommons.all.species
+                                              ,non.human.uniprot.to.pathwayCommons[,c("uniprot","pathwayCommons","species")]
+                                              )
+colnames(uniprot.to.pathwayCommons.all.species)[1] = "UNIPROT"
+head(uniprot.to.pathwayCommons.all.species)
+tail(uniprot.to.pathwayCommons.all.species)
+table(uniprot.to.pathwayCommons.all.species$species)
+uniprot.to.pathwayCommons.all.species.list = list()
+uniprot.to.pathwayCommons.all.species.list$gene = list()
+uniprot.to.pathwayCommons.all.species.list$gene = uniprot.to.pathwayCommons.all.species 
+save(uniprot.to.pathwayCommons.all.species.list,file="C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/pathway.commons/uniprot.to.pathwayCommons.all.species.list.RData")
+
+
+```
+Generate entrez to pathwayCommons using all species uniprot to pathwayCommons
+
+```{r}
+source("./all.ids.to.pathwayCommons.metacyc.R")
+all.gene.id.types.to.pathwayCommons(uniprot.to.pathwayCommons.species.matrix = uniprot.to.pathwayCommons.all.species,gene.to.pathwayCommons.each.pair.RData.folder = "../data/id.mapping//mapping.each.pair/for.use.all/") 
+
+```
+
+
+
+
+
+
+<!--         C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\pathway.commons_SBGN.id.to.uniprot.chebi.using.biopax.R -->
+<!-- input: -->
+
+<!--         pathwayCommons biopax files in folder: /media/sf_work/input/id.mapping/pathway.commons.10.biopax -->
+<!-- output: -->
+
+<!-- ###################################################################### -->
+        <!-- C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\SBGNview.uniprot.chebi.to.SBGN.id.mapping.RData -->
+        <!-- In this data, the uniprot ids are all from human -->
+<!-- ###################################################################### -->
+
+1.1 Other species uniprot to human uniprot, to pathwayCommons' reactome
+
+script:
+
+       C:\xiaoxi\work\papers\SBGNview\package\id.mapping\Reactome.Rmd
+       
+input: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\reactome.other.species\UniProt2Reactome_PE_All_Levels.txt
+        
+output: 
+
+
+        C:\xiaoxi\work\papers\SBGNview\package\SBGN-ML.files\data\id.mapping\mapping.each.pair\gene\pathwayCommons\derived.from.raw\non.human.uniprot.to.human.uniprot_pathwayCommons-reactome.txt
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping/pathway.commons\uniprot.to.pathwayCommons.all.species.list.RData
+
+
+
+2. uniprot to entrez
+
+Use pathview
+
+3. pathwayCommons to entrez
+
+script: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\all.ids.to.pathwayCommons.metacyc.R
+        entrenz.to.pathwayCommons()
+
+input:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping/id.mapping/pathway.commons/uniprot.to.pathwayCommons.all.species.list.RData
+
+output: 
+
+<!-- ###################################################################### -->
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons.and.metacyc\entrezid.to.metacyc.pathwayCommons.with.species.info.RData
+<!-- ###################################################################### -->
+        
+        
+        
+        
+        
+### metacyc to entrez/uniref
+
+1. metacyc to uniprot/uniref
+
+1.1 Use perl to change metacyc raw files to pairwise mapping tables:
+
+script: 
+        
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc/Metacyc.raw.file.to.mapping.tables.pl
+
+input:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\raw.data
+        
+output 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\mapping.tables
+        
+1.2 download metacyc biopax files
+
+script :
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\biopax.downloaded\download.metacyc.pl
+
+result:
+
+        C:\xiaoxi\work\input\2018.10.3.linux\metacyc\biopax.level3
+        
+1.3 from metacyc biopax files, extract mapping : metacyc sbgn/biopax vertex/glyph id --> metacyc id
+
+script:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc/metacyc.SBGN.id.to.uniprot.uniref.chebi.R  ::  generate.biopax.id.to.chebi.or.metacyc()
+        
+result: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\mapping.tables\proteins.to.metacyc.mapping.all.RData
+        
+1.4 use pairwise mapping tables to map metacyc SBGN ids to uniprot/uniref
+
+script:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc/metacyc.SBGN.id.to.uniprot.uniref.chebi.R
+        uniref.to.biopax.id()
+        uniprot.to.biopax.id()
+        
+input: 
+
+        MetaCyc: mapping tables downloaded from metacyc. They send a link to download after registering. The files are in the rar file. I selected the files needed for mapping and put them in this table:
+        
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\mapping.tables
+        Uniref: Used mapping table from humann2 package: metacyc_reactions_level4ec_only.uniref
+
+result: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\merged.tables
+<!-- ###################################################################### -->
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\merged.tables\uniref.pathway.sbgnBiopaxProtein.RData
+        uniprot.pathway.sbgnBiopaxProtein.RData
+<!-- ###################################################################### -->
+        
+1.5  metacyc sbgn ids --> entrez
+
+        
+script: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\all.ids.to.pathwayCommons.metacyc.R
+        entrenz.to.metacyc.gene()
+
+input:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\merged.tables/uniprot.pathway.sbgnBiopaxProtein.RData
+
+output: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons.and.metacyc\entrezid.to.metacyc.pathwayCommons.with.species.info.RData
+        
+        
+## compounds to ChEBI
+
+### pathwayCommons
+
+extract sbgn compound id --> chebi from biopax:
+
+script: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\pathway.commons_SBGN.id.to.uniprot.chebi.using.biopax.R
+input:
+
+        pathwayCommons biopax files in folder: /media/sf_work/input/id.mapping/pathway.commons.10.biopax
+output:
+
+<!-- ###################################################################### -->
+        
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\SBGNview.uniprot.chebi.to.SBGN.id.mapping.RData
+<!-- ###################################################################### -->
+        
+        
+### metacyc
+
+extract sbgn compound id --> chebi from biopax:
+
+script:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc/metacyc.SBGN.id.to.uniprot.uniref.chebi.R  ::  generate.biopax.id.to.chebi.or.metacyc()
+        
+result: 
+
+<!-- ###################################################################### -->
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc/mapping.tables/compound.to.chebi.mapping.all.RData
+<!-- ###################################################################### -->
+
+### other compounds from unichem to pathwayCommons/metacyc compounds
+
+1. Download unichem mapping tables to chebi and change names from "level..." to compound name:
+
+script:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\unichem\change.pairwise.mapping.file.name.pl
+        
+input: 
+        
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\unichem\unichem\ChEBI
+        
+output: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\unichem\unichem\ChEBI.db.names
+        
+        
+2. merge tables:  metacyc/pathwayCommons compound id --> unichem ids
+
+script:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\all.ids.to.pathwayCommons.metacyc.R
+        all.compounds.to.chebi.pathwayCommons.metacyc
+        
+result:
+
+        
+<!-- ###################################################################### -->
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\pathwayCommons.mappings.all.RData
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\metacyc.SBGN.mappings.all.RData
+<!-- ###################################################################### -->
+
+
+
+
+# Generate individual small mapping files
+```{r}
+generate.individual.file = function(input.list,gene.or.compound,output.folder){
+        pairs = names(input.list)
+        print(pairs)
+        for (i in 1:length(pairs)){
+                mapping.list = list()
+                mapping.list[[gene.or.compound]] = list()
+                pair = pairs[i]
+                print(pair)
+                mapping.list[[gene.or.compound]][[pair]] =  input.list[[pair]][!is.na(input.list[[pair]][,1]),]
+                # head(ENTREZID_pathwayCommons)
+                # tail(ENTREZID_pathwayCommons[[gene.or.compound]]$ENTREZID_pathwayCommons)
+                # dim(ENTREZID_pathwayCommons[[gene.or.compound]]$ENTREZID_pathwayCommons)
+                # print(table(ENTREZID_pathwayCommons[[gene.or.compound]]$ENTREZID_pathwayCommons[,3]))
+                output.file = paste(output.folder,pair,".RData",sep="")
+                print(output.file)
+                save(mapping.list,file = output.file)
+        }
+}
+output.folder = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/"
+
+v.name = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files//R/id.mapping/pathway.commons.and.metacyc/entrezid.to.metacyc.pathwayCommons.with.species.info.RData") # the metacyc table in this file only has species included by pathview, therefore it lost many other species
+input.list = entrezid.to.metacyc.pathwayCommons.with.species.info
+gene.or.compound = "gene"
+generate.individual.file(input.list,gene.or.compound,output.folder)
+# This file has all original species from reactome, mapped from UniProt2Reactome_PE_All_Levels.txt
+load(file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/pathwayCommons_UNIPROT.RData")
+as.matrix(table(mapping.list$gene$pathwayCommons_UNIPROT[,"species"]))
+head(mapping.list$gene$pathwayCommons_UNIPROT)
+# check the original table
+v.name = load("C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/pathway.commons/uniprot.to.pathwayCommons.all.species.list.RData")
+as.matrix(table(uniprot.to.pathwayCommons.all.species.list$gene[,"species"]))
+
+#################
+
+v.name = load("C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/metacyc/metacyc.SBGN.mappings.all.RData")  # In this file, the metacyc genes are from only a subset of species included by pathview, therefore it lost many other species
+length(unique((metacyc.SBGN.mappings.all$gene$metacyc.SBGN_UNIPROT[,1])))
+
+#The full list of uniprot to metacyc should be:
+load("C:/xiaoxi/work/papers/SBGNview/package/data.package/metacyc/merged.tables/uniprot.pathway.sbgnBiopaxProtein.RData")
+length(unique(uniprot.pathway.sbgnBiopaxProtein[,1]))
+head(uniprot.pathway.sbgnBiopaxProtein)
+metacyc.SBGN_UNIPROT = uniprot.pathway.sbgnBiopaxProtein[,c("Uniprot","sbgnBiopaxProtein")]
+colnames(metacyc.SBGN_UNIPROT) = c("UNIPROT","metacyc.SBGN")
+metacyc.SBGN_UNIPROT$species = "No.data"
+metacyc.SBGN_UNIPROT = metacyc.SBGN_UNIPROT[!is.na(metacyc.SBGN_UNIPROT[,1]),]
+dim(metacyc.SBGN_UNIPROT[is.na(metacyc.SBGN_UNIPROT[,1]),])
+dim(metacyc.SBGN_UNIPROT)
+length(unique(metacyc.SBGN_UNIPROT[,1]))
+mapping.list = list()
+mapping.list$gene = list()
+mapping.list$gene$metacyc.SBGN_UNIPROT = metacyc.SBGN_UNIPROT
+save(mapping.list,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/metacyc.SBGN_UNIPROT.RData")
+# try to get species information 
+write.table(unique(mapping.list$gene$metacyc.SBGN_UNIPROT[,1]),"./metacyc.uniprot.txt",quote=F,row.names = F)
+
+gene.or.compound = "gene"
+input.list = metacyc.SBGN.mappings.all[[gene.or.compound]]
+generate.individual.file(input.list,gene.or.compound,output.folder)
+
+gene.or.compound = "compound"
+input.list = metacyc.SBGN.mappings.all[[gene.or.compound]]
+generate.individual.file(input.list,gene.or.compound,output.folder)
+
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files//R/id.mapping/pathway.commons/pathwayCommons.mappings.all.RData")
+gene.or.compound = "gene"
+input.list = pathwayCommons.mappings.all[[gene.or.compound]]
+generate.individual.file(input.list,gene.or.compound,output.folder)
+
+gene.or.compound = "compound"
+input.list = pathwayCommons.mappings.all[[gene.or.compound]]
+generate.individual.file(input.list,gene.or.compound,output.folder)
+
+```
+Results are organized in folder :
+
+        C:/xiaoxi\work\papers\SBGNview\package\SBGN-ML.files\data\mapping.each.pair
+
+Find which ids can be mapped:
+
+```{r}
+mapped.ids = list()
+mapped.ids$pathwayCommons.mappable.gene.ids = pathwayCommons.mappings.all$pathwayCommons.mappable.gene.ids
+mapped.ids$pathwayCommons.mappable.compound.ids = pathwayCommons.mappings.all$pathwayCommons.mappable.compound.ids
+mapped.ids$metacyc.mappable.gene.ids = metacyc.SBGN.mappings.all$metacyc.mappable.gene.ids
+mapped.ids$metacyc.mappable.compound.ids = metacyc.SBGN.mappings.all$metacyc.mappable.compound.ids
+
+mapped.ids$metacyc.mappable.gene.ids = c(mapped.ids$metacyc.mappable.gene.ids,"ENTREZID" )
+mapped.ids$pathwayCommons.mappable.gene.ids = c(mapped.ids$pathwayCommons.mappable.gene.ids,"ENTREZID" )
+mapped.ids
+save(mapped.ids,file="../data/mapped.ids.RData ")
+```
+
+
+# Check shared UNIPROT protein sets
+We think many of the pathwayCommons
+
+
+
+
+
+
+
+

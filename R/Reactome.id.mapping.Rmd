@@ -1,0 +1,86 @@
+---
+title: "Get information about Reactome database"
+author: "Xiaoxi Dong"
+date: "Oct,2018"
+output:
+        html_document:
+                toc: yes
+                number_sections: yes
+
+---
+
+# Reactome id mapping for different species
+Reactome has pathway information for many species, but they only provides SBGN files for homo sapiens. 
+A file can map all species' uniprot ids to gene names:
+https://reactome.org/download/current/UniProt2Reactome_PE_Pathway.txt
+Maybe I can use this and specify the SBGN id to be "label"
+But there is no documentation saying that the label is gene name.
+
+## How did Reactome generate pathway information for other species
+The annotation for other species could be mostly come from IEA.
+Count evidence code.
+For each species in reactome database, count how many genes are annotated under each evidence code
+``` {r, echo=T}
+evidence.to.species.file = "C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.evidence.to.species.txt"
+evidence.to.species = read.table(evidence.to.species.file,sep="\t",header=F,comment.char = "")
+count.table = t(table(evidence.to.species))
+print(count.table)
+```
+http://wiki.geneontology.org/index.php/Inferred_from_Electronic_Annotation_(IEA)
+
+The IEA evidence code is used for annotations that are computationally, or automatically, assigned to gene products without further manual, curator review. IEA annotations are derived from two main pipelines: 1) manually constructed mappings between external classification systems and GO terms, and 2) automatic transfer of annotation to orthologous gene products.
+
+IEA annotations must use a reference from the GO Consortium's collection of GO references to indicate the method whereby the IEA annotation was made. If a suitable reference is not available, curators may request a new GO reference where it will be given a GO_REF ID, e.g. GO_REF:0000002, that will be used as the reference in Gene Association Files (GAFs).
+        
+http://wiki.geneontology.org/index.php/Traceable_Author_Statement_(TAS)
+The TAS evidence code covers author statements that are attributed to a cited reference that is the source of the original evidence (e,g, experimental results, sequence comparison, etc.).
+
+## How to generate SBGN map for other species
+One route is:
+other species' uniprot --> gene name --> human uniprot --> pathwayCommons id --> SBGN map
+
+Generate mapping:
+uniprot, gene name, species
+```{bash}
+cat C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.txt |cut -f1,3,8 >C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.uniprot.geneName.species.txt
+```
+```{r}
+
+mapping = read.table("C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.uniprot.geneName.species.txt",sep="\t",stringsAsFactors = F,quote='')
+# mapping = read.table("C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.uniprot.geneName.species.txt",sep="\t",stringsAsFactors = F)
+mapping = unique(mapping)
+dim(mapping)
+mapping.no.compartment = mapping
+head(mapping)
+gene.name.no.compartment= gsub(" \\[.+","",mapping.no.compartment[,2])
+head(gene.name.no.compartment)
+mapping.no.compartment[,2] = gene.name.no.compartment
+head(mapping.no.compartment)
+mapping = mapping.no.compartment
+
+
+mapping.human = mapping[mapping[,3]=="Homo sapiens",]
+colnames(mapping.human) = c("uniprot","gene.name","species")
+mapping.non.human = mapping[mapping[,3]!="Homo sapiens",]
+colnames(mapping.non.human) = c("uniprot","gene.name","species")
+head(mapping.human)
+head(mapping.non.human)
+mapping.nonHuman.to.human = merge(mapping.non.human,mapping.human,by="gene.name",suffixes = c(".non.human",".human"))
+head(mapping.nonHuman.to.human)
+dim(mapping.nonHuman.to.human)
+mapping.nonHuman.to.human = mapping.nonHuman.to.human[,c("uniprot.non.human","species.non.human","uniprot.human")]
+mapping.nonHuman.to.human = unique(mapping.nonHuman.to.human)
+head(mapping.nonHuman.to.human)
+dim(mapping.nonHuman.to.human)
+
+write.table( mapping.nonHuman.to.human
+            ,"./id.mapping/pathway.commons/reactome.other.species/non.human.uniprot.to.human.uniprot.txt"
+            )
+
+
+```
+
+
+
+
+
