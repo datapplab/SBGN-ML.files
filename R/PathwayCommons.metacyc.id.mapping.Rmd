@@ -9,8 +9,8 @@ output:
 ---
 # Id mapping procedures
 ## proteins
-### pathwayCommons to entrez
-1. pathwayCommons to uniprot
+### pathwayCommons 
+#### pathwayCommons to human uniprot
 
 script: 
 
@@ -25,6 +25,7 @@ if(!file.exists(paste(biopax.folder,"/small.molecules.mapping.list.rds",sep=""))
 ```
 
 ```{r , echo = TRUE, message = FALSE, warning = FALSE}
+biopax.folder = "C:/xiaoxi/work/papers/SBGNview/package/data.package/pathway.commons/raw.data/v9"
 protein.mapping =  readRDS(paste(biopax.folder,"/proteins.mapping.list.rds",sep=""))
 names(protein.mapping)
 protein.mapping$duplicated.ids
@@ -35,7 +36,80 @@ colnames(pathwayCommons_UNIPROT_human) = c("UNIPROT","pathwayCommons")
 head(pathwayCommons_UNIPROT_human)
 ```
 
-map other species to pathwayCommons
+#### map other species to pathwayCommons UNIPROT
+
+##### Reactome id mapping for different species
+
+Reactome has pathway information for many species, but they only provides SBGN files for homo sapiens. 
+A file can map all species' uniprot ids to gene names:
+https://reactome.org/download/current/UniProt2Reactome_PE_Pathway.txt
+Maybe I can use this and specify the SBGN id to be "label"
+But there is no documentation saying that the label is gene name.
+
+###### How did Reactome generate pathway information for other species
+The annotation for other species could be mostly come from IEA.
+Count evidence code.
+For each species in reactome database, count how many genes are annotated under each evidence code
+``` {r, echo=T}
+evidence.to.species.file = "C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.evidence.to.species.txt"
+evidence.to.species = read.table(evidence.to.species.file,sep="\t",header=F,comment.char = "")
+count.table = t(table(evidence.to.species))
+print(count.table)
+```
+http://wiki.geneontology.org/index.php/Inferred_from_Electronic_Annotation_(IEA)
+
+The IEA evidence code is used for annotations that are computationally, or automatically, assigned to gene products without further manual, curator review. IEA annotations are derived from two main pipelines: 1) manually constructed mappings between external classification systems and GO terms, and 2) automatic transfer of annotation to orthologous gene products.
+
+IEA annotations must use a reference from the GO Consortium's collection of GO references to indicate the method whereby the IEA annotation was made. If a suitable reference is not available, curators may request a new GO reference where it will be given a GO_REF ID, e.g. GO_REF:0000002, that will be used as the reference in Gene Association Files (GAFs).
+        
+http://wiki.geneontology.org/index.php/Traceable_Author_Statement_(TAS)
+The TAS evidence code covers author statements that are attributed to a cited reference that is the source of the original evidence (e,g, experimental results, sequence comparison, etc.).
+
+###### How to generate SBGN map for other species
+One route is:
+other species' uniprot --> gene name --> human uniprot --> pathwayCommons id --> SBGN map
+
+Generate mapping:
+uniprot, gene name, species
+```{bash}
+cat C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.txt |cut -f1,3,8 >C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.uniprot.geneName.species.txt
+```
+```{r}
+
+mapping = read.table("C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.uniprot.geneName.species.txt",sep="\t",stringsAsFactors = F,quote='')
+# mapping = read.table("C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.uniprot.geneName.species.txt",sep="\t",stringsAsFactors = F)
+mapping = unique(mapping)
+dim(mapping)
+mapping.no.compartment = mapping
+head(mapping)
+gene.name.no.compartment= gsub(" \\[.+","",mapping.no.compartment[,2])
+head(gene.name.no.compartment)
+mapping.no.compartment[,2] = gene.name.no.compartment
+head(mapping.no.compartment)
+mapping = mapping.no.compartment
+
+
+mapping.human = mapping[mapping[,3]=="Homo sapiens",]
+colnames(mapping.human) = c("uniprot","gene.name","species")
+mapping.non.human = mapping[mapping[,3]!="Homo sapiens",]
+colnames(mapping.non.human) = c("uniprot","gene.name","species")
+head(mapping.human)
+head(mapping.non.human)
+mapping.nonHuman.to.human = merge(mapping.non.human,mapping.human,by="gene.name",suffixes = c(".non.human",".human"))
+head(mapping.nonHuman.to.human)
+dim(mapping.nonHuman.to.human)
+mapping.nonHuman.to.human = mapping.nonHuman.to.human[,c("uniprot.non.human","species.non.human","uniprot.human")]
+mapping.nonHuman.to.human = unique(mapping.nonHuman.to.human)
+head(mapping.nonHuman.to.human)
+dim(mapping.nonHuman.to.human)
+
+write.table( mapping.nonHuman.to.human
+            ,"./id.mapping/pathway.commons/reactome.other.species/non.human.uniprot.to.human.uniprot.txt"
+            )
+
+
+```
+###### merge through human uniprot
 ```{r}
 mapping.nonHuman.to.human = read.table("C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/pathway.commons/reactome.other.species/non.human.uniprot.to.human.uniprot.txt",
                                        stringsAsFactors = F,
@@ -75,16 +149,248 @@ save(uniprot.to.pathwayCommons.all.species.list,file="C:/xiaoxi/work/papers/SBGN
 
 
 ```
-Generate entrez to pathwayCommons using all species uniprot to pathwayCommons
+###### Generate entrez to pathwayCommons using all species uniprot to pathwayCommons
 
 ```{r}
 source("./all.ids.to.pathwayCommons.metacyc.R")
 all.gene.id.types.to.pathwayCommons(uniprot.to.pathwayCommons.species.matrix = uniprot.to.pathwayCommons.all.species,gene.to.pathwayCommons.each.pair.RData.folder = "../data/id.mapping//mapping.each.pair/for.use.all/") 
 
 ```
+##### other species uniprot to pathwayCommons through KEGG ortholog
+###### other species uniprot to human uniprot in kegg
+human uniprot to human entrez through kegg
+```{r}
+        
+download.from.kegg = function(ids,url,output.file,size.slice){
+        all.species.entrez = paste(ids,collapse = "+")
+        kegg.q.all.species.entrez.to.all.species.uniprot = paste(url,all.species.entrez,sep="")
+        substr(kegg.q.all.species.entrez.to.all.species.uniprot ,1,50)
+        # print(kegg.q.all.species.entrez.to.all.species.uniprot)
+        # stop()
+        if.found = try(download.file(kegg.q.all.species.entrez.to.all.species.uniprot ,destfile = output.file,quiet = T,mode = "a"))
+        if(class(if.found) == "try-error"){
+                n.genes = length(ids)
+                slices = seq(1,n.genes,by=size.slice)
+                for(j in 1:length(slices)){
+                        if(j == length(slices)){
+                                end.index = n.genes
+                        }else{
+                                end.index = slices[j+1] -1
+                        }
+                        slice.genes = slices[j]:end.index
+                        all.species.entrez = paste(ids[slice.genes],collapse = "+")
+                        cat("downloading to ", output.file,"\n",paste(min(slice.genes),max(slice.genes),sep="-"),"out of",n.genes,"genes\n")
+                        kegg.q.all.species.entrez.to.all.species.uniprot = paste(url,all.species.entrez,sep="")
+                        substr(kegg.q.all.species.entrez.to.all.species.uniprot ,1,50)
+                        if.downloaded = try(download.file(kegg.q.all.species.entrez.to.all.species.uniprot ,destfile = output.file,quiet = T,mode = "a"))
+                        if(class(if.downloaded) == "try-error"){
+                                download.from.kegg(ids[slice.genes],url,output.file,(size.slice-1))
+                        }
+                }
+        }
+}
 
 
+biopax.folder = "C:/xiaoxi/work/papers/SBGNview/package/data.package/pathway.commons/raw.data/v9"
+protein.mapping =  readRDS(paste(biopax.folder,"/proteins.mapping.list.rds",sep=""))
+names(protein.mapping)
+protein.mapping$duplicated.ids
+nrow(protein.mapping$mappings.no.database.id)
+head(protein.mapping$mappings.database.id.name)
+pathwayCommons_UNIPROT_human = protein.mapping$mappings.database.id.name[,2:1]
+colnames(pathwayCommons_UNIPROT_human) = c("UNIPROT","pathwayCommons")
+head(pathwayCommons_UNIPROT_human)
+head(pathwayCommons_UNIPROT_human)
+dim(pathwayCommons_UNIPROT_human)
+human.uniprot.to.entrez.file = "kegg.human.uniprot.to.entrez.tsv"
+human.entrez.to.ko.file = "kegg.human.entrez.to.ko.tsv"
+all.species.entrez.to.ko.file = "kegg.ko.to.all.species.entrez.tsv"
+kegg.humanUniprot.to.NonHumanUniprot.orthologs.file = "C:/xiaoxi/work/input/id.mapping/kegg/kegg.humanUniprot.to.NonHumanUniprot.orthologs.tsv"
+# file.remove(human.uniprot.to.entrez.file,human.entrez.to.ko.file,all.species.entrez.to.uniprot.file,kegg.humanUniprot.to.NonHumanUniprot.orthologs.file)
+all.uniprots = unique(pathwayCommons_UNIPROT_human[,"UNIPROT"])
+n.pathwayCommons.uniprot = length(all.uniprots)
+n.pathwayCommons.uniprot
 
+
+# human uniprot to genes
+current.uniprot = all.uniprots
+output.folder = "C:/xiaoxi/work/input/id.mapping/kegg"
+output.file = paste(output.folder,"/",human.uniprot.to.entrez.file,sep="")
+download.from.kegg (paste("up:",current.uniprot,sep=""),"http://rest.kegg.jp/conv/hsa/",output.file,size.slice = 200)
+kegg.q.uniprot.to.entrez.human = try(read.table(output.file,header = F,stringsAsFactors = F,sep="\t",quote=""))
+colnames(kegg.q.uniprot.to.entrez.human) =c("uniprot","entrez")
+head(kegg.q.uniprot.to.entrez.human)
+
+# entrez to ko
+output.file = paste(output.folder,"/",human.entrez.to.ko.file,sep="")
+download.from.kegg (unique(kegg.q.uniprot.to.entrez.human[,"entrez"]),"http://rest.kegg.jp/link/ko/",output.file,size.slice = 200)
+kegg.human.entrez.to.ko = try(read.table(paste(output.folder,"/",human.entrez.to.ko.file,sep=""),header = F,stringsAsFactors = F,sep="\t",quote=""))
+colnames(kegg.human.entrez.to.ko) =c("entrez.human","ko")
+head(kegg.human.entrez.to.ko)
+
+# ko to all species gene
+output.file = paste(output.folder,"/",all.species.entrez.to.ko.file,sep="")
+download.from.kegg (unique(kegg.human.entrez.to.ko[,"ko"]),"http://rest.kegg.jp/link/genes/",output.file,size.slice = 20)
+kegg.ko.to.all.species.entrez = try(read.table(output.file,header = F,stringsAsFactors = F,sep="\t",quote=""))
+colnames(kegg.ko.to.all.species.entrez ) =c("ko","all.species.entrez")
+head(kegg.ko.to.all.species.entrez )
+dim(kegg.ko.to.all.species.entrez )
+table(kegg.ko.to.all.species.entrez[,"ko"] )
+
+# all species entrez to all species uniprot
+dim(kegg.ko.to.all.species.entrez)
+uniprot.to.ko.file = "C:/xiaoxi/work/input/id.mapping/kegg/uniprot.to.ko.tsv"
+by(
+        kegg.ko.to.all.species.entrez
+        ,as.factor(kegg.ko.to.all.species.entrez[,"ko"])
+        ,function(all.species.entrez.df){
+                ko = all.species.entrez.df[1,"ko"]
+                ko = gsub("ko:","",ko)
+                ko.uniprot.file =  paste("C:/xiaoxi/work/input/id.mapping/kegg/ko/",ko,".tsv",sep="")
+                
+                output.file = ko.uniprot.file
+                if(file.exists(output.file)){
+                        print(ko)
+                        return()
+                }
+                download.from.kegg (unique(all.species.entrez.df[,"all.species.entrez"]),"http://rest.kegg.jp/conv/uniprot/",output.file,size.slice = 200)
+                
+                all.species.entrez.to.uniprot = read.table(ko.uniprot.file,header = F,stringsAsFactors = F,sep="\t",quote="")
+                colnames(all.species.entrez.to.uniprot) =c("gene","uniprot")
+                all.species.entrez.to.uniprot[,"uniprot"] = gsub("up:","",all.species.entrez.to.uniprot[,"uniprot"])
+                species = do.call(rbind,strsplit(all.species.entrez.to.uniprot[,"gene"],":"))[,1]
+                uniprot.to.ko = all.species.entrez.to.uniprot[,c("uniprot","gene")]
+                uniprot.to.ko = cbind(uniprot.to.ko,ko)
+                write.table(uniprot.to.ko,uniprot.to.ko.file,row.names = F,col.names =F,sep="\t",quote=F,append = T)
+                # stop()
+        }
+)
+
+# map other species uniprot to human uniprot
+uniprot.to.ko = read.table(uniprot.to.ko.file,sep="\t",stringsAsFactors = F,header = F)
+colnames(uniprot.to.ko) = c("uniprot","gene","ko")
+dim(uniprot.to.ko)
+uniprot.to.ko = unique(uniprot.to.ko)
+dim(uniprot.to.ko)
+head(uniprot.to.ko)
+species = do.call(rbind,strsplit(uniprot.to.ko[,"gene"],":"))[,1]
+uniprot.to.ko[,2] = species
+colnames(uniprot.to.ko) = c("uniprot","species","ko")
+head(uniprot.to.ko)
+human.uniprot = uniprot.to.ko[uniprot.to.ko[,"species"] == "hsa",]
+non.human.uniprot = uniprot.to.ko[uniprot.to.ko[,"species"] != "hsa",]
+
+dim(human.uniprot)
+dim(non.human.uniprot)
+head(human.uniprot)
+head(non.human.uniprot)
+length(unique(uniprot.to.ko[,"ko"]))
+length(unique(uniprot.to.ko[,"species"]))
+head(unique(uniprot.to.ko[,"species"]))
+
+non.human.to.human = merge(human.uniprot,non.human.uniprot,by="ko",suffixes = c(".human",".non.human"),all=F)
+
+head(non.human.to.human)
+tail(non.human.to.human)
+dim(non.human.to.human)
+
+# other species uniprot to pathwayCommons by human uniprot
+head(non.human.to.human)
+head(pathwayCommons_UNIPROT_human)
+non.human.uniprot.to.pathwayCommons = merge(non.human.to.human[,c("uniprot.human","uniprot.non.human","species.non.human")],pathwayCommons_UNIPROT_human
+                                            ,by.x = "uniprot.human"
+                                            ,by.y="UNIPROT"
+                                            ,all = F
+                                            )
+dim(non.human.uniprot.to.pathwayCommons)
+head(non.human.uniprot.to.pathwayCommons)
+colnames(non.human.uniprot.to.pathwayCommons)[2:3] = c("uniprot","species")
+head(non.human.uniprot.to.pathwayCommons)
+head(unique(non.human.uniprot.to.pathwayCommons[,5]))
+# combine other species to pathwayCommons and human uniprot to pathwayCommons
+uniprot.to.pathwayCommons.all.species = pathwayCommons_UNIPROT_human
+colnames(uniprot.to.pathwayCommons.all.species)[3] = "species"
+colnames(uniprot.to.pathwayCommons.all.species)[1] = "uniprot"
+head(uniprot.to.pathwayCommons.all.species)
+head(non.human.uniprot.to.pathwayCommons)
+uniprot.to.pathwayCommons.all.species = rbind(uniprot.to.pathwayCommons.all.species
+                                              ,non.human.uniprot.to.pathwayCommons[,c("uniprot","pathwayCommons","species")]
+                                              )
+colnames(uniprot.to.pathwayCommons.all.species)[1] = "UNIPROT"
+head(uniprot.to.pathwayCommons.all.species)
+tail(uniprot.to.pathwayCommons.all.species)
+table(uniprot.to.pathwayCommons.all.species$species)
+uniprot.to.pathwayCommons.all.species.kegg.list = list()
+uniprot.to.pathwayCommons.all.species.kegg.list$gene = list()
+uniprot.to.pathwayCommons.all.species.kegg.list$gene = uniprot.to.pathwayCommons.all.species 
+save(uniprot.to.pathwayCommons.all.species.kegg.list,file="C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/pathway.commons/uniprot.to.pathwayCommons.all.species.kegg.list.RData")
+
+# generate usable id mapping list :pathwayCommons to uniprot: kegg ortholog definition
+load("C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/pathway.commons/uniprot.to.pathwayCommons.all.species.kegg.list.RData")
+pathwayCommons_UNIPROT = uniprot.to.pathwayCommons.all.species.kegg.list$gene
+head(pathwayCommons_UNIPROT)
+tail(pathwayCommons_UNIPROT)
+head(pathwayCommons_UNIPROT[pathwayCommons_UNIPROT[,"species"]=="Homo sapiens",])
+pathwayCommons_UNIPROT[,"species"] = as.character(pathwayCommons_UNIPROT[,"species"])
+pathwayCommons_UNIPROT[pathwayCommons_UNIPROT[,"species"]=="Homo sapiens","species"] = "hsa"
+head(pathwayCommons_UNIPROT)
+mapping.list = list()
+mapping.list$gene = list()
+mapping.list$gene$pathwayCommons_UNIPROT = pathwayCommons_UNIPROT
+head(mapping.list$gene$pathwayCommons_UNIPROT)
+dim(mapping.list$gene$pathwayCommons_UNIPROT)
+save(mapping.list,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/pathwayCommons_UNIPROT.RData")
+# generate usable id mapping list :pathwayCommons to ko
+head(uniprot.to.ko)
+human.uniprot.to.ko = uniprot.to.ko[grepl("hsa",uniprot.to.ko[,2]),]
+human.uniprot.to.ko = human.uniprot.to.ko[,c(1,3)]
+colnames(human.uniprot.to.ko) = c("UNIPROT","KO")
+head(human.uniprot.to.ko)
+dim(human.uniprot.to.ko)
+head(pathwayCommons_UNIPROT_human)
+KO.to.pathwayCommons = merge(human.uniprot.to.ko
+                             ,pathwayCommons_UNIPROT_human
+                             ,all=F
+                             )
+head(KO.to.pathwayCommons)
+type.pair.name = paste(sort(c("KO","pathwayCommons")),collapse="_")
+type.pair.name
+KO_pathwayCommons = KO.to.pathwayCommons[,2:3]
+head(KO_pathwayCommons)
+mapping.list = list()
+mapping.list$gene = list()
+mapping.list$gene$KO_pathwayCommons = KO_pathwayCommons
+head(mapping.list$gene$KO_pathwayCommons)
+
+```
+
+Check which pathway the ko are from
+```{r}
+# ko to all species gene
+all.species.entrez.to.ko.file = "kegg.ko.to.all.species.entrez.tsv"
+output.folder = "C:/xiaoxi/work/input/id.mapping/kegg"
+output.file = paste(output.folder,"/",all.species.entrez.to.ko.file,sep="")
+# download.from.kegg (unique(kegg.human.entrez.to.ko[,"ko"]),"http://rest.kegg.jp/link/genes/",output.file,size.slice = 20)
+kegg.ko.to.all.species.entrez = try(read.table(output.file,header = F,stringsAsFactors = F,sep="\t",quote=""))
+head(kegg.ko.to.all.species.entrez)
+colnames(kegg.ko.to.all.species.entrez ) =c("ko","all.species.entrez")
+ko.species = do.call(rbind,strsplit(kegg.ko.to.all.species.entrez[,"all.species.entrez"],":"))[,1]
+head(ko.species)
+head(kegg.ko.to.all.species.entrez )
+dim(kegg.ko.to.all.species.entrez )
+
+kegg.species.count = tapply(
+        ko.species
+        ,as.factor(kegg.ko.to.all.species.entrez[,"ko"])
+        ,function(species){
+                length(unique(species))
+        }
+)
+kegg.species.count = kegg.species.count[order(kegg.species.count,decreasing = T)]
+head(kegg.species.count)
+
+
+```
 
 
 
