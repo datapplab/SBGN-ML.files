@@ -8,6 +8,70 @@ output:
 
 ---
 # Id mapping procedures
+## Molecule ID to pathway IDs
+```{r}
+
+in.folder = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both"
+pathwayCommons.files = list.files(in.folder,pattern="pathwayCommons",full.names = T) # previously, we already mapped ids to metacyc pathway ids, here we only need to add mapping to pathwayCommons ids
+length(pathwayCommons.files)
+pathwayCommons.files.names = list.files(in.folder,pattern="pathwayCommons",full.names = F)
+pathwayCommons.to.pathway.id = pathwayCommons.files[grepl("pathway.id",pathwayCommons.files.names)]
+pathwayCommons.to.pathway.id
+fn = load(pathwayCommons.to.pathway.id)
+head(pathwayCommons_pathway.id)
+
+pathwayCommons.files = pathwayCommons.files[!grepl("pathway.id",pathwayCommons.files.names)]
+pathwayCommons.files.names = pathwayCommons.files.names[!grepl("pathway.id",pathwayCommons.files.names)]
+length(pathwayCommons.files)
+length(pathwayCommons.files.names)
+
+# for( i in 1:length(pathwayCommons.files)){
+        i=7  # previously, only chebi didn't have mapping to pathway ids of pathwayCommons, so we only need to add chebi.to.pathwayCommons.pathway.id
+        load(pathwayCommons.files[i])
+        id.to.pathwayCommons = mapping.list[[1]][[1]]
+        id.type = setdiff(colnames(id.to.pathwayCommons),c("species","pathwayCommons"))
+        id.to.pathway.file = paste(in.folder,"/",id.type,"_pathway.id.RData",sep="")
+        # print(id.to.pathway.file)
+        load(id.to.pathway.file)
+        print(id.type)
+        if.has.pathwayCommons = sum(grepl("SMP",mapping.table[,"pathway.id"]))
+        if(if.has.pathwayCommons>0){
+                # print("already has pathwayCommons data")
+                next()
+        }else{
+                cat("\n\n need to add pathwayCommons!\n\n\n")
+                print(i)
+                next()
+        }
+        head(pathwayCommons_pathway.id)
+        head(id.to.pathwayCommons)
+        merged = merge(pathwayCommons_pathway.id,id.to.pathwayCommons,by="pathwayCommons",all=F)
+        head(merged)
+        id.to.pathway = merged[,c(id.type,"pathway.id")]
+        head(id.to.pathway)
+        head(mapping.table)
+        tail(mapping.table)
+        mapping.table = rbind(mapping.table,id.to.pathway)
+        head(mapping.table)
+        tail(mapping.table)
+        save(mapping.table,file = id.to.pathway.file)
+# }
+# compound name to pathway ids
+chebi.to.cpd.name.file = paste(in.folder,"/chebi_CompoundName.RData",sep="")
+fn = load(chebi.to.cpd.name.file)
+head(mapping.list$compound$chebi_CompoundName)
+chebi.to.cpd.name = mapping.list$compound$chebi_CompoundName
+head(chebi.to.cpd.name)
+chebi.to.cpd.name[chebi.to.cpd.name[,1] == "64489",]
+head(mapping.table)
+chebi.to.pathway = mapping.table
+head(chebi.to.cpd.name)
+head(chebi.to.pathway)
+merged = merge(chebi.to.cpd.name,chebi.to.pathway,by="chebi",all=F)
+head(merged)
+mapping.table = merged[,c("CompoundName","pathway.id")]
+
+```
 ## proteins
 ### pathwayCommons 
 #### pathwayCommons to human uniprot
