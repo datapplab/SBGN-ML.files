@@ -56,6 +56,7 @@ length(pathwayCommons.files.names)
         tail(mapping.table)
         save(mapping.table,file = id.to.pathway.file)
 # }
+        
 # compound name to pathway ids
 chebi.to.cpd.name.file = paste(in.folder,"/chebi_CompoundName.RData",sep="")
 fn = load(chebi.to.cpd.name.file)
@@ -70,6 +71,242 @@ head(chebi.to.pathway)
 merged = merge(chebi.to.cpd.name,chebi.to.pathway,by="chebi",all=F)
 head(merged)
 mapping.table = merged[,c("CompoundName","pathway.id")]
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+head(mapping.table)
+tail(mapping.table)
+save(mapping.table,file = paste(in.folder,"/CompoundName_pathway.id.RData",sep=""))
+
+# cpd name to pathwayCommons id
+chebi.to.pathwayCommons = paste(in.folder,"/chebi_pathwayCommons.RData",sep="")
+fn = load(chebi.to.pathwayCommons )
+head(mapping.list$compound$chebi_pathwayCommons)
+chebi.to.pathwayCommons = mapping.list$compound$chebi_pathwayCommons
+head(chebi.to.cpd.name)
+head(chebi.to.pathwayCommons)
+merged = merge(chebi.to.cpd.name,chebi.to.pathwayCommons,by="chebi",all=F)
+head(merged)
+mapping.table = merged[,c("CompoundName","pathwayCommons")]
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+head(mapping.table)
+tail(mapping.table)
+save(mapping.table,file = paste(in.folder,"/CompoundName_pathwayCommons.RData",sep=""))
+
+# cpd name to metacyc id
+chebi.to.metacyc = paste(in.folder,"/chebi_metacyc.SBGN.RData",sep="")
+fn = load(chebi.to.metacyc )
+head(mapping.list$compound$chebi_metacyc.SBGN)
+chebi.to.metacyc = mapping.list$compound$chebi_metacyc.SBGN
+head(chebi.to.cpd.name)
+head(chebi.to.metacyc)
+merged = merge(chebi.to.cpd.name,chebi.to.metacyc,by="chebi",all=F)
+head(merged)
+mapping.table = merged[,c("CompoundName","metacyc.SBGN")]
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+head(mapping.table)
+tail(mapping.table)
+save(mapping.table,file = paste(in.folder,"/CompoundName_metacyc.SBGN.RData",sep=""))
+
+
+
+```
+## for each species specific pathway, how many proteins does it have
+```{r}
+ko.to.pathway.file = "C:/xiaoxi/work/input/id.mapping/kegg/ko.to.pathway.tsv"
+download.file("http://rest.kegg.jp/link/ko/pathway",destfile = ko.to.pathway.file )
+all.ko.to.pathway = read.table(ko.to.pathway.file,header=F,stringsAsFactors = F,sep="\t")
+head(all.ko.to.pathway)
+pathway.ko.count = table(all.ko.to.pathway[,1])
+head(pathway.ko.count)
+tail(pathway.ko.count)
+
+
+all.species = read.table("C:/xiaoxi/work/input/id.mapping/kegg/kegg.ko.to.all.species.tsv",stringsAsFactors = F,header=F)
+head(all.species)
+all.species = unique(all.species[,1])
+length(all.species)
+
+out.all = matrix(ncol=4,nrow=0)
+out.all
+head(out.all)
+dim(out.all)
+
+for(i in 1:length(all.species)){
+        # i = 1
+        cat("\n\n",i)
+        print(all.species[i])
+        dlink = paste("http://rest.kegg.jp/link/",all.species[i],"/pathway",sep="")
+        loc.file = paste("C:/xiaoxi/work/input/id.mapping/kegg/kegg.species.to.gene/",all.species[i],".tsv")
+        cov.file = paste(loc.file,".pct.cover.tsv")
+        if(file.exists(cov.file)){
+                next()
+        }
+        if.downloaded = try(download.file(url = dlink,destfile = loc.file))
+        if(class(if.downloaded) == "try-error"){
+                next()
+        }
+        pathway.to.gene = read.table(loc.file,header=F,sep="\t",stringsAsFactors = F)
+        ct = table(pathway.to.gene[,1])
+        ct[ct==min(ct)]
+        ko.count.pathway = pathway.ko.count[gsub(all.species[i],"map",names(ct))]
+        percent.species.gene.vs.ko.in.pathway = ct/ko.count.pathway
+        out = data.frame(
+                pathway = names(ct)
+                ,n.gene.species.pathway = as.vector(ct)
+                ,n.ko.reference.pathway = as.vector(ko.count.pathway)
+                ,percent = as.vector(percent.species.gene.vs.ko.in.pathway)
+        )
+        out = out[order(out[,"percent"]),]
+        out.all = rbind(out.all,out)
+        write.table(out,cov.file,sep="\t",row.names=F)
+}
+
+write.table(out.all,"C:/xiaoxi/work/input/id.mapping/kegg/speciesPathwayMappedGene.refKo.numbers.tsv",sep="\t",row.names=F)
+
+head(out.all)
+species.info = gsub("[0-9]|path:","",as.character(out.all[,1]))
+head(species.info)
+head(out.all)
+dim(out.all)
+
+pathway.info = gsub("path:[a-z]+","map",as.character(out.all[,1]))
+head(pathway.info)
+out.all.backup = out.all
+out.all = out.all[!is.na(out.all[,"percent"]),]
+dim(out.all[is.na(out.all[,"percent"]),])
+
+max.cov.pathway = by(out.all,as.factor(pathway.info),
+                      function(df){
+                              max.percent.df = df[df[,"percent"] == max(df[,"percent"]),]
+                              max.percent.df = max.percent.df[1,]
+                      }
+              )
+max.cov.pathway[[1]]
+
+max.cov.pathway = do.call(rbind,max.cov.pathway )
+head(max.cov.pathway)
+                     
+
+min.gene = by(out.all,as.factor(species.info),
+              function(df){
+                      df[df[,"n.gene.species.pathway"] == min(df[,"n.gene.species.pathway"]),]
+              }
+              )
+min.gene = do.call(rbind,min.gene)
+min.gene = min.gene[order(min.gene[,"percent"]),]
+head(min.gene)
+range(min.gene[,2])
+write.table(min.gene,"C:/xiaoxi/work/input/id.mapping/kegg/pathways.with.minimum.cov.tsv",sep="\t",row.names=F)
+
+head(out.all[is.na(out.all[,4]),])
+
+min.cov = by(out.all,as.factor(species.info),
+              function(df){
+                      df[ df[,"percent"] == min(df[,"percent"]),]
+              }
+              )
+min.cov = do.call(rbind,min.cov)
+head(min.cov)
+min.cov[,4]
+range(min.cov[,2])
+
+# number of kos mapped in species specific pathway
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/pathwayCommons_pathway.id.RData")
+pathwayCommons_pathway.id.protein = pathwayCommons_pathway.id[grepl("Protein_",pathwayCommons_pathway.id[,"pathwayCommons"]),]
+head(pathwayCommons_pathway.id.protein)
+pathway.protein.count = table(pathwayCommons_pathway.id.protein[,"pathway.id"])
+head(pathway.protein.count)
+
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/pathwayCommons_UNIPROT.RData")
+head(mapping.list$gene$pathwayCommons_UNIPROT)
+uniprot.to.species = unique(mapping.list$gene$pathwayCommons_UNIPROT[,c("pathwayCommons","species")])
+head(uniprot.to.species)
+species.to.pathway = merge(uniprot.to.species,pathwayCommons_pathway.id.protein,by="pathwayCommons",all=F)
+head(species.to.pathway)
+
+# species.pathway.id = aggregate(
+#         species.to.pathway[,"pathwayCommons"]
+#         ,list(species = species.to.pathway[,"species"]
+#               ,pathway = species.to.pathway[,"pathway.id"]
+#               )
+#         ,length
+# )
+species.pathway = paste(species.to.pathway[,"pathway.id"],species.to.pathway[,"species"],sep="@")
+head(species.pathway)
+species.pathway.count = table(species.pathway)
+head(species.pathway.count)
+length(species.pathway.count)
+species.pathway.count.n = data.frame(pathway = as.character(names(species.pathway.count)),count = species.pathway.count,stringsAsFactors = F)
+head(species.pathway.count.n[!is.character(species.pathway.count.n$pathway),])
+head(class(as.character(names(species.pathway.count))))
+head(species.pathway.count.n$pathway)
+head(class(species.pathway.count.n$pathway))
+species.pathway.name = do.call(rbind,strsplit(species.pathway.count.n$pathway,"@"))
+head(species.pathway.name)
+pathway.protein.count.v = pathway.protein.count[species.pathway.name[,1]]
+head(pathway.protein.count.v)
+species.pathway.name = as.data.frame(species.pathway.name)
+species.pathway.id = species.pathway.name
+species.pathway.id$ref.pathway.protein.count = pathway.protein.count.v
+head(species.pathway.id)
+colnames(species.pathway.id) = c("pathway","species","species.pathway.protein.count")
+pct.mapped.species.pathway = as.numeric(species.pathway.count) / pathway.protein.count.v
+head(pct.mapped.species.pathway)
+species.pathway.id$pct.mapped.species.pathway = pct.mapped.species.pathway
+species.pathway.id$species.pathway.protein.count = species.pathway.count
+species.pathway.id$ref.pathway.protein.count = pathway.protein.count.v
+head(species.pathway.id)
+head(species.pathway.id[species.pathway.id[,"species"] == "hsa",])
+min(species.pathway.id[species.pathway.id[,"species"] == "hsa","pct.mapped.species.pathway"])
+hist(species.pathway.id[species.pathway.id[,"species"] == "hsa","pct.mapped.species.pathway"])
+hist(species.pathway.id[species.pathway.id[,"species"] == "mmu","pct.mapped.species.pathway"])
+max(species.pathway.id$pct.mapped.species.pathway)
+hist(species.pathway.id$pct.mapped.species.pathway)
+pathway.species.pct_Mapped = species.pathway.id
+species.pathway.id[species.pathway.id[,"species"] == "hsa","pct.mapped.species.pathway"] = 1 # not all pathway nodes(pathwayCommons IDs) have uniprot, thus species information. This is why some human pathways don't have 100% completeness. Here we change them to 1 so cutoff filtering can work properly.
+min(species.pathway.id[species.pathway.id[,"species"] == "hsa","pct.mapped.species.pathway"])
+save(pathway.species.pct_Mapped,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/pathway.species.pct_Mapped.RData")
+head(pathway.species.pct_Mapped)
+
+library(ggplot2)
+library(scales)
+# for pathwayCommons, the distribution of pathways's percent of proteins mapped
+breaks.use = seq(0,1,by=0.1)
+p = qplot(species.pathway.id$pct.mapped.species.pathway
+      ,geom="histogram"
+      ,binwidth = 0.001
+      ,xlab = "percent of nodes with KEGG ortholog in a species-specific pathway"
+      ,ylab = "count"
+      ) + scale_x_continuous(breaks = breaks.use
+                             ,labels = percent(breaks.use) 
+                             )+
+         scale_y_log10()
+pdf(file = "./species.pathway.coverage.pathwayCommons.pdf")
+print(p)
+dev.off()
+
+# 
+if.all.mapped = (species.pathway.id$pct.mapped.species.pathway == 1)
+species.pathway.protein.all.mapped = table(species.pathway.id[if.all.mapped,"species"])
+all.mapped.species = species.pathway.protein.all.mapped[species.pathway.protein.all.mapped>0]
+all.mapped.species = (all.mapped.species[order(all.mapped.species,decreasing = F)])
+all.mapped.species.count = as.data.frame(all.mapped.species)
+colnames(all.mapped.species.count) = c("species","n.pathways.with.all.proteins.mapped")
+head(all.mapped.species.count)
+
+n = nrow(all.mapped.species.count)
+p = ggplot(all.mapped.species.count[(n-10):n,],aes(x="",y=n.pathways.with.all.proteins.mapped,fill=species))+
+        geom_bar(stat="identity",width = 1) + scale_fill_manual(values=rainbow(11))
+pdf(file = "./n.pathwaysAllProteinsMapped.each.species.pdf")
+print(p)
+dev.off()
+
+
 
 ```
 ## proteins
