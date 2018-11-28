@@ -3,7 +3,7 @@
   <map language="process description">
     <glyph class="simple chemical" id="SmallMolecule_825449ea6e0d4b6a7d60a48e75f6ccd0" if.within.compartment="">
       <label text="Cilostazol"/>
-      <bbox w="70" h="40" x="123.5" y="150"/>
+      <bbox w="40" h="40" x="123.5" y="150"/>
     </glyph>
     <glyph class="compartment" id="cytoplasm" if.within.compartment="">
       <label text="cytoplasm"/>
@@ -25,16 +25,29 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="SmallMolecule_825449ea6e0d4b6a7d60a48e75f6ccd0--to--Interaction_b29fb2c3b74ff173136c7a90a566fc72" source="SmallMolecule_825449ea6e0d4b6a7d60a48e75f6ccd0" target="Interaction_b29fb2c3b74ff173136c7a90a566fc72" class="interaction">
+      <source.arc start.x="147" start.y="208" end.x="152" end.y="190" class="consumption"/>
+      <spline s.x="152.000000" s.y="190.000000" c1.x="147.000000" c1.y="208.000000" c2.x="140.000000" c2.y="234.000000" e.x="136.000000" e.y="249.000000"/>
+      <target.arc start.x="140" start.y="234" end.x="136" end.y="249" class="interaction"/>
+    </arc.spline>
+    <arc.spline id="Protein_a318a6446f5ec153eea1899b1f16c96d--to--Interaction_b29fb2c3b74ff173136c7a90a566fc72" source="Protein_a318a6446f5ec153eea1899b1f16c96d" target="Interaction_b29fb2c3b74ff173136c7a90a566fc72" class="interaction">
+      <source.arc start.x="148" start.y="480" end.x="152" end.y="535" class="consumption"/>
+      <spline s.x="152.000000" s.y="535.000000" c1.x="148.000000" c1.y="480.000000" c2.x="136.000000" c2.y="324.000000" e.x="133.000000" e.y="277.000000"/>
+      <target.arc start.x="136" start.y="324" end.x="133" end.y="277" class="interaction"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytoplasm</compartment.layer.info>
 
 
 <edge.spline.info> 
 
 <arc.spline id="SmallMolecule_825449ea6e0d4b6a7d60a48e75f6ccd0--to--Interaction_b29fb2c3b74ff173136c7a90a566fc72" source="SmallMolecule_825449ea6e0d4b6a7d60a48e75f6ccd0" target="Interaction_b29fb2c3b74ff173136c7a90a566fc72" class="interaction">
-<source.arc start.x="147" start.y="208" end.x="152" end.y="190" class="consumption"/>
+<source.arc start.x="138" start.y="208" end.x="141" end.y="190" class="consumption"/>
 
 
-<spline s.x="152.000000"  s.y="190.000000" c1.x="147.000000" c1.y="208.000000" c2.x="140.000000" c2.y="234.000000" e.x="136.000000"  e.y="249.000000" />
-<target.arc start.x="140" start.y="234" end.x="136" end.y="249" class="interaction"/>
+<spline s.x="141.000000"  s.y="190.000000" c1.x="138.000000" c1.y="208.000000" c2.x="135.000000" c2.y="234.000000" e.x="133.000000"  e.y="249.000000" />
+<target.arc start.x="135" start.y="234" end.x="133" end.y="249" class="interaction"/>
 
 </arc.spline>
 <arc.spline id="Protein_a318a6446f5ec153eea1899b1f16c96d--to--Interaction_b29fb2c3b74ff173136c7a90a566fc72" source="Protein_a318a6446f5ec153eea1899b1f16c96d" target="Interaction_b29fb2c3b74ff173136c7a90a566fc72" class="interaction">
@@ -45,5 +58,5 @@
 <target.arc start.x="136" start.y="324" end.x="133" end.y="277" class="interaction"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>cytoplasm</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

@@ -3,11 +3,11 @@
   <map language="process description">
     <glyph class="compartment" id="extracellular" if.within.compartment="">
       <label text="extracellular"/>
-      <bbox w="92" h="76" x="299.219509629717" y="359.37877109718"/>
+      <bbox w="92" h="76" x="299.219509629717" y="366.37877109718"/>
     </glyph>
     <glyph class="compartment" id="cell_membrane" if.within.compartment="">
       <label text="cell membrane"/>
-      <bbox w="126.512197028032" h="325.439012536737" x="114.743901485984" y="198"/>
+      <bbox w="126.512197028032" h="325.439012536737" x="114.743901485984" y="221.5"/>
     </glyph>
     <glyph class="unspecified entity" id="PhysicalEntity_0ea0afddc1f39d23c4e769064b9d11fd" compartmentRef="extracellular" if.within.compartment="">
       <label text="Ligand recognized by TLR10"/>
@@ -52,11 +52,30 @@
       <glyph class="cardinality" if.within.compartment="" x="0" y="0">
         <label text="2"/>
         <bbox w="20" h="20" x="197.5" y="414.5"/>
+        <bbox w="20" h="20" x="197.5" y="414.5"/>
       </glyph>
       <start x="0" y="0"/>
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="reactome_R-HSA-168947_LEFT_TO_RIGHT--to--Complex_3180c74bde91adc79be2e2165d23cef7" source="reactome_R-HSA-168947_LEFT_TO_RIGHT" target="Complex_3180c74bde91adc79be2e2165d23cef7" class="production">
+      <source.arc start.x="207" start.y="363" end.x="211" end.y="372" class="consumption"/>
+      <spline s.x="198.000000" s.y="341.000000" c1.x="203.000000" c1.y="352.000000" c2.x="207.000000" c2.y="363.000000" e.x="211.000000" e.y="372.000000"/>
+      <target.arc start.x="203" start.y="352" end.x="198" end.y="341" class="production"/>
+    </arc.spline>
+    <arc.spline id="PhysicalEntity_0ea0afddc1f39d23c4e769064b9d11fd--to--reactome_R-HSA-168947_LEFT_TO_RIGHT" source="PhysicalEntity_0ea0afddc1f39d23c4e769064b9d11fd" target="reactome_R-HSA-168947_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="283" start.y="391" end.x="310" end.y="394" class="consumption"/>
+      <spline s.x="310.000000" s.y="394.000000" c1.x="283.000000" c1.y="391.000000" c2.x="249.000000" c2.y="388.000000" e.x="230.000000" e.y="386.000000"/>
+      <target.arc start.x="249" start.y="388" end.x="230" end.y="386" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Protein_cfde1ea5acb0af8c1d845b1a3186508a--to--reactome_R-HSA-168947_LEFT_TO_RIGHT" source="Protein_cfde1ea5acb0af8c1d845b1a3186508a" target="reactome_R-HSA-168947_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="182" start.y="450" end.x="171" end.y="472" class="consumption"/>
+      <spline s.x="171.000000" s.y="472.000000" c1.x="182.000000" c1.y="450.000000" c2.x="200.000000" c2.y="417.000000" e.x="209.000000" e.y="399.000000"/>
+      <target.arc start.x="200" start.y="417" end.x="209" end.y="399" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cell_membrane-compartment.layer.info-extracellular</compartment.layer.info>
 
 
 <edge.spline.info> 
@@ -85,5 +104,5 @@
 <target.arc start.x="200" start.y="417" end.x="209" end.y="399" class="consumption"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>cell_membrane-compartment.layer.info-extracellular</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

@@ -3,11 +3,11 @@
   <map language="process description">
     <glyph class="compartment" id="cell_membrane" if.within.compartment="">
       <label text="cell membrane"/>
-      <bbox w="223.620569039891" h="245.124392054205" x="100" y="198"/>
+      <bbox w="223.620569039891" h="245.124392054205" x="105.5" y="221.5"/>
     </glyph>
     <glyph class="complex" id="Complex_22e180dfc89cb6ffb841403bb588c7e8" compartmentRef="cell_membrane" if.within.compartment="">
       <label text="TGFBR1 LBD Mutants:FKBP1A"/>
-      <bbox w="81" h="122.5" x="111" y="245.97317409574"/>
+      <bbox w="81" h="122.5" x="111" y="252.97317409574"/>
       <glyph class="macromolecule" id="Protein_fbf9dd2de2a4b62fb85215410eb9386d_Complex_22e180dfc89cb6ffb841403bb588c7e8" compartmentRef="cell_membrane" if.within.compartment="">
         <label text="TGFBR1 LBD Mutants"/>
         <bbox w="70" h="40" x="116.5" y="258.47317409574"/>
@@ -47,7 +47,8 @@
     <arc class="consumption" id="Complex_22e180dfc89cb6ffb841403bb588c7e8--to--reactome_R-HSA-3656382_LEFT_TO_RIGHT-input" source="Complex_22e180dfc89cb6ffb841403bb588c7e8" target="reactome_R-HSA-3656382_LEFT_TO_RIGHT">
       <glyph class="cardinality" if.within.compartment="" x="0" y="0">
         <label text="2"/>
-        <bbox w="20" h="20" x="156.5" y="392.5"/>
+        <bbox w="20" h="20" x="156.5" y="394.5"/>
+        <bbox w="20" h="20" x="156.5" y="394.5"/>
       </glyph>
       <start x="0" y="0"/>
       <end x="0" y="0"/>
@@ -57,25 +58,39 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="Complex_22e180dfc89cb6ffb841403bb588c7e8--to--reactome_R-HSA-3656382_LEFT_TO_RIGHT" source="Complex_22e180dfc89cb6ffb841403bb588c7e8" target="reactome_R-HSA-3656382_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="158" start.y="382" end.x="156" end.y="368" class="consumption"/>
+      <spline s.x="156.000000" s.y="368.000000" c1.x="158.000000" c1.y="382.000000" c2.x="159.000000" c2.y="395.000000" e.x="160.000000" e.y="405.000000"/>
+      <target.arc start.x="159" start.y="395" end.x="160" end.y="405" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Complex_0edc3f9b62a09a8e358ecdc06fca0e08--to--reactome_R-HSA-3656382_LEFT_TO_RIGHT" source="Complex_0edc3f9b62a09a8e358ecdc06fca0e08" target="reactome_R-HSA-3656382_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="210" start.y="357" end.x="231" end.y="331" class="consumption"/>
+      <spline s.x="231.000000" s.y="331.000000" c1.x="210.000000" c1.y="357.000000" c2.x="186.000000" c2.y="387.000000" e.x="172.000000" e.y="405.000000"/>
+      <target.arc start.x="186" start.y="387" end.x="172" end.y="405" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cell_membrane-compartment.layer.info-cell_membrane-compartment.layer.info-Complex_22e180dfc89cb6ffb841403bb588c7e8-compartment.layer.info-Protein_fbf9dd2de2a4b62fb85215410eb9386d_Complex_22e180dfc89cb6ffb841403bb588c7e8-compartment.layer.info-Protein_fa59e7f4e3a495dbb54b033557cfa64d_Complex_22e180dfc89cb6ffb841403bb588c7e8-compartment.layer.info-Complex_0edc3f9b62a09a8e358ecdc06fca0e08-compartment.layer.info-Protein_635e67ff15de2c426c5b8526858451c7_Complex_0edc3f9b62a09a8e358ecdc06fca0e08-compartment.layer.info-Protein_7cab662fd352b3be16e2ca9f62edf548_Complex_0edc3f9b62a09a8e358ecdc06fca0e08-compartment.layer.info-reactome_R-HSA-3656382_LEFT_TO_RIGHT</compartment.layer.info>
 
 
 <edge.spline.info> 
 
 <arc.spline id="Complex_22e180dfc89cb6ffb841403bb588c7e8--to--reactome_R-HSA-3656382_LEFT_TO_RIGHT" source="Complex_22e180dfc89cb6ffb841403bb588c7e8" target="reactome_R-HSA-3656382_LEFT_TO_RIGHT" class="consumption">
-<source.arc start.x="158" start.y="382" end.x="156" end.y="368" class="consumption"/>
+<source.arc start.x="158" start.y="386" end.x="157" end.y="375" class="consumption"/>
 
 
-<spline s.x="156.000000"  s.y="368.000000" c1.x="158.000000" c1.y="382.000000" c2.x="159.000000" c2.y="395.000000" e.x="160.000000"  e.y="405.000000" />
-<target.arc start.x="159" start.y="395" end.x="160" end.y="405" class="consumption"/>
+<spline s.x="157.000000"  s.y="375.000000" c1.x="158.000000" c1.y="386.000000" c2.x="159.000000" c2.y="397.000000" e.x="160.000000"  e.y="405.000000" />
+<target.arc start.x="159" start.y="397" end.x="160" end.y="405" class="consumption"/>
 
 </arc.spline>
 <arc.spline id="Complex_0edc3f9b62a09a8e358ecdc06fca0e08--to--reactome_R-HSA-3656382_LEFT_TO_RIGHT" source="Complex_0edc3f9b62a09a8e358ecdc06fca0e08" target="reactome_R-HSA-3656382_LEFT_TO_RIGHT" class="consumption">
-<source.arc start.x="210" start.y="357" end.x="231" end.y="331" class="consumption"/>
+<source.arc start.x="219" start.y="348" end.x="231" end.y="333" class="consumption"/>
 
 
-<spline s.x="231.000000"  s.y="331.000000" c1.x="210.000000" c1.y="357.000000" c2.x="186.000000" c2.y="387.000000" e.x="172.000000"  e.y="405.000000" />
-<target.arc start.x="186" start.y="387" end.x="172" end.y="405" class="consumption"/>
+<spline s.x="231.000000"  s.y="333.000000" c1.x="219.000000" c1.y="348.000000" c2.x="207.000000" c2.y="364.000000" e.x="195.000000"  e.y="378.000000" />
+<spline s.x="195.000000"  s.y="378.000000" c1.x="187.000000" c1.y="387.000000" c2.x="179.000000" c2.y="397.000000" e.x="173.000000"  e.y="405.000000" />
+<target.arc start.x="179" start.y="397" end.x="173" end.y="405" class="consumption"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>cell_membrane-compartment.layer.info-cell_membrane-compartment.layer.info-Complex_22e180dfc89cb6ffb841403bb588c7e8-compartment.layer.info-Protein_fbf9dd2de2a4b62fb85215410eb9386d_Complex_22e180dfc89cb6ffb841403bb588c7e8-compartment.layer.info-Protein_fa59e7f4e3a495dbb54b033557cfa64d_Complex_22e180dfc89cb6ffb841403bb588c7e8-compartment.layer.info-Complex_0edc3f9b62a09a8e358ecdc06fca0e08-compartment.layer.info-Protein_635e67ff15de2c426c5b8526858451c7_Complex_0edc3f9b62a09a8e358ecdc06fca0e08-compartment.layer.info-Protein_7cab662fd352b3be16e2ca9f62edf548_Complex_0edc3f9b62a09a8e358ecdc06fca0e08-compartment.layer.info-reactome_R-HSA-3656382_LEFT_TO_RIGHT</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

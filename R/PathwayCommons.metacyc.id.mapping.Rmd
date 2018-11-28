@@ -218,6 +218,13 @@ range(min.cov[,2])
 # number of kos mapped in species specific pathway
 load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/pathwayCommons_pathway.id.RData")
 pathwayCommons_pathway.id.protein = pathwayCommons_pathway.id[grepl("Protein_",pathwayCommons_pathway.id[,"pathwayCommons"]),]
+dim(pathwayCommons_pathway.id.protein)
+pathwayCommons_pathway.id.protein = pathwayCommons_pathway.id.protein[!grepl("info",pathwayCommons_pathway.id.protein[,"pathwayCommons"]),]
+dim(pathwayCommons_pathway.id.protein)
+pathwayCommons_pathway.id.protein = pathwayCommons_pathway.id.protein[!grepl("Complex",pathwayCommons_pathway.id.protein[,"pathwayCommons"]),]
+dim(pathwayCommons_pathway.id.protein)
+pathwayCommons_pathway.id.protein = pathwayCommons_pathway.id.protein[!grepl("state",pathwayCommons_pathway.id.protein[,"pathwayCommons"]),]
+dim(pathwayCommons_pathway.id.protein)
 head(pathwayCommons_pathway.id.protein)
 pathway.protein.count = table(pathwayCommons_pathway.id.protein[,"pathway.id"])
 head(pathway.protein.count)
@@ -251,10 +258,11 @@ head(species.pathway.name)
 pathway.protein.count.v = pathway.protein.count[species.pathway.name[,1]]
 head(pathway.protein.count.v)
 species.pathway.name = as.data.frame(species.pathway.name)
+
 species.pathway.id = species.pathway.name
 species.pathway.id$ref.pathway.protein.count = pathway.protein.count.v
 head(species.pathway.id)
-colnames(species.pathway.id) = c("pathway","species","species.pathway.protein.count")
+colnames(species.pathway.id) = c("pathway","species","ref.pathway.protein.count")
 pct.mapped.species.pathway = as.numeric(species.pathway.count) / pathway.protein.count.v
 head(pct.mapped.species.pathway)
 species.pathway.id$pct.mapped.species.pathway = pct.mapped.species.pathway
@@ -268,10 +276,17 @@ hist(species.pathway.id[species.pathway.id[,"species"] == "mmu","pct.mapped.spec
 max(species.pathway.id$pct.mapped.species.pathway)
 hist(species.pathway.id$pct.mapped.species.pathway)
 pathway.species.pct_Mapped = species.pathway.id
-species.pathway.id[species.pathway.id[,"species"] == "hsa","pct.mapped.species.pathway"] = 1 # not all pathway nodes(pathwayCommons IDs) have uniprot, thus species information. This is why some human pathways don't have 100% completeness. Here we change them to 1 so cutoff filtering can work properly.
-min(species.pathway.id[species.pathway.id[,"species"] == "hsa","pct.mapped.species.pathway"])
-save(pathway.species.pct_Mapped,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/pathway.species.pct_Mapped.RData")
+save(pathway.species.pct_Mapped,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
+
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
 head(pathway.species.pct_Mapped)
+pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"species"] == "hsa","pct.mapped.species.pathway"] = 1 # not all pathway nodes(pathwayCommons IDs) have uniprot, thus species information. This is why some human pathways don't have 100% completeness. Here we change them to 1 so cutoff filtering can work properly.
+min(pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"species"] == "hsa","pct.mapped.species.pathway"])
+head(pathway.species.pct_Mapped)
+hist(pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"species"] == "mmu","pct.mapped.species.pathway"])
+hist(pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"species"] == "hsa","pct.mapped.species.pathway"])
+range(pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"species"] == "hsa","pct.mapped.species.pathway"])
+save(pathway.species.pct_Mapped,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
 
 library(ggplot2)
 library(scales)

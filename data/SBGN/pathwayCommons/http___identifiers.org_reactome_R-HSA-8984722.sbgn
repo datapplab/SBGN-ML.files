@@ -3,15 +3,15 @@
   <map language="process description">
     <glyph class="compartment" id="extracellular" if.within.compartment="">
       <label text="extracellular"/>
-      <bbox w="180.263266899023" h="148.5" x="285.281913294213" y="222.729996086108"/>
+      <bbox w="180.263266899023" h="148.5" x="285.281913294213" y="246.229996086108"/>
     </glyph>
     <glyph class="compartment" id="cell_membrane" if.within.compartment="">
       <label text="cell membrane"/>
-      <bbox w="439.758391516326" h="327.601089285852" x="117.156032131636" y="403.390720391513"/>
+      <bbox w="439.758391516326" h="327.601089285852" x="122.656032131636" y="462.890720391513"/>
     </glyph>
     <glyph class="compartment" id="endoplasmic_reticulum_lumen" if.within.compartment="">
       <label text="endoplasmic reticulum lumen"/>
-      <bbox w="103" h="148.5" x="108.5" y="262"/>
+      <bbox w="103" h="148.5" x="114" y="285.5"/>
     </glyph>
     <glyph class="complex" id="Complex_a887bd605ba2e00bc03f131e3fb1f1f5" compartmentRef="extracellular" if.within.compartment="">
       <label text="IL35"/>
@@ -168,6 +168,40 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="reactome_R-HSA-6809140_LEFT_TO_RIGHT--to--Complex_a7e3a15b7d898a975c4485be8fe35383" source="reactome_R-HSA-6809140_LEFT_TO_RIGHT" target="Complex_a7e3a15b7d898a975c4485be8fe35383" class="production">
+      <source.arc start.x="350" start.y="620" end.x="367" end.y="618" class="consumption"/>
+      <spline s.x="288.000000" s.y="626.000000" c1.x="318.000000" c1.y="623.000000" c2.x="350.000000" c2.y="620.000000" e.x="367.000000" e.y="618.000000"/>
+      <target.arc start.x="318" start.y="623" end.x="288" end.y="626" class="production"/>
+    </arc.spline>
+    <arc.spline id="Complex_0523d7d3206f52ef43e2b65409b75b13--to--reactome_R-HSA-448627_LEFT_TO_RIGHT" source="Complex_0523d7d3206f52ef43e2b65409b75b13" target="reactome_R-HSA-448627_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="232" start.y="326" end.x="200" end.y="334" class="consumption"/>
+      <spline s.x="296.000000" s.y="310.000000" c1.x="275.000000" c1.y="315.000000" c2.x="232.000000" c2.y="326.000000" e.x="200.000000" e.y="334.000000"/>
+      <target.arc start.x="275" start.y="315" end.x="296" end.y="310" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Complex_5f9ee5ac78879353a9121906c2df9f6a--to--reactome_R-HSA-6809140_LEFT_TO_RIGHT" source="Complex_5f9ee5ac78879353a9121906c2df9f6a" target="reactome_R-HSA-6809140_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="440" start.y="596" end.x="464" end.y="588" class="consumption"/>
+      <spline s.x="464.000000" s.y="588.000000" c1.x="440.000000" c1.y="596.000000" c2.x="411.000000" c2.y="606.000000" e.x="394.000000" e.y="612.000000"/>
+      <target.arc start.x="411" start.y="606" end.x="394" end.y="612" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Complex_a887bd605ba2e00bc03f131e3fb1f1f5--to--reactome_R-HSA-6809140_LEFT_TO_RIGHT" source="Complex_a887bd605ba2e00bc03f131e3fb1f1f5" target="reactome_R-HSA-6809140_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="428" start.y="417" end.x="421" end.y="360" class="consumption"/>
+      <spline s.x="421.000000" s.y="360.000000" c1.x="428.000000" c1.y="417.000000" c2.x="431.000000" c2.y="510.000000" e.x="405.000000" e.y="585.000000"/>
+      <spline s.x="405.000000" s.y="585.000000" c1.x="403.000000" c1.y="592.000000" c2.x="398.000000" c2.y="598.000000" e.x="394.000000" e.y="604.000000"/>
+      <target.arc start.x="398" start.y="598" end.x="394" end.y="604" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-448627_LEFT_TO_RIGHT--to--Complex_a887bd605ba2e00bc03f131e3fb1f1f5" source="reactome_R-HSA-448627_LEFT_TO_RIGHT" target="Complex_a887bd605ba2e00bc03f131e3fb1f1f5" class="production">
+      <source.arc start.x="336" start.y="306" end.x="323" end.y="306" class="consumption"/>
+      <spline s.x="373.000000" s.y="306.000000" c1.x="355.000000" c1.y="306.000000" c2.x="336.000000" c2.y="306.000000" e.x="323.000000" e.y="306.000000"/>
+      <target.arc start.x="355" start.y="306" end.x="373" end.y="306" class="production"/>
+    </arc.spline>
+    <arc.spline id="Complex_7d6bd851860fe8913f4835f042e5bf72--to--reactome_R-HSA-6809140_LEFT_TO_RIGHT" source="Complex_7d6bd851860fe8913f4835f042e5bf72" target="reactome_R-HSA-6809140_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="375" start.y="590" end.x="373" end.y="582" class="consumption"/>
+      <spline s.x="373.000000" s.y="582.000000" c1.x="375.000000" c1.y="590.000000" c2.x="376.000000" c2.y="597.000000" e.x="378.000000" e.y="603.000000"/>
+      <target.arc start.x="376" start.y="597" end.x="378" end.y="603" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>extracellular-compartment.layer.info-cell_membrane-compartment.layer.info-endoplasmic_reticulum_lumen</compartment.layer.info>
 
 
 <edge.spline.info> 
@@ -221,5 +255,5 @@
 <target.arc start.x="376" start.y="597" end.x="378" end.y="603" class="consumption"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>extracellular-compartment.layer.info-cell_membrane-compartment.layer.info-endoplasmic_reticulum_lumen</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

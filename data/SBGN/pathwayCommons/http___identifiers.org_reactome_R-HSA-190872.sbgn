@@ -3,11 +3,11 @@
   <map language="process description">
     <glyph class="compartment" id="endoplasmic_reticulum-golgi_intermediate_compartment" if.within.compartment="">
       <label text="endoplasmic reticulum-golgi intermediate compartment"/>
-      <bbox w="380.416666666667" h="192.394191624433" x="100" y="198"/>
+      <bbox w="380.416666666667" h="192.394191624433" x="105.5" y="198"/>
     </glyph>
     <glyph class="compartment" id="cell_membrane" if.within.compartment="">
       <label text="cell membrane"/>
-      <bbox w="103" h="91" x="262" y="265.605808375568"/>
+      <bbox w="103" h="91" x="267.5" y="289.105808375568"/>
     </glyph>
     <glyph class="complex" id="Complex_048c4f4882a9325bb4b91bad62ae6e91" compartmentRef="endoplasmic_reticulum-golgi_intermediate_compartment" if.within.compartment="">
       <label text="Connexin 26 Connexon"/>
@@ -45,6 +45,20 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="reactome_R-HSA-451056_LEFT_TO_RIGHT--to--Complex_01d61681a43d02f0a8f2418ad051b510" source="reactome_R-HSA-451056_LEFT_TO_RIGHT" target="Complex_01d61681a43d02f0a8f2418ad051b510" class="production">
+      <source.arc start.x="421" start.y="246" end.x="442" end.y="231" class="consumption"/>
+      <spline s.x="442.000000" s.y="231.000000" c1.x="421.000000" c1.y="246.000000" c2.x="380.000000" c2.y="273.000000" e.x="350.000000" e.y="294.000000"/>
+      <target.arc start.x="380" start.y="273" end.x="350" end.y="294" class="production"/>
+    </arc.spline>
+    <arc.spline id="Complex_048c4f4882a9325bb4b91bad62ae6e91--to--reactome_R-HSA-451056_LEFT_TO_RIGHT" source="Complex_048c4f4882a9325bb4b91bad62ae6e91" target="reactome_R-HSA-451056_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="214" start.y="318" end.x="192" end.y="330" class="consumption"/>
+      <spline s.x="192.000000" s.y="330.000000" c1.x="214.000000" c1.y="318.000000" c2.x="243.000000" c2.y="303.000000" e.x="269.000000" e.y="291.000000"/>
+      <spline s.x="269.000000" s.y="291.000000" c1.x="332.000000" c1.y="263.000000" c2.x="411.000000" c2.y="236.000000" e.x="442.000000" e.y="226.000000"/>
+      <target.arc start.x="411" start.y="236" end.x="442" end.y="226" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>endoplasmic_reticulum-golgi_intermediate_compartment-compartment.layer.info-cell_membrane</compartment.layer.info>
 
 
 <edge.spline.info> 
@@ -66,5 +80,5 @@
 <target.arc start.x="411" start.y="236" end.x="442" end.y="226" class="consumption"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>endoplasmic_reticulum-golgi_intermediate_compartment-compartment.layer.info-cell_membrane</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

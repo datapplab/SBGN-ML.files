@@ -7,7 +7,7 @@
     </glyph>
     <glyph class="compartment" id="cell_membrane" if.within.compartment="">
       <label text="cell membrane"/>
-      <bbox w="103" h="139.75" x="108.5" y="326"/>
+      <bbox w="103" h="139.75" x="114" y="349.5"/>
     </glyph>
     <glyph class="macromolecule" id="Protein_02e9ab8c9938779d361a470416288fc8" compartmentRef="cytosol" if.within.compartment="">
       <label text="NF1 loss-of-function variants"/>
@@ -25,7 +25,7 @@
       </glyph>
       <glyph class="simple chemical" id="SmallMolecule_03dc20a24f2195a97a8b09c70b10b174_Complex_fad85b5041a6041251d02eacb521c651" compartmentRef="cell_membrane" if.within.compartment="">
         <label text="GTP"/>
-        <bbox w="70" h="40" x="125" y="409.25"/>
+        <bbox w="40" h="40" x="125" y="409.25"/>
       </glyph>
     </glyph>
     <arc class="consumption" id="Complex_fad85b5041a6041251d02eacb521c651--to--reactome_R-HSA-6802837_LEFT_TO_RIGHT-input" source="Complex_fad85b5041a6041251d02eacb521c651" target="reactome_R-HSA-6802837_LEFT_TO_RIGHT">
@@ -37,6 +37,19 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="Complex_fad85b5041a6041251d02eacb521c651--to--reactome_R-HSA-6802837_LEFT_TO_RIGHT" source="Complex_fad85b5041a6041251d02eacb521c651" target="reactome_R-HSA-6802837_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="145" start.y="314" end.x="152" end.y="354" class="consumption"/>
+      <spline s.x="133.000000" s.y="236.000000" c1.x="137.000000" c1.y="260.000000" c2.x="145.000000" c2.y="314.000000" e.x="152.000000" e.y="354.000000"/>
+      <target.arc start.x="137" start.y="260" end.x="133" end.y="236" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Protein_02e9ab8c9938779d361a470416288fc8--to--reactome_R-HSA-6802837_LEFT_TO_RIGHT" source="Protein_02e9ab8c9938779d361a470416288fc8" target="reactome_R-HSA-6802837_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="257" start.y="338" end.x="296" end.y="373" class="consumption"/>
+      <spline s.x="296.000000" s.y="373.000000" c1.x="257.000000" c1.y="338.000000" c2.x="177.000000" c2.y="264.000000" e.x="145.000000" e.y="234.000000"/>
+      <target.arc start.x="177" start.y="264" end.x="145" end.y="234" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytosol-compartment.layer.info-cell_membrane</compartment.layer.info>
 
 
 <edge.spline.info> 
@@ -57,5 +70,5 @@
 <target.arc start.x="177" start.y="264" end.x="145" end.y="234" class="consumption"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>cytosol-compartment.layer.info-cell_membrane</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

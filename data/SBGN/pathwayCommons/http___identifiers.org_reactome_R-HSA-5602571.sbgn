@@ -7,7 +7,7 @@
     </glyph>
     <glyph class="compartment" id="endosome_membrane" if.within.compartment="">
       <label text="endosome membrane"/>
-      <bbox w="103" h="242" x="156.5" y="244"/>
+      <bbox w="103" h="242" x="162" y="303.5"/>
     </glyph>
     <glyph class="macromolecule" id="Protein_82b26682c611c87527be85465a7bdd3d" compartmentRef="cytosol" if.within.compartment="">
       <label text="TRAF3"/>
@@ -53,6 +53,19 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="Protein_82b26682c611c87527be85465a7bdd3d--to--reactome_R-HSA-5602624_LEFT_TO_RIGHT" source="Protein_82b26682c611c87527be85465a7bdd3d" target="reactome_R-HSA-5602624_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="365" start.y="363" end.x="382" end.y="374" class="consumption"/>
+      <spline s.x="382.000000" s.y="374.000000" c1.x="365.000000" c1.y="363.000000" c2.x="344.000000" c2.y="349.000000" e.x="331.000000" e.y="340.000000"/>
+      <target.arc start.x="344" start.y="349" end.x="331" end.y="340" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Complex_6bf50c88115c0de6bfca1692e150f7c7--to--reactome_R-HSA-5602624_LEFT_TO_RIGHT" source="Complex_6bf50c88115c0de6bfca1692e150f7c7" target="reactome_R-HSA-5602624_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="268" start.y="358" end.x="248" end.y="369" class="consumption"/>
+      <spline s.x="303.000000" s.y="339.000000" c1.x="290.000000" c1.y="346.000000" c2.x="268.000000" c2.y="358.000000" e.x="248.000000" e.y="369.000000"/>
+      <target.arc start.x="290" start.y="346" end.x="303" end.y="339" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>endosome_membrane-compartment.layer.info-cytosol</compartment.layer.info>
 
 
 <edge.spline.info> 
@@ -73,5 +86,5 @@
 <target.arc start.x="290" start.y="346" end.x="303" end.y="339" class="consumption"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>endosome_membrane-compartment.layer.info-cytosol</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

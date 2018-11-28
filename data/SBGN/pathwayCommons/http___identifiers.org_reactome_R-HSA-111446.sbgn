@@ -7,7 +7,7 @@
     </glyph>
     <glyph class="compartment" id="cell_membrane" if.within.compartment="">
       <label text="cell membrane"/>
-      <bbox w="272.346345674041" h="268.44294136408" x="100" y="511.873665010338"/>
+      <bbox w="272.346345674041" h="268.44294136408" x="105.5" y="553.373665010338"/>
     </glyph>
     <glyph class="compartment" id="mitochondrial_outer_membrane" if.within.compartment="">
       <label text="mitochondrial outer membrane"/>
@@ -116,6 +116,39 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="Complex_c22474f02e49463eaf26a303196bdad5--to--reactome_R-HSA-139918_LEFT_TO_RIGHT" source="Complex_c22474f02e49463eaf26a303196bdad5" target="reactome_R-HSA-139918_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="195" start.y="547" end.x="177" end.y="603" class="consumption"/>
+      <spline s.x="225.000000" s.y="451.000000" c1.x="216.000000" c1.y="480.000000" c2.x="195.000000" c2.y="547.000000" e.x="177.000000" e.y="603.000000"/>
+      <target.arc start.x="216" start.y="480" end.x="225" end.y="451" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Protein_a9da7b905d14545c4dde95bfead4bfe0--to--reactome_R-HSA-139918_LEFT_TO_RIGHT" source="Protein_a9da7b905d14545c4dde95bfead4bfe0" target="reactome_R-HSA-139918_LEFT_TO_RIGHT" class="catalysis">
+      <source.arc start.x="245" start.y="381" end.x="250" end.y="362" class="consumption"/>
+      <spline s.x="250.000000" s.y="362.000000" c1.x="245.000000" c1.y="381.000000" c2.x="238.000000" c2.y="408.000000" e.x="233.000000" e.y="424.000000"/>
+      <target.arc start.x="238" start.y="408" end.x="233" end.y="424" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-139919_LEFT_TO_RIGHT--to--Protein_dee1655d5eaa61d3f99ea3adeb8dca7f" source="reactome_R-HSA-139919_LEFT_TO_RIGHT" target="Protein_dee1655d5eaa61d3f99ea3adeb8dca7f" class="production">
+      <source.arc start.x="356" start.y="337" end.x="345" end.y="346" class="consumption"/>
+      <spline s.x="345.000000" s.y="346.000000" c1.x="356.000000" c1.y="337.000000" c2.x="373.000000" c2.y="324.000000" e.x="387.000000" e.y="313.000000"/>
+      <target.arc start.x="373" start.y="324" end.x="387" end.y="313" class="production"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-139918_LEFT_TO_RIGHT--to--Protein_a407ad87bba8c9ed4e72e177f0c4f2d4" source="reactome_R-HSA-139918_LEFT_TO_RIGHT" target="Protein_a407ad87bba8c9ed4e72e177f0c4f2d4" class="production">
+      <source.arc start.x="260" start.y="432" end.x="243" end.y="435" class="consumption"/>
+      <spline s.x="313.000000" s.y="422.000000" c1.x="289.000000" c1.y="427.000000" c2.x="260.000000" c2.y="432.000000" e.x="243.000000" e.y="435.000000"/>
+      <target.arc start.x="289" start.y="427" end.x="313" end.y="422" class="production"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-139918_LEFT_TO_RIGHT--to--Complex_a1e8f587bf2f6ffdcd521d4b6e12551d" source="reactome_R-HSA-139918_LEFT_TO_RIGHT" target="Complex_a1e8f587bf2f6ffdcd521d4b6e12551d" class="production">
+      <source.arc start.x="248" start.y="474" end.x="236" end.y="451" class="consumption"/>
+      <spline s.x="236.000000" s.y="451.000000" c1.x="248.000000" c1.y="474.000000" c2.x="273.000000" c2.y="521.000000" e.x="292.000000" e.y="558.000000"/>
+      <target.arc start.x="273" start.y="521" end.x="292" end.y="558" class="production"/>
+    </arc.spline>
+    <arc.spline id="Protein_a407ad87bba8c9ed4e72e177f0c4f2d4--to--reactome_R-HSA-139919_LEFT_TO_RIGHT" source="Protein_a407ad87bba8c9ed4e72e177f0c4f2d4" target="reactome_R-HSA-139919_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="340" start.y="387" end.x="342" end.y="395" class="consumption"/>
+      <spline s.x="342.000000" s.y="395.000000" c1.x="340.000000" c1.y="387.000000" c2.x="337.000000" c2.y="378.000000" e.x="335.000000" e.y="370.000000"/>
+      <target.arc start.x="337" start.y="378" end.x="335" end.y="370" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytosol-compartment.layer.info-cell_membrane-compartment.layer.info-mitochondrial_outer_membrane</compartment.layer.info>
 
 
 <edge.spline.info> 
@@ -168,5 +201,5 @@
 <target.arc start.x="337" start.y="378" end.x="335" end.y="370" class="consumption"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>cytosol-compartment.layer.info-cell_membrane-compartment.layer.info-mitochondrial_outer_membrane</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

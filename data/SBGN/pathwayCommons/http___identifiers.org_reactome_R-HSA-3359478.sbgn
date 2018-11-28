@@ -3,11 +3,11 @@
   <map language="process description">
     <glyph class="compartment" id="mitochondrial_matrix" if.within.compartment="">
       <label text="mitochondrial matrix"/>
-      <bbox w="276.475608143733" h="347.507808882175" x="100" y="198"/>
+      <bbox w="276.475608143733" h="347.507808882175" x="100" y="229.598917065216"/>
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule_40b9777007c283e180d20d236684185b" compartmentRef="mitochondrial_matrix" if.within.compartment="">
       <label text="L-MM-CoA"/>
-      <bbox w="70" h="40" x="295.475608143733" y="494.507808882175"/>
+      <bbox w="40" h="40" x="295.475608143733" y="494.507808882175"/>
     </glyph>
     <glyph class="complex" id="Complex_221deb285b59fdcb5d3474a0e958525a" compartmentRef="mitochondrial_matrix" if.within.compartment="">
       <label text="2xMMAA:2xMUT:AdoCbl"/>
@@ -22,7 +22,7 @@
       </glyph>
       <glyph class="simple chemical" id="SmallMolecule_08e331121d4ec170d5c8211767d5cced_Complex_221deb285b59fdcb5d3474a0e958525a" compartmentRef="mitochondrial_matrix" if.within.compartment="">
         <label text="AdoCbl"/>
-        <bbox w="70" h="40" x="238.482181282291" y="299.25"/>
+        <bbox w="40" h="40" x="238.482181282291" y="299.25"/>
       </glyph>
       <glyph class="macromolecule" id="Protein_b259628c48abc40254ddcbf88be46f7d_Complex_221deb285b59fdcb5d3474a0e958525a" compartmentRef="mitochondrial_matrix" if.within.compartment="">
         <label text="MUT"/>
@@ -45,6 +45,20 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="Complex_221deb285b59fdcb5d3474a0e958525a--to--reactome_R-HSA-3322971_LEFT_TO_RIGHT" source="Complex_221deb285b59fdcb5d3474a0e958525a" target="reactome_R-HSA-3322971_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="200" start.y="289" end.x="232" end.y="304" class="consumption"/>
+      <spline s.x="232.000000" s.y="304.000000" c1.x="200.000000" c1.y="289.000000" c2.x="158.000000" c2.y="270.000000" e.x="137.000000" e.y="260.000000"/>
+      <target.arc start.x="158" start.y="270" end.x="137" end.y="260" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule_40b9777007c283e180d20d236684185b--to--reactome_R-HSA-3322971_LEFT_TO_RIGHT" source="SmallMolecule_40b9777007c283e180d20d236684185b" target="reactome_R-HSA-3322971_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="289" start.y="472" end.x="310" end.y="494" class="consumption"/>
+      <spline s.x="310.000000" s.y="494.000000" c1.x="289.000000" c1.y="472.000000" c2.x="255.000000" c2.y="437.000000" e.x="229.000000" e.y="405.000000"/>
+      <spline s.x="229.000000" s.y="405.000000" c1.x="190.000000" c1.y="356.000000" c2.x="150.000000" c2.y="294.000000" e.x="133.000000" e.y="267.000000"/>
+      <target.arc start.x="150" start.y="294" end.x="133" end.y="267" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>mitochondrial_matrix-compartment.layer.info-mitochondrial_matrix-compartment.layer.info-SmallMolecule_40b9777007c283e180d20d236684185b-compartment.layer.info-Complex_221deb285b59fdcb5d3474a0e958525a-compartment.layer.info-Protein_07354a5ca59064a48d9c2aa848a98b72_Complex_221deb285b59fdcb5d3474a0e958525a-compartment.layer.info-SmallMolecule_08e331121d4ec170d5c8211767d5cced_Complex_221deb285b59fdcb5d3474a0e958525a-compartment.layer.info-Protein_b259628c48abc40254ddcbf88be46f7d_Complex_221deb285b59fdcb5d3474a0e958525a-compartment.layer.info-reactome_R-HSA-3322971_LEFT_TO_RIGHT</compartment.layer.info>
 
 
 <edge.spline.info> 
@@ -58,13 +72,13 @@
 
 </arc.spline>
 <arc.spline id="SmallMolecule_40b9777007c283e180d20d236684185b--to--reactome_R-HSA-3322971_LEFT_TO_RIGHT" source="SmallMolecule_40b9777007c283e180d20d236684185b" target="reactome_R-HSA-3322971_LEFT_TO_RIGHT" class="consumption">
-<source.arc start.x="289" start.y="472" end.x="310" end.y="494" class="consumption"/>
+<source.arc start.x="281" start.y="472" end.x="299" end.y="494" class="consumption"/>
 
 
-<spline s.x="310.000000"  s.y="494.000000" c1.x="289.000000" c1.y="472.000000" c2.x="255.000000" c2.y="437.000000" e.x="229.000000"  e.y="405.000000" />
-<spline s.x="229.000000"  s.y="405.000000" c1.x="190.000000" c1.y="356.000000" c2.x="150.000000" c2.y="294.000000" e.x="133.000000"  e.y="267.000000" />
-<target.arc start.x="150" start.y="294" end.x="133" end.y="267" class="consumption"/>
+<spline s.x="299.000000"  s.y="494.000000" c1.x="281.000000" c1.y="472.000000" c2.x="253.000000" c2.y="436.000000" e.x="229.000000"  e.y="405.000000" />
+<spline s.x="229.000000"  s.y="405.000000" c1.x="192.000000" c1.y="355.000000" c2.x="151.000000" c2.y="294.000000" e.x="133.000000"  e.y="267.000000" />
+<target.arc start.x="151" start.y="294" end.x="133" end.y="267" class="consumption"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>mitochondrial_matrix-compartment.layer.info-mitochondrial_matrix-compartment.layer.info-SmallMolecule_40b9777007c283e180d20d236684185b-compartment.layer.info-Complex_221deb285b59fdcb5d3474a0e958525a-compartment.layer.info-Protein_07354a5ca59064a48d9c2aa848a98b72_Complex_221deb285b59fdcb5d3474a0e958525a-compartment.layer.info-SmallMolecule_08e331121d4ec170d5c8211767d5cced_Complex_221deb285b59fdcb5d3474a0e958525a-compartment.layer.info-Protein_b259628c48abc40254ddcbf88be46f7d_Complex_221deb285b59fdcb5d3474a0e958525a-compartment.layer.info-reactome_R-HSA-3322971_LEFT_TO_RIGHT</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

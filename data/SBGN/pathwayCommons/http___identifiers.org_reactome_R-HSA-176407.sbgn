@@ -3,7 +3,7 @@
   <map language="process description">
     <glyph class="compartment" id="cytosol" if.within.compartment="">
       <label text="cytosol"/>
-      <bbox w="1326.43704492787" h="1246.54795300482" x="100" y="198"/>
+      <bbox w="1326.43704492787" h="1246.54795300482" x="105.5" y="221.5"/>
     </glyph>
     <glyph class="complex" id="Complex_155313d1ba0cd843c64242b64c2dc290" compartmentRef="cytosol" if.within.compartment="">
       <label text="phosphorylated anaphase promoting complex (APC/C)"/>
@@ -295,11 +295,11 @@
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule_8ce77e621d451a5471d7b231e76866eb" compartmentRef="cytosol" if.within.compartment="">
       <label text="PPi"/>
-      <bbox w="70" h="40" x="344.198188582916" y="1369.45648410319"/>
+      <bbox w="40" h="40" x="344.198188582916" y="1369.45648410319"/>
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule_bfe0d4cd6c12bac80101dff1b5e1f783" compartmentRef="cytosol" if.within.compartment="">
       <label text="H2O"/>
-      <bbox w="70" h="40" x="153.982990374375" y="1201.72757529577"/>
+      <bbox w="40" h="40" x="153.982990374375" y="1201.72757529577"/>
     </glyph>
     <glyph class="complex" id="Complex_26db3802df18e635208ed95d966ee5c1" compartmentRef="cytosol" if.within.compartment="">
       <label text="CDC20:p-APC/C"/>
@@ -511,6 +511,64 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="reactome_R-HSA-174070_LEFT_TO_RIGHT--to--Complex_ec51e6e813d4f328f2c33bbf99c9d4dd" source="reactome_R-HSA-174070_LEFT_TO_RIGHT" target="Complex_ec51e6e813d4f328f2c33bbf99c9d4dd" class="production">
+      <source.arc start.x="561" start.y="714" end.x="590" end.y="728" class="consumption"/>
+      <spline s.x="428.000000" s.y="649.000000" c1.x="494.000000" c1.y="681.000000" c2.x="561.000000" c2.y="714.000000" e.x="590.000000" e.y="728.000000"/>
+      <target.arc start.x="494" start.y="681" end.x="428" end.y="649" class="production"/>
+    </arc.spline>
+    <arc.spline id="Protein_998fee4195a509364488686797136bef--to--reactome_R-HSA-174124_LEFT_TO_RIGHT" source="Protein_998fee4195a509364488686797136bef" target="reactome_R-HSA-174124_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="307" start.y="1273" end.x="280" end.y="1301" class="consumption"/>
+      <spline s.x="280.000000" s.y="1301.000000" c1.x="307.000000" c1.y="1273.000000" c2.x="354.000000" c2.y="1224.000000" e.x="377.000000" e.y="1200.000000"/>
+      <target.arc start.x="354" start.y="1224" end.x="377" end.y="1200" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-174224_LEFT_TO_RIGHT--to--Protein_1d4d345bbfb41a4d01fe9940f8f2b411" source="reactome_R-HSA-174224_LEFT_TO_RIGHT" target="Protein_1d4d345bbfb41a4d01fe9940f8f2b411" class="production">
+      <source.arc start.x="980" start.y="489" end.x="997" end.y="519" class="consumption"/>
+      <spline s.x="919.000000" s.y="381.000000" c1.x="939.000000" c1.y="416.000000" c2.x="980.000000" c2.y="489.000000" e.x="997.000000" e.y="519.000000"/>
+      <target.arc start.x="939" start.y="416" end.x="919" end.y="381" class="production"/>
+    </arc.spline>
+    <arc.spline id="Complex_155313d1ba0cd843c64242b64c2dc290--to--reactome_R-HSA-174070_LEFT_TO_RIGHT" source="Complex_155313d1ba0cd843c64242b64c2dc290" target="reactome_R-HSA-174070_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="677" start.y="773" end.x="720" end.y="796" class="consumption"/>
+      <spline s.x="720.000000" s.y="796.000000" c1.x="677.000000" c1.y="773.000000" c2.x="637.000000" c2.y="752.000000" e.x="617.000000" e.y="742.000000"/>
+      <target.arc start.x="637" start.y="752" end.x="617" end.y="742" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Complex_26db3802df18e635208ed95d966ee5c1--to--reactome_R-HSA-174224_LEFT_TO_RIGHT" source="Complex_26db3802df18e635208ed95d966ee5c1" target="reactome_R-HSA-174224_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="1064" start.y="493" end.x="1098" end.y="472" class="consumption"/>
+      <spline s.x="1098.000000" s.y="472.000000" c1.x="1064.000000" c1.y="493.000000" c2.x="1034.000000" c2.y="513.000000" e.x="1018.000000" e.y="524.000000"/>
+      <target.arc start.x="1034" start.y="513" end.x="1018" end.y="524" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-174124_LEFT_TO_RIGHT--to--Protein_ca3915164a346bacee5f28ae72f23d87" source="reactome_R-HSA-174124_LEFT_TO_RIGHT" target="Protein_ca3915164a346bacee5f28ae72f23d87" class="production">
+      <source.arc start.x="418" start.y="1137" end.x="398" end.y="1172" class="consumption"/>
+      <spline s.x="495.000000" s.y="1000.000000" c1.x="472.000000" c1.y="1042.000000" c2.x="418.000000" c2.y="1137.000000" e.x="398.000000" e.y="1172.000000"/>
+      <target.arc start.x="472" start.y="1042" end.x="495" end.y="1000" class="production"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-174124_LEFT_TO_RIGHT--to--SmallMolecule_8ce77e621d451a5471d7b231e76866eb" source="reactome_R-HSA-174124_LEFT_TO_RIGHT" target="SmallMolecule_8ce77e621d451a5471d7b231e76866eb" class="production">
+      <source.arc start.x="388" start.y="1235" end.x="390" end.y="1200" class="consumption"/>
+      <spline s.x="380.000000" s.y="1369.000000" c1.x="382.000000" c1.y="1328.000000" c2.x="388.000000" c2.y="1235.000000" e.x="390.000000" e.y="1200.000000"/>
+      <target.arc start.x="382" start.y="1328" end.x="380" end.y="1369" class="production"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule_bfe0d4cd6c12bac80101dff1b5e1f783--to--reactome_R-HSA-174124_LEFT_TO_RIGHT" source="SmallMolecule_bfe0d4cd6c12bac80101dff1b5e1f783" target="reactome_R-HSA-174124_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="269" start.y="1207" end.x="224" end.y="1215" class="consumption"/>
+      <spline s.x="224.000000" s.y="1215.000000" c1.x="269.000000" c1.y="1207.000000" c2.x="346.000000" c2.y="1194.000000" e.x="377.000000" e.y="1188.000000"/>
+      <target.arc start.x="346" start.y="1194" end.x="377" end.y="1188" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Protein_55e48f4c700f401b2e764fd55e8d277a--to--reactome_R-HSA-174124_LEFT_TO_RIGHT" source="Protein_55e48f4c700f401b2e764fd55e8d277a" target="reactome_R-HSA-174124_LEFT_TO_RIGHT" class="catalysis">
+      <source.arc start.x="471" start.y="1341" end.x="494" end.y="1386" class="consumption"/>
+      <spline s.x="494.000000" s.y="1386.000000" c1.x="471.000000" c1.y="1341.000000" c2.x="417.000000" c2.y="1237.000000" e.x="398.000000" e.y="1200.000000"/>
+      <target.arc start.x="417" start.y="1237" end.x="398" end.y="1200" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-174224_LEFT_TO_RIGHT--to--Complex_155313d1ba0cd843c64242b64c2dc290" source="reactome_R-HSA-174224_LEFT_TO_RIGHT" target="Complex_155313d1ba0cd843c64242b64c2dc290" class="production">
+      <source.arc start.x="986" start.y="583" end.x="1000" end.y="547" class="consumption"/>
+      <spline s.x="920.000000" s.y="766.000000" c1.x="949.000000" c1.y="685.000000" c2.x="986.000000" c2.y="583.000000" e.x="1000.000000" e.y="547.000000"/>
+      <target.arc start.x="949" start.y="685" end.x="920" end.y="766" class="production"/>
+    </arc.spline>
+    <arc.spline id="Protein_ca3915164a346bacee5f28ae72f23d87--to--reactome_R-HSA-174070_LEFT_TO_RIGHT" source="Protein_ca3915164a346bacee5f28ae72f23d87" target="reactome_R-HSA-174070_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="533" start.y="912" end.x="514" end.y="960" class="consumption"/>
+      <spline s.x="514.000000" s.y="960.000000" c1.x="533.000000" c1.y="912.000000" c2.x="581.000000" c2.y="789.000000" e.x="598.000000" e.y="748.000000"/>
+      <target.arc start.x="581" start.y="789" end.x="598" end.y="748" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytosol-compartment.layer.info-cytosol-compartment.layer.info-Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_a6ceed8ccf58d313bd6444af74763096_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_a49a47860f58c4a8913eb653ffb679b8_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_793e303a9b453b5692a734cc896849b0_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_675ff1f525e05e21b7e859c6568cbded_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_df77f7dc0cee12a21050560963e6f6c6_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_d9f9947ffd0ac533ab960d818bf80936_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_25deaca1de52f806c7e45f885f407169_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_f287a3981adb49b8bdb9787c01d6ce52_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_de7eb1e5cacd10acc6506b513902a94f_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_3ef5b4b8d51d0c86d5598530dff49b51_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_b75b96f7c98e11520e40f38ed09d4c7e_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_bdc9c5b02d4dc296d3d86b05eef95747_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_707e7c8cf7daad80dd4c502c7230a2bc_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_f4c1fc9427a3fe304a34f950f7e57592_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_a151a212a1cdc0b7e099d04aedeb8d70_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_69774af3d1bd1a0deb232fb63e82387c_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_a6ceed8ccf58d313bd6444af74763096_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_a49a47860f58c4a8913eb653ffb679b8_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_793e303a9b453b5692a734cc896849b0_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_675ff1f525e05e21b7e859c6568cbded_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_df77f7dc0cee12a21050560963e6f6c6_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_d9f9947ffd0ac533ab960d818bf80936_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_25deaca1de52f806c7e45f885f407169_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_f287a3981adb49b8bdb9787c01d6ce52_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_de7eb1e5cacd10acc6506b513902a94f_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_3ef5b4b8d51d0c86d5598530dff49b51_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_b75b96f7c98e11520e40f38ed09d4c7e_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_ca3915164a346bacee5f28ae72f23d87_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_bdc9c5b02d4dc296d3d86b05eef95747_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_707e7c8cf7daad80dd4c502c7230a2bc_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_f4c1fc9427a3fe304a34f950f7e57592_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_a151a212a1cdc0b7e099d04aedeb8d70_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_69774af3d1bd1a0deb232fb63e82387c_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_998fee4195a509364488686797136bef-compartment.layer.info-Protein_55e48f4c700f401b2e764fd55e8d277a-compartment.layer.info-SmallMolecule_8ce77e621d451a5471d7b231e76866eb-compartment.layer.info-SmallMolecule_bfe0d4cd6c12bac80101dff1b5e1f783-compartment.layer.info-Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_a6ceed8ccf58d313bd6444af74763096_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_a49a47860f58c4a8913eb653ffb679b8_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_793e303a9b453b5692a734cc896849b0_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_675ff1f525e05e21b7e859c6568cbded_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_df77f7dc0cee12a21050560963e6f6c6_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_d9f9947ffd0ac533ab960d818bf80936_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_25deaca1de52f806c7e45f885f407169_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_f287a3981adb49b8bdb9787c01d6ce52_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_de7eb1e5cacd10acc6506b513902a94f_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_3ef5b4b8d51d0c86d5598530dff49b51_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_b75b96f7c98e11520e40f38ed09d4c7e_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_1d4d345bbfb41a4d01fe9940f8f2b411_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_bdc9c5b02d4dc296d3d86b05eef95747_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_707e7c8cf7daad80dd4c502c7230a2bc_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_f4c1fc9427a3fe304a34f950f7e57592_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_a151a212a1cdc0b7e099d04aedeb8d70_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_69774af3d1bd1a0deb232fb63e82387c_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_1d4d345bbfb41a4d01fe9940f8f2b411-compartment.layer.info-Protein_ca3915164a346bacee5f28ae72f23d87-compartment.layer.info-reactome_R-HSA-174224_LEFT_TO_RIGHT-compartment.layer.info-reactome_R-HSA-174070_LEFT_TO_RIGHT-compartment.layer.info-reactome_R-HSA-174124_LEFT_TO_RIGHT</compartment.layer.info>
 
 
 <edge.spline.info> 
@@ -564,19 +622,19 @@
 
 </arc.spline>
 <arc.spline id="reactome_R-HSA-174124_LEFT_TO_RIGHT--to--SmallMolecule_8ce77e621d451a5471d7b231e76866eb" source="reactome_R-HSA-174124_LEFT_TO_RIGHT" target="SmallMolecule_8ce77e621d451a5471d7b231e76866eb" class="production">
-<source.arc start.x="388" start.y="1235" end.x="390" end.y="1200" class="consumption"/>
+<source.arc start.x="384" start.y="1235" end.x="389" end.y="1200" class="consumption"/>
 
 
-<spline s.x="380.000000"  s.y="1369.000000" c1.x="382.000000" c1.y="1328.000000" c2.x="388.000000" c2.y="1235.000000" e.x="390.000000"  e.y="1200.000000" />
-<target.arc start.x="382" start.y="1328" end.x="380" end.y="1369" class="production"/>
+<spline s.x="366.000000"  s.y="1369.000000" c1.x="372.000000" c1.y="1328.000000" c2.x="384.000000" c2.y="1235.000000" e.x="389.000000"  e.y="1200.000000" />
+<target.arc start.x="372" start.y="1328" end.x="366" end.y="1369" class="production"/>
 
 </arc.spline>
 <arc.spline id="SmallMolecule_bfe0d4cd6c12bac80101dff1b5e1f783--to--reactome_R-HSA-174124_LEFT_TO_RIGHT" source="SmallMolecule_bfe0d4cd6c12bac80101dff1b5e1f783" target="reactome_R-HSA-174124_LEFT_TO_RIGHT" class="consumption">
-<source.arc start.x="269" start.y="1207" end.x="224" end.y="1215" class="consumption"/>
+<source.arc start.x="237" start.y="1211" end.x="194" end.y="1218" class="consumption"/>
 
 
-<spline s.x="224.000000"  s.y="1215.000000" c1.x="269.000000" c1.y="1207.000000" c2.x="346.000000" c2.y="1194.000000" e.x="377.000000"  e.y="1188.000000" />
-<target.arc start.x="346" start.y="1194" end.x="377" end.y="1188" class="consumption"/>
+<spline s.x="194.000000"  s.y="1218.000000" c1.x="237.000000" c1.y="1211.000000" c2.x="341.000000" c2.y="1194.000000" e.x="377.000000"  e.y="1188.000000" />
+<target.arc start.x="341" start.y="1194" end.x="377" end.y="1188" class="consumption"/>
 
 </arc.spline>
 <arc.spline id="Protein_55e48f4c700f401b2e764fd55e8d277a--to--reactome_R-HSA-174124_LEFT_TO_RIGHT" source="Protein_55e48f4c700f401b2e764fd55e8d277a" target="reactome_R-HSA-174124_LEFT_TO_RIGHT" class="catalysis">
@@ -603,5 +661,5 @@
 <target.arc start.x="581" start.y="789" end.x="598" end.y="748" class="consumption"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>cytosol-compartment.layer.info-cytosol-compartment.layer.info-Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_a6ceed8ccf58d313bd6444af74763096_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_a49a47860f58c4a8913eb653ffb679b8_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_793e303a9b453b5692a734cc896849b0_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_675ff1f525e05e21b7e859c6568cbded_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_df77f7dc0cee12a21050560963e6f6c6_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_d9f9947ffd0ac533ab960d818bf80936_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_25deaca1de52f806c7e45f885f407169_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_f287a3981adb49b8bdb9787c01d6ce52_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_de7eb1e5cacd10acc6506b513902a94f_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_3ef5b4b8d51d0c86d5598530dff49b51_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_b75b96f7c98e11520e40f38ed09d4c7e_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_bdc9c5b02d4dc296d3d86b05eef95747_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_707e7c8cf7daad80dd4c502c7230a2bc_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_f4c1fc9427a3fe304a34f950f7e57592_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_a151a212a1cdc0b7e099d04aedeb8d70_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Protein_69774af3d1bd1a0deb232fb63e82387c_Complex_155313d1ba0cd843c64242b64c2dc290-compartment.layer.info-Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_a6ceed8ccf58d313bd6444af74763096_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_a49a47860f58c4a8913eb653ffb679b8_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_793e303a9b453b5692a734cc896849b0_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_675ff1f525e05e21b7e859c6568cbded_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_df77f7dc0cee12a21050560963e6f6c6_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_d9f9947ffd0ac533ab960d818bf80936_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_25deaca1de52f806c7e45f885f407169_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_f287a3981adb49b8bdb9787c01d6ce52_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_de7eb1e5cacd10acc6506b513902a94f_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_3ef5b4b8d51d0c86d5598530dff49b51_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_b75b96f7c98e11520e40f38ed09d4c7e_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_ca3915164a346bacee5f28ae72f23d87_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_bdc9c5b02d4dc296d3d86b05eef95747_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_707e7c8cf7daad80dd4c502c7230a2bc_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_f4c1fc9427a3fe304a34f950f7e57592_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_a151a212a1cdc0b7e099d04aedeb8d70_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_69774af3d1bd1a0deb232fb63e82387c_Complex_ec51e6e813d4f328f2c33bbf99c9d4dd-compartment.layer.info-Protein_998fee4195a509364488686797136bef-compartment.layer.info-Protein_55e48f4c700f401b2e764fd55e8d277a-compartment.layer.info-SmallMolecule_8ce77e621d451a5471d7b231e76866eb-compartment.layer.info-SmallMolecule_bfe0d4cd6c12bac80101dff1b5e1f783-compartment.layer.info-Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_a6ceed8ccf58d313bd6444af74763096_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_a49a47860f58c4a8913eb653ffb679b8_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_793e303a9b453b5692a734cc896849b0_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_675ff1f525e05e21b7e859c6568cbded_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_df77f7dc0cee12a21050560963e6f6c6_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_d9f9947ffd0ac533ab960d818bf80936_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_25deaca1de52f806c7e45f885f407169_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_f287a3981adb49b8bdb9787c01d6ce52_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_de7eb1e5cacd10acc6506b513902a94f_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_3ef5b4b8d51d0c86d5598530dff49b51_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_b75b96f7c98e11520e40f38ed09d4c7e_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_1d4d345bbfb41a4d01fe9940f8f2b411_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_bdc9c5b02d4dc296d3d86b05eef95747_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_707e7c8cf7daad80dd4c502c7230a2bc_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_f4c1fc9427a3fe304a34f950f7e57592_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_a151a212a1cdc0b7e099d04aedeb8d70_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_69774af3d1bd1a0deb232fb63e82387c_Complex_26db3802df18e635208ed95d966ee5c1-compartment.layer.info-Protein_1d4d345bbfb41a4d01fe9940f8f2b411-compartment.layer.info-Protein_ca3915164a346bacee5f28ae72f23d87-compartment.layer.info-reactome_R-HSA-174224_LEFT_TO_RIGHT-compartment.layer.info-reactome_R-HSA-174070_LEFT_TO_RIGHT-compartment.layer.info-reactome_R-HSA-174124_LEFT_TO_RIGHT</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

@@ -7,7 +7,7 @@
     </glyph>
     <glyph class="compartment" id="endosome_membrane" if.within.compartment="">
       <label text="endosome membrane"/>
-      <bbox w="103" h="166.5" x="156.5" y="308"/>
+      <bbox w="103" h="166.5" x="162" y="349.5"/>
     </glyph>
     <glyph class="macromolecule" id="Protein_d42d1b018a5f73820e8f152fdd175d48" compartmentRef="cytosol" if.within.compartment="">
       <label text="TICAM1 variants"/>
@@ -41,6 +41,19 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="Complex_fca3199c0de46f4d5a47290572c92291--to--reactome_R-HSA-5602712_LEFT_TO_RIGHT" source="Complex_fca3199c0de46f4d5a47290572c92291" target="reactome_R-HSA-5602712_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="193" start.y="313" end.x="199" end.y="354" class="consumption"/>
+      <spline s.x="181.000000" s.y="236.000000" c1.x="185.000000" c1.y="260.000000" c2.x="193.000000" c2.y="313.000000" e.x="199.000000" e.y="354.000000"/>
+      <target.arc start.x="185" start.y="260" end.x="181" end.y="236" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Protein_d42d1b018a5f73820e8f152fdd175d48--to--reactome_R-HSA-5602712_LEFT_TO_RIGHT" source="Protein_d42d1b018a5f73820e8f152fdd175d48" target="reactome_R-HSA-5602712_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="305" start.y="338" end.x="344" end.y="373" class="consumption"/>
+      <spline s.x="344.000000" s.y="373.000000" c1.x="305.000000" c1.y="338.000000" c2.x="225.000000" c2.y="264.000000" e.x="193.000000" e.y="234.000000"/>
+      <target.arc start.x="225" start.y="264" end.x="193" end.y="234" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytosol-compartment.layer.info-endosome_membrane</compartment.layer.info>
 
 
 <edge.spline.info> 
@@ -61,5 +74,5 @@
 <target.arc start.x="225" start.y="264" end.x="193" end.y="234" class="consumption"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>cytosol-compartment.layer.info-endosome_membrane</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

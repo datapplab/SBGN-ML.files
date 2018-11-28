@@ -3,7 +3,7 @@
   <map language="process description">
     <glyph class="compartment" id="endoplasmic_reticulum_membrane" if.within.compartment="">
       <label text="endoplasmic reticulum membrane"/>
-      <bbox w="112.395437274911" h="336.439012536737" x="100" y="244"/>
+      <bbox w="112.395437274911" h="336.439012536737" x="100" y="285.5"/>
     </glyph>
     <glyph class="compartment" id="endoplasmic_reticulum_lumen" if.within.compartment="">
       <label text="endoplasmic reticulum lumen"/>
@@ -11,7 +11,7 @@
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule_5cb7c462b9446e83c4760dac8f49d6db" compartmentRef="endoplasmic_reticulum_lumen" if.within.compartment="">
       <label text="LGK974"/>
-      <bbox w="70" h="40" x="247.487804071866" y="432.454445908479"/>
+      <bbox w="40" h="40" x="247.487804071866" y="432.454445908479"/>
     </glyph>
     <glyph class="complex" id="Complex_4820a66a02b4477a958cc9f280e208c0" compartmentRef="endoplasmic_reticulum_membrane" if.within.compartment="">
       <label text="PORCN:LGK974"/>
@@ -26,7 +26,7 @@
       </glyph>
       <glyph class="simple chemical" id="SmallMolecule_5cb7c462b9446e83c4760dac8f49d6db_Complex_4820a66a02b4477a958cc9f280e208c0" compartmentRef="endoplasmic_reticulum_membrane" if.within.compartment="">
         <label text="LGK974"/>
-        <bbox w="70" h="40" x="124.487804071866" y="345.25"/>
+        <bbox w="40" h="40" x="124.487804071866" y="345.25"/>
       </glyph>
     </glyph>
     <glyph class="macromolecule" id="Protein_692f0b2ba9028e34fc5ff95765a5b92f" compartmentRef="endoplasmic_reticulum_membrane" if.within.compartment="">
@@ -53,16 +53,34 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="SmallMolecule_5cb7c462b9446e83c4760dac8f49d6db--to--reactome_R-HSA-5340560_LEFT_TO_RIGHT" source="SmallMolecule_5cb7c462b9446e83c4760dac8f49d6db" target="reactome_R-HSA-5340560_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="231" start.y="461" end.x="247" end.y="458" class="consumption"/>
+      <spline s.x="247.000000" s.y="458.000000" c1.x="231.000000" c1.y="461.000000" c2.x="213.000000" c2.y="464.000000" e.x="201.000000" e.y="466.000000"/>
+      <target.arc start.x="213" start.y="464" end.x="201" end.y="466" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-5340560_LEFT_TO_RIGHT--to--Complex_4820a66a02b4477a958cc9f280e208c0" source="reactome_R-HSA-5340560_LEFT_TO_RIGHT" target="Complex_4820a66a02b4477a958cc9f280e208c0" class="production">
+      <source.arc start.x="181" start.y="439" end.x="184" end.y="455" class="consumption"/>
+      <spline s.x="170.000000" s.y="391.000000" c1.x="175.000000" c1.y="414.000000" c2.x="181.000000" c2.y="439.000000" e.x="184.000000" e.y="455.000000"/>
+      <target.arc start.x="175" start.y="414" end.x="170" end.y="391" class="production"/>
+    </arc.spline>
+    <arc.spline id="Protein_692f0b2ba9028e34fc5ff95765a5b92f--to--reactome_R-HSA-5340560_LEFT_TO_RIGHT" source="Protein_692f0b2ba9028e34fc5ff95765a5b92f" target="reactome_R-HSA-5340560_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="164" start.y="514" end.x="156" end.y="529" class="consumption"/>
+      <spline s.x="156.000000" s.y="529.000000" c1.x="164.000000" c1.y="514.000000" c2.x="174.000000" c2.y="495.000000" e.x="180.000000" e.y="482.000000"/>
+      <target.arc start.x="174" start.y="495" end.x="180" end.y="482" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>endoplasmic_reticulum_membrane-compartment.layer.info-endoplasmic_reticulum_lumen</compartment.layer.info>
 
 
 <edge.spline.info> 
 
 <arc.spline id="SmallMolecule_5cb7c462b9446e83c4760dac8f49d6db--to--reactome_R-HSA-5340560_LEFT_TO_RIGHT" source="SmallMolecule_5cb7c462b9446e83c4760dac8f49d6db" target="reactome_R-HSA-5340560_LEFT_TO_RIGHT" class="consumption">
-<source.arc start.x="231" start.y="461" end.x="247" end.y="458" class="consumption"/>
+<source.arc start.x="233" start.y="459" end.x="247" end.y="456" class="consumption"/>
 
 
-<spline s.x="247.000000"  s.y="458.000000" c1.x="231.000000" c1.y="461.000000" c2.x="213.000000" c2.y="464.000000" e.x="201.000000"  e.y="466.000000" />
-<target.arc start.x="213" start.y="464" end.x="201" end.y="466" class="consumption"/>
+<spline s.x="247.000000"  s.y="456.000000" c1.x="233.000000" c1.y="459.000000" c2.x="214.000000" c2.y="463.000000" e.x="201.000000"  e.y="466.000000" />
+<target.arc start.x="214" start.y="463" end.x="201" end.y="466" class="consumption"/>
 
 </arc.spline>
 <arc.spline id="reactome_R-HSA-5340560_LEFT_TO_RIGHT--to--Complex_4820a66a02b4477a958cc9f280e208c0" source="reactome_R-HSA-5340560_LEFT_TO_RIGHT" target="Complex_4820a66a02b4477a958cc9f280e208c0" class="production">
@@ -81,5 +99,5 @@
 <target.arc start.x="174" start.y="495" end.x="180" end.y="482" class="consumption"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>endoplasmic_reticulum_membrane-compartment.layer.info-endoplasmic_reticulum_lumen</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

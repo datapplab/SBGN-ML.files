@@ -3,7 +3,7 @@
   <map language="process description">
     <glyph class="compartment" id="endosome_membrane" if.within.compartment="">
       <label text="endosome membrane"/>
-      <bbox w="126.512197028032" h="336.439012536737" x="120.743901485984" y="262"/>
+      <bbox w="126.512197028032" h="336.439012536737" x="120.743901485984" y="303.5"/>
     </glyph>
     <glyph class="compartment" id="go_0031904" if.within.compartment="">
       <label text="go:0031904"/>
@@ -52,11 +52,30 @@
       <glyph class="cardinality" if.within.compartment="" x="0" y="0">
         <label text="2"/>
         <bbox w="20" h="20" x="203.5" y="489.5"/>
+        <bbox w="20" h="20" x="203.5" y="489.5"/>
       </glyph>
       <start x="0" y="0"/>
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="reactome_R-HSA-168092_LEFT_TO_RIGHT--to--Complex_fca3199c0de46f4d5a47290572c92291" source="reactome_R-HSA-168092_LEFT_TO_RIGHT" target="Complex_fca3199c0de46f4d5a47290572c92291" class="production">
+      <source.arc start.x="213" start.y="439" end.x="216" end.y="447" class="consumption"/>
+      <spline s.x="203.000000" s.y="417.000000" c1.x="208.000000" c1.y="428.000000" c2.x="213.000000" c2.y="439.000000" e.x="216.000000" e.y="447.000000"/>
+      <target.arc start.x="208" start.y="428" end.x="203" end.y="417" class="production"/>
+    </arc.spline>
+    <arc.spline id="PhysicalEntity_a11ce9279ad2267711e0b023b09cc9fd--to--reactome_R-HSA-168092_LEFT_TO_RIGHT" source="PhysicalEntity_a11ce9279ad2267711e0b023b09cc9fd" target="reactome_R-HSA-168092_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="289" start.y="463" end.x="316" end.y="464" class="consumption"/>
+      <spline s.x="236.000000" s.y="461.000000" c1.x="255.000000" c1.y="461.000000" c2.x="289.000000" c2.y="463.000000" e.x="316.000000" e.y="464.000000"/>
+      <target.arc start.x="255" start.y="461" end.x="236" end.y="461" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Protein_2a8b250a20c64b6861640c59a25a6e4d--to--reactome_R-HSA-168092_LEFT_TO_RIGHT" source="Protein_2a8b250a20c64b6861640c59a25a6e4d" target="reactome_R-HSA-168092_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="188" start.y="525" end.x="177" end.y="547" class="consumption"/>
+      <spline s.x="177.000000" s.y="547.000000" c1.x="188.000000" c1.y="525.000000" c2.x="206.000000" c2.y="492.000000" e.x="215.000000" e.y="474.000000"/>
+      <target.arc start.x="206" start.y="492" end.x="215" end.y="474" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>endosome_membrane-compartment.layer.info-go_0031904</compartment.layer.info>
 
 
 <edge.spline.info> 
@@ -85,5 +104,5 @@
 <target.arc start.x="206" start.y="492" end.x="215" end.y="474" class="consumption"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>endosome_membrane-compartment.layer.info-go_0031904</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

@@ -3,11 +3,11 @@
   <map language="process description">
     <glyph class="compartment" id="extracellular" if.within.compartment="">
       <label text="extracellular"/>
-      <bbox w="103" h="91" x="343" y="324.5"/>
+      <bbox w="103" h="91" x="348.5" y="348"/>
     </glyph>
     <glyph class="compartment" id="endoplasmic_reticulum_membrane" if.within.compartment="">
       <label text="endoplasmic reticulum membrane"/>
-      <bbox w="341.25" h="223.5" x="100" y="198"/>
+      <bbox w="341.25" h="223.5" x="105.5" y="198"/>
     </glyph>
     <glyph class="complex" id="Complex_83d401991849e6766bf712204cddbfa6" compartmentRef="extracellular" if.within.compartment="">
       <label text="SFTPD 12mer"/>
@@ -53,6 +53,24 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="Protein_07c7aab429e898022bfc0a39bd0cf59c--to--reactome_R-HSA-5687875_LEFT_TO_RIGHT" source="Protein_07c7aab429e898022bfc0a39bd0cf59c" target="reactome_R-HSA-5687875_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="323" start.y="249" end.x="359" end.y="239" class="consumption"/>
+      <spline s.x="359.000000" s.y="239.000000" c1.x="323.000000" c1.y="249.000000" c2.x="269.000000" c2.y="265.000000" e.x="244.000000" e.y="272.000000"/>
+      <target.arc start.x="269" start.y="265" end.x="244" end.y="272" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Complex_e125b46fff5f68d49b9580b52a07068f--to--reactome_R-HSA-5687875_LEFT_TO_RIGHT" source="Complex_e125b46fff5f68d49b9580b52a07068f" target="reactome_R-HSA-5687875_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="185" start.y="337" end.x="170" end.y="359" class="consumption"/>
+      <spline s.x="170.000000" s.y="359.000000" c1.x="185.000000" c1.y="337.000000" c2.x="207.000000" c2.y="307.000000" e.x="220.000000" e.y="289.000000"/>
+      <target.arc start.x="207" start.y="307" end.x="220" end.y="289" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-5687875_LEFT_TO_RIGHT--to--Complex_83d401991849e6766bf712204cddbfa6" source="reactome_R-HSA-5687875_LEFT_TO_RIGHT" target="Complex_83d401991849e6766bf712204cddbfa6" class="production">
+      <source.arc start.x="268" start.y="299" end.x="244" end.y="284" class="consumption"/>
+      <spline s.x="353.000000" s.y="353.000000" c1.x="318.000000" c1.y="331.000000" c2.x="268.000000" c2.y="299.000000" e.x="244.000000" e.y="284.000000"/>
+      <target.arc start.x="318" start.y="331" end.x="353" end.y="353" class="production"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>endoplasmic_reticulum_membrane-compartment.layer.info-extracellular</compartment.layer.info>
 
 
 <edge.spline.info> 
@@ -81,5 +99,5 @@
 <target.arc start.x="318" start.y="331" end.x="353" end.y="353" class="production"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>endoplasmic_reticulum_membrane-compartment.layer.info-extracellular</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>
