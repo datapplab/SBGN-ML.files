@@ -11,11 +11,11 @@
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule177379:@:GLUT-REDOX-PWY" compartmentRef="cytosol" if.within.compartment="">
       <label text="a protein disulfide"/>
-      <bbox w="70" h="40" x="274.5" y="610.848650377401"/>
+      <bbox w="40" h="40" x="274.5" y="610.848650377401"/>
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule177395:@:GLUT-REDOX-PWY" compartmentRef="cytosol" if.within.compartment="">
       <label text="a protein dithiol"/>
-      <bbox w="70" h="40" x="458.975608143733" y="349.939758560442"/>
+      <bbox w="40" h="40" x="458.975608143733" y="349.939758560442"/>
     </glyph>
     <glyph class="macromolecule" id="Protein177388:@:GLUT-REDOX-PWY" compartmentRef="cytosol" if.within.compartment="">
       <label text="a reduced glutaredoxin"/>
@@ -27,7 +27,7 @@
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule177512:@:GLUT-REDOX-PWY" compartmentRef="cytosol" if.within.compartment="">
       <label text="GSSG"/>
-      <bbox w="70" h="40" x="376.475608143733" y="209"/>
+      <bbox w="40" h="40" x="376.475608143733" y="209"/>
     </glyph>
     <glyph class="macromolecule" id="Protein177445:@:GLUT-REDOX-PWY" compartmentRef="cytosol" if.within.compartment="">
       <label text="GrxC"/>
@@ -35,7 +35,7 @@
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule177498:@:GLUT-REDOX-PWY" compartmentRef="cytosol" if.within.compartment="">
       <label text="glutathione"/>
-      <bbox w="70" h="40" x="376.475608143733" y="684.848650377401"/>
+      <bbox w="40" h="40" x="376.475608143733" y="684.848650377401"/>
     </glyph>
     <glyph class="process" id="BiochemicalReaction177482LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
       <bbox w="26.6666666666667" h="26.6666666666667" x="400.892745038276" y="494.619229252779"/>
@@ -54,7 +54,8 @@
     <arc class="consumption" id="SmallMolecule177498--to--BiochemicalReaction177482LEFT_TO_RIGHT.input:@:GLUT-REDOX-PWY" source="SmallMolecule177498:@:GLUT-REDOX-PWY" target="BiochemicalReaction177482LEFT_TO_RIGHT">
       <glyph class="cardinality" if.within.compartment="" x="0" y="0">
         <label text="2"/>
-        <bbox w="20" h="20" x="410.5" y="553.5"/>
+        <bbox w="20" h="20" x="406.5" y="553.5"/>
+        <bbox w="20" h="20" x="406.5" y="553.5"/>
       </glyph>
       <start x="0" y="0"/>
       <end x="0" y="0"/>
@@ -88,11 +89,65 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="Protein177401--to--BiochemicalReaction177482LEFT_TO_RIGHT:@:GLUT-REDOX-PWY" source="Protein177401:@:GLUT-REDOX-PWY" target="BiochemicalReaction177482LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="469" start.y="491" end.x="490" end.y="484" class="consumption"/>
+      <spline s.x="490.000000" s.y="484.000000" c1.x="469.000000" c1.y="491.000000" c2.x="443.000000" c2.y="499.000000" e.x="427.000000" e.y="503.000000"/>
+      <target.arc start.x="443" start.y="499" end.x="427" end.y="503" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Protein177388--to--BiochemicalReaction177369LEFT_TO_RIGHT:@:GLUT-REDOX-PWY" source="Protein177388:@:GLUT-REDOX-PWY" target="BiochemicalReaction177369LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="439" start.y="548" end.x="458" end.y="557" class="consumption"/>
+      <spline s.x="458.000000" s.y="557.000000" c1.x="439.000000" c1.y="548.000000" c2.x="416.000000" c2.y="537.000000" e.x="397.000000" e.y="524.000000"/>
+      <spline s.x="397.000000" s.y="524.000000" c1.x="377.000000" c1.y="510.000000" c2.x="357.000000" c2.y="491.000000" e.x="344.000000" e.y="478.000000"/>
+      <target.arc start.x="357" start.y="491" end.x="344" end.y="478" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule177498--to--BiochemicalReaction177482LEFT_TO_RIGHT:@:GLUT-REDOX-PWY" source="SmallMolecule177498:@:GLUT-REDOX-PWY" target="BiochemicalReaction177482LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="412" start.y="644" end.x="411" end.y="684" class="consumption"/>
+      <spline s.x="411.000000" s.y="684.000000" c1.x="412.000000" c1.y="644.000000" c2.x="413.000000" c2.y="556.000000" e.x="414.000000" e.y="521.000000"/>
+      <target.arc start.x="413" start.y="556" end.x="414" end.y="521" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule177379--to--BiochemicalReaction177369LEFT_TO_RIGHT:@:GLUT-REDOX-PWY" source="SmallMolecule177379:@:GLUT-REDOX-PWY" target="BiochemicalReaction177369LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="316" start.y="576" end.x="312" end.y="610" class="consumption"/>
+      <spline s.x="312.000000" s.y="610.000000" c1.x="316.000000" c1.y="576.000000" c2.x="326.000000" c2.y="507.000000" e.x="330.000000" e.y="478.000000"/>
+      <target.arc start.x="326" start.y="507" end.x="330" end.y="478" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction177482LEFT_TO_RIGHT--to--SmallMolecule177512" source="BiochemicalReaction177482LEFT_TO_RIGHT" target="SmallMolecule177512:@:GLUT-REDOX-PWY" class="production">
+      <source.arc start.x="413" start.y="448" end.x="414" end.y="494" class="consumption"/>
+      <spline s.x="411.000000" s.y="249.000000" c1.x="412.000000" c1.y="302.000000" c2.x="413.000000" c2.y="448.000000" e.x="414.000000" e.y="494.000000"/>
+      <target.arc start.x="412" start.y="302" end.x="411" end.y="249" class="production"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction177369LEFT_TO_RIGHT--to--Protein177401" source="BiochemicalReaction177369LEFT_TO_RIGHT" target="Protein177401:@:GLUT-REDOX-PWY" class="production">
+      <source.arc start.x="375" start.y="466" end.x="345" end.y="465" class="consumption"/>
+      <spline s.x="490.000000" s.y="472.000000" c1.x="446.000000" c1.y="470.000000" c2.x="375.000000" c2.y="466.000000" e.x="345.000000" e.y="465.000000"/>
+      <target.arc start.x="446" start.y="470" end.x="490" end.y="472" class="production"/>
+    </arc.spline>
+    <arc.spline id="Protein177445--to--BiochemicalReaction177369LEFT_TO_RIGHT:@:GLUT-REDOX-PWY" source="Protein177445:@:GLUT-REDOX-PWY" target="BiochemicalReaction177369LEFT_TO_RIGHT" class="catalysis">
+      <source.arc start.x="222" start.y="408" end.x="181" end.y="387" class="consumption"/>
+      <spline s.x="181.000000" s.y="387.000000" c1.x="222.000000" c1.y="408.000000" c2.x="290.000000" c2.y="443.000000" e.x="318.000000" e.y="457.000000"/>
+      <target.arc start.x="290" start.y="443" end.x="318" end.y="457" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="Protein177473--to--BiochemicalReaction177369LEFT_TO_RIGHT:@:GLUT-REDOX-PWY" source="Protein177473:@:GLUT-REDOX-PWY" target="BiochemicalReaction177369LEFT_TO_RIGHT" class="catalysis">
+      <source.arc start.x="317" start.y="362" end.x="312" end.y="330" class="consumption"/>
+      <spline s.x="312.000000" s.y="330.000000" c1.x="317.000000" c1.y="362.000000" c2.x="326.000000" c2.y="423.000000" e.x="330.000000" e.y="450.000000"/>
+      <target.arc start.x="326" start.y="423" end.x="330" end.y="450" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction177482LEFT_TO_RIGHT--to--Protein177388" source="BiochemicalReaction177482LEFT_TO_RIGHT" target="Protein177388:@:GLUT-REDOX-PWY" class="production">
+      <source.arc start.x="438" start.y="527" end.x="427" end.y="518" class="consumption"/>
+      <spline s.x="468.000000" s.y="550.000000" c1.x="454.000000" c1.y="540.000000" c2.x="438.000000" c2.y="527.000000" e.x="427.000000" e.y="518.000000"/>
+      <target.arc start.x="454" start.y="540" end.x="468" end.y="550" class="production"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction177369LEFT_TO_RIGHT--to--SmallMolecule177395" source="BiochemicalReaction177369LEFT_TO_RIGHT" target="SmallMolecule177395:@:GLUT-REDOX-PWY" class="production">
+      <source.arc start.x="370" start.y="442" end.x="345" end.y="456" class="consumption"/>
+      <spline s.x="459.000000" s.y="389.000000" c1.x="424.000000" c1.y="410.000000" c2.x="370.000000" c2.y="442.000000" e.x="345.000000" e.y="456.000000"/>
+      <target.arc start.x="424" start.y="410" end.x="459" end.y="389" class="production"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytosol-compartment.layer.info-cytosol-compartment.layer.info-Protein177473-compartment.layer.info-SmallMolecule177379-compartment.layer.info-SmallMolecule177395-compartment.layer.info-Protein177388-compartment.layer.info-Protein177401-compartment.layer.info-SmallMolecule177512-compartment.layer.info-Protein177445-compartment.layer.info-SmallMolecule177498-compartment.layer.info-BiochemicalReaction177482LEFT_TO_RIGHT-compartment.layer.info-BiochemicalReaction177369LEFT_TO_RIGHT</compartment.layer.info>
 
 
 <edge.spline.info> 
 
-<arc.spline id="Protein177401--to--BiochemicalReaction177482LEFT_TO_RIGHT:@:GLUT-REDOX-PWY" source="Protein177401:@:GLUT-REDOX-PWY" target="BiochemicalReaction177482LEFT_TO_RIGHT" class="consumption">
+<arc.spline id="Protein177401:@:GLUT-REDOX-PWY--to--BiochemicalReaction177482LEFT_TO_RIGHT" source="Protein177401:@:GLUT-REDOX-PWY" target="BiochemicalReaction177482LEFT_TO_RIGHT" class="consumption">
 <source.arc start.x="469" start.y="491" end.x="490" end.y="484" class="consumption"/>
 
 
@@ -100,7 +155,7 @@
 <target.arc start.x="443" start.y="499" end.x="427" end.y="503" class="consumption"/>
 
 </arc.spline>
-<arc.spline id="Protein177388--to--BiochemicalReaction177369LEFT_TO_RIGHT:@:GLUT-REDOX-PWY" source="Protein177388:@:GLUT-REDOX-PWY" target="BiochemicalReaction177369LEFT_TO_RIGHT" class="consumption">
+<arc.spline id="Protein177388:@:GLUT-REDOX-PWY--to--BiochemicalReaction177369LEFT_TO_RIGHT" source="Protein177388:@:GLUT-REDOX-PWY" target="BiochemicalReaction177369LEFT_TO_RIGHT" class="consumption">
 <source.arc start.x="439" start.y="548" end.x="458" end.y="557" class="consumption"/>
 
 
@@ -109,31 +164,31 @@
 <target.arc start.x="357" start.y="491" end.x="344" end.y="478" class="consumption"/>
 
 </arc.spline>
-<arc.spline id="SmallMolecule177498--to--BiochemicalReaction177482LEFT_TO_RIGHT:@:GLUT-REDOX-PWY" source="SmallMolecule177498:@:GLUT-REDOX-PWY" target="BiochemicalReaction177482LEFT_TO_RIGHT" class="consumption">
-<source.arc start.x="412" start.y="644" end.x="411" end.y="684" class="consumption"/>
+<arc.spline id="SmallMolecule177498:@:GLUT-REDOX-PWY--to--BiochemicalReaction177482LEFT_TO_RIGHT" source="SmallMolecule177498:@:GLUT-REDOX-PWY" target="BiochemicalReaction177482LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="401" start.y="644" end.x="398" end.y="684" class="consumption"/>
 
 
-<spline s.x="411.000000"  s.y="684.000000" c1.x="412.000000" c1.y="644.000000" c2.x="413.000000" c2.y="556.000000" e.x="414.000000"  e.y="521.000000" />
-<target.arc start.x="413" start.y="556" end.x="414" end.y="521" class="consumption"/>
-
-</arc.spline>
-<arc.spline id="SmallMolecule177379--to--BiochemicalReaction177369LEFT_TO_RIGHT:@:GLUT-REDOX-PWY" source="SmallMolecule177379:@:GLUT-REDOX-PWY" target="BiochemicalReaction177369LEFT_TO_RIGHT" class="consumption">
-<source.arc start.x="316" start.y="576" end.x="312" end.y="610" class="consumption"/>
-
-
-<spline s.x="312.000000"  s.y="610.000000" c1.x="316.000000" c1.y="576.000000" c2.x="326.000000" c2.y="507.000000" e.x="330.000000"  e.y="478.000000" />
-<target.arc start.x="326" start.y="507" end.x="330" end.y="478" class="consumption"/>
+<spline s.x="398.000000"  s.y="684.000000" c1.x="401.000000" c1.y="644.000000" c2.x="409.000000" c2.y="556.000000" e.x="412.000000"  e.y="521.000000" />
+<target.arc start.x="409" start.y="556" end.x="412" end.y="521" class="consumption"/>
 
 </arc.spline>
-<arc.spline id="BiochemicalReaction177482LEFT_TO_RIGHT--to--SmallMolecule177512" source="BiochemicalReaction177482LEFT_TO_RIGHT" target="SmallMolecule177512:@:GLUT-REDOX-PWY" class="production">
-<source.arc start.x="413" start.y="448" end.x="414" end.y="494" class="consumption"/>
+<arc.spline id="SmallMolecule177379:@:GLUT-REDOX-PWY--to--BiochemicalReaction177369LEFT_TO_RIGHT" source="SmallMolecule177379:@:GLUT-REDOX-PWY" target="BiochemicalReaction177369LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="306" start.y="576" end.x="299" end.y="610" class="consumption"/>
 
 
-<spline s.x="411.000000"  s.y="249.000000" c1.x="412.000000" c1.y="302.000000" c2.x="413.000000" c2.y="448.000000" e.x="414.000000"  e.y="494.000000" />
-<target.arc start.x="412" start.y="302" end.x="411" end.y="249" class="production"/>
+<spline s.x="299.000000"  s.y="610.000000" c1.x="306.000000" c1.y="576.000000" c2.x="322.000000" c2.y="507.000000" e.x="329.000000"  e.y="478.000000" />
+<target.arc start.x="322" start.y="507" end.x="329" end.y="478" class="consumption"/>
 
 </arc.spline>
-<arc.spline id="BiochemicalReaction177369LEFT_TO_RIGHT--to--Protein177401" source="BiochemicalReaction177369LEFT_TO_RIGHT" target="Protein177401:@:GLUT-REDOX-PWY" class="production">
+<arc.spline id="BiochemicalReaction177482LEFT_TO_RIGHT--to--SmallMolecule177512:@:GLUT-REDOX-PWY" source="BiochemicalReaction177482LEFT_TO_RIGHT" target="SmallMolecule177512:@:GLUT-REDOX-PWY" class="production">
+<source.arc start.x="410" start.y="448" end.x="413" end.y="494" class="consumption"/>
+
+
+<spline s.x="397.000000"  s.y="249.000000" c1.x="401.000000" c1.y="302.000000" c2.x="410.000000" c2.y="448.000000" e.x="413.000000"  e.y="494.000000" />
+<target.arc start.x="401" start.y="302" end.x="397" end.y="249" class="production"/>
+
+</arc.spline>
+<arc.spline id="BiochemicalReaction177369LEFT_TO_RIGHT--to--Protein177401:@:GLUT-REDOX-PWY" source="BiochemicalReaction177369LEFT_TO_RIGHT" target="Protein177401:@:GLUT-REDOX-PWY" class="production">
 <source.arc start.x="375" start.y="466" end.x="345" end.y="465" class="consumption"/>
 
 
@@ -141,7 +196,7 @@
 <target.arc start.x="446" start.y="470" end.x="490" end.y="472" class="production"/>
 
 </arc.spline>
-<arc.spline id="Protein177445--to--BiochemicalReaction177369LEFT_TO_RIGHT:@:GLUT-REDOX-PWY" source="Protein177445:@:GLUT-REDOX-PWY" target="BiochemicalReaction177369LEFT_TO_RIGHT" class="catalysis">
+<arc.spline id="Protein177445:@:GLUT-REDOX-PWY--to--BiochemicalReaction177369LEFT_TO_RIGHT" source="Protein177445:@:GLUT-REDOX-PWY" target="BiochemicalReaction177369LEFT_TO_RIGHT" class="catalysis">
 <source.arc start.x="222" start.y="408" end.x="181" end.y="387" class="consumption"/>
 
 
@@ -149,7 +204,7 @@
 <target.arc start.x="290" start.y="443" end.x="318" end.y="457" class="catalysis"/>
 
 </arc.spline>
-<arc.spline id="Protein177473--to--BiochemicalReaction177369LEFT_TO_RIGHT:@:GLUT-REDOX-PWY" source="Protein177473:@:GLUT-REDOX-PWY" target="BiochemicalReaction177369LEFT_TO_RIGHT" class="catalysis">
+<arc.spline id="Protein177473:@:GLUT-REDOX-PWY--to--BiochemicalReaction177369LEFT_TO_RIGHT" source="Protein177473:@:GLUT-REDOX-PWY" target="BiochemicalReaction177369LEFT_TO_RIGHT" class="catalysis">
 <source.arc start.x="317" start.y="362" end.x="312" end.y="330" class="consumption"/>
 
 
@@ -157,7 +212,7 @@
 <target.arc start.x="326" start.y="423" end.x="330" end.y="450" class="catalysis"/>
 
 </arc.spline>
-<arc.spline id="BiochemicalReaction177482LEFT_TO_RIGHT--to--Protein177388" source="BiochemicalReaction177482LEFT_TO_RIGHT" target="Protein177388:@:GLUT-REDOX-PWY" class="production">
+<arc.spline id="BiochemicalReaction177482LEFT_TO_RIGHT--to--Protein177388:@:GLUT-REDOX-PWY" source="BiochemicalReaction177482LEFT_TO_RIGHT" target="Protein177388:@:GLUT-REDOX-PWY" class="production">
 <source.arc start.x="438" start.y="527" end.x="427" end.y="518" class="consumption"/>
 
 
@@ -165,13 +220,13 @@
 <target.arc start.x="454" start.y="540" end.x="468" end.y="550" class="production"/>
 
 </arc.spline>
-<arc.spline id="BiochemicalReaction177369LEFT_TO_RIGHT--to--SmallMolecule177395" source="BiochemicalReaction177369LEFT_TO_RIGHT" target="SmallMolecule177395:@:GLUT-REDOX-PWY" class="production">
-<source.arc start.x="370" start.y="442" end.x="345" end.y="456" class="consumption"/>
+<arc.spline id="BiochemicalReaction177369LEFT_TO_RIGHT--to--SmallMolecule177395:@:GLUT-REDOX-PWY" source="BiochemicalReaction177369LEFT_TO_RIGHT" target="SmallMolecule177395:@:GLUT-REDOX-PWY" class="production">
+<source.arc start.x="371" start.y="439" end.x="345" end.y="455" class="consumption"/>
 
 
-<spline s.x="459.000000"  s.y="389.000000" c1.x="424.000000" c1.y="410.000000" c2.x="370.000000" c2.y="442.000000" e.x="345.000000"  e.y="456.000000" />
-<target.arc start.x="424" start.y="410" end.x="459" end.y="389" class="production"/>
+<spline s.x="458.000000"  s.y="382.000000" c1.x="428.000000" c1.y="402.000000" c2.x="371.000000" c2.y="439.000000" e.x="345.000000"  e.y="455.000000" />
+<target.arc start.x="428" start.y="402" end.x="458" end.y="382" class="production"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>cytosol-compartment.layer.info-cytosol-compartment.layer.info-Protein177473-compartment.layer.info-SmallMolecule177379-compartment.layer.info-SmallMolecule177395-compartment.layer.info-Protein177388-compartment.layer.info-Protein177401-compartment.layer.info-SmallMolecule177512-compartment.layer.info-Protein177445-compartment.layer.info-SmallMolecule177498-compartment.layer.info-BiochemicalReaction177482LEFT_TO_RIGHT-compartment.layer.info-BiochemicalReaction177369LEFT_TO_RIGHT</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>

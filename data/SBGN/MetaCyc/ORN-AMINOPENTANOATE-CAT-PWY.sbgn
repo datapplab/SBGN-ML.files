@@ -6,7 +6,7 @@
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule150999:@:ORN-AMINOPENTANOATE-CAT-PWY" if.within.compartment="">
       <label text="O&lt;SUB&gt;2&lt;/SUB&gt;"/>
-      <bbox w="70" h="40" x="953.063887973836" y="417.345879814764"/>
+      <bbox w="40" h="40" x="953.063887973836" y="417.345879814764"/>
     </glyph>
     <glyph class="complex" id="Complex150977" if.within.compartment="">
       <label text="ArcB"/>
@@ -24,11 +24,11 @@
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule151007:@:ORN-AMINOPENTANOATE-CAT-PWY" if.within.compartment="">
       <label text="iodoacetate"/>
-      <bbox w="70" h="40" x="732.712439174626" y="700.373532158264"/>
+      <bbox w="40" h="40" x="732.712439174626" y="700.373532158264"/>
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule150987:@:ORN-AMINOPENTANOATE-CAT-PWY" if.within.compartment="">
       <label text="NAD&lt;sup&gt;+&lt;/sup&gt;"/>
-      <bbox w="70" h="40" x="710.674343180709" y="454.703939791951"/>
+      <bbox w="40" h="40" x="710.674343180709" y="454.703939791951"/>
     </glyph>
     <glyph class="compartment" id="cytosol" if.within.compartment="">
       <label text="cytosol"/>
@@ -36,11 +36,11 @@
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule150967:@:ORN-AMINOPENTANOATE-CAT-PWY" compartmentRef="cytosol" if.within.compartment="">
       <label text="arg"/>
-      <bbox w="70" h="40" x="244.507949514796" y="266.623715434746"/>
+      <bbox w="40" h="40" x="244.507949514796" y="266.623715434746"/>
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule150884:@:ORN-AMINOPENTANOATE-CAT-PWY" compartmentRef="cytosol" if.within.compartment="">
       <label text="L-ornithine"/>
-      <bbox w="70" h="40" x="469.898511614929" y="472.038313385002"/>
+      <bbox w="40" h="40" x="469.898511614929" y="472.038313385002"/>
     </glyph>
     <glyph class="macromolecule" id="Protein150939:@:ORN-AMINOPENTANOATE-CAT-PWY" compartmentRef="cytosol" if.within.compartment="">
       <label text="ArcB"/>
@@ -48,15 +48,15 @@
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" compartmentRef="cytosol" if.within.compartment="">
       <label text="NAD&lt;sup&gt;+&lt;/sup&gt;"/>
-      <bbox w="70" h="40" x="111" y="516.343860948865"/>
+      <bbox w="40" h="40" x="111" y="516.343860948865"/>
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule150914:@:ORN-AMINOPENTANOATE-CAT-PWY" compartmentRef="cytosol" if.within.compartment="">
       <label text="ammonium"/>
-      <bbox w="70" h="40" x="523.197686759579" y="217.823238482266"/>
+      <bbox w="40" h="40" x="523.197686759579" y="217.823238482266"/>
     </glyph>
     <glyph class="simple chemical" id="SmallMolecule150900:@:ORN-AMINOPENTANOATE-CAT-PWY" compartmentRef="cytosol" if.within.compartment="">
       <label text="pro"/>
-      <bbox w="70" h="40" x="394.525567813562" y="209"/>
+      <bbox w="40" h="40" x="394.525567813562" y="209"/>
     </glyph>
     <glyph class="and" id="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" compartmentRef="cytosol" if.within.compartment="">
       <bbox w="26.6666666666667" h="26.6666666666667" x="341.143350911336" y="415.832371888037"/>
@@ -121,16 +121,89 @@
       <end x="0" y="0"/>
     </arc>
   </map>
+  <edge.spline.info>
+    <arc.spline id="SmallMolecule150987--to--Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule150987:@:ORN-AMINOPENTANOATE-CAT-PWY" target="Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" class="logic_arc">
+      <source.arc start.x="702" start.y="442" end.x="718" end.y="454" class="consumption"/>
+      <spline s.x="670.000000" s.y="419.000000" c1.x="683.000000" c1.y="428.000000" c2.x="702.000000" c2.y="442.000000" e.x="718.000000" e.y="454.000000"/>
+      <target.arc start.x="683" start.y="428" end.x="670" end.y="419" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="NOT-SmallMolecule151007--to--Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" source="NOT-SmallMolecule151007" target="Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" class="logic_arc">
+      <source.arc start.x="662" start.y="542" end.x="664" end.y="575" class="consumption"/>
+      <spline s.x="657.000000" s.y="423.000000" c1.x="659.000000" c1.y="456.000000" c2.x="662.000000" c2.y="542.000000" e.x="664.000000" e.y="575.000000"/>
+      <target.arc start.x="659" start.y="456" end.x="657" end.y="423" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule151007--to--NOT-SmallMolecule151007:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule151007:@:ORN-AMINOPENTANOATE-CAT-PWY" target="NOT-SmallMolecule151007" class="logic_arc">
+      <source.arc start.x="730" start.y="673" end.x="751" end.y="700" class="consumption"/>
+      <spline s.x="675.000000" s.y="603.000000" c1.x="693.000000" c1.y="626.000000" c2.x="730.000000" c2.y="673.000000" e.x="751.000000" e.y="700.000000"/>
+      <target.arc start.x="693" start.y="626" end.x="675" end.y="603" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule150999--to--NOT-SmallMolecule150999:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule150999:@:ORN-AMINOPENTANOATE-CAT-PWY" target="NOT-SmallMolecule150999" class="logic_arc">
+      <source.arc start.x="936" start.y="449" end.x="952" end.y="445" class="consumption"/>
+      <spline s.x="905.000000" s.y="456.000000" c1.x="917.000000" c1.y="453.000000" c2.x="936.000000" c2.y="449.000000" e.x="952.000000" e.y="445.000000"/>
+      <target.arc start.x="917" start.y="453" end.x="905" end.y="456" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="Protein150939--to--Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" source="Protein150939:@:ORN-AMINOPENTANOATE-CAT-PWY" target="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" class="logic_arc">
+      <source.arc start.x="324" start.y="535" end.x="314" end.y="568" class="consumption"/>
+      <spline s.x="314.000000" s.y="568.000000" c1.x="324.000000" c1.y="535.000000" c2.x="342.000000" c2.y="470.000000" e.x="350.000000" e.y="442.000000"/>
+      <target.arc start.x="342" start.y="470" end.x="350" end.y="442" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule150953--to--Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" target="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" class="logic_arc">
+      <source.arc start.x="228" start.y="494" end.x="181" end.y="518" class="consumption"/>
+      <spline s.x="181.000000" s.y="518.000000" c1.x="228.000000" c1.y="494.000000" c2.x="308.000000" c2.y="452.000000" e.x="340.000000" e.y="436.000000"/>
+      <target.arc start.x="308" start.y="452" end.x="340" end.y="436" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953--to--BiochemicalReaction150859LEFT_TO_RIGHT:@:ORN-AMINOPENTANOATE-CAT-PWY" source="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" target="BiochemicalReaction150859LEFT_TO_RIGHT" class="catalysis">
+      <source.arc start.x="396" start.y="410" end.x="367" end.y="423" class="consumption"/>
+      <spline s.x="367.000000" s.y="423.000000" c1.x="396.000000" c1.y="410.000000" c2.x="461.000000" c2.y="381.000000" e.x="489.000000" e.y="369.000000"/>
+      <target.arc start.x="461" start.y="381" end.x="489" end.y="369" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule150884--to--BiochemicalReaction150859LEFT_TO_RIGHT:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule150884:@:ORN-AMINOPENTANOATE-CAT-PWY" target="BiochemicalReaction150859LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="504" start.y="445" end.x="504" end.y="471" class="consumption"/>
+      <spline s.x="504.000000" s.y="471.000000" c1.x="504.000000" c1.y="445.000000" c2.x="503.000000" c2.y="399.000000" e.x="503.000000" e.y="377.000000"/>
+      <target.arc start.x="503" start.y="399" end.x="503" end.y="377" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction150859LEFT_TO_RIGHT--to--SmallMolecule150900" source="BiochemicalReaction150859LEFT_TO_RIGHT" target="SmallMolecule150900:@:ORN-AMINOPENTANOATE-CAT-PWY" class="production">
+      <source.arc start.x="482" start.y="325" end.x="495" end.y="349" class="consumption"/>
+      <spline s.x="440.000000" s.y="249.000000" c1.x="455.000000" c1.y="276.000000" c2.x="482.000000" c2.y="325.000000" e.x="495.000000" e.y="349.000000"/>
+      <target.arc start.x="455" start.y="276" end.x="440" end.y="249" class="production"/>
+    </arc.spline>
+    <arc.spline id="NOT-SmallMolecule150999--to--Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" source="NOT-SmallMolecule150999" target="Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" class="logic_arc">
+      <source.arc start.x="837" start.y="447" end.x="878" end.y="456" class="consumption"/>
+      <spline s.x="878.000000" s.y="456.000000" c1.x="837.000000" c1.y="447.000000" c2.x="712.000000" c2.y="421.000000" e.x="670.000000" e.y="412.000000"/>
+      <target.arc start.x="712" start.y="421" end.x="670" end.y="412" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction150859LEFT_TO_RIGHT--to--SmallMolecule150914" source="BiochemicalReaction150859LEFT_TO_RIGHT" target="SmallMolecule150914:@:ORN-AMINOPENTANOATE-CAT-PWY" class="production">
+      <source.arc start.x="518" start.y="327" end.x="509" end.y="349" class="consumption"/>
+      <spline s.x="549.000000" s.y="257.000000" c1.x="538.000000" c1.y="283.000000" c2.x="518.000000" c2.y="327.000000" e.x="509.000000" e.y="349.000000"/>
+      <target.arc start.x="538" start.y="283" end.x="549" end.y="257" class="production"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule150967--to--Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule150967:@:ORN-AMINOPENTANOATE-CAT-PWY" target="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" class="logic_arc">
+      <source.arc start.x="305" start.y="336" end.x="290" end.y="306" class="consumption"/>
+      <spline s.x="290.000000" s.y="306.000000" c1.x="305.000000" c1.y="336.000000" c2.x="334.000000" c2.y="390.000000" e.x="347.000000" e.y="415.000000"/>
+      <target.arc start.x="334" start.y="390" end.x="347" end.y="415" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987--to--BiochemicalReaction150859LEFT_TO_RIGHT" source="Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" target="BiochemicalReaction150859LEFT_TO_RIGHT" class="catalysis">
+      <source.arc start.x="614" start.y="396" end.x="643" end.y="405" class="consumption"/>
+      <spline s.x="643.000000" s.y="405.000000" c1.x="614.000000" c1.y="396.000000" c2.x="546.000000" c2.y="376.000000" e.x="517.000000" e.y="367.000000"/>
+      <target.arc start.x="546" start.y="376" end.x="517" end.y="367" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="Complex150977--to--Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" source="Complex150977" target="Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" class="logic_arc">
+      <source.arc start.x="673" start.y="316" end.x="678" end.y="284" class="consumption"/>
+      <spline s.x="678.000000" s.y="284.000000" c1.x="673.000000" c1.y="316.000000" c2.x="663.000000" c2.y="370.000000" e.x="659.000000" e.y="396.000000"/>
+      <target.arc start.x="663" start.y="370" end.x="659" end.y="396" class="logic_arc"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytosol-compartment.layer.info-Complex150977-compartment.layer.info-SmallMolecule150999-compartment.layer.info-SmallMolecule151007-compartment.layer.info-SmallMolecule150987-compartment.layer.info-Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987-compartment.layer.info-NOT-SmallMolecule150999-compartment.layer.info-NOT-SmallMolecule151007</compartment.layer.info>
 
 
 <edge.spline.info> 
 
-<arc.spline id="SmallMolecule150987--to--Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule150987:@:ORN-AMINOPENTANOATE-CAT-PWY" target="Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" class="logic_arc">
-<source.arc start.x="702" start.y="442" end.x="718" end.y="454" class="consumption"/>
+<arc.spline id="SmallMolecule150987:@:ORN-AMINOPENTANOATE-CAT-PWY--to--Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" source="SmallMolecule150987:@:ORN-AMINOPENTANOATE-CAT-PWY" target="Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" class="logic_arc">
+<source.arc start.x="697" start.y="445" end.x="710" end.y="456" class="consumption"/>
 
 
-<spline s.x="670.000000"  s.y="419.000000" c1.x="683.000000" c1.y="428.000000" c2.x="702.000000" c2.y="442.000000" e.x="718.000000"  e.y="454.000000" />
-<target.arc start.x="683" start.y="428" end.x="670" end.y="419" class="logic_arc"/>
+<spline s.x="670.000000"  s.y="421.000000" c1.x="681.000000" c1.y="431.000000" c2.x="697.000000" c2.y="445.000000" e.x="710.000000"  e.y="456.000000" />
+<target.arc start.x="681" start.y="431" end.x="670" end.y="421" class="logic_arc"/>
 
 </arc.spline>
 <arc.spline id="NOT-SmallMolecule151007--to--Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" source="NOT-SmallMolecule151007" target="Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" class="logic_arc">
@@ -141,23 +214,23 @@
 <target.arc start.x="659" start.y="456" end.x="657" end.y="423" class="logic_arc"/>
 
 </arc.spline>
-<arc.spline id="SmallMolecule151007--to--NOT-SmallMolecule151007:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule151007:@:ORN-AMINOPENTANOATE-CAT-PWY" target="NOT-SmallMolecule151007" class="logic_arc">
-<source.arc start.x="730" start.y="673" end.x="751" end.y="700" class="consumption"/>
+<arc.spline id="SmallMolecule151007:@:ORN-AMINOPENTANOATE-CAT-PWY--to--NOT-SmallMolecule151007" source="SmallMolecule151007:@:ORN-AMINOPENTANOATE-CAT-PWY" target="NOT-SmallMolecule151007" class="logic_arc">
+<source.arc start.x="721" start.y="673" end.x="739" end.y="700" class="consumption"/>
 
 
-<spline s.x="675.000000"  s.y="603.000000" c1.x="693.000000" c1.y="626.000000" c2.x="730.000000" c2.y="673.000000" e.x="751.000000"  e.y="700.000000" />
-<target.arc start.x="693" start.y="626" end.x="675" end.y="603" class="logic_arc"/>
-
-</arc.spline>
-<arc.spline id="SmallMolecule150999--to--NOT-SmallMolecule150999:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule150999:@:ORN-AMINOPENTANOATE-CAT-PWY" target="NOT-SmallMolecule150999" class="logic_arc">
-<source.arc start.x="936" start.y="449" end.x="952" end.y="445" class="consumption"/>
-
-
-<spline s.x="905.000000"  s.y="456.000000" c1.x="917.000000" c1.y="453.000000" c2.x="936.000000" c2.y="449.000000" e.x="952.000000"  e.y="445.000000" />
-<target.arc start.x="917" start.y="453" end.x="905" end.y="456" class="logic_arc"/>
+<spline s.x="673.000000"  s.y="603.000000" c1.x="689.000000" c1.y="626.000000" c2.x="721.000000" c2.y="673.000000" e.x="739.000000"  e.y="700.000000" />
+<target.arc start.x="689" start.y="626" end.x="673" end.y="603" class="logic_arc"/>
 
 </arc.spline>
-<arc.spline id="Protein150939--to--Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" source="Protein150939:@:ORN-AMINOPENTANOATE-CAT-PWY" target="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" class="logic_arc">
+<arc.spline id="SmallMolecule150999:@:ORN-AMINOPENTANOATE-CAT-PWY--to--NOT-SmallMolecule150999" source="SmallMolecule150999:@:ORN-AMINOPENTANOATE-CAT-PWY" target="NOT-SmallMolecule150999" class="logic_arc">
+<source.arc start.x="937" start.y="446" end.x="952" end.y="442" class="consumption"/>
+
+
+<spline s.x="904.000000"  s.y="455.000000" c1.x="917.000000" c1.y="452.000000" c2.x="937.000000" c2.y="446.000000" e.x="952.000000"  e.y="442.000000" />
+<target.arc start.x="917" start.y="452" end.x="904" end.y="455" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="Protein150939:@:ORN-AMINOPENTANOATE-CAT-PWY--to--Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" source="Protein150939:@:ORN-AMINOPENTANOATE-CAT-PWY" target="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" class="logic_arc">
 <source.arc start.x="324" start.y="535" end.x="314" end.y="568" class="consumption"/>
 
 
@@ -165,15 +238,15 @@
 <target.arc start.x="342" start.y="470" end.x="350" end.y="442" class="logic_arc"/>
 
 </arc.spline>
-<arc.spline id="SmallMolecule150953--to--Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" target="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" class="logic_arc">
-<source.arc start.x="228" start.y="494" end.x="181" end.y="518" class="consumption"/>
+<arc.spline id="SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY--to--Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" target="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" class="logic_arc">
+<source.arc start.x="196" start.y="505" end.x="151" end.y="526" class="consumption"/>
 
 
-<spline s.x="181.000000"  s.y="518.000000" c1.x="228.000000" c1.y="494.000000" c2.x="308.000000" c2.y="452.000000" e.x="340.000000"  e.y="436.000000" />
-<target.arc start.x="308" start.y="452" end.x="340" end.y="436" class="logic_arc"/>
+<spline s.x="151.000000"  s.y="526.000000" c1.x="196.000000" c1.y="505.000000" c2.x="303.000000" c2.y="453.000000" e.x="340.000000"  e.y="435.000000" />
+<target.arc start.x="303" start.y="453" end.x="340" end.y="435" class="logic_arc"/>
 
 </arc.spline>
-<arc.spline id="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953--to--BiochemicalReaction150859LEFT_TO_RIGHT:@:ORN-AMINOPENTANOATE-CAT-PWY" source="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" target="BiochemicalReaction150859LEFT_TO_RIGHT" class="catalysis">
+<arc.spline id="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY--to--BiochemicalReaction150859LEFT_TO_RIGHT" source="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" target="BiochemicalReaction150859LEFT_TO_RIGHT" class="catalysis">
 <source.arc start.x="396" start.y="410" end.x="367" end.y="423" class="consumption"/>
 
 
@@ -181,20 +254,20 @@
 <target.arc start.x="461" start.y="381" end.x="489" end.y="369" class="catalysis"/>
 
 </arc.spline>
-<arc.spline id="SmallMolecule150884--to--BiochemicalReaction150859LEFT_TO_RIGHT:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule150884:@:ORN-AMINOPENTANOATE-CAT-PWY" target="BiochemicalReaction150859LEFT_TO_RIGHT" class="consumption">
-<source.arc start.x="504" start.y="445" end.x="504" end.y="471" class="consumption"/>
+<arc.spline id="SmallMolecule150884:@:ORN-AMINOPENTANOATE-CAT-PWY--to--BiochemicalReaction150859LEFT_TO_RIGHT" source="SmallMolecule150884:@:ORN-AMINOPENTANOATE-CAT-PWY" target="BiochemicalReaction150859LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="494" start.y="445" end.x="491" end.y="471" class="consumption"/>
 
 
-<spline s.x="504.000000"  s.y="471.000000" c1.x="504.000000" c1.y="445.000000" c2.x="503.000000" c2.y="399.000000" e.x="503.000000"  e.y="377.000000" />
-<target.arc start.x="503" start.y="399" end.x="503" end.y="377" class="consumption"/>
+<spline s.x="491.000000"  s.y="471.000000" c1.x="494.000000" c1.y="445.000000" c2.x="499.000000" c2.y="399.000000" e.x="501.000000"  e.y="377.000000" />
+<target.arc start.x="499" start.y="399" end.x="501" end.y="377" class="consumption"/>
 
 </arc.spline>
-<arc.spline id="BiochemicalReaction150859LEFT_TO_RIGHT--to--SmallMolecule150900" source="BiochemicalReaction150859LEFT_TO_RIGHT" target="SmallMolecule150900:@:ORN-AMINOPENTANOATE-CAT-PWY" class="production">
-<source.arc start.x="482" start.y="325" end.x="495" end.y="349" class="consumption"/>
+<arc.spline id="BiochemicalReaction150859LEFT_TO_RIGHT--to--SmallMolecule150900:@:ORN-AMINOPENTANOATE-CAT-PWY" source="BiochemicalReaction150859LEFT_TO_RIGHT" target="SmallMolecule150900:@:ORN-AMINOPENTANOATE-CAT-PWY" class="production">
+<source.arc start.x="478" start.y="325" end.x="494" end.y="349" class="consumption"/>
 
 
-<spline s.x="440.000000"  s.y="249.000000" c1.x="455.000000" c1.y="276.000000" c2.x="482.000000" c2.y="325.000000" e.x="495.000000"  e.y="349.000000" />
-<target.arc start.x="455" start.y="276" end.x="440" end.y="249" class="production"/>
+<spline s.x="427.000000"  s.y="249.000000" c1.x="446.000000" c1.y="276.000000" c2.x="478.000000" c2.y="325.000000" e.x="494.000000"  e.y="349.000000" />
+<target.arc start.x="446" start.y="276" end.x="427" end.y="249" class="production"/>
 
 </arc.spline>
 <arc.spline id="NOT-SmallMolecule150999--to--Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" source="NOT-SmallMolecule150999" target="Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" class="logic_arc">
@@ -205,20 +278,20 @@
 <target.arc start.x="712" start.y="421" end.x="670" end.y="412" class="logic_arc"/>
 
 </arc.spline>
-<arc.spline id="BiochemicalReaction150859LEFT_TO_RIGHT--to--SmallMolecule150914" source="BiochemicalReaction150859LEFT_TO_RIGHT" target="SmallMolecule150914:@:ORN-AMINOPENTANOATE-CAT-PWY" class="production">
-<source.arc start.x="518" start.y="327" end.x="509" end.y="349" class="consumption"/>
+<arc.spline id="BiochemicalReaction150859LEFT_TO_RIGHT--to--SmallMolecule150914:@:ORN-AMINOPENTANOATE-CAT-PWY" source="BiochemicalReaction150859LEFT_TO_RIGHT" target="SmallMolecule150914:@:ORN-AMINOPENTANOATE-CAT-PWY" class="production">
+<source.arc start.x="514" start.y="327" end.x="507" end.y="349" class="consumption"/>
 
 
-<spline s.x="549.000000"  s.y="257.000000" c1.x="538.000000" c1.y="283.000000" c2.x="518.000000" c2.y="327.000000" e.x="509.000000"  e.y="349.000000" />
-<target.arc start.x="538" start.y="283" end.x="549" end.y="257" class="production"/>
+<spline s.x="536.000000"  s.y="257.000000" c1.x="528.000000" c1.y="283.000000" c2.x="514.000000" c2.y="327.000000" e.x="507.000000"  e.y="349.000000" />
+<target.arc start.x="528" start.y="283" end.x="536" end.y="257" class="production"/>
 
 </arc.spline>
-<arc.spline id="SmallMolecule150967--to--Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule150967:@:ORN-AMINOPENTANOATE-CAT-PWY" target="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" class="logic_arc">
-<source.arc start.x="305" start.y="336" end.x="290" end.y="306" class="consumption"/>
+<arc.spline id="SmallMolecule150967:@:ORN-AMINOPENTANOATE-CAT-PWY--to--Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" source="SmallMolecule150967:@:ORN-AMINOPENTANOATE-CAT-PWY" target="Protein150939-AND-SmallMolecule150967-AND-SmallMolecule150953:@:ORN-AMINOPENTANOATE-CAT-PWY" class="logic_arc">
+<source.arc start.x="295" start.y="336" end.x="277" end.y="306" class="consumption"/>
 
 
-<spline s.x="290.000000"  s.y="306.000000" c1.x="305.000000" c1.y="336.000000" c2.x="334.000000" c2.y="390.000000" e.x="347.000000"  e.y="415.000000" />
-<target.arc start.x="334" start.y="390" end.x="347" end.y="415" class="logic_arc"/>
+<spline s.x="277.000000"  s.y="306.000000" c1.x="295.000000" c1.y="336.000000" c2.x="329.000000" c2.y="390.000000" e.x="345.000000"  e.y="415.000000" />
+<target.arc start.x="329" start.y="390" end.x="345" end.y="415" class="logic_arc"/>
 
 </arc.spline>
 <arc.spline id="Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987--to--BiochemicalReaction150859LEFT_TO_RIGHT" source="Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987" target="BiochemicalReaction150859LEFT_TO_RIGHT" class="catalysis">
@@ -237,5 +310,5 @@
 <target.arc start.x="663" start.y="370" end.x="659" end.y="396" class="logic_arc"/>
 
 </arc.spline> </edge.spline.info>
-<compartment.layer.info>cytosol-compartment.layer.info-Complex150977-compartment.layer.info-SmallMolecule150999-compartment.layer.info-SmallMolecule151007-compartment.layer.info-SmallMolecule150987-compartment.layer.info-Complex150977-AND-NOT-SmallMolecule151007-AND-NOT-SmallMolecule150999-AND-SmallMolecule150987-compartment.layer.info-NOT-SmallMolecule150999-compartment.layer.info-NOT-SmallMolecule151007</compartment.layer.info>
+<compartment.layer.info></compartment.layer.info>
 </sbgn>
