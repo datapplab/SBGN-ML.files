@@ -324,6 +324,167 @@ dev.off()
 
 
 ```
+### pathway specific cutoff for completeness
+```{r}
+load(file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
+head(pathway.species.pct_Mapped)
+table(pathway.species.pct_Mapped[1:1000,"pathway"] )
+all.species = as.character(unique(pathway.species.pct_Mapped$species))
+length(all.species)
+head(all.species)
+
+# library(plyr)
+out = matrix(ncol = 4,nrow = 0)
+pathway.cutoff.anova = by(
+# pathway.cutoff.anova = ddply(
+        # pathway.species.pct_Mapped[1:1000,]
+        # ,as.factor(pathway.species.pct_Mapped$pathway)[1:1000]
+        pathway.species.pct_Mapped
+        ,as.factor(pathway.species.pct_Mapped$pathway)
+        ,function(df){
+# df = pathway.species.pct_Mapped[pathway.species.pct_Mapped$pathway == "P00002",]
+                covs = df$pct.mapped.species.pathway
+                pathway.species = as.character(unique(df$species))
+                head(pathway.species)
+                length(pathway.species)
+                head(covs)
+                cutoffs = unique(covs)
+                mean.covs = mean(covs)
+                length(cutoffs)
+                cutoffs = cutoffs[order(cutoffs)]
+                if(length(cutoffs)<5){
+                        cutoff.anova = c(pathway = as.character(df$pathway[1])
+                                         ,cutoff = mean.covs
+                                         ,stat = paste("number of uniq coverage values:",length(unique(covs)),".  Not enough for anova analysis, using average coverage as cutoff",sep="")
+                                         ,P=paste(c("uniq coverage values:",cutoffs),collapse = "\t")
+                                         )
+                        out<<- rbind(out,t(cutoff.anova))
+                        return()
+                }
+                cutoffs = cutoffs[3:(length(cutoffs)-2)]
+                head(cutoffs)
+                
+                cutoff.anova = sapply(cutoffs
+                       ,function(cutoff){
+                                if.pathway.exist = rep("no",times=length(covs))
+                                if.pathway.exist[covs>=cutoff] = "yes"
+                                cutoff.assign = data.frame(cov = as.vector(covs), if.exist = if.pathway.exist,stringsAsFactors = F)
+                                # cutoff.assign$cov = cutoff.assign$cov + runif(nrow(cutoff.assign),0,1)/1000000
+                                cutoff.assign
+                                tst = try(oneway.test(covs~if.exist,data=cutoff.assign,var.equal = T))
+                                if(class(tst) == "try-error"){
+                                        print(head(df))
+                                        print(head(cutoff.assign))
+                                        print(dim(df))
+                                        print(cutoffs)
+                                        print(cutoff)
+                                        print(dim(cutoff.assign))
+                                        boxplot(cutoff.assign$cov ~ cutoff.assign$if.exist)
+                                        print(table(cutoff.assign$if.exist))
+                                        stop()
+                                }
+                                f.p = c(pathway = as.character(df$pathway[1]),cutoff = cutoff, stat = tst$statistic,P =tst$p.value)
+                                f.p
+                                return(f.p)
+                       }
+                       )
+                out<<- rbind(out,t(cutoff.anova))
+        }
+)
+print(head(out))
+dim(out)
+```
+Some pathways have <=4 unique coverage values across all species, we use the average values of coverage in all species as cutoff
+```{r}
+
+out.mean.as.cutoff= out[grepl("number",out[,"stat"]),]
+head(out.mean.as.cutoff)
+dim(out.mean.as.cutoff)
+```
+For pathways with enough unique coverages, we try every coverage value as cutoff to assign "exist" and "not exist" for all species-specific pathways, then use anova to calculate F statistics and P value for the difference between "exist" and "not exist" group under this cutoff. Then we select the cutoff that generates largest F value between the two groups.
+```{r}
+out.anova.as.cutoff = out[!grepl("number",out[,"stat"]),] 
+head(out.anova.as.cutoff)
+dim(out.anova.as.cutoff)
+out.anova.max.F.as.cutoff = matrix(ncol=4,nrow=0)
+if.max.F = by(
+        as.data.frame(out.anova.as.cutoff,stringsAsFactors = F)
+        ,as.factor(out.anova.as.cutoff[,"pathway"])
+        ,function(df){
+                cutoffs = as.numeric(df[,"cutoff"])
+                if.max = cutoffs == max(cutoffs)
+                out.anova.max.F.as.cutoff <<- rbind(out.anova.max.F.as.cutoff
+                                                    ,as.vector(df[if.max,])
+                                                    )
+                
+        }
+)
+out.anova.max.F.as.cutoff[,2] = as.numeric(out.anova.max.F.as.cutoff[,2])
+out.anova.max.F.as.cutoff[,3] = as.numeric(out.anova.max.F.as.cutoff[,3])
+out.anova.max.F.as.cutoff[,4] = as.numeric(out.anova.max.F.as.cutoff[,4])
+head(out.anova.max.F.as.cutoff ) 
+dim(out.anova.max.F.as.cutoff ) 
+plot(density(out.anova.max.F.as.cutoff$cutoff),main = "Distribution of species-specific pathway completeness cutoffs")
+```
+Check if all cutoffs generate grouping that showed significant difference between the  "exist" and "not exist"  groups
+```{r}
+max(out.anova.max.F.as.cutoff$P)
+```
+Save all cutoff information
+```{r}
+all.cutoff.info = rbind(out.anova.max.F.as.cutoff,out.mean.as.cutoff)
+all.cutoff.info = as.data.frame(all.cutoff.info)
+all.cutoff.info[,"cutoff"] = as.numeric( all.cutoff.info[,"cutoff"])
+colnames(all.cutoff.info)[3:4] = c("ANOVA.F.stat","ANOVA.P")
+head(all.cutoff.info)
+pathway.completeness.cutoff.info = all.cutoff.info
+plot(density(all.cutoff.info$cutoff),main = "Distribution of species-specific pathway completeness cutoffs")
+save(pathway.completeness.cutoff.info,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.completeness.cutoff.info.RData")
+```
+
+Some pathways have many(sometimes all) species-specific pathways with 100% completeness, take a look at them.
+```{r}
+large.cutoff.value = all.cutoff.info[all.cutoff.info$cutoff > 0.9,]
+head(large.cutoff.value)
+dim(large.cutoff.value)
+species.info = pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"pathway"] %in% large.cutoff.value[,"pathway"],]
+head(species.info)
+n.species = table(as.character(species.info[,"pathway"]))
+head(n.species)
+plot(density(n.species),main = "Number of species where pathways with large cutoff are detected")
+plot(hist(n.species),main = "Number of species where pathways with large cutoff are detected")
+plot(hist(n.species[n.species>1],breaks = seq(1,max(n.species),by=5)),main = "Number of species where pathways with large cutoff are detected")
+
+# library(ggplot2)
+# p = qplot(n.species[n.species>1]
+p = qplot(n.species
+      ,geom="histogram"
+      ,binwidth = 1
+      ,main = "Number of species where pathways with large cutoff are detected(completeness >0)\n Pathways with large cutoff(>0.9): they have large average completeness and small variation of completeness across species"
+      ,ylab = "count"
+      )+ scale_y_log10() #+ scale_x_log10()
+print(p)
+
+table(as.character(n.species))
+sum(table(as.character(n.species)))
+head(n.species)
+max(n.species)
+n.species[pathway.largest.species.n]
+
+sum(n.species>0)
+pathway.largest.species.n = names(n.species)[n.species == max(n.species)]
+pathway.largest.species.n
+head(species.info[species.info[,"pathway"] == pathway.largest.species.n,])
+dim(species.info[species.info[,"pathway"] == pathway.largest.species.n,])
+range(species.info[species.info[,"pathway"] == pathway.largest.species.n,"pct.mapped.species.pathway"])
+length(unique((species.info[species.info[,"pathway"] == pathway.largest.species.n,"species"])))
+head(unique((as.character(species.info[species.info[,"pathway"] == pathway.largest.species.n,"species"]))))
+length(unique((as.character(species.info[species.info[,"pathway"] == pathway.largest.species.n,"species"]))))
+```
+
+
+
+
 ## proteins
 ### pathwayCommons 
 #### pathwayCommons to human uniprot
