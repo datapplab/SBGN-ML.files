@@ -646,6 +646,24 @@ mapping.list$gene$UNIPROT_KO = ko.to.uniprot
 save(mapping.list,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/UNIPROT_KO.RData")
 
 ```
+###### KO to metacyc
+```{r, ko to meacyc}
+head(ko.to.uniprot)
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/metacyc.SBGN_UNIPROT.RData")
+uniprot.to.metacyc = mapping.list$gene$metacyc.SBGN_UNIPROT
+head(uniprot.to.metacyc)
+ko.to.metacyc = merge(ko.to.uniprot,uniprot.to.metacyc[,1:2],all=F)
+head(ko.to.metacyc)
+ko.to.metacyc = ko.to.metacyc[,c("KO","metacyc.SBGN")]
+head(ko.to.metacyc)
+dim(ko.to.metacyc)
+ko.to.metacyc = ko.to.metacyc[!grepl("NA:@:NA",ko.to.metacyc[,"metacyc.SBGN"]),]
+dim(ko.to.metacyc)
+mapping.list = list()
+mapping.list$gene = list()
+mapping.list$gene$KO_metacyc.SBGN = ko.to.metacyc
+save(mapping.list,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/KO_metacyc.SBGN.RData")
+```
 
 ###### other species uniprot to human uniprot in kegg
 human uniprot to human entrez through kegg
