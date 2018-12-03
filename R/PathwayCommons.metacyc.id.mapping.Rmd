@@ -781,7 +781,7 @@ pathwayCommons.files.names
 
 # for( i in 1:length(pathwayCommons.files)){
 for( i in c(26,47)){
-        # i=26
+        i=26
         i=47
         print(pathwayCommons.files.names[i])
         # i=7  # previously, only chebi didn't have mapping to pathway ids of pathwayCommons, so we only need to add chebi.to.pathwayCommons.pathway.id
@@ -797,12 +797,19 @@ for( i in c(26,47)){
         print(id.type)
         idType.to.pathway.id = mapping.list[[1]][[1]]
         head(idType.to.pathway.id)
+        tail(idType.to.pathway.id)
+        dim(idType.to.pathway.id)
+        idType.to.pathway.id = idType.to.pathway.id[!grepl("NA:@:NA",idType.to.pathway.id[,"metacyc.SBGN"]),]
+        dim(idType.to.pathway.id)
         pathway.ids = do.call(rbind,strsplit(idType.to.pathway.id$metacyc.SBGN,":@:"))[,2]
         head(pathway.ids)
         length(pathway.ids)
+        head(as.character(as.vector(idType.to.pathway.id[,id.type])))
+        head(idType.to.pathway.id[,id.type])
         idType.to.pathway.id = cbind(as.character(as.vector(idType.to.pathway.id[,id.type])),pathway.ids)
         colnames(idType.to.pathway.id) =c(id.type,"pathway.id")
         head(idType.to.pathway.id)
+        tail(idType.to.pathway.id)
         
         
         # parse pathwaycOMMONS, GENERATE IDTYPE TO PATHWAY ID MAPPING FOR PATHWAYcOMMONS
@@ -823,6 +830,10 @@ for( i in c(26,47)){
         id.to.pathway.file = paste(in.folder,"/",id.type,"_pathway.id.RData",sep="")
         id.to.pathway.file
         save(mapping.table,file = id.to.pathway.file)
+        
+        load(id.to.pathway.file)
+        head(mapping.table)
+        tail(mapping.table)
 }
 
 
@@ -985,6 +996,9 @@ min.cov = do.call(rbind,min.cov)
 head(min.cov)
 min.cov[,4]
 range(min.cov[,2])
+```
+#number of kos mapped in each species-specific pathway
+```{r,number of kos mapped in each species-specific pathway}
 
 # number of kos mapped in species specific pathway
 load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/pathwayCommons_pathway.id.RData")
@@ -1059,47 +1073,13 @@ hist(pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"species"] == "hsa",
 range(pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"species"] == "hsa","pct.mapped.species.pathway"])
 save(pathway.species.pct_Mapped,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
 
-library(ggplot2)
-library(scales)
-# for pathwayCommons, the distribution of pathways's percent of proteins mapped
-breaks.use = seq(0,1,by=0.1)
-p = qplot(species.pathway.id$pct.mapped.species.pathway
-      ,geom="histogram"
-      ,binwidth = 0.001
-      ,xlab = "percent of nodes with KEGG ortholog in a species-specific pathway"
-      ,ylab = "count"
-      ) + scale_x_continuous(breaks = breaks.use
-                             ,labels = percent(breaks.use) 
-                             )+
-         scale_y_log10()
-pdf(file = "./species.pathway.coverage.pathwayCommons.pdf")
-print(p)
-dev.off()
-
-# 
-if.all.mapped = (species.pathway.id$pct.mapped.species.pathway == 1)
-species.pathway.protein.all.mapped = table(species.pathway.id[if.all.mapped,"species"])
-all.mapped.species = species.pathway.protein.all.mapped[species.pathway.protein.all.mapped>0]
-all.mapped.species = (all.mapped.species[order(all.mapped.species,decreasing = F)])
-all.mapped.species.count = as.data.frame(all.mapped.species)
-colnames(all.mapped.species.count) = c("species","n.pathways.with.all.proteins.mapped")
-head(all.mapped.species.count)
-
-n = nrow(all.mapped.species.count)
-p = ggplot(all.mapped.species.count[(n-10):n,],aes(x="",y=n.pathways.with.all.proteins.mapped,fill=species))+
-        geom_bar(stat="identity",width = 1) + scale_fill_manual(values=rainbow(11))
-pdf(file = "./n.pathwaysAllProteinsMapped.each.species.pdf")
-print(p)
-dev.off()
-
-
 
 ```
 ### pathway specific cutoff for completeness
 ```{r}
 load(file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
 head(pathway.species.pct_Mapped)
-table(pathway.species.pct_Mapped[1:1000,"pathway"] )
+# table(pathway.species.pct_Mapped[1:1000,"pathway"] )
 all.species = as.character(unique(pathway.species.pct_Mapped$species))
 length(all.species)
 head(all.species)
