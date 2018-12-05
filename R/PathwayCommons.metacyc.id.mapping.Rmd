@@ -1148,6 +1148,8 @@ dim(out)
 Some pathways have <=4 unique coverage values across all species, we use the average values of coverage in all species as cutoff
 ```{r}
 
+head(out)
+colnames(out)[3] = "stat"
 out.mean.as.cutoff= out[grepl("number",out[,"stat"]),]
 head(out.mean.as.cutoff)
 dim(out.mean.as.cutoff)
