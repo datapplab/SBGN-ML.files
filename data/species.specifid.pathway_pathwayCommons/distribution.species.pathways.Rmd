@@ -1,0 +1,313 @@
+---
+title: "Analysis on species-specific pathways"
+author: "Xiaoxi Dong"
+output:
+        html_document:
+                toc: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+# Number of pathways each species has.
+This analysis used pre-defined pathway-specific completeness cutoffs.
+
+```{r, distributions,echo=FALSE, results='hide', message=FALSE}
+d1 = load( "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.completeness.cutoff.info.RData")
+d1
+d2 = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
+d2
+head(pathway.completeness.cutoff.info)
+head(pathway.species.pct_Mapped)
+```
+
+```{r, prepare data,echo=FALSE, results='hide', message=FALSE}
+library(SBGNview)
+all.pathways = find.pathways(org="all")
+dim(all.pathways)
+head(all.pathways)
+dim(pathway.species.pct_Mapped)
+library(ggplot2)
+
+#species name mapping
+species.name.mapping = "C:/xiaoxi/work/input/id.mapping/kegg.related/organism.txt"
+species.to.name = read.table(species.name.mapping,stringsAsFactors = F,sep="\t",header=F,quote="",comment.char = "")
+colnames(species.to.name) = c("id","abr","full.name","path")
+species.to.name = species.to.name[!duplicated(species.to.name$full.name),]
+row.names(species.to.name) = species.to.name[,2]
+head(species.to.name)
+
+# species
+species.ct = table(all.pathways$species)
+head(species.ct)
+species.ct = species.ct[order(species.ct,decreasing = T)]
+species.ct[1:20]
+class(names(species.ct))
+species.ct = data.frame(species = names(species.ct),count = as.vector(species.ct),stringsAsFactors = F)
+head(species.ct)
+class(species.ct$species)
+full.name = as.character(species.to.name[species.ct$species,"full.name"])
+head(full.name)
+head(species.ct$species)
+species.ct$species = factor( full.name
+                            ,levels = full.name
+                            )
+head(species.ct)
+dim(species.ct)
+```
+
+Number of pathways each species has. Each dot is a species
+```{r,number of pathways per species,echo=FALSE, results='hide', message=FALSE, fig.width=2}
+all.count = species.ct$count
+head(all.count)
+all.count = data.frame(count = all.count, species = "all.species")
+head(all.count)
+p = ggplot(data=all.count
+      ,aes(x=species,y=count)
+      ,main = "Number of pathways found in each species: \n Showing top 20 species with largest number of pathways"
+      )+ 
+        geom_boxplot(stat="boxplot" , fill="blue"# ,color="blue"
+                     ,outlier.size = 0.5
+                 ) +
+      xlab("")+
+      ylab("number of pathways")+ scale_y_log10() +scale_x_discrete(position = "bottom")
+print(p)
+```
+
+
+# Number of pathways found in each species: 
+Showing top 20 species with largest number of pathways
+```{r,number of pathways in species with most pathways,echo=FALSE, results='hide', message=FALSE}
+# distribution of all species
+species.ct.top = species.ct[1:20,]
+species.ct.top
+species.ct.top$species = factor(species.ct.top$species
+                            ,levels = rev(species.ct.top$species)
+                            )
+
+p = ggplot(data=species.ct.top
+      ,aes(x=species,y=count)
+      ,main = "Number of pathways found in each species: \n Showing top 20 species with largest number of pathways"
+      )+ 
+        geom_bar(stat="identity" , fill="blue"# ,color="blue"
+                 ) +
+      xlab("species")+
+      ylab("number of pathways")+
+        coord_flip()+ scale_y_reverse(position = "right") +scale_x_discrete(position = "top")
+print(p)
+
+```
+
+Number of species where each pathway is detected
+```{r,number of species per pathway,echo=FALSE, results='hide', message=FALSE, fig.width=2}
+
+pathway.ct = table(all.pathways$pathway.id)
+head(pathway.ct)
+head(pathway.ct)
+pathway.ct = pathway.ct[order(pathway.ct,decreasing = T)]
+pathway.ct[1:20]
+class(names(pathway.ct))
+pathway.ct = data.frame(pathway = names(pathway.ct),count = as.vector(pathway.ct),stringsAsFactors = F)
+
+all.count = pathway.ct$count
+head(all.count)
+all.count = data.frame(count = all.count, pathway = "all.pathway")
+head(all.count)
+p = ggplot(data=all.count
+      ,aes(x=pathway,y=count)
+      )+ 
+        geom_boxplot(stat="boxplot" , fill="blue"# ,color="blue"
+                     ,outlier.size = 0.5
+                      ,main = "Number of species found in each pathway: \n Showing top 20 pathways with largest number of species"
+                 ) +
+      xlab("")+
+      ylab("number of species")+ scale_y_log10() +scale_x_discrete(position = "bottom")
+print(p)
+```
+
+# Check some pathways distributed most widely or narrowly
+```{r, check some pathways, echo=FALSE,message=FALSE}
+data("pathway.info.pre.generated.files")
+# head(pathway.info.pre.generated.files)
+selected.pathways = pathway.ct
+selected.pathways = selected.pathways[!duplicated((selected.pathways[,"count"])),]
+selected.pathways = selected.pathways[c(1:5,(nrow(selected.pathways)-5):nrow(selected.pathways)),]
+pathway.to.name = pathway.info.pre.generated.files[,c("pathway.id","DISPLAY_NAME")]
+colnames(pathway.to.name) = c("pathway","pathway.name")
+# head(pathway.to.name)
+selected.pathways = merge(selected.pathways,pathway.to.name)
+# head(selected.pathways)
+selected.pathways
+```
+In these examples, the most narrowly distributed pathways are mostly signaling pathways. The most widely distributed pathways are the ones involved in metabolism.
+the pathway "Adefovir Dipivoxil Metabolism Pathway" is most widely distributed. It is because it has only two enzymes: "adenylate kinase" and "ucleoside-diphosphate kinase", which are both widely distributed:
+https://www.genome.jp/dbget-bin/www_bget?ko:K00940
+https://www.genome.jp/dbget-bin/www_bget?ko:K00939
+
+The species where the most narrowly distributed pathways are found:
+```{r,most narrowly distributed pathways, echo=FALSE,message=FALSE}
+head(all.pathways)
+all.pathways[all.pathways[,"pathway.id"] %in% selected.pathways[1:5,"pathway"],c("pathway.id","DISPLAY_NAME","species")]
+```
+
+species distribution of "Angiogenesis" pathway
+```{r,Angiogenesis, echo=FALSE,message=FALSE}
+library(SBGNview)
+all.pathways.1 = find.pathways(pathway.completeness = 0, org="all")
+head(all.pathways.1)
+Angiogenesis = all.pathways.1[all.pathways.1[,"DISPLAY_NAME"] %in% "Angiogenesis" ,]
+dim(Angiogenesis)
+head(Angiogenesis)
+library(ggplot2)
+class(Angiogenesis[,"pct.mapped.species.pathway"])
+head(Angiogenesis[,"pct.mapped.species.pathway"])
+in.data = data.frame(completeness = as.vector(Angiogenesis[,"pct.mapped.species.pathway"])
+                     ,pathway = "Angiogenesis"
+                     )
+p = ggplot(data= in.data
+      ,aes(x=pathway,y=completeness)
+      )+ 
+        geom_violin() +
+      xlab("")+
+      ylab("completeness")+scale_x_discrete(position = "bottom") +
+        geom_jitter()
+
+print(p)
+cutoff.to.f = cutoff.to.fs(Angiogenesis)
+head(cutoff.to.f)
+p = qplot(
+        as.numeric(cutoff.to.f[,"cutoff"])
+        ,as.numeric(cutoff.to.f[,"stat.F"])
+        
+)
+plot(p)
+
+```
+
+
+Number of pathway where each pathway is detected
+Showing top 20 pathways most widely detected
+```{r,Showing top 20 pathways most widely detected,echo=FALSE, results='hide', message=FALSE}
+# distribution of all pathway
+pathway.ct.top = pathway.ct[1:20,]
+pathway.ct.top
+pathway.ct.top$pathway = factor(pathway.ct.top$pathway
+                            ,levels = rev(pathway.ct.top$pathway)
+                            )
+
+p = ggplot(data=pathway.ct.top
+      ,aes(x=pathway,y=count)
+      )+ 
+        geom_bar(stat="identity" , fill="blue"# ,color="blue"
+                 ) +
+      xlab("pathway")+
+      ylab("number of species where pathway is detected")+
+        coord_flip()+ scale_y_reverse(position = "right") +scale_x_discrete(position = "top")
+print(p)
+
+```
+
+# Distribution of F statistic
+```{r,distribution of F statistic,echo=FALSE, results='hide', message=FALSE, fig.width=2}
+head(pathway.completeness.cutoff.info)
+pathway.completeness.cutoff.info.anova = pathway.completeness.cutoff.info[!grepl("number", pathway.completeness.cutoff.info$ANOVA.F.stat),]
+max(as.numeric(pathway.completeness.cutoff.info.anova$ANOVA.F.stat[!grepl("NA",pathway.completeness.cutoff.info.anova$ANOVA.F.stat)]))
+
+all.count = as.numeric(pathway.completeness.cutoff.info.anova$cutoff)
+head(all.count)
+all.count = data.frame(count = all.count, pathway = "all.pathway")
+head(all.count)
+p = ggplot(data=all.count
+      ,aes(x=pathway,y=count)
+      )+ 
+        geom_boxplot(stat="boxplot" , fill="blue"# ,color="blue"
+                     ,outlier.size = 0.5
+                      ,main = "F statistics distribution of all pathways"
+                 ) +
+      xlab("")+
+      ylab("F statistics")+ scale_y_log10() +scale_x_discrete(position = "bottom")
+print(p)
+```
+
+
+
+```{r,other distributions, distributions,echo=FALSE,eval=FALSE}
+d1 = load( "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.completeness.cutoff.info.RData")
+d1
+d2 = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
+d2
+head(pathway.completeness.cutoff.info)
+head(pathway.species.pct_Mapped)
+```
+### number of pathways for each species
+```{r,number of pathways per species}
+detach("package:SBGNview", unload=TRUE)
+library(SBGNview)
+all.pathways = find.pathways()
+dim(all.pathways)
+head(all.pathways)
+max(all.pathways)
+dim(pathway.species.pct_Mapped)
+max(species.ct)
+pathway.ct = table(all.pathways$pathway.id)
+head(pathway.ct)
+library(ggplot2)
+
+
+#species name mapping
+species.name.mapping = "C:/xiaoxi/work/input/id.mapping/kegg.related/organism.txt"
+species.to.name = read.table(species.name.mapping,stringsAsFactors = F,sep="\t",header=F,quote="",comment.char = "")
+colnames(species.to.name) = c("id","abr","full.name","path")
+species.to.name = species.to.name[!duplicated(species.to.name$full.name),]
+row.names(species.to.name) = species.to.name[,2]
+head(species.to.name)
+
+# species
+species.ct = table(all.pathways$species)
+head(species.ct)
+species.ct = species.ct[order(species.ct,decreasing = T)]
+species.ct[1:20]
+class(names(species.ct))
+# distribution of all species
+species.ct = data.frame(species = names(species.ct),count = as.vector(species.ct),stringsAsFactors = F)
+head(species.ct)
+class(species.ct$species)
+full.name = as.character(species.to.name[species.ct$species,"full.name"])
+head(full.name)
+head(species.ct$species)
+species.ct$species = factor( full.name
+                            ,levels = full.name
+                            )
+head(species.ct)
+species.ct.top = species.ct[1:20,]
+species.ct.top
+species.ct.top$species
+species.ct.top$species = factor(species.ct.top$species
+                            ,levels = rev(species.ct.top$species)
+                            )
+
+class(species.ct[1:20,1])
+p = ggplot(data=species.ct.top
+      ,aes(x=species,y=count)
+      ,main = "number of pathways each species has"
+      )+ 
+        geom_bar(stat="identity" , fill="blue"# ,color="blue"
+                 ) +
+      xlab("species")+
+      ylab("number of pathways")+
+        coord_flip()+ scale_y_reverse(position = "right") +scale_x_discrete(position = "top")
+print(p)
+
+
+# distribution of all species
+p = qplot(species.ct
+      ,geom="histogram"
+      ,binwidth = 1
+      ,main = "number of pathways each species has"
+      ,ylab = "number of species"
+      ,xlab = "number of pathways"
+      ,xlim = c(0,200)
+      )
+print(p)
+
+
+```
