@@ -8,7 +8,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Number of pathways each species has.
+# Number of pathway per species distribution
 This analysis used pre-defined pathway-specific completeness cutoffs.
 
 ```{r, distributions,echo=FALSE, results='hide', message=FALSE}
@@ -55,7 +55,9 @@ head(species.ct)
 dim(species.ct)
 ```
 
-Number of pathways each species has. Each dot is a species
+
+Number of pathway per species distribution. Violin plot's width represent density.
+
 ```{r,number of pathways per species,echo=FALSE, results='hide', message=FALSE, fig.width=2}
 all.count = species.ct$count
 head(all.count)
@@ -65,17 +67,21 @@ p = ggplot(data=all.count
       ,aes(x=species,y=count)
       ,main = "Number of pathways found in each species: \n Showing top 20 species with largest number of pathways"
       )+ 
-        geom_boxplot(stat="boxplot" , fill="blue"# ,color="blue"
-                     ,outlier.size = 0.5
-                 ) +
+        # geom_boxplot(stat="boxplot" , fill="blue"# ,color="blue"
+        #              ,outlier.size = 0.5
+        #          ) +
+        geom_violin(
+                fill="blue"
+        )+
       xlab("")+
       ylab("number of pathways")+ scale_y_log10() +scale_x_discrete(position = "bottom")
 print(p)
 ```
 
 
-# Number of pathways found in each species: 
-Showing top 20 species with largest number of pathways
+## Top 20 species with largest number of pathways
+
+
 ```{r,number of pathways in species with most pathways,echo=FALSE, results='hide', message=FALSE}
 # distribution of all species
 species.ct.top = species.ct[1:20,]
@@ -97,7 +103,9 @@ print(p)
 
 ```
 
-Number of species where each pathway is detected
+# Number of species per pathway distribution.  Violin plot's width represent density.
+
+
 ```{r,number of species per pathway,echo=FALSE, results='hide', message=FALSE, fig.width=2}
 
 pathway.ct = table(all.pathways$pathway.id)
@@ -115,42 +123,67 @@ head(all.count)
 p = ggplot(data=all.count
       ,aes(x=pathway,y=count)
       )+ 
-        geom_boxplot(stat="boxplot" , fill="blue"# ,color="blue"
-                     ,outlier.size = 0.5
-                      ,main = "Number of species found in each pathway: \n Showing top 20 pathways with largest number of species"
-                 ) +
+        # geom_boxplot(stat="boxplot" , fill="blue"# ,color="blue"
+        #              ,outlier.size = 0.5
+        #          ) +
+        geom_violin(
+                fill="blue"
+        )+
       xlab("")+
       ylab("number of species")+ scale_y_log10() +scale_x_discrete(position = "bottom")
 print(p)
 ```
 
-# Check some pathways distributed most widely or narrowly
+## Check some pathways distributed most widely or narrowly
+
 ```{r, check some pathways, echo=FALSE,message=FALSE}
 data("pathway.info.pre.generated.files")
 # head(pathway.info.pre.generated.files)
 selected.pathways = pathway.ct
+# head(pathway.ct)
 selected.pathways = selected.pathways[!duplicated((selected.pathways[,"count"])),]
 selected.pathways = selected.pathways[c(1:5,(nrow(selected.pathways)-5):nrow(selected.pathways)),]
+# selected.pathways
 pathway.to.name = pathway.info.pre.generated.files[,c("pathway.id","DISPLAY_NAME")]
 colnames(pathway.to.name) = c("pathway","pathway.name")
 # head(pathway.to.name)
+# selected.pathways
 selected.pathways = merge(selected.pathways,pathway.to.name)
+selected.pathways = selected.pathways[order(selected.pathways$count),]
 # head(selected.pathways)
-selected.pathways
-```
-In these examples, the most narrowly distributed pathways are mostly signaling pathways. The most widely distributed pathways are the ones involved in metabolism.
-the pathway "Adefovir Dipivoxil Metabolism Pathway" is most widely distributed. It is because it has only two enzymes: "adenylate kinase" and "ucleoside-diphosphate kinase", which are both widely distributed:
-https://www.genome.jp/dbget-bin/www_bget?ko:K00940
-https://www.genome.jp/dbget-bin/www_bget?ko:K00939
+selected.pathways[,3:2]
+selected.pathways$pathway.name = factor(selected.pathways$pathway.name
+                            ,levels = selected.pathways$pathway.name[order(selected.pathways$count)]
+                            )
 
-The species where the most narrowly distributed pathways are found:
+p = ggplot(data=selected.pathways
+      ,aes(x=pathway.name,y=count)
+      )+ 
+        geom_bar(stat="identity" , fill="blue"# ,color="blue"
+                 ) +
+      xlab("pathway")+
+      ylab("number of species where pathway is detected")+
+        coord_flip()+scale_y_log10() +scale_x_discrete(position = "top") +
+        ylim(0,max(selected.pathways$count))
+print(p)
+```
+
+
+## The species where the most narrowly distributed pathways are found:
+
 ```{r,most narrowly distributed pathways, echo=FALSE,message=FALSE}
-head(all.pathways)
-all.pathways[all.pathways[,"pathway.id"] %in% selected.pathways[1:5,"pathway"],c("pathway.id","DISPLAY_NAME","species")]
+sl = all.pathways[all.pathways[,"pathway.id"] %in% selected.pathways[1:5,"pathway"],c("DISPLAY_NAME","species")]
+tapply(sl$species,as.factor(sl$DISPLAY_NAME)
+       ,function(sp){
+                full.name = as.character(species.to.name[sp,"full.name"])
+        }
+)
 ```
 
-species distribution of "Angiogenesis" pathway
-```{r,Angiogenesis, echo=FALSE,message=FALSE}
+In these examples, the most narrowly distributed pathways are mostly signaling pathways. The most widely distributed pathways are the ones involved in basic metabolism processes.
+
+
+```{r,Angiogenesis,eval=FALSE, echo=FALSE,message=FALSE}
 library(SBGNview)
 all.pathways.1 = find.pathways(pathway.completeness = 0, org="all")
 head(all.pathways.1)
@@ -184,45 +217,26 @@ plot(p)
 ```
 
 
-Number of pathway where each pathway is detected
-Showing top 20 pathways most widely detected
-```{r,Showing top 20 pathways most widely detected,echo=FALSE, results='hide', message=FALSE}
-# distribution of all pathway
-pathway.ct.top = pathway.ct[1:20,]
-pathway.ct.top
-pathway.ct.top$pathway = factor(pathway.ct.top$pathway
-                            ,levels = rev(pathway.ct.top$pathway)
-                            )
 
-p = ggplot(data=pathway.ct.top
-      ,aes(x=pathway,y=count)
-      )+ 
-        geom_bar(stat="identity" , fill="blue"# ,color="blue"
-                 ) +
-      xlab("pathway")+
-      ylab("number of species where pathway is detected")+
-        coord_flip()+ scale_y_reverse(position = "right") +scale_x_discrete(position = "top")
-print(p)
-
-```
-
-# Distribution of F statistic
+# Distribution of F statistics.  Violin plot's width represent density.
 ```{r,distribution of F statistic,echo=FALSE, results='hide', message=FALSE, fig.width=2}
 head(pathway.completeness.cutoff.info)
 pathway.completeness.cutoff.info.anova = pathway.completeness.cutoff.info[!grepl("number", pathway.completeness.cutoff.info$ANOVA.F.stat),]
 max(as.numeric(pathway.completeness.cutoff.info.anova$ANOVA.F.stat[!grepl("NA",pathway.completeness.cutoff.info.anova$ANOVA.F.stat)]))
 
-all.count = as.numeric(pathway.completeness.cutoff.info.anova$cutoff)
+all.count = as.numeric(pathway.completeness.cutoff.info.anova$ANOVA.F.stat)
 head(all.count)
 all.count = data.frame(count = all.count, pathway = "all.pathway")
 head(all.count)
 p = ggplot(data=all.count
       ,aes(x=pathway,y=count)
       )+ 
-        geom_boxplot(stat="boxplot" , fill="blue"# ,color="blue"
-                     ,outlier.size = 0.5
-                      ,main = "F statistics distribution of all pathways"
-                 ) +
+        # geom_boxplot(stat="boxplot" , fill="blue"# ,color="blue"
+        #              ,outlier.size = 0.5
+        #          ) +
+        geom_violin(
+                fill="blue"
+        )+
       xlab("")+
       ylab("F statistics")+ scale_y_log10() +scale_x_discrete(position = "bottom")
 print(p)
@@ -237,9 +251,6 @@ d2 = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.spe
 d2
 head(pathway.completeness.cutoff.info)
 head(pathway.species.pct_Mapped)
-```
-### number of pathways for each species
-```{r,number of pathways per species}
 detach("package:SBGNview", unload=TRUE)
 library(SBGNview)
 all.pathways = find.pathways()
@@ -310,4 +321,9 @@ p = qplot(species.ct
 print(p)
 
 
+```
+
+
+``` {r, eval = FALSE, echo=FALSE}
+rmarkdown::render("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/distribution.species.pathways.Rmd")
 ```

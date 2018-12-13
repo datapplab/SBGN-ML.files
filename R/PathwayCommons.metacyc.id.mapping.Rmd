@@ -1,0 +1,1458 @@
+---
+title: "PathwayCommons id mapping"
+author: "Xiaoxi Dong"
+date: "October 12, 2018"
+output:
+        html_document:
+                toc: yes
+editor_options: 
+  chunk_output_type: console
+---
+# Id mapping procedures
+
+
+## proteins
+### pathwayCommons 
+#### pathwayCommons to human uniprot
+
+script: 
+
+```{r , echo = TRUE, message = FALSE, warning = FALSE}
+source("./pathway.commons_SBGN.id.to.uniprot.chebi.using.biopax.R")
+biopax.folder = "C:/xiaoxi/work/papers/SBGNview/package/data.package/pathway.commons/raw.data/v9"
+if(!file.exists(paste(biopax.folder,"/small.molecules.mapping.list.rds",sep=""))){
+    print("need to generate mapping file")
+    biopax.files.to.id.mapping(biopax.folder)
+}else{
+    print("mapping file generated")}
+```
+
+```{r , echo = TRUE, message = FALSE, warning = FALSE}
+biopax.folder = "C:/xiaoxi/work/papers/SBGNview/package/data.package/pathway.commons/raw.data/v9"
+protein.mapping =  readRDS(paste(biopax.folder,"/proteins.mapping.list.rds",sep=""))
+names(protein.mapping)
+protein.mapping$duplicated.ids
+nrow(protein.mapping$mappings.no.database.id)
+head(protein.mapping$mappings.database.id.name)
+pathwayCommons_UNIPROT_human = protein.mapping$mappings.database.id.name[,2:1]
+colnames(pathwayCommons_UNIPROT_human) = c("UNIPROT","pathwayCommons")
+head(pathwayCommons_UNIPROT_human)
+```
+
+#### map other species to pathwayCommons UNIPROT
+
+##### Reactome id mapping for different species
+
+Reactome has pathway information for many species, but they only provides SBGN files for homo sapiens. 
+A file can map all species' uniprot ids to gene names:
+https://reactome.org/download/current/UniProt2Reactome_PE_Pathway.txt
+Maybe I can use this and specify the SBGN id to be "label"
+But there is no documentation saying that the label is gene name.
+
+###### How did Reactome generate pathway information for other species
+The annotation for other species could be mostly come from IEA.
+Count evidence code.
+For each species in reactome database, count how many genes are annotated under each evidence code
+``` {r, echo=T}
+evidence.to.species.file = "C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.evidence.to.species.txt"
+evidence.to.species = read.table(evidence.to.species.file,sep="\t",header=F,comment.char = "")
+count.table = t(table(evidence.to.species))
+print(count.table)
+```
+http://wiki.geneontology.org/index.php/Inferred_from_Electronic_Annotation_(IEA)
+
+The IEA evidence code is used for annotations that are computationally, or automatically, assigned to gene products without further manual, curator review. IEA annotations are derived from two main pipelines: 1) manually constructed mappings between external classification systems and GO terms, and 2) automatic transfer of annotation to orthologous gene products.
+
+IEA annotations must use a reference from the GO Consortium's collection of GO references to indicate the method whereby the IEA annotation was made. If a suitable reference is not available, curators may request a new GO reference where it will be given a GO_REF ID, e.g. GO_REF:0000002, that will be used as the reference in Gene Association Files (GAFs).
+        
+http://wiki.geneontology.org/index.php/Traceable_Author_Statement_(TAS)
+The TAS evidence code covers author statements that are attributed to a cited reference that is the source of the original evidence (e,g, experimental results, sequence comparison, etc.).
+
+###### How to generate SBGN map for other species
+One route is:
+other species' uniprot --> gene name --> human uniprot --> pathwayCommons id --> SBGN map
+
+Generate mapping:
+uniprot, gene name, species
+```{bash}
+cat C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.txt |cut -f1,3,8 >C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.uniprot.geneName.species.txt
+```
+```{r}
+
+mapping = read.table("C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.uniprot.geneName.species.txt",sep="\t",stringsAsFactors = F,quote='')
+# mapping = read.table("C://xiaoxi/work/input/Reactome.web/UniProt2Reactome_PE_All_Levels.uniprot.geneName.species.txt",sep="\t",stringsAsFactors = F)
+mapping = unique(mapping)
+dim(mapping)
+mapping.no.compartment = mapping
+head(mapping)
+gene.name.no.compartment= gsub(" \\[.+","",mapping.no.compartment[,2])
+head(gene.name.no.compartment)
+mapping.no.compartment[,2] = gene.name.no.compartment
+head(mapping.no.compartment)
+mapping = mapping.no.compartment
+
+
+mapping.human = mapping[mapping[,3]=="Homo sapiens",]
+colnames(mapping.human) = c("uniprot","gene.name","species")
+mapping.non.human = mapping[mapping[,3]!="Homo sapiens",]
+colnames(mapping.non.human) = c("uniprot","gene.name","species")
+head(mapping.human)
+head(mapping.non.human)
+mapping.nonHuman.to.human = merge(mapping.non.human,mapping.human,by="gene.name",suffixes = c(".non.human",".human"))
+head(mapping.nonHuman.to.human)
+dim(mapping.nonHuman.to.human)
+mapping.nonHuman.to.human = mapping.nonHuman.to.human[,c("uniprot.non.human","species.non.human","uniprot.human")]
+mapping.nonHuman.to.human = unique(mapping.nonHuman.to.human)
+head(mapping.nonHuman.to.human)
+dim(mapping.nonHuman.to.human)
+
+write.table( mapping.nonHuman.to.human
+            ,"./id.mapping/pathway.commons/reactome.other.species/non.human.uniprot.to.human.uniprot.txt"
+            )
+
+
+```
+###### merge through human uniprot
+```{r}
+mapping.nonHuman.to.human = read.table("C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/pathway.commons/reactome.other.species/non.human.uniprot.to.human.uniprot.txt",
+                                       stringsAsFactors = F,
+                                       header=T,
+                                       sep=" "
+            )
+head(mapping.nonHuman.to.human)
+pathwayCommons_UNIPROT_human = cbind(pathwayCommons_UNIPROT_human,"Homo sapiens")
+head(pathwayCommons_UNIPROT_human)
+non.human.uniprot.to.pathwayCommons = merge(mapping.nonHuman.to.human,pathwayCommons_UNIPROT_human
+                                            ,by.x = "uniprot.human"
+                                            ,by.y="UNIPROT"
+                                            )
+dim(non.human.uniprot.to.pathwayCommons)
+head(non.human.uniprot.to.pathwayCommons)
+colnames(non.human.uniprot.to.pathwayCommons)[2:3] = c("uniprot","species")
+head(non.human.uniprot.to.pathwayCommons)
+```
+merge human mapping and other species mapping
+```{r}
+uniprot.to.pathwayCommons.all.species = pathwayCommons_UNIPROT_human
+colnames(uniprot.to.pathwayCommons.all.species)[3] = "species"
+colnames(uniprot.to.pathwayCommons.all.species)[1] = "uniprot"
+head(uniprot.to.pathwayCommons.all.species)
+head(non.human.uniprot.to.pathwayCommons)
+uniprot.to.pathwayCommons.all.species = rbind(uniprot.to.pathwayCommons.all.species
+                                              ,non.human.uniprot.to.pathwayCommons[,c("uniprot","pathwayCommons","species")]
+                                              )
+colnames(uniprot.to.pathwayCommons.all.species)[1] = "UNIPROT"
+head(uniprot.to.pathwayCommons.all.species)
+tail(uniprot.to.pathwayCommons.all.species)
+table(uniprot.to.pathwayCommons.all.species$species)
+uniprot.to.pathwayCommons.all.species.list = list()
+uniprot.to.pathwayCommons.all.species.list$gene = list()
+uniprot.to.pathwayCommons.all.species.list$gene = uniprot.to.pathwayCommons.all.species 
+save(uniprot.to.pathwayCommons.all.species.list,file="C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/pathway.commons/uniprot.to.pathwayCommons.all.species.list.RData")
+
+
+```
+###### Generate entrez to pathwayCommons using all species uniprot to pathwayCommons
+
+```{r}
+source("./all.ids.to.pathwayCommons.metacyc.R")
+all.gene.id.types.to.pathwayCommons(uniprot.to.pathwayCommons.species.matrix = uniprot.to.pathwayCommons.all.species,gene.to.pathwayCommons.each.pair.RData.folder = "../data/id.mapping//mapping.each.pair/for.use.all/") 
+
+```
+##### other species uniprot to pathwayCommons through KEGG ortholog
+###### other species uniprot to human uniprot in kegg
+human uniprot to human entrez through kegg
+
+```{r}
+        
+download.from.kegg = function(ids,url,output.file,size.slice){
+        all.species.entrez = paste(ids,collapse = "+")
+        kegg.q.all.species.entrez.to.all.species.uniprot = paste(url,all.species.entrez,sep="")
+        substr(kegg.q.all.species.entrez.to.all.species.uniprot ,1,50)
+        # print(kegg.q.all.species.entrez.to.all.species.uniprot)
+        # stop()
+        if.found = try(download.file(kegg.q.all.species.entrez.to.all.species.uniprot ,destfile = output.file,quiet = T,mode = "a"))
+        if(class(if.found) == "try-error"){
+                n.genes = length(ids)
+                slices = seq(1,n.genes,by=size.slice)
+                for(j in 1:length(slices)){
+                        if(j == length(slices)){
+                                end.index = n.genes
+                        }else{
+                                end.index = slices[j+1] -1
+                        }
+                        slice.genes = slices[j]:end.index
+                        all.species.entrez = paste(ids[slice.genes],collapse = "+")
+                        cat("downloading to ", output.file,"\n",paste(min(slice.genes),max(slice.genes),sep="-"),"out of",n.genes,"genes\n")
+                        kegg.q.all.species.entrez.to.all.species.uniprot = paste(url,all.species.entrez,sep="")
+                        substr(kegg.q.all.species.entrez.to.all.species.uniprot ,1,50)
+                        if.downloaded = try(download.file(kegg.q.all.species.entrez.to.all.species.uniprot ,destfile = output.file,quiet = T,mode = "a"))
+                        # if("up:A1L0T0" %in% ids[slice.genes]){
+                        #         try(download.file(kegg.q.all.species.entrez.to.all.species.uniprot ,destfile = paste(output.file,".A1L0T0.tsv",sep=""),quiet = T,mode = "a"))
+                        #         print(kegg.q.all.species.entrez.to.all.species.uniprot)
+                        #         stop("found A1L0T0")
+                        # }
+                        if(class(if.downloaded) == "try-error"){
+                                download.from.kegg(ids[slice.genes],url,output.file,(size.slice-1))
+                        }
+                }
+        }
+}
+
+
+biopax.folder = "C:/xiaoxi/work/papers/SBGNview/package/data.package/pathway.commons/raw.data/v9"
+protein.mapping =  readRDS(paste(biopax.folder,"/proteins.mapping.list.rds",sep=""))
+names(protein.mapping)
+protein.mapping$duplicated.ids
+nrow(protein.mapping$mappings.no.database.id)
+head(protein.mapping$mappings.database.id.name)
+pathwayCommons_UNIPROT_human = protein.mapping$mappings.database.id.name[,2:1]
+colnames(pathwayCommons_UNIPROT_human) = c("UNIPROT","pathwayCommons")
+head(pathwayCommons_UNIPROT_human)
+head(pathwayCommons_UNIPROT_human)
+dim(pathwayCommons_UNIPROT_human)
+human.uniprot.to.entrez.file = "kegg.human.uniprot.to.entrez.tsv"
+human.entrez.to.ko.file = "kegg.human.entrez.to.ko.tsv"
+all.species.entrez.to.ko.file = "kegg.ko.to.all.species.entrez.tsv"
+kegg.humanUniprot.to.NonHumanUniprot.orthologs.file = "C:/xiaoxi/work/input/id.mapping/kegg/kegg.humanUniprot.to.NonHumanUniprot.orthologs.tsv"
+# file.remove(human.uniprot.to.entrez.file,human.entrez.to.ko.file,all.species.entrez.to.uniprot.file,kegg.humanUniprot.to.NonHumanUniprot.orthologs.file)
+all.uniprots = unique(pathwayCommons_UNIPROT_human[,"UNIPROT"])
+n.pathwayCommons.uniprot = length(all.uniprots)
+n.pathwayCommons.uniprot
+
+
+
+# human uniprot to genes
+current.uniprot = all.uniprots
+output.folder = "C:/xiaoxi/work/input/id.mapping/kegg.ortholog.100.download.slice"
+dir.create(output.folder)
+output.file = paste(output.folder,"/",human.uniprot.to.entrez.file,sep="")
+download.from.kegg (paste("up:",current.uniprot,sep=""),"http://rest.kegg.jp/conv/hsa/",output.file,size.slice = 100)
+kegg.q.uniprot.to.entrez.human = try(read.table(output.file,header = F,stringsAsFactors = F,sep="\t",quote=""))
+colnames(kegg.q.uniprot.to.entrez.human) =c("uniprot","entrez")
+head(kegg.q.uniprot.to.entrez.human)
+
+# entrez to ko
+output.file = paste(output.folder,"/",human.entrez.to.ko.file,sep="")
+download.from.kegg (unique(kegg.q.uniprot.to.entrez.human[,"entrez"]),"http://rest.kegg.jp/link/ko/",output.file,size.slice = 100)
+kegg.human.entrez.to.ko = try(read.table(paste(output.folder,"/",human.entrez.to.ko.file,sep=""),header = F,stringsAsFactors = F,sep="\t",quote=""))
+colnames(kegg.human.entrez.to.ko) =c("entrez.human","ko")
+head(kegg.human.entrez.to.ko)
+
+# ko to all species gene
+output.file = paste(output.folder,"/",all.species.entrez.to.ko.file,sep="")
+download.from.kegg (unique(kegg.human.entrez.to.ko[,"ko"]),"http://rest.kegg.jp/link/genes/",output.file,size.slice = 20)
+kegg.ko.to.all.species.entrez = try(read.table(output.file,header = F,stringsAsFactors = F,sep="\t",quote=""))
+colnames(kegg.ko.to.all.species.entrez ) =c("ko","all.species.entrez")
+head(kegg.ko.to.all.species.entrez )
+dim(kegg.ko.to.all.species.entrez )
+table(kegg.ko.to.all.species.entrez[,"ko"] )
+        
+        # In the first round of run, only the first 100 of every 200 genes in a slice was downloaded
+        finished.kos = read.table("C:/xiaoxi/work/input/id.mapping/kegg.species.ortholog.first.100.per.200/kegg.ko.to.all.species.entrez.tsv",header=F,sep="\t",stringsAsFactors=F)
+        head(finished.kos)
+        dim(finished.kos)
+        finished.kos = unique(finished.kos[,1])
+        head(finished.kos)
+        length(finished.kos)
+        unfinished.kos = setdiff(unique(kegg.ko.to.all.species.entrez[,"ko"]),finished.kos)
+        length(unfinished.kos)
+        kegg.ko.to.all.species.entrez.backup = kegg.ko.to.all.species.entrez
+        dim(kegg.ko.to.all.species.entrez.backup)
+        kegg.ko.to.all.species.entrez = kegg.ko.to.all.species.entrez[kegg.ko.to.all.species.entrez[,"ko"] %in% unfinished.kos,]
+        dim(kegg.ko.to.all.species.entrez)
+        
+# all species entrez to all species uniprot
+dim(kegg.ko.to.all.species.entrez)
+uniprot.to.ko.file = paste(output.folder, "/uniprot.to.ko.tsv",sep="")
+by(
+        kegg.ko.to.all.species.entrez
+        ,as.factor(kegg.ko.to.all.species.entrez[,"ko"])
+        ,function(all.species.entrez.df){
+                ko = all.species.entrez.df[1,"ko"]
+                ko = gsub("ko:","",ko)
+                ko.uniprot.file =  paste(output.folder,ko,".tsv",sep="")
+                
+                output.file = ko.uniprot.file
+                if(file.exists(output.file)){
+                        print(ko)
+                        return()
+                }
+                download.from.kegg (unique(all.species.entrez.df[,"all.species.entrez"]),"http://rest.kegg.jp/conv/uniprot/",output.file,size.slice = 100)
+                
+                all.species.entrez.to.uniprot = read.table(ko.uniprot.file,header = F,stringsAsFactors = F,sep="\t",quote="")
+                colnames(all.species.entrez.to.uniprot) =c("gene","uniprot")
+                all.species.entrez.to.uniprot[,"uniprot"] = gsub("up:","",all.species.entrez.to.uniprot[,"uniprot"])
+                species = do.call(rbind,strsplit(all.species.entrez.to.uniprot[,"gene"],":"))[,1]
+                uniprot.to.ko = all.species.entrez.to.uniprot[,c("uniprot","gene")]
+                uniprot.to.ko = cbind(uniprot.to.ko,ko)
+                write.table(uniprot.to.ko,uniprot.to.ko.file,row.names = F,col.names =F,sep="\t",quote=F,append = T)
+                # stop()
+        }
+)
+
+uniprot.to.ko.file
+# map other species uniprot to human uniprot
+uniprot.to.ko = read.table(uniprot.to.ko.file,sep="\t",stringsAsFactors = F,header = F)
+colnames(uniprot.to.ko) = c("uniprot","gene","ko")
+dim(uniprot.to.ko)
+uniprot.to.ko = unique(uniprot.to.ko)
+dim(uniprot.to.ko)
+head(uniprot.to.ko)
+species = do.call(rbind,strsplit(uniprot.to.ko[,"gene"],":"))[,1]
+uniprot.to.ko[,2] = species
+colnames(uniprot.to.ko) = c("uniprot","species","ko")
+head(uniprot.to.ko)
+human.uniprot = uniprot.to.ko[uniprot.to.ko[,"species"] == "hsa",]
+non.human.uniprot = uniprot.to.ko[uniprot.to.ko[,"species"] != "hsa",]
+
+dim(human.uniprot)
+dim(non.human.uniprot)
+head(human.uniprot)
+head(non.human.uniprot)
+length(unique(uniprot.to.ko[,"ko"]))
+length(unique(uniprot.to.ko[,"species"]))
+head(unique(uniprot.to.ko[,"species"]))
+
+non.human.to.human = merge(human.uniprot,non.human.uniprot,by="ko",suffixes = c(".human",".non.human"),all=F)
+
+head(non.human.to.human)
+tail(non.human.to.human)
+dim(non.human.to.human)
+
+# other species uniprot to pathwayCommons by human uniprot
+head(non.human.to.human)
+head(pathwayCommons_UNIPROT_human)
+non.human.uniprot.to.pathwayCommons = merge(non.human.to.human[,c("uniprot.human","uniprot.non.human","species.non.human")],pathwayCommons_UNIPROT_human
+                                            ,by.x = "uniprot.human"
+                                            ,by.y="UNIPROT"
+                                            ,all = F
+                                            )
+dim(non.human.uniprot.to.pathwayCommons)
+head(non.human.uniprot.to.pathwayCommons)
+colnames(non.human.uniprot.to.pathwayCommons)[2:3] = c("uniprot","species")
+head(non.human.uniprot.to.pathwayCommons)
+head(unique(non.human.uniprot.to.pathwayCommons[,5]))
+# combine other species to pathwayCommons and human uniprot to pathwayCommons
+uniprot.to.pathwayCommons.all.species = pathwayCommons_UNIPROT_human
+class(uniprot.to.pathwayCommons.all.species)
+uniprot.to.pathwayCommons.all.species = as.data.frame(uniprot.to.pathwayCommons.all.species,stringsAsFactors  = F)
+uniprot.to.pathwayCommons.all.species$species = "hsa"
+colnames(uniprot.to.pathwayCommons.all.species)[3] = "species"
+colnames(uniprot.to.pathwayCommons.all.species)[1] = "uniprot"
+head(uniprot.to.pathwayCommons.all.species)
+head(non.human.uniprot.to.pathwayCommons)
+uniprot.to.pathwayCommons.all.species = rbind(uniprot.to.pathwayCommons.all.species
+                                              ,non.human.uniprot.to.pathwayCommons[,c("uniprot","pathwayCommons","species")]
+                                              )
+colnames(uniprot.to.pathwayCommons.all.species)[1] = "UNIPROT"
+head(uniprot.to.pathwayCommons.all.species)
+tail(uniprot.to.pathwayCommons.all.species)
+table(uniprot.to.pathwayCommons.all.species$species)
+uniprot.to.pathwayCommons.all.species.kegg.list = list()
+uniprot.to.pathwayCommons.all.species.kegg.list$gene = list()
+uniprot.to.pathwayCommons.all.species.kegg.list$gene = uniprot.to.pathwayCommons.all.species 
+save(uniprot.to.pathwayCommons.all.species.kegg.list,file="C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/pathway.commons/uniprot.to.pathwayCommons.all.species.kegg.list.RData")
+
+# generate usable id mapping list :pathwayCommons to uniprot: kegg ortholog definition
+load("C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/pathway.commons/uniprot.to.pathwayCommons.all.species.kegg.list.RData")
+pathwayCommons_UNIPROT = uniprot.to.pathwayCommons.all.species.kegg.list$gene
+head(pathwayCommons_UNIPROT)
+tail(pathwayCommons_UNIPROT)
+# head(pathwayCommons_UNIPROT[pathwayCommons_UNIPROT[,"species"]=="Homo sapiens",])
+# pathwayCommons_UNIPROT[,"species"] = as.character(pathwayCommons_UNIPROT[,"species"])
+# pathwayCommons_UNIPROT[pathwayCommons_UNIPROT[,"species"]=="Homo sapiens","species"] = "hsa"
+head(pathwayCommons_UNIPROT)
+mapping.list = list()
+mapping.list$gene = list()
+mapping.list$gene$pathwayCommons_UNIPROT = pathwayCommons_UNIPROT
+head(mapping.list$gene$pathwayCommons_UNIPROT)
+dim(mapping.list$gene$pathwayCommons_UNIPROT)
+save(mapping.list,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/pathwayCommons_UNIPROT.RData")
+# generate usable id mapping list :pathwayCommons to ko
+head(uniprot.to.ko)
+length(unique(uniprot.to.ko$ko))
+human.uniprot.to.ko = uniprot.to.ko[grepl("hsa",uniprot.to.ko[,2]),]
+human.uniprot.to.ko = human.uniprot.to.ko[,c(1,3)]
+colnames(human.uniprot.to.ko) = c("UNIPROT","KO")
+head(human.uniprot.to.ko)
+length(unique(human.uniprot.to.ko$KO))
+head(unique(human.uniprot.to.ko$KO))
+dim(human.uniprot.to.ko)
+head(pathwayCommons_UNIPROT_human)
+KO.to.pathwayCommons = merge(human.uniprot.to.ko
+                             ,pathwayCommons_UNIPROT_human
+                             ,all=F
+                             )
+head(KO.to.pathwayCommons)
+dim(KO.to.pathwayCommons)
+length(unique(KO.to.pathwayCommons$KO))
+type.pair.name = paste(sort(c("KO","pathwayCommons")),collapse="_")
+type.pair.name
+KO_pathwayCommons = KO.to.pathwayCommons[,2:3]
+head(KO_pathwayCommons)
+dim(KO_pathwayCommons)
+mapping.list = list()
+mapping.list$gene = list()
+mapping.list$gene$KO_pathwayCommons = KO_pathwayCommons
+head(mapping.list$gene$KO_pathwayCommons)
+dim(mapping.list$gene$KO_pathwayCommons)
+save(mapping.list,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/KO_pathwayCommons.RData")
+
+```
+
+Check which pathway the ko are from
+```{r}
+# ko to all species gene
+all.species.entrez.to.ko.file = "kegg.ko.to.all.species.entrez.tsv"
+output.folder = "C:/xiaoxi/work/input/id.mapping/kegg"
+output.file = paste(output.folder,"/",all.species.entrez.to.ko.file,sep="")
+# download.from.kegg (unique(kegg.human.entrez.to.ko[,"ko"]),"http://rest.kegg.jp/link/genes/",output.file,size.slice = 20)
+kegg.ko.to.all.species.entrez = try(read.table(output.file,header = F,stringsAsFactors = F,sep="\t",quote=""))
+head(kegg.ko.to.all.species.entrez)
+colnames(kegg.ko.to.all.species.entrez ) =c("ko","all.species.entrez")
+ko.species = do.call(rbind,strsplit(kegg.ko.to.all.species.entrez[,"all.species.entrez"],":"))[,1]
+head(ko.species)
+head(kegg.ko.to.all.species.entrez )
+dim(kegg.ko.to.all.species.entrez )
+
+kegg.species.count = tapply(
+        ko.species
+        ,as.factor(kegg.ko.to.all.species.entrez[,"ko"])
+        ,function(species){
+                length(unique(species))
+        }
+)
+kegg.species.count = kegg.species.count[order(kegg.species.count,decreasing = T)]
+head(kegg.species.count)
+
+
+```
+###### KO to uniprot
+```{r, ko to uniprot}
+write.table(uniprot.to.ko,"C:/xiaoxi/work/input/id.mapping/kegg.ortholog.100.download.slice/uniprot.to.ko.tsv",row.names=F,sep="\t")
+ko.to.uniprot = read.table("C:/xiaoxi/work/input/id.mapping/kegg.related/kegg.ortholog.100.download.slice/uniprot.to.ko.tsv",header=T,stringsAsFactors = F,sep="\t")
+head(ko.to.uniprot)
+ko.to.uniprot = ko.to.uniprot[,c(1,3)]
+colnames(ko.to.uniprot) = c("UNIPROT","KO")
+head(ko.to.uniprot)
+mapping.list = list()
+mapping.list$gene = list()
+mapping.list$gene$UNIPROT_KO = ko.to.uniprot
+save(mapping.list,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/UNIPROT_KO.RData")
+
+```
+###### KO to metacyc
+```{r, ko to meacyc}
+head(ko.to.uniprot)
+dim(ko.to.uniprot)
+length(unique(ko.to.uniprot$KO))
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/metacyc.SBGN_UNIPROT.RData")
+uniprot.to.metacyc = mapping.list$gene$metacyc.SBGN_UNIPROT
+head(uniprot.to.metacyc)
+ko.to.metacyc = merge(ko.to.uniprot,uniprot.to.metacyc[,1:2],all=F)
+head(ko.to.metacyc)
+ko.to.metacyc = ko.to.metacyc[,c("KO","metacyc.SBGN")]
+head(ko.to.metacyc)
+dim(ko.to.metacyc)
+ko.to.metacyc = ko.to.metacyc[!grepl("NA:@:NA",ko.to.metacyc[,"metacyc.SBGN"]),]
+dim(ko.to.metacyc)
+mapping.list = list()
+mapping.list$gene = list()
+mapping.list$gene$KO_metacyc.SBGN = ko.to.metacyc
+save(mapping.list,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/KO_metacyc.SBGN.RData")
+```
+
+
+<!--         C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\pathway.commons_SBGN.id.to.uniprot.chebi.using.biopax.R -->
+<!-- input: -->
+
+<!--         pathwayCommons biopax files in folder: /media/sf_work/input/id.mapping/pathway.commons.10.biopax -->
+<!-- output: -->
+
+<!-- ###################################################################### -->
+        <!-- C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\SBGNview.uniprot.chebi.to.SBGN.id.mapping.RData -->
+        <!-- In this data, the uniprot ids are all from human -->
+<!-- ###################################################################### -->
+
+1.1 Other species uniprot to human uniprot, to pathwayCommons' reactome
+
+script:
+
+       C:\xiaoxi\work\papers\SBGNview\package\id.mapping\Reactome.Rmd
+       
+input: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\reactome.other.species\UniProt2Reactome_PE_All_Levels.txt
+        
+output: 
+
+
+        C:\xiaoxi\work\papers\SBGNview\package\SBGN-ML.files\data\id.mapping\mapping.each.pair\gene\pathwayCommons\derived.from.raw\non.human.uniprot.to.human.uniprot_pathwayCommons-reactome.txt
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping/pathway.commons\uniprot.to.pathwayCommons.all.species.list.RData
+
+
+
+2. uniprot to entrez
+
+Use pathview
+
+3. pathwayCommons to entrez
+
+script: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\all.ids.to.pathwayCommons.metacyc.R
+        entrenz.to.pathwayCommons()
+
+input:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping/id.mapping/pathway.commons/uniprot.to.pathwayCommons.all.species.list.RData
+
+output: 
+
+<!-- ###################################################################### -->
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons.and.metacyc\entrezid.to.metacyc.pathwayCommons.with.species.info.RData
+<!-- ###################################################################### -->
+        
+        
+        
+        
+        
+### metacyc to entrez/uniref
+
+1. metacyc to uniprot/uniref
+
+1.1 Use perl to change metacyc raw files to pairwise mapping tables:
+
+script: 
+        
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc/Metacyc.raw.file.to.mapping.tables.pl
+
+input:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\raw.data
+        
+output 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\mapping.tables
+        
+1.2 download metacyc biopax files
+
+script :
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\biopax.downloaded\download.metacyc.pl
+
+result:
+
+        C:\xiaoxi\work\input\2018.10.3.linux\metacyc\biopax.level3
+        
+1.3 from metacyc biopax files, extract mapping : metacyc sbgn/biopax vertex/glyph id --> metacyc id
+
+script:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc/metacyc.SBGN.id.to.uniprot.uniref.chebi.R  ::  generate.biopax.id.to.chebi.or.metacyc()
+        
+result: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\mapping.tables\proteins.to.metacyc.mapping.all.RData
+        
+1.4 use pairwise mapping tables to map metacyc SBGN ids to uniprot/uniref
+
+script:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc/metacyc.SBGN.id.to.uniprot.uniref.chebi.R
+        uniref.to.biopax.id()
+        uniprot.to.biopax.id()
+        
+input: 
+
+        MetaCyc: mapping tables downloaded from metacyc. They send a link to download after registering. The files are in the rar file. I selected the files needed for mapping and put them in this table:
+        
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\mapping.tables
+        Uniref: Used mapping table from humann2 package: metacyc_reactions_level4ec_only.uniref
+
+result: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\merged.tables
+<!-- ###################################################################### -->
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\merged.tables\uniref.pathway.sbgnBiopaxProtein.RData
+        uniprot.pathway.sbgnBiopaxProtein.RData
+<!-- ###################################################################### -->
+        
+1.5  metacyc sbgn ids --> entrez
+
+        
+script: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\all.ids.to.pathwayCommons.metacyc.R
+        entrenz.to.metacyc.gene()
+
+input:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\merged.tables/uniprot.pathway.sbgnBiopaxProtein.RData
+
+output: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons.and.metacyc\entrezid.to.metacyc.pathwayCommons.with.species.info.RData
+        
+        
+## compounds to ChEBI
+
+### pathwayCommons
+
+extract sbgn compound id --> chebi from biopax:
+
+script: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\pathway.commons_SBGN.id.to.uniprot.chebi.using.biopax.R
+input:
+
+        pathwayCommons biopax files in folder: /media/sf_work/input/id.mapping/pathway.commons.10.biopax
+output:
+
+<!-- ###################################################################### -->
+        
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\SBGNview.uniprot.chebi.to.SBGN.id.mapping.RData
+<!-- ###################################################################### -->
+        
+        
+### metacyc
+
+extract sbgn compound id --> chebi from biopax:
+
+script:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc/metacyc.SBGN.id.to.uniprot.uniref.chebi.R  ::  generate.biopax.id.to.chebi.or.metacyc()
+        
+result: 
+
+<!-- ###################################################################### -->
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc/mapping.tables/compound.to.chebi.mapping.all.RData
+<!-- ###################################################################### -->
+
+### other compounds from unichem to pathwayCommons/metacyc compounds
+
+1. Download unichem mapping tables to chebi and change names from "level..." to compound name:
+
+script:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\unichem\change.pairwise.mapping.file.name.pl
+        
+input: 
+        
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\unichem\unichem\ChEBI
+        
+output: 
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\unichem\unichem\ChEBI.db.names
+        
+        
+2. merge tables:  metacyc/pathwayCommons compound id --> unichem ids
+
+script:
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\all.ids.to.pathwayCommons.metacyc.R
+        all.compounds.to.chebi.pathwayCommons.metacyc
+        
+result:
+
+        
+<!-- ###################################################################### -->
+
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\pathwayCommons.mappings.all.RData
+        C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\metacyc.SBGN.mappings.all.RData
+<!-- ###################################################################### -->
+
+
+
+
+# Generate individual small mapping files
+```{r}
+generate.individual.file = function(input.list,gene.or.compound,output.folder){
+        pairs = names(input.list)
+        print(pairs)
+        for (i in 1:length(pairs)){
+                mapping.list = list()
+                mapping.list[[gene.or.compound]] = list()
+                pair = pairs[i]
+                print(pair)
+                mapping.list[[gene.or.compound]][[pair]] =  input.list[[pair]][!is.na(input.list[[pair]][,1]),]
+                # head(ENTREZID_pathwayCommons)
+                # tail(ENTREZID_pathwayCommons[[gene.or.compound]]$ENTREZID_pathwayCommons)
+                # dim(ENTREZID_pathwayCommons[[gene.or.compound]]$ENTREZID_pathwayCommons)
+                # print(table(ENTREZID_pathwayCommons[[gene.or.compound]]$ENTREZID_pathwayCommons[,3]))
+                output.file = paste(output.folder,pair,".RData",sep="")
+                print(output.file)
+                save(mapping.list,file = output.file)
+        }
+}
+output.folder = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/"
+
+v.name = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files//R/id.mapping/pathway.commons.and.metacyc/entrezid.to.metacyc.pathwayCommons.with.species.info.RData") # the metacyc table in this file only has species included by pathview, therefore it lost many other species
+input.list = entrezid.to.metacyc.pathwayCommons.with.species.info
+gene.or.compound = "gene"
+generate.individual.file(input.list,gene.or.compound,output.folder)
+# This file has all original species from reactome, mapped from UniProt2Reactome_PE_All_Levels.txt
+load(file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/pathwayCommons_UNIPROT.RData")
+as.matrix(table(mapping.list$gene$pathwayCommons_UNIPROT[,"species"]))
+head(mapping.list$gene$pathwayCommons_UNIPROT)
+# check the original table
+v.name = load("C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/pathway.commons/uniprot.to.pathwayCommons.all.species.list.RData")
+as.matrix(table(uniprot.to.pathwayCommons.all.species.list$gene[,"species"]))
+
+#################
+
+v.name = load("C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/metacyc/metacyc.SBGN.mappings.all.RData")  # In this file, the metacyc genes are from only a subset of species included by pathview, therefore it lost many other species
+length(unique((metacyc.SBGN.mappings.all$gene$metacyc.SBGN_UNIPROT[,1])))
+
+#The full list of uniprot to metacyc should be:
+load("C:/xiaoxi/work/papers/SBGNview/package/data.package/metacyc/merged.tables/uniprot.pathway.sbgnBiopaxProtein.RData")
+length(unique(uniprot.pathway.sbgnBiopaxProtein[,1]))
+head(uniprot.pathway.sbgnBiopaxProtein)
+metacyc.SBGN_UNIPROT = uniprot.pathway.sbgnBiopaxProtein[,c("Uniprot","sbgnBiopaxProtein")]
+colnames(metacyc.SBGN_UNIPROT) = c("UNIPROT","metacyc.SBGN")
+metacyc.SBGN_UNIPROT$species = "No.data"
+metacyc.SBGN_UNIPROT = metacyc.SBGN_UNIPROT[!is.na(metacyc.SBGN_UNIPROT[,1]),]
+dim(metacyc.SBGN_UNIPROT[is.na(metacyc.SBGN_UNIPROT[,1]),])
+dim(metacyc.SBGN_UNIPROT)
+length(unique(metacyc.SBGN_UNIPROT[,1]))
+mapping.list = list()
+mapping.list$gene = list()
+mapping.list$gene$metacyc.SBGN_UNIPROT = metacyc.SBGN_UNIPROT
+save(mapping.list,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/metacyc.SBGN_UNIPROT.RData")
+# try to get species information 
+write.table(unique(mapping.list$gene$metacyc.SBGN_UNIPROT[,1]),"./metacyc.uniprot.txt",quote=F,row.names = F)
+
+gene.or.compound = "gene"
+input.list = metacyc.SBGN.mappings.all[[gene.or.compound]]
+generate.individual.file(input.list,gene.or.compound,output.folder)
+
+gene.or.compound = "compound"
+input.list = metacyc.SBGN.mappings.all[[gene.or.compound]]
+generate.individual.file(input.list,gene.or.compound,output.folder)
+
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files//R/id.mapping/pathway.commons/pathwayCommons.mappings.all.RData")
+gene.or.compound = "gene"
+input.list = pathwayCommons.mappings.all[[gene.or.compound]]
+generate.individual.file(input.list,gene.or.compound,output.folder)
+
+gene.or.compound = "compound"
+input.list = pathwayCommons.mappings.all[[gene.or.compound]]
+generate.individual.file(input.list,gene.or.compound,output.folder)
+
+```
+Results are organized in folder :
+
+        C:/xiaoxi\work\papers\SBGNview\package\SBGN-ML.files\data\mapping.each.pair
+
+Find which ids can be mapped:
+
+```{r}
+mapped.ids = list()
+mapped.ids$pathwayCommons.mappable.gene.ids = pathwayCommons.mappings.all$pathwayCommons.mappable.gene.ids
+mapped.ids$pathwayCommons.mappable.compound.ids = pathwayCommons.mappings.all$pathwayCommons.mappable.compound.ids
+mapped.ids$metacyc.mappable.gene.ids = metacyc.SBGN.mappings.all$metacyc.mappable.gene.ids
+mapped.ids$metacyc.mappable.compound.ids = metacyc.SBGN.mappings.all$metacyc.mappable.compound.ids
+
+mapped.ids$metacyc.mappable.gene.ids = c(mapped.ids$metacyc.mappable.gene.ids,"ENTREZID" )
+mapped.ids$pathwayCommons.mappable.gene.ids = c(mapped.ids$pathwayCommons.mappable.gene.ids,"ENTREZID" )
+mapped.ids
+save(mapped.ids,file="../data/mapped.ids.RData ")
+```
+# Molecule ID to pathway IDs
+```{r}
+
+in.folder = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both"
+pathwayCommons.files = list.files(in.folder,pattern="pathwayCommons",full.names = T) # previously, we already mapped ids to metacyc pathway ids, here we only need to add mapping to pathwayCommons ids
+length(pathwayCommons.files)
+pathwayCommons.files.names = list.files(in.folder,pattern="pathwayCommons",full.names = F)
+pathwayCommons.to.pathway.id = pathwayCommons.files[grepl("pathway.id",pathwayCommons.files.names)]
+pathwayCommons.to.pathway.id
+fn = load(pathwayCommons.to.pathway.id)
+head(pathwayCommons_pathway.id)
+
+pathwayCommons.files = pathwayCommons.files[!grepl("pathway.id",pathwayCommons.files.names)]
+pathwayCommons.files.names = pathwayCommons.files.names[!grepl("pathway.id",pathwayCommons.files.names)]
+length(pathwayCommons.files)
+length(pathwayCommons.files.names)
+head(pathwayCommons.files.names)
+pathwayCommons.files.names
+
+# for( i in 1:length(pathwayCommons.files)){
+for( i in c(26,47)){
+        i=26
+        i=47
+        print(pathwayCommons.files.names[i])
+        # i=7  # previously, only chebi didn't have mapping to pathway ids of pathwayCommons, so we only need to add chebi.to.pathwayCommons.pathway.id
+        # find id type and parse metacyc, generate metacyc to pathway.id mapping
+        load(pathwayCommons.files[i])
+        id.to.pathwayCommons = mapping.list[[1]][[1]]
+        id.type = setdiff(colnames(id.to.pathwayCommons),c("species","pathwayCommons"))
+        
+        type.pair.name = paste(sort(c(id.type,"metacyc.SBGN")),collapse="_")
+        id.to.metacyc.file = paste(in.folder,"/",type.pair.name,".RData",sep="")
+        # print(id.to.pathway.file)
+        load(id.to.metacyc.file)
+        print(id.type)
+        idType.to.pathway.id = mapping.list[[1]][[1]]
+        head(idType.to.pathway.id)
+        tail(idType.to.pathway.id)
+        dim(idType.to.pathway.id)
+        idType.to.pathway.id = idType.to.pathway.id[!grepl("NA:@:NA",idType.to.pathway.id[,"metacyc.SBGN"]),]
+        dim(idType.to.pathway.id)
+        pathway.ids = do.call(rbind,strsplit(idType.to.pathway.id$metacyc.SBGN,":@:"))[,2]
+        head(pathway.ids)
+        length(pathway.ids)
+        head(as.character(as.vector(idType.to.pathway.id[,id.type])))
+        head(idType.to.pathway.id[,id.type])
+        idType.to.pathway.id = cbind(as.character(as.vector(idType.to.pathway.id[,id.type])),pathway.ids)
+        colnames(idType.to.pathway.id) =c(id.type,"pathway.id")
+        head(idType.to.pathway.id)
+        tail(idType.to.pathway.id)
+        
+        
+        # parse pathwaycOMMONS, GENERATE IDTYPE TO PATHWAY ID MAPPING FOR PATHWAYcOMMONS
+        head(pathwayCommons_pathway.id)
+        head(id.to.pathwayCommons)
+        merged = merge(pathwayCommons_pathway.id,id.to.pathwayCommons,by="pathwayCommons",all=F)
+        head(merged)
+        dim(merged)
+        id.to.pathway = merged[,c(id.type,"pathway.id")]
+        head(id.to.pathway)
+        mapping.table = idType.to.pathway.id
+        head(mapping.table)
+        tail(mapping.table)
+        mapping.table = rbind(mapping.table,id.to.pathway)
+        head(mapping.table)
+        tail(mapping.table)
+        dim(mapping.table)
+        id.to.pathway.file = paste(in.folder,"/",id.type,"_pathway.id.RData",sep="")
+        id.to.pathway.file
+        save(mapping.table,file = id.to.pathway.file)
+        
+        load(id.to.pathway.file)
+        head(mapping.table)
+        tail(mapping.table)
+}
+
+
+
+        
+# compound name to pathway ids
+chebi.to.cpd.name.file = paste(in.folder,"/chebi_CompoundName.RData",sep="")
+fn = load(chebi.to.cpd.name.file)
+head(mapping.list$compound$chebi_CompoundName)
+chebi.to.cpd.name = mapping.list$compound$chebi_CompoundName
+head(chebi.to.cpd.name)
+chebi.to.cpd.name[chebi.to.cpd.name[,1] == "64489",]
+head(mapping.table)
+chebi.to.pathway = mapping.table
+head(chebi.to.cpd.name)
+head(chebi.to.pathway)
+merged = merge(chebi.to.cpd.name,chebi.to.pathway,by="chebi",all=F)
+head(merged)
+mapping.table = merged[,c("CompoundName","pathway.id")]
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+head(mapping.table)
+tail(mapping.table)
+save(mapping.table,file = paste(in.folder,"/CompoundName_pathway.id.RData",sep=""))
+
+# cpd name to pathwayCommons id
+chebi.to.pathwayCommons = paste(in.folder,"/chebi_pathwayCommons.RData",sep="")
+fn = load(chebi.to.pathwayCommons )
+head(mapping.list$compound$chebi_pathwayCommons)
+chebi.to.pathwayCommons = mapping.list$compound$chebi_pathwayCommons
+head(chebi.to.cpd.name)
+head(chebi.to.pathwayCommons)
+merged = merge(chebi.to.cpd.name,chebi.to.pathwayCommons,by="chebi",all=F)
+head(merged)
+mapping.table = merged[,c("CompoundName","pathwayCommons")]
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+head(mapping.table)
+tail(mapping.table)
+save(mapping.table,file = paste(in.folder,"/CompoundName_pathwayCommons.RData",sep=""))
+
+# cpd name to metacyc id
+chebi.to.metacyc = paste(in.folder,"/chebi_metacyc.SBGN.RData",sep="")
+fn = load(chebi.to.metacyc )
+head(mapping.list$compound$chebi_metacyc.SBGN)
+chebi.to.metacyc = mapping.list$compound$chebi_metacyc.SBGN
+head(chebi.to.cpd.name)
+head(chebi.to.metacyc)
+merged = merge(chebi.to.cpd.name,chebi.to.metacyc,by="chebi",all=F)
+head(merged)
+mapping.table = merged[,c("CompoundName","metacyc.SBGN")]
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+head(mapping.table)
+tail(mapping.table)
+save(mapping.table,file = paste(in.folder,"/CompoundName_metacyc.SBGN.RData",sep=""))
+
+
+
+```
+## for each species specific pathway, how many proteins does it have
+```{r}
+ko.to.pathway.file = "C:/xiaoxi/work/input/id.mapping/kegg/ko.to.pathway.tsv"
+download.file("http://rest.kegg.jp/link/ko/pathway",destfile = ko.to.pathway.file )
+all.ko.to.pathway = read.table(ko.to.pathway.file,header=F,stringsAsFactors = F,sep="\t")
+head(all.ko.to.pathway)
+pathway.ko.count = table(all.ko.to.pathway[,1])
+head(pathway.ko.count)
+tail(pathway.ko.count)
+
+
+all.species = read.table("C:/xiaoxi/work/input/id.mapping/kegg/kegg.ko.to.all.species.tsv",stringsAsFactors = F,header=F)
+head(all.species)
+all.species = unique(all.species[,1])
+length(all.species)
+
+out.all = matrix(ncol=4,nrow=0)
+out.all
+head(out.all)
+dim(out.all)
+
+for(i in 1:length(all.species)){
+        # i = 1
+        cat("\n\n",i)
+        print(all.species[i])
+        dlink = paste("http://rest.kegg.jp/link/",all.species[i],"/pathway",sep="")
+        loc.file = paste("C:/xiaoxi/work/input/id.mapping/kegg/kegg.species.to.gene/",all.species[i],".tsv")
+        cov.file = paste(loc.file,".pct.cover.tsv")
+        if(file.exists(cov.file)){
+                next()
+        }
+        if.downloaded = try(download.file(url = dlink,destfile = loc.file))
+        if(class(if.downloaded) == "try-error"){
+                next()
+        }
+        pathway.to.gene = read.table(loc.file,header=F,sep="\t",stringsAsFactors = F)
+        ct = table(pathway.to.gene[,1])
+        ct[ct==min(ct)]
+        ko.count.pathway = pathway.ko.count[gsub(all.species[i],"map",names(ct))]
+        percent.species.gene.vs.ko.in.pathway = ct/ko.count.pathway
+        out = data.frame(
+                pathway = names(ct)
+                ,n.gene.species.pathway = as.vector(ct)
+                ,n.ko.reference.pathway = as.vector(ko.count.pathway)
+                ,percent = as.vector(percent.species.gene.vs.ko.in.pathway)
+        )
+        out = out[order(out[,"percent"]),]
+        out.all = rbind(out.all,out)
+        write.table(out,cov.file,sep="\t",row.names=F)
+}
+
+write.table(out.all,"C:/xiaoxi/work/input/id.mapping/kegg/speciesPathwayMappedGene.refKo.numbers.tsv",sep="\t",row.names=F)
+
+head(out.all)
+species.info = gsub("[0-9]|path:","",as.character(out.all[,1]))
+head(species.info)
+head(out.all)
+dim(out.all)
+
+pathway.info = gsub("path:[a-z]+","map",as.character(out.all[,1]))
+head(pathway.info)
+out.all.backup = out.all
+out.all = out.all[!is.na(out.all[,"percent"]),]
+dim(out.all[is.na(out.all[,"percent"]),])
+
+max.cov.pathway = by(out.all,as.factor(pathway.info),
+                      function(df){
+                              max.percent.df = df[df[,"percent"] == max(df[,"percent"]),]
+                              max.percent.df = max.percent.df[1,]
+                      }
+              )
+max.cov.pathway[[1]]
+
+max.cov.pathway = do.call(rbind,max.cov.pathway )
+head(max.cov.pathway)
+                     
+
+min.gene = by(out.all,as.factor(species.info),
+              function(df){
+                      df[df[,"n.gene.species.pathway"] == min(df[,"n.gene.species.pathway"]),]
+              }
+              )
+min.gene = do.call(rbind,min.gene)
+min.gene = min.gene[order(min.gene[,"percent"]),]
+head(min.gene)
+range(min.gene[,2])
+write.table(min.gene,"C:/xiaoxi/work/input/id.mapping/kegg/pathways.with.minimum.cov.tsv",sep="\t",row.names=F)
+
+head(out.all[is.na(out.all[,4]),])
+
+min.cov = by(out.all,as.factor(species.info),
+              function(df){
+                      df[ df[,"percent"] == min(df[,"percent"]),]
+              }
+              )
+min.cov = do.call(rbind,min.cov)
+head(min.cov)
+min.cov[,4]
+range(min.cov[,2])
+```
+#number of kos mapped in each species-specific pathway
+```{r,number of kos mapped in each species-specific pathway}
+
+
+use.uniprot.species.info = function(){ # this method is not good. because some KOs have genes in a species but don't have uniprot in the species, thus lose information. examples: ko:K00002	ptr:741418;  http://rest.kegg.jp/conv/uniprot/ptr:741418+mmu:58810
+        # number of kos mapped in species specific pathway
+        load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/pathwayCommons_pathway.id.RData")
+        pathwayCommons_pathway.id.protein = pathwayCommons_pathway.id[grepl("Protein_",pathwayCommons_pathway.id[,"pathwayCommons"]),]
+        dim(pathwayCommons_pathway.id.protein)
+        pathwayCommons_pathway.id.protein = pathwayCommons_pathway.id.protein[!grepl("info",pathwayCommons_pathway.id.protein[,"pathwayCommons"]),]
+        dim(pathwayCommons_pathway.id.protein)
+        pathwayCommons_pathway.id.protein = pathwayCommons_pathway.id.protein[!grepl("Complex",pathwayCommons_pathway.id.protein[,"pathwayCommons"]),]
+        dim(pathwayCommons_pathway.id.protein)
+        pathwayCommons_pathway.id.protein = pathwayCommons_pathway.id.protein[!grepl("state",pathwayCommons_pathway.id.protein[,"pathwayCommons"]),]
+        dim(pathwayCommons_pathway.id.protein)
+        head(pathwayCommons_pathway.id.protein)
+        pathway.protein.count = table(pathwayCommons_pathway.id.protein[,"pathway.id"])
+        head(pathway.protein.count)
+        load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/pathwayCommons_UNIPROT.RData")
+        head(mapping.list$gene$pathwayCommons_UNIPROT)
+        uniprot.to.species = unique(mapping.list$gene$pathwayCommons_UNIPROT[,c("pathwayCommons","species")])
+        head(uniprot.to.species)
+        species.to.pathway = merge(uniprot.to.species,pathwayCommons_pathway.id.protein,by="pathwayCommons",all=F)
+        head(species.to.pathway)
+}
+
+ko.to.gene = read.table("C:/xiaoxi/work/input/id.mapping/kegg.related/kegg.ortholog.100.download.slice/kegg.ko.to.all.species.entrez.tsv",header=F,stringsAsFactors = F,quote="",sep="\t")
+head(ko.to.gene)
+ko.to.gene[,1] = gsub("ko:","",ko.to.gene[,1])
+species = strsplit(ko.to.gene[,2],":")
+species = do.call(rbind,species)
+head(species)
+species = species[,1]
+ko.to.species = data.frame(KO=ko.to.gene[,1],species = species,stringsAsFactors = F)
+dim(ko.to.species)
+ko.to.species = unique(ko.to.species)
+dim(ko.to.species)
+head(ko.to.species)
+
+
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/KO_pathway.id.RData")
+ko.to.pathway.id = mapping.table
+head(ko.to.pathway.id)
+dim(ko.to.pathway.id)
+ko.to.pathway.id = unique(ko.to.pathway.id)
+dim(ko.to.pathway.id)
+species.to.pathway = merge(ko.to.species,ko.to.pathway.id,by="KO",all=F)
+dim(species.to.pathway)
+species.to.pathway = unique(species.to.pathway)
+head(species.to.pathway)
+pathway.protein.count = table(ko.to.pathway.id[,"pathway.id"])
+head(pathway.protein.count)
+length(pathway.protein.count)
+
+# species.pathway.id = aggregate(
+#         species.to.pathway[,"pathwayCommons"]
+#         ,list(species = species.to.pathway[,"species"]
+#               ,pathway = species.to.pathway[,"pathway.id"]
+#               )
+#         ,length
+# )
+species.pathway = paste(species.to.pathway[,"pathway.id"],species.to.pathway[,"species"],sep="@")
+head(species.pathway)
+species.pathway.count = table(species.pathway)
+head(species.pathway.count)
+length(species.pathway.count)
+species.pathway.count.n = data.frame(pathway = as.character(names(species.pathway.count)),count = species.pathway.count,stringsAsFactors = F)
+head(species.pathway.count.n[!is.character(species.pathway.count.n$pathway),])
+head(class(as.character(names(species.pathway.count))))
+head(species.pathway.count.n$pathway)
+head(class(species.pathway.count.n$pathway))
+species.pathway.name = do.call(rbind,strsplit(species.pathway.count.n$pathway,"@"))
+head(species.pathway.name)
+
+pathway.protein.count.v = pathway.protein.count[species.pathway.name[,1]]
+head(pathway.protein.count.v)
+species.pathway.name = as.data.frame(species.pathway.name)
+
+species.pathway.id = species.pathway.name
+species.pathway.id$ref.pathway.protein.count = pathway.protein.count.v
+head(species.pathway.id)
+colnames(species.pathway.id) = c("pathway","species","ref.pathway.protein.count")
+pct.mapped.species.pathway = as.numeric(species.pathway.count) / pathway.protein.count.v
+head(pct.mapped.species.pathway)
+species.pathway.id$pct.mapped.species.pathway = pct.mapped.species.pathway
+species.pathway.id$species.pathway.protein.count = species.pathway.count
+species.pathway.id$ref.pathway.protein.count = pathway.protein.count.v
+head(species.pathway.id)
+head(species.pathway.id[species.pathway.id[,"species"] == "hsa",])
+min(species.pathway.id[species.pathway.id[,"species"] == "hsa","pct.mapped.species.pathway"])
+hist(species.pathway.id[species.pathway.id[,"species"] == "hsa","pct.mapped.species.pathway"])
+hist(species.pathway.id[species.pathway.id[,"species"] == "mmu","pct.mapped.species.pathway"])
+hist(species.pathway.id[species.pathway.id[,"species"] == "ptr","pct.mapped.species.pathway"])
+range(species.pathway.id[species.pathway.id[,"species"] == "mmu","pct.mapped.species.pathway"])
+range(species.pathway.id[species.pathway.id[,"species"] == "ptr","pct.mapped.species.pathway"])
+mean(species.pathway.id[species.pathway.id[,"species"] == "mmu","pct.mapped.species.pathway"])
+mean(species.pathway.id[species.pathway.id[,"species"] == "ptr","pct.mapped.species.pathway"])
+median(species.pathway.id[species.pathway.id[,"species"] == "mmu","pct.mapped.species.pathway"])
+median(species.pathway.id[species.pathway.id[,"species"] == "ptr","pct.mapped.species.pathway"])
+length(species.pathway.id[species.pathway.id[,"species"] == "mmu","pct.mapped.species.pathway"])
+length(species.pathway.id[species.pathway.id[,"species"] == "ptr","pct.mapped.species.pathway"])
+head(species.pathway.id)
+max(species.pathway.id$pct.mapped.species.pathway)
+hist(species.pathway.id$pct.mapped.species.pathway)
+pathway.species.pct_Mapped = species.pathway.id
+save(pathway.species.pct_Mapped,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
+
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
+head(pathway.species.pct_Mapped)
+pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"species"] == "hsa","pct.mapped.species.pathway"] = 1 # not all pathway nodes(pathwayCommons IDs) have uniprot, thus species information. This is why some human pathways don't have 100% completeness. Here we change them to 1 so cutoff filtering can work properly.
+min(pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"species"] == "hsa","pct.mapped.species.pathway"])
+head(pathway.species.pct_Mapped)
+hist(pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"species"] == "mmu","pct.mapped.species.pathway"])
+hist(pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"species"] == "hsa","pct.mapped.species.pathway"])
+range(pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"species"] == "hsa","pct.mapped.species.pathway"])
+save(pathway.species.pct_Mapped,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
+
+
+```
+### pathway specific cutoff for completeness
+```{r}
+load(file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
+head(pathway.species.pct_Mapped)
+# table(pathway.species.pct_Mapped[1:1000,"pathway"] )
+all.species = as.character(unique(pathway.species.pct_Mapped$species))
+length(all.species)
+head(all.species)
+
+# library(plyr)
+cutoff.to.fs = function(pathway.species.pct_Mapped.in){
+# pathway.species.pct_Mapped.in = pathway.species.pct_Mapped
+        pathway.species.pct_Mapped.in = as.data.frame(pathway.species.pct_Mapped.in,stringsAsDataframe= F)
+        head(pathway.species.pct_Mapped)
+        # colnames(pathway.species.pct_Mapped.in)[1] = "species"
+        out = matrix(ncol = 4,nrow = 0)
+        print(dim(pathway.species.pct_Mapped.in))
+        pathway.cutoff.anova = by(
+        # pathway.cutoff.anova = ddply(
+                pathway.species.pct_Mapped.in
+                ,as.factor(pathway.species.pct_Mapped.in$pathway)
+                ,function(df){
+                        covs = df$pct.mapped.species.pathway
+                        pathway.species = as.character(unique(df$species))
+                        head(pathway.species)
+                        length(pathway.species)
+                        head(covs)
+                        cutoffs = unique(covs)
+                        mean.covs = mean(covs)
+                        length(cutoffs)
+                        cutoffs = cutoffs[order(cutoffs)]
+                        if(length(cutoffs)<5){
+                                cutoff.anova = c(pathway = as.character(df$pathway[1])
+                                                 ,cutoff = mean.covs
+                                                 ,stat = paste("number of uniq coverage values:",length(unique(covs)),".  Not enough for anova analysis, using average coverage as cutoff",sep="")
+                                                 ,P=paste(c("uniq coverage values:",cutoffs),collapse = "\t")
+                                                 )
+                                out<<- rbind(out,t(cutoff.anova))
+                                return()
+                        }
+                        cutoffs = cutoffs[3:(length(cutoffs)-2)]
+                        head(cutoffs)
+                        
+                        cutoff.anova = sapply(cutoffs
+                               ,function(cutoff){
+                                        if.pathway.exist = rep("no",times=length(covs))
+                                        if.pathway.exist[covs>=cutoff] = "yes"
+                                        cutoff.assign = data.frame(cov = as.vector(covs), if.exist = if.pathway.exist,stringsAsFactors = F)
+                                        # cutoff.assign$cov = cutoff.assign$cov + runif(nrow(cutoff.assign),0,1)/1000000
+                                        cutoff.assign
+                                        tst = try(oneway.test(covs~if.exist,data=cutoff.assign,var.equal = T))
+                                        if(class(tst) == "try-error"){
+                                                print(head(df))
+                                                print(head(cutoff.assign))
+                                                print(dim(df))
+                                                print(cutoffs)
+                                                print(cutoff)
+                                                print(dim(cutoff.assign))
+                                                boxplot(cutoff.assign$cov ~ cutoff.assign$if.exist)
+                                                print(table(cutoff.assign$if.exist))
+                                                stop()
+                                        }
+                                        f.p = c(pathway = as.character(df$pathway[1]),cutoff = cutoff, stat = tst$statistic,P =tst$p.value)
+                                        f.p
+                                        return(f.p)
+                               }
+                               )
+                        out<<- rbind(out,t(cutoff.anova))
+                }
+        )
+        print(head(out))
+        dim(out)
+        return(out)
+}
+
+out = cutoff.to.fs(pathway.species.pct_Mapped)
+
+```
+
+
+
+Some pathways have <=4 unique coverage values across all species, we use the average values of coverage in all species as cutoff
+```{r}
+
+head(out)
+colnames(out)[3] = "stat.F"
+out.mean.as.cutoff= out[grepl("number",out[,"stat.F"]),]
+head(out.mean.as.cutoff)
+dim(out.mean.as.cutoff)
+```
+For pathways with enough unique coverages, we try every coverage value as cutoff to assign "exist" and "not exist" for all species-specific pathways, then use anova to calculate F statistics and P value for the difference between "exist" and "not exist" group under this cutoff. Then we select the cutoff that generates largest F value between the two groups.
+```{r}
+out.anova.as.cutoff = out[!grepl("number",out[,"stat.F"]),] 
+head(out.anova.as.cutoff)
+dim(out.anova.as.cutoff)
+cutoffs.to.anova.f = out.anova.as.cutoff
+save(cutoffs.to.anova.f,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/cutoffs.to.anova.f.RData")
+
+out.anova.max.F.as.cutoff = matrix(ncol=4,nrow=0)
+if.max.F = by(
+        as.data.frame(out.anova.as.cutoff,stringsAsFactors = F)
+        ,as.factor(out.anova.as.cutoff[,"pathway"])
+        ,function(df){
+                f.stats = as.numeric(df[,"stat.F"])
+                # print(f.stats)
+                if.max = f.stats == max(f.stats)
+                out.anova.max.F.as.cutoff <<- rbind(out.anova.max.F.as.cutoff
+                                                    ,as.vector(df[if.max,])
+                                                    )
+                
+        }
+)
+
+out.anova.max.F.as.cutoff[,2] = as.numeric(out.anova.max.F.as.cutoff[,2])
+out.anova.max.F.as.cutoff[,3] = as.numeric(out.anova.max.F.as.cutoff[,3])
+out.anova.max.F.as.cutoff[,4] = as.numeric(out.anova.max.F.as.cutoff[,4])
+head(out.anova.max.F.as.cutoff ) 
+dim(out.anova.max.F.as.cutoff ) 
+plot(density(out.anova.max.F.as.cutoff$cutoff),main = "Distribution of species-specific pathway completeness cutoffs")
+```
+Check if all cutoffs generate grouping that showed significant difference between the  "exist" and "not exist"  groups
+```{r}
+max(out.anova.max.F.as.cutoff$P)
+```
+Save all cutoff information
+```{r}
+all.cutoff.info = rbind(out.anova.max.F.as.cutoff,out.mean.as.cutoff)
+all.cutoff.info = as.data.frame(all.cutoff.info)
+all.cutoff.info[,"cutoff"] = as.numeric( all.cutoff.info[,"cutoff"])
+colnames(all.cutoff.info)[3:4] = c("ANOVA.F.stat","ANOVA.P")
+head(all.cutoff.info)
+pathway.completeness.cutoff.info = all.cutoff.info
+plot(density(all.cutoff.info$cutoff),main = "Distribution of species-specific pathway completeness cutoffs.all")
+save(pathway.completeness.cutoff.info,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.completeness.cutoff.info.RData")
+load( "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.completeness.cutoff.info.RData")
+```
+
+Some pathways have many(sometimes all) species-specific pathways with 100% completeness, take a look at them.
+```{r}
+large.cutoff.value = all.cutoff.info[all.cutoff.info$cutoff > 0.9,]
+head(large.cutoff.value)
+dim(large.cutoff.value)
+species.info = pathway.species.pct_Mapped[pathway.species.pct_Mapped[,"pathway"] %in% large.cutoff.value[,"pathway"],]
+head(species.info)
+n.species = table(as.character(species.info[,"pathway"]))
+head(n.species)
+plot(density(n.species),main = "Number of species where pathways with large cutoff are detected")
+plot(hist(n.species),main = "Number of species where pathways with large cutoff are detected")
+plot(hist(n.species[n.species>1],breaks = seq(1,max(n.species),by=5)),main = "Number of species where pathways with large cutoff are detected")
+
+# library(ggplot2)
+# p = qplot(n.species[n.species>1]
+p = qplot(n.species
+      ,geom="histogram"
+      ,binwidth = 1
+      ,main = "Number of species where pathways with large cutoff are detected(completeness >0)\n Pathways with large cutoff(>0.9): they have large average completeness and small variation of completeness across species"
+      ,ylab = "count"
+      )+ scale_y_log10() #+ scale_x_log10()
+print(p)
+
+table(as.character(n.species))
+sum(table(as.character(n.species)))
+head(n.species)
+max(n.species)
+n.species[pathway.largest.species.n]
+
+sum(n.species>0)
+pathway.largest.species.n = names(n.species)[n.species == max(n.species)]
+pathway.largest.species.n
+head(species.info[species.info[,"pathway"] == pathway.largest.species.n,])
+dim(species.info[species.info[,"pathway"] == pathway.largest.species.n,])
+range(species.info[species.info[,"pathway"] == pathway.largest.species.n,"pct.mapped.species.pathway"])
+length(unique((species.info[species.info[,"pathway"] == pathway.largest.species.n,"species"])))
+head(unique((as.character(species.info[species.info[,"pathway"] == pathway.largest.species.n,"species"]))))
+length(unique((as.character(species.info[species.info[,"pathway"] == pathway.largest.species.n,"species"]))))
+```
+
+
+
+
+### predict pathway using ape::ace
+```{r,ace}
+library(ape)
+data(bird.orders)
+x <- rnorm(23)
+class(bird.orders)
+bird.orders
+bird.orders$tip.label
+str(bird.orders)
+ace(x, bird.orders)
+
+
+# how to map kegg genome code to species tree:
+# from https://www.genome.jp/kegg/catalog/org_list4.html, get all taxa ids. result: "kegg.all.phyliptree.phy"
+# use taxa ids to generate tree: https://www.ncbi.nlm.nih.gov/Taxonomy/CommonTree/wwwcmt.cgi
+# ape's read.tree won't recogonize the taxa nmes in the file downloaded directly, because the names were quoted with'
+# change the following characters in "kegg.all.phyliptree.phy" before use "read.tree", otherwise spece will be removed by "ape": remove ' ()in taxa names; change space " " to "_". then read the tree. result: a tree object with modified name: all.kegg.tre
+
+# map the taxa names in the tree file to taxa id using: https://www.ncbi.nlm.nih.gov/Taxonomy/TaxIdentifier/tax_identifier.cgi . some taxa names won't be recogonized by this website, so need to handle manually: result: names.all.phyliptree.to.id.txt
+# manually modify names.all.phyliptree.to.id.txt, so it will be same as the modified names in the tree object all.kegg.tre. result: ncbi.name.to.id with modified name
+# use ncbi.name.to.id to map tip labels in all.kegg.tre to ncbi id
+# use kegg webpage to map kegg code to ncbi id: https://www.genome.jp/kegg/tool/map_taxonomy.html: result:
+
+
+
+# change the following characters in "kegg.all.phyliptree.phy" before use "read.tree", otherwise spece will be removed by "ape": remove ' ()in taxa names; change space " " to "_". then read the tree. result: a tree object with modified name: all.kegg.tre
+library(ape)
+all.kegg.tre = read.tree(file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/trees/kegg.all.phyliptree.phy")
+str(all.kegg.tre)
+head(all.kegg.tre$edge)
+head(all.kegg.tre$tip.label)
+tail(all.kegg.tre$tip.label)
+tail(all.kegg.tre$node.label)
+table(all.kegg.tre$tip.label)
+tip.labels = all.kegg.tre$tip.label
+
+# input.kegg =  read.table(file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/trees/kegg.taxa.names.to.ids.txt",sep="\t",stringsAsFactors = F,quote="",header=F)
+# head(input.kegg)
+# input.kegg.taxa.names.tr = gsub(" ","_",input.kegg[,1])
+# input.kegg.taxa.names.tr = gsub("\\(.+\\)","",input.kegg.taxa.names.tr,perl=T)
+# input.kegg.taxa.names.tr = gsub("_+","_",input.kegg.taxa.names.tr,perl=T)
+# input.kegg.taxa.names.tr = gsub("\\[","",input.kegg.taxa.names.tr,perl=T)
+# input.kegg.taxa.names.tr = gsub("\'","",input.kegg.taxa.names.tr,perl=T)
+# input.kegg.taxa.names.tr = gsub("\\]","",input.kegg.taxa.names.tr,perl=T)
+# input.kegg.taxa.names.tr[grepl("haematococca",input.kegg.taxa.names.tr,ignore.case = T)]
+# input.kegg[grepl("oleophilus",input.kegg[,1],ignore.case = T),]
+# input.kegg.taxa.names.tr[grepl("oleophilus",input.kegg.taxa.names.tr,ignore.case = T)]
+# tip.labels[grepl("oleophilus",tip.labels,ignore.case = T)]
+# length(intersect(input.kegg.taxa.names.tr,all.kegg.tre$tip.label))
+# length(input.kegg.taxa.names.tr)
+# head(setdiff(all.kegg.tre$tip.label,input.kegg.taxa.names.tr))
+
+# map the taxa names in the tree file to taxa id using: https://www.ncbi.nlm.nih.gov/Taxonomy/TaxIdentifier/tax_identifier.cgi . some taxa names won't be recogonized by this website, so need to handle manually: result: names.all.phyliptree.to.id.txt
+## extract names
+fileName <- 'C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/trees/kegg.all.phyliptree.phy'
+all.kegg.tre = readChar(fileName, file.info(fileName)$size)
+head(all.kegg.tre)
+length(all.kegg.tre)
+all.kegg.tre[1]
+all.kegg.tre = strsplit(all.kegg.tre,"'")[[1]]
+length(all.kegg.tre)
+head(all.kegg.tre)
+tail(all.kegg.tre)
+t.names = all.kegg.tre[seq(2,(length(all.kegg.tre)-1),by=2)]
+head(t.names)
+tail(t.names)
+write.table(t.names,"C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/trees/names.all.phyliptree.phy",col.names = F,row.names = F,quote=F,sep="\t")
+# use ncbi to map taxa names to ids
+ncbi.name.to.id =  read.table(file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/trees/names.all.phyliptree.to.id.txt",sep="\t",stringsAsFactors = F,quote="",header=T)
+head(ncbi.name.to.id)
+length(setdiff(tip.labels,ncbi.name.to.id[,1]))
+head(setdiff(tip.labels,ncbi.name.to.id[,1]))
+setdiff(tip.labels,ncbi.name.to.id[,1])
+
+library(stringr)
+# kegg.three.letters code to taxa id: use: https://www.genome.jp/kegg/tool/map_taxonomy.html.  Download htext. RESULT: 
+kegg.code.to.taxa =  scan(file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/trees/kegg.code.to.ncbi.id.keg",sep="\n",quote="",comment.char = "",what="character")
+head(kegg.code.to.taxa)
+
+kegg.code.to.taxa.out = matrix(ncol=2,nrow=0)
+for(i in 1:length(kegg.code.to.taxa)){
+        if(grepl("TAX:",kegg.code.to.taxa[i])){
+                taxa.string = kegg.code.to.taxa[i]
+                tax.id = str_extract(taxa.string,"\\[TAX:(.+)\\]")
+                tax.id = gsub("\\[TAX:","",tax.id)
+                tax.id = gsub("\\]","",tax.id)
+                tax.id
+                tax.rank = str_split(taxa.string,"\\s+",n=2)[[1]][1]
+                tax.rank
+                tax.rank.children = toupper(letters)[which(toupper(letters) == tax.rank)+1]
+                tax.rank.children
+                for(j in (i+1):length(kegg.code.to.taxa)){
+                        child.string = kegg.code.to.taxa[j]
+                        child.rank = str_split(child.string,"\\s+",n=2)[[1]][1]
+                        if(child.rank == tax.rank.children){
+                                child.code = str_split(child.string,"\\s+",n=3)[[1]][2]
+                                child.code
+                                tax.id
+                                kegg.code.to.taxa.out = rbind(kegg.code.to.taxa.out,c(child.code,tax.id))
+                        }else{
+                                break()
+                        }
+                }
+        }
+}
+head(kegg.code.to.taxa.out)
+class(kegg.code.to.taxa.out[,1])
+class(kegg.code.to.taxa.out[,2])
+class(ncbi.name.to.id[,2])
+dim(kegg.code.to.taxa.out)
+colnames(kegg.code.to.taxa.out) = c("kegg.code","taxa.id")
+write.table(kegg.code.to.taxa.out,"C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/trees/kegg.code.to.taxa",row.names = F,quote=F,sep="\t")
+
+head(ncbi.name.to.id)
+ncbi.name.to.id$taxid = as.character(ncbi.name.to.id$taxid)
+kegg.code.to.ncbi.name = merge(kegg.code.to.taxa.out,ncbi.name.to.id,by.x="taxa.id",by.y = "taxid",all.y=T)
+head(kegg.code.to.ncbi.name)
+row.names(kegg.code.to.ncbi.name) = kegg.code.to.ncbi.name[,"name"]
+
+# check orthologs in human, mouse and chimpanzee
+ko.to.uniprot = read.table("C:/xiaoxi/work/input/id.mapping/kegg.related/kegg.ortholog.100.download.slice/uniprot.to.ko.tsv",header=T,stringsAsFactors = F,sep="\t")
+head(ko.to.uniprot)
+human.kos = unique(ko.to.uniprot[ko.to.uniprot[,"species"]=="hsa",][,"ko"])
+head(human.kos)
+length(human.kos)
+human.kos.three.species = unique(ko.to.uniprot[ko.to.uniprot[,"species"] %in% c("ptr","hsa","mmu") & ko.to.uniprot[,"ko"] %in% human.kos,2:3])
+head(human.kos.three.species)
+table(human.kos.three.species[,"species"])
+
+
+
+# # load saved kegg taxa name to id, note: this name is species name, which could be different from the name in the following "3letters to name" mapping(which is genome name)
+# kegg.name.to.taxa.id =  read.table(file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/trees/kegg.taxa.names.to.ids.txt",sep="\t",stringsAsFactors = F,quote="",header=F)
+# colnames(kegg.name.to.taxa.id) = c("name","taxa.id")
+# head(kegg.name.to.taxa.id)
+# 
+# kegg.3letters.to.name =  read.table(file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/trees/kegg.taxa.3letters.to.name.txt",sep="\t",stringsAsFactors = F,quote="",header=T)
+# kegg.3letters.to.name$name = gsub(" $","",kegg.3letters.to.name$name)
+# head(kegg.3letters.to.name)
+# dim(kegg.3letters.to.name)
+# dim(kegg.name.to.taxa.id)
+# head(kegg.name.to.taxa.id)
+# head(kegg.name.to.taxa.id$name)
+# length(setdiff(kegg.3letters.to.name$name,kegg.name.to.taxa.id$name))
+# head(setdiff(kegg.3letters.to.name$name,kegg.name.to.taxa.id$name))
+# read.tree(file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/trees/kegg.commontree.txt")
+
+```
+# Check shared UNIPROT protein sets
+We think many of the pathwayCommons
+
+
+
+
+
+
+
+
