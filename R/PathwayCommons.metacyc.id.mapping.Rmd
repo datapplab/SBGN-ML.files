@@ -763,6 +763,42 @@ mapped.ids
 save(mapped.ids,file="../data/mapped.ids.RData ")
 ```
 # Molecule ID to pathway IDs
+## metacyc node id to pathway id
+```{r 2019_1_10}
+library(SBGNview)
+data("pathways.info")
+head(pathways.info)
+if.metacyc = pathways.info$database == "MetaCyc"
+sum(if.metacyc)
+metacyc.ids = pathways.info$pathway.id[if.metacyc]
+head(metacyc.ids)
+result.list = sbgn.nodes(
+                input.sbgn = metacyc.ids
+                ,sbgn.folder = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/SBGN/MetaCyc" )
+
+for (i in 1:length(result.list)){
+        i=1
+        all.nodes = result.list[[i]]$all.nodes
+        all.nodes = all.nodes[all.nodes[,"class"] %in% c("macromolecule","simple chemical"),]
+        head(all.nodes)
+        # I didn't generate metacyc to pathway.id, now generate this:
+        metacyc.pathways = strsplit(as.character(all.nodes[,"id"],":@:"))
+        metacyc.pathways = do.call(rbind,metacyc.pathways)
+        metacyc.pathways = cbind(as.character(input.to.metacyc[,"node.id"]),metacyc.pathways)
+        metacyc.pathways = metacyc.pathways[,c(1,3)]
+        colnames(metacyc.pathways) = c("metacyc.SBGN","pathway.id")
+        head(metacyc.pathways)
+        mapping.table = metacyc.pathways
+        head(mapping.table)
+        tail(mapping.table)
+        save(mapping.table,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/metacyc.SBGN_pathway.id.RData")
+
+}
+
+```
+
+
+
 ```{r}
 
 in.folder = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both"
