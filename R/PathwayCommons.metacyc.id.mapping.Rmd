@@ -1353,15 +1353,15 @@ tip.labels = all.kegg.tre$tip.label
 # map the taxa names in the tree file to taxa id using: https://www.ncbi.nlm.nih.gov/Taxonomy/TaxIdentifier/tax_identifier.cgi . some taxa names won't be recogonized by this website, so need to handle manually: result: names.all.phyliptree.to.id.txt
 ## extract names
 fileName <- 'C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/trees/kegg.all.phyliptree.phy'
-all.kegg.tre = readChar(fileName, file.info(fileName)$size)
-head(all.kegg.tre)
-length(all.kegg.tre)
-all.kegg.tre[1]
-all.kegg.tre = strsplit(all.kegg.tre,"'")[[1]]
-length(all.kegg.tre)
-head(all.kegg.tre)
-tail(all.kegg.tre)
-t.names = all.kegg.tre[seq(2,(length(all.kegg.tre)-1),by=2)]
+all.kegg.tre.char = readChar(fileName, file.info(fileName)$size)
+head(all.kegg.tre.char)
+length(all.kegg.tre.char)
+all.kegg.tre.char[1]
+all.kegg.tre.char = strsplit(all.kegg.tre.char,"'")[[1]]
+length(all.kegg.tre.char)
+head(all.kegg.tre.char)
+tail(all.kegg.tre.char)
+t.names = all.kegg.tre.char[seq(2,(length(all.kegg.tre.char)-1),by=2)]
 head(t.names)
 tail(t.names)
 write.table(t.names,"C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/trees/names.all.phyliptree.phy",col.names = F,row.names = F,quote=F,sep="\t")
@@ -1404,6 +1404,8 @@ for(i in 1:length(kegg.code.to.taxa)){
         }
 }
 head(kegg.code.to.taxa.out)
+head(ncbi.name.to.id)
+head(all.kegg.tre$tip.label)
 class(kegg.code.to.taxa.out[,1])
 class(kegg.code.to.taxa.out[,2])
 class(ncbi.name.to.id[,2])
@@ -1414,18 +1416,20 @@ write.table(kegg.code.to.taxa.out,"C:/xiaoxi/work/papers/SBGNview/package/SBGN-M
 head(ncbi.name.to.id)
 ncbi.name.to.id$taxid = as.character(ncbi.name.to.id$taxid)
 kegg.code.to.ncbi.name = merge(kegg.code.to.taxa.out,ncbi.name.to.id,by.x="taxa.id",by.y = "taxid",all.y=T)
+dim(kegg.code.to.ncbi.name)
+# kegg.code.to.ncbi.name = kegg.code.to.ncbi.name[!duplicated(kegg.code.to.ncbi.name$name),]
+dim(kegg.code.to.ncbi.name)
 head(kegg.code.to.ncbi.name)
 row.names(kegg.code.to.ncbi.name) = kegg.code.to.ncbi.name[,"name"]
+str(all.kegg.tre)
+head(all.kegg.tre$edge)
+head(all.kegg.tre$tip.label)
+tail(all.kegg.tre$tip.label)
+tail(all.kegg.tre$node.label)
+table(all.kegg.tre$tip.label)
+length(setdiff(tip.labels,kegg.code.to.ncbi.name$name))
+length(setdiff(kegg.code.to.ncbi.name$name,tip.labels))
 
-# check orthologs in human, mouse and chimpanzee
-ko.to.uniprot = read.table("C:/xiaoxi/work/input/id.mapping/kegg.related/kegg.ortholog.100.download.slice/uniprot.to.ko.tsv",header=T,stringsAsFactors = F,sep="\t")
-head(ko.to.uniprot)
-human.kos = unique(ko.to.uniprot[ko.to.uniprot[,"species"]=="hsa",][,"ko"])
-head(human.kos)
-length(human.kos)
-human.kos.three.species = unique(ko.to.uniprot[ko.to.uniprot[,"species"] %in% c("ptr","hsa","mmu") & ko.to.uniprot[,"ko"] %in% human.kos,2:3])
-head(human.kos.three.species)
-table(human.kos.three.species[,"species"])
 
 
 

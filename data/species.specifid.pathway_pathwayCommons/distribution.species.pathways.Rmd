@@ -16,6 +16,19 @@ d1 = load( "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.sp
 d1
 d2 = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
 d2
+species.pathway.id = pathway.species.pct_Mapped
+head(species.pathway.id[species.pathway.id[,"species"] == "hsa",])
+min(species.pathway.id[species.pathway.id[,"species"] == "hsa","pct.mapped.species.pathway"])
+range(species.pathway.id[species.pathway.id[,"species"] == "mmu","pct.mapped.species.pathway"])
+range(species.pathway.id[species.pathway.id[,"species"] == "ptr","pct.mapped.species.pathway"])
+mean(species.pathway.id[species.pathway.id[,"species"] == "mmu","pct.mapped.species.pathway"])
+mean(species.pathway.id[species.pathway.id[,"species"] == "ptr","pct.mapped.species.pathway"])
+median(species.pathway.id[species.pathway.id[,"species"] == "mmu","pct.mapped.species.pathway"])
+median(species.pathway.id[species.pathway.id[,"species"] == "ptr","pct.mapped.species.pathway"])
+length(species.pathway.id[species.pathway.id[,"species"] == "mmu","pct.mapped.species.pathway"])
+length(species.pathway.id[species.pathway.id[,"species"] == "ptr","pct.mapped.species.pathway"])
+
+d2
 head(pathway.completeness.cutoff.info)
 head(pathway.species.pct_Mapped)
 ```
@@ -166,7 +179,9 @@ p = ggplot(data=selected.pathways
         coord_flip()+scale_y_log10() +scale_x_discrete(position = "top") +
         ylim(0,max(selected.pathways$count))
 print(p)
+# selected.pathways
 ```
+In these examples, the most narrowly distributed pathways are mostly signaling pathways. The most widely distributed pathways are the ones involved in basic metabolism processes.
 
 
 ## The species where the most narrowly distributed pathways are found:
@@ -180,7 +195,38 @@ tapply(sl$species,as.factor(sl$DISPLAY_NAME)
 )
 ```
 
-In these examples, the most narrowly distributed pathways are mostly signaling pathways. The most widely distributed pathways are the ones involved in basic metabolism processes.
+Check what happened to the most narrowly distributed pathway "mineralocorticoid biosynthesis: MetaCyc PWY66-382"
+```{r,PWY66-382,echo=FALSE,message=FALSE}
+narrow = species.pathway.id[species.pathway.id[,"pathway"] == "PWY66-382",]
+narrow = narrow[order(narrow[,"pct.mapped.species.pathway"],decreasing=T),]
+ggplot(narrow,aes(pct.mapped.species.pathway)) +geom_bar(position="stack") + xlab("pathway completeness: fraction") +ylab("number of pathways") + ggtitle("pathway completeness distribution: PWY66-382. This pathway has 2 KOs. \n Completeness 0.5 means one KO is detected in a species and\n the other KO (K07433) is missing.")
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/mapping.each.pair/for.use.all/both/KO_pathway.id.RData")
+ko.to.pathway.id = mapping.table
+ko.to.pathway.id[,"pathway.id"] = as.character(ko.to.pathway.id[,"pathway.id"])
+ko.to.pathway.id[,"KO"] = as.character(ko.to.pathway.id[,"KO"])
+narrow.path.ko = with(ko.to.pathway.id,KO[pathway.id=="PWY66-382"])
+```
+
+
+It looks like this pathway has only two KOs. One of the KO (K07433) is missing in a lot of species.
+
+```{r,message=FALSE}
+read.table("http://rest.kegg.jp/link/genes/K07433")
+```
+K07433 was only detected in 6 species, according to KEGG ortholog definition. This is why the pathway is predicted to exist in only 5 species( the other KO:K00513 is missing in pps, so it is 5=6-1)
+
+KEGG doesn't have this pathway.
+In MetaCyc, it is annotated to exist in Mammalia:
+https://biocyc.org/META/NEW-IMAGE?type=PATHWAY&object=PWY66-382
+In reactome, this pathway is annotated in many other species, as distant as Saccharomyces cerevisiae
+https://reactome.org/content/detail/R-HSA-193993
+It doesn't make much sense that S.cerevisiae has this pathway because "Mineralocorticoids are a class of corticosteroids, which in turn are a class of steroid hormones. Mineralocorticoids are produced in the adrenal cortex and influence salt and water balances."
+
+So species-specific pathway prediction is affected by ortholog prediction:
+KEGG's BlastKOALA only uses sequence similarity but reactome's Compara fits similarity network of proteins to species tree. 
+It looks like MetaCyc's species distribution (Mammalia) makes more sense. 
+
+To solve this issue, maybe I can try different ortholog annotation databases/algorithms
 
 
 ```{r,Angiogenesis,eval=FALSE, echo=FALSE,message=FALSE}
