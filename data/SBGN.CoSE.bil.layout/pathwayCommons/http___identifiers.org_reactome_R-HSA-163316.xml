@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="mitochondrial_matrix" if.within.compartment="">
+      <label text="mitochondrial matrix"/>
+      <bbox w="196.625858492431" h="229.443001936566" x="100" y="183"/>
+    </glyph>
+    <glyph class="complex" id="Complex_145c9bd1908c95a0922a54e5092d4a80" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+      <label text="mTERF:mitochondrial transcription termination sequence"/>
+      <bbox w="75.9333333333333" h="93.0166666666664" x="209.692525159098" y="308.4263352699"/>
+      <glyph class="unspecified entity" id="PhysicalEntity_4a2311622a3ca3f10b21da78f6aa255e_Complex_145c9bd1908c95a0922a54e5092d4a80" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+        <label text="mitochondrial transcription termination sequence"/>
+        <bbox w="58.3333333333333" h="33.3333333333333" x="218.492525159098" y="359.309668603233"/>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_36004edc434bf6b0f849efc787c93b65_Complex_145c9bd1908c95a0922a54e5092d4a80" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+        <label text="MTERF1"/>
+        <bbox w="58.3333333333333" h="33.3333333333333" x="218.492525159098" y="317.2263352699"/>
+        <glyph class="state variable" id="Protein_36004edc434bf6b0f849efc787c93b65_Complex_145c9bd1908c95a0922a54e5092d4a80.info.1" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+          <state value="x[58 - 399]"/>
+          <bbox w="29.1666666666667" h="14.5833333333333" x="218.492525159098" y="309.934668603233"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_36004edc434bf6b0f849efc787c93b65" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+      <label text="MTERF1"/>
+      <bbox w="58.3333333333333" h="33.3333333333333" x="128.919803572574" y="282.535300155297"/>
+      <glyph class="state variable" id="Protein_36004edc434bf6b0f849efc787c93b65.info.1" if.within.compartment="">
+        <state value="x[58 - 399]"/>
+        <bbox w="29.1666666666667" h="14.5833333333333" x="128.919803572574" y="275.24363348863"/>
+      </glyph>
+    </glyph>
+    <glyph class="unspecified entity" id="PhysicalEntity_4a2311622a3ca3f10b21da78f6aa255e" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+      <label text="mitochondrial transcription termination sequence"/>
+      <bbox w="58.3333333333333" h="33.3333333333333" x="111" y="194"/>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-163320_LEFT_TO_RIGHT" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+      <bbox w="16.6666666666667" h="16.6666666666667" x="234.848465981551" y="234.589471212752"/>
+    </glyph>
+    <arc class="production" id="reactome_R-HSA-163320_LEFT_TO_RIGHT-output--to--Complex_145c9bd1908c95a0922a54e5092d4a80" source="reactome_R-HSA-163320_LEFT_TO_RIGHT" target="Complex_145c9bd1908c95a0922a54e5092d4a80">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Protein_36004edc434bf6b0f849efc787c93b65--to--reactome_R-HSA-163320_LEFT_TO_RIGHT-input" source="Protein_36004edc434bf6b0f849efc787c93b65" target="reactome_R-HSA-163320_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="PhysicalEntity_4a2311622a3ca3f10b21da78f6aa255e--to--reactome_R-HSA-163320_LEFT_TO_RIGHT-input" source="PhysicalEntity_4a2311622a3ca3f10b21da78f6aa255e" target="reactome_R-HSA-163320_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="reactome_R-HSA-163320_LEFT_TO_RIGHT--to--Complex_145c9bd1908c95a0922a54e5092d4a80" source="reactome_R-HSA-163320_LEFT_TO_RIGHT" target="Complex_145c9bd1908c95a0922a54e5092d4a80" class="production">
+<source.arc start.x="244" start.y="263" end.x="243" end.y="251" class="consumption"/>
+
+
+<spline s.x="245.000000"  s.y="308.000000" c1.x="244.000000" c1.y="287.000000" c2.x="244.000000" c2.y="263.000000" e.x="243.000000"  e.y="251.000000" />
+<target.arc start.x="244" start.y="287" end.x="245" end.y="308" class="production"/>
+
+</arc.spline>
+<arc.spline id="Protein_36004edc434bf6b0f849efc787c93b65--to--reactome_R-HSA-163320_LEFT_TO_RIGHT" source="Protein_36004edc434bf6b0f849efc787c93b65" target="reactome_R-HSA-163320_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="200" start.y="271" end.x="183" end.y="282" class="consumption"/>
+
+
+<spline s.x="183.000000"  s.y="282.000000" c1.x="200.000000" c1.y="271.000000" c2.x="222.000000" c2.y="256.000000" e.x="234.000000"  e.y="248.000000" />
+<target.arc start.x="222" start.y="256" end.x="234" end.y="248" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="PhysicalEntity_4a2311622a3ca3f10b21da78f6aa255e--to--reactome_R-HSA-163320_LEFT_TO_RIGHT" source="PhysicalEntity_4a2311622a3ca3f10b21da78f6aa255e" target="reactome_R-HSA-163320_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="191" start.y="226" end.x="169" end.y="219" class="consumption"/>
+
+
+<spline s.x="169.000000"  s.y="219.000000" c1.x="191.000000" c1.y="226.000000" c2.x="220.000000" c2.y="235.000000" e.x="234.000000"  e.y="240.000000" />
+<target.arc start.x="220" start.y="235" end.x="234" end.y="240" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>mitochondrial_matrix-compartment.layer.info-mitochondrial_matrix-compartment.layer.info-Complex_145c9bd1908c95a0922a54e5092d4a80-compartment.layer.info-PhysicalEntity_4a2311622a3ca3f10b21da78f6aa255e_Complex_145c9bd1908c95a0922a54e5092d4a80-compartment.layer.info-Protein_36004edc434bf6b0f849efc787c93b65_Complex_145c9bd1908c95a0922a54e5092d4a80-compartment.layer.info-Protein_36004edc434bf6b0f849efc787c93b65-compartment.layer.info-PhysicalEntity_4a2311622a3ca3f10b21da78f6aa255e-compartment.layer.info-reactome_R-HSA-163320_LEFT_TO_RIGHT</compartment.layer.info>
+</sbgn>

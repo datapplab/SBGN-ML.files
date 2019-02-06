@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cell_membrane" if.within.compartment="">
+      <label text="cell membrane"/>
+      <bbox w="55.3333333333333" h="55.3333333333333" x="239.634898768075" y="217.470992777367"/>
+    </glyph>
+    <glyph class="compartment" id="early_endosome_membrane" if.within.compartment="">
+      <label text="early endosome membrane"/>
+      <bbox w="130.449518013321" h="67.2944015080977" x="100" y="183"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_d3d67eacb557346342139baa754df4b2" compartmentRef="early_endosome_membrane" if.within.compartment="">
+      <label text="PI(3,4)P2"/>
+      <bbox w="33.3333333333333" h="33.3333333333333" x="111" y="194"/>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-1675834_LEFT_TO_RIGHT" compartmentRef="early_endosome_membrane" if.within.compartment="">
+      <bbox w="16.6666666666667" h="16.6666666666667" x="202.782851346654" y="222.627734841431"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_decbc12aab9e9e7ca5ac15180bbfa597" compartmentRef="cell_membrane" if.within.compartment="">
+      <label text="PI(3,4)P2"/>
+      <bbox w="33.3333333333333" h="33.3333333333333" x="250.634898768075" y="228.470992777367"/>
+    </glyph>
+    <arc class="production" id="reactome_R-HSA-1675834_LEFT_TO_RIGHT-output--to--SmallMolecule_d3d67eacb557346342139baa754df4b2" source="reactome_R-HSA-1675834_LEFT_TO_RIGHT" target="SmallMolecule_d3d67eacb557346342139baa754df4b2">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_decbc12aab9e9e7ca5ac15180bbfa597--to--reactome_R-HSA-1675834_LEFT_TO_RIGHT-input" source="SmallMolecule_decbc12aab9e9e7ca5ac15180bbfa597" target="reactome_R-HSA-1675834_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="reactome_R-HSA-1675834_LEFT_TO_RIGHT--to--SmallMolecule_d3d67eacb557346342139baa754df4b2" source="reactome_R-HSA-1675834_LEFT_TO_RIGHT" target="SmallMolecule_d3d67eacb557346342139baa754df4b2" class="production">
+<source.arc start.x="188" start.y="225" end.x="202" end.y="228" class="consumption"/>
+
+
+<spline s.x="144.000000"  s.y="214.000000" c1.x="162.000000" c1.y="219.000000" c2.x="188.000000" c2.y="225.000000" e.x="202.000000"  e.y="228.000000" />
+<target.arc start.x="162" start.y="219" end.x="144" end.y="214" class="production"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_decbc12aab9e9e7ca5ac15180bbfa597--to--reactome_R-HSA-1675834_LEFT_TO_RIGHT" source="SmallMolecule_decbc12aab9e9e7ca5ac15180bbfa597" target="reactome_R-HSA-1675834_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="240" start.y="238" end.x="250" end.y="240" class="consumption"/>
+
+
+<spline s.x="219.000000"  s.y="233.000000" c1.x="228.000000" c1.y="235.000000" c2.x="240.000000" c2.y="238.000000" e.x="250.000000"  e.y="240.000000" />
+<target.arc start.x="228" start.y="235" end.x="219" end.y="233" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>early_endosome_membrane-compartment.layer.info-cell_membrane</compartment.layer.info>
+</sbgn>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="extracellular" if.within.compartment="">
+      <label text="extracellular"/>
+      <bbox w="55.3333333333333" h="55.3333333333333" x="100" y="183"/>
+    </glyph>
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="128.111706898928" h="153.22878064045" x="116.898584266872" y="243.595492310338"/>
+    </glyph>
+    <glyph class="compartment" id="cell_membrane" if.within.compartment="">
+      <label text="cell membrane"/>
+      <bbox w="298.377800152239" h="176.029719307238" x="248.615518726567" y="221.623895468842"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_0a8ac9225734ecc718d94139e1b6ce63" compartmentRef="extracellular" if.within.compartment="">
+      <label text="K+"/>
+      <bbox w="33.3333333333333" h="33.3333333333333" x="111" y="194"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_e0b0ad9940895760e44e630914906220" compartmentRef="cytosol" if.within.compartment="">
+      <label text="K+"/>
+      <bbox w="33.3333333333333" h="33.3333333333333" x="192.912598734803" y="352.490939617455"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_c23dbeeaaf1bbf19bbf385f78c5d5362" compartmentRef="cytosol" if.within.compartment="">
+      <label text="ATP"/>
+      <bbox w="33.3333333333333" h="33.3333333333333" x="200.676957832467" y="254.595492310338"/>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-5577050_LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="16.6666666666667" h="16.6666666666667" x="127.898584266872" y="301.4432860665"/>
+    </glyph>
+    <glyph class="complex" id="Complex_393ed44510e83f8ce07cc7b1553a61f3" compartmentRef="cell_membrane" if.within.compartment="">
+      <label text="ATP sensitive K+ channels-inwardly rectifying (SUR1)"/>
+      <bbox w="75.9333333333333" h="93.0166666666673" x="460.059985545473" y="293.636948109413"/>
+      <glyph class="macromolecule" id="Protein_a003163200d5b4cf77239e74581a3763_Complex_393ed44510e83f8ce07cc7b1553a61f3" compartmentRef="cell_membrane" if.within.compartment="">
+        <label text="ABCC8"/>
+        <bbox w="58.3333333333333" h="33.3333333333333" x="468.859985545473" y="302.436948109413"/>
+        <glyph class="state variable" id="Protein_a003163200d5b4cf77239e74581a3763_Complex_393ed44510e83f8ce07cc7b1553a61f3.info.1" compartmentRef="cell_membrane" if.within.compartment="">
+          <state value="x[2 - 1581]"/>
+          <bbox w="29.1666666666667" h="14.5833333333333" x="468.859985545473" y="295.145281442746"/>
+        </glyph>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_ea6f1dd0ae4b7b504e36e680df932755_Complex_393ed44510e83f8ce07cc7b1553a61f3" compartmentRef="cell_membrane" if.within.compartment="">
+        <label text="ATP sensitive Potassium channels"/>
+        <bbox w="58.3333333333333" h="33.3333333333333" x="468.859985545473" y="344.520281442747"/>
+      </glyph>
+    </glyph>
+    <glyph class="complex" id="Complex_8436f571ea891a3fcecdcc10a72bddc0" compartmentRef="cell_membrane" if.within.compartment="">
+      <label text="ATP sensitive K+ channels-inwardly rectifying (SUR2)"/>
+      <bbox w="75.9333333333333" h="93.0166666666673" x="259.615518726567" y="244.623895468842"/>
+      <glyph class="macromolecule" id="Protein_072d8ca439276bb2cd8cb3a61be79ffd_Complex_8436f571ea891a3fcecdcc10a72bddc0" compartmentRef="cell_membrane" if.within.compartment="">
+        <label text="ABCC9"/>
+        <bbox w="58.3333333333333" h="33.3333333333333" x="268.415518726567" y="253.423895468842"/>
+        <glyph class="state variable" id="Protein_072d8ca439276bb2cd8cb3a61be79ffd_Complex_8436f571ea891a3fcecdcc10a72bddc0.info.1" compartmentRef="cell_membrane" if.within.compartment="">
+          <state value="x[1 - 1549]"/>
+          <bbox w="29.1666666666667" h="14.5833333333333" x="268.415518726567" y="246.132228802175"/>
+        </glyph>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_ea6f1dd0ae4b7b504e36e680df932755_Complex_8436f571ea891a3fcecdcc10a72bddc0" compartmentRef="cell_membrane" if.within.compartment="">
+        <label text="ATP sensitive Potassium channels"/>
+        <bbox w="58.3333333333333" h="33.3333333333333" x="268.415518726567" y="295.507228802176"/>
+      </glyph>
+    </glyph>
+    <arc class="catalysis" id="Complex_393ed44510e83f8ce07cc7b1553a61f3--to--reactome_R-HSA-5577050_LEFT_TO_RIGHT" source="Complex_393ed44510e83f8ce07cc7b1553a61f3" target="reactome_R-HSA-5577050_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="inhibition" id="SmallMolecule_c23dbeeaaf1bbf19bbf385f78c5d5362--to--reactome_R-HSA-5577050_LEFT_TO_RIGHT" source="SmallMolecule_c23dbeeaaf1bbf19bbf385f78c5d5362" target="reactome_R-HSA-5577050_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="reactome_R-HSA-5577050_LEFT_TO_RIGHT-output--to--SmallMolecule_0a8ac9225734ecc718d94139e1b6ce63" source="reactome_R-HSA-5577050_LEFT_TO_RIGHT" target="SmallMolecule_0a8ac9225734ecc718d94139e1b6ce63">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_e0b0ad9940895760e44e630914906220--to--reactome_R-HSA-5577050_LEFT_TO_RIGHT-input" source="SmallMolecule_e0b0ad9940895760e44e630914906220" target="reactome_R-HSA-5577050_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="catalysis" id="Complex_8436f571ea891a3fcecdcc10a72bddc0--to--reactome_R-HSA-5577050_LEFT_TO_RIGHT" source="Complex_8436f571ea891a3fcecdcc10a72bddc0" target="reactome_R-HSA-5577050_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Complex_393ed44510e83f8ce07cc7b1553a61f3--to--reactome_R-HSA-5577050_LEFT_TO_RIGHT" source="Complex_393ed44510e83f8ce07cc7b1553a61f3" target="reactome_R-HSA-5577050_LEFT_TO_RIGHT" class="catalysis">
+<source.arc start.x="411" start.y="346" end.x="459" end.y="343" class="consumption"/>
+
+
+<spline s.x="144.000000"  s.y="312.000000" c1.x="163.000000" c1.y="319.000000" c2.x="213.000000" c2.y="335.000000" e.x="256.000000"  e.y="340.000000" />
+<spline s.x="256.000000"  s.y="340.000000" c1.x="327.000000" c1.y="349.000000" c2.x="411.000000" c2.y="346.000000" e.x="459.000000"  e.y="343.000000" />
+<target.arc start.x="163" start.y="319" end.x="144" end.y="312" class="catalysis"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_c23dbeeaaf1bbf19bbf385f78c5d5362--to--reactome_R-HSA-5577050_LEFT_TO_RIGHT" source="SmallMolecule_c23dbeeaaf1bbf19bbf385f78c5d5362" target="reactome_R-HSA-5577050_LEFT_TO_RIGHT" class="inhibition">
+<source.arc start.x="183" start.y="287" end.x="200" end.y="279" class="consumption"/>
+
+
+<spline s.x="200.000000"  s.y="279.000000" c1.x="183.000000" c1.y="287.000000" c2.x="157.000000" c2.y="299.000000" e.x="144.000000"  e.y="305.000000" />
+<target.arc start.x="157" start.y="299" end.x="144" end.y="305" class="inhibition"/>
+
+</arc.spline>
+<arc.spline id="reactome_R-HSA-5577050_LEFT_TO_RIGHT--to--SmallMolecule_0a8ac9225734ecc718d94139e1b6ce63" source="reactome_R-HSA-5577050_LEFT_TO_RIGHT" target="SmallMolecule_0a8ac9225734ecc718d94139e1b6ce63" class="production">
+<source.arc start.x="134" start.y="284" end.x="135" end.y="300" class="consumption"/>
+
+
+<spline s.x="129.000000"  s.y="227.000000" c1.x="130.000000" c1.y="248.000000" c2.x="134.000000" c2.y="284.000000" e.x="135.000000"  e.y="300.000000" />
+<target.arc start.x="130" start.y="248" end.x="129" end.y="227" class="production"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_e0b0ad9940895760e44e630914906220--to--reactome_R-HSA-5577050_LEFT_TO_RIGHT" source="SmallMolecule_e0b0ad9940895760e44e630914906220" target="reactome_R-HSA-5577050_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="177" start.y="343" end.x="192" end.y="355" class="consumption"/>
+
+
+<spline s.x="192.000000"  s.y="355.000000" c1.x="177.000000" c1.y="343.000000" c2.x="156.000000" c2.y="326.000000" e.x="144.000000"  e.y="316.000000" />
+<target.arc start.x="156" start.y="326" end.x="144" end.y="316" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Complex_8436f571ea891a3fcecdcc10a72bddc0--to--reactome_R-HSA-5577050_LEFT_TO_RIGHT" source="Complex_8436f571ea891a3fcecdcc10a72bddc0" target="reactome_R-HSA-5577050_LEFT_TO_RIGHT" class="catalysis">
+<source.arc start.x="221" start.y="299" end.x="259" end.y="295" class="consumption"/>
+
+
+<spline s.x="144.000000"  s.y="308.000000" c1.x="166.000000" c1.y="306.000000" c2.x="221.000000" c2.y="299.000000" e.x="259.000000"  e.y="295.000000" />
+<target.arc start.x="166" start.y="306" end.x="144" end.y="308" class="catalysis"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cytosol-compartment.layer.info-cell_membrane-compartment.layer.info-extracellular</compartment.layer.info>
+</sbgn>

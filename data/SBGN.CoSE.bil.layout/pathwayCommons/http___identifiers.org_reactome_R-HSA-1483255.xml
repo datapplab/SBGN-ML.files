@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="80.3333333333333" h="55.3333333333333" x="196.498001844132" y="238.183331969525"/>
+    </glyph>
+    <glyph class="compartment" id="cytoplasmic_vesicle_membrane" if.within.compartment="">
+      <label text="cytoplasmic vesicle membrane"/>
+      <bbox w="55.8949017085983" h="131.891494016622" x="102.052549145701" y="178"/>
+    </glyph>
+    <glyph class="compartment" id="cell_membrane" if.within.compartment="">
+      <label text="cell membrane"/>
+      <bbox w="55.3333333333333" h="55.3333333333333" x="155.836938192703" y="318.35583044113"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_311e905231edca8c8fb7ef52c720ab5a" compartmentRef="cytoplasmic_vesicle_membrane" if.within.compartment="">
+      <label text="PI(4,5)P2, PI(3,4,5)P3"/>
+      <bbox w="33.3333333333333" h="33.3333333333333" x="113.614117520966" y="189"/>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-8874470_LEFT_TO_RIGHT" compartmentRef="cytoplasmic_vesicle_membrane" if.within.compartment="">
+      <bbox w="16.6666666666667" h="16.6666666666667" x="113.052549145701" y="282.224827349955"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_c7119809efdc78f184e12b605dbb8903" compartmentRef="cytosol" if.within.compartment="">
+      <label text="TNFAIP8 proteins"/>
+      <bbox w="58.3333333333333" h="33.3333333333333" x="207.498001844132" y="249.183331969525"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_a80fd699ec7e5740bf2cefa8a86c6dc0" compartmentRef="cell_membrane" if.within.compartment="">
+      <label text="PI(4,5)P2, PI(3,4,5)P3"/>
+      <bbox w="33.3333333333333" h="33.3333333333333" x="166.836938192703" y="329.35583044113"/>
+    </glyph>
+    <arc class="consumption" id="SmallMolecule_311e905231edca8c8fb7ef52c720ab5a--to--reactome_R-HSA-8874470_LEFT_TO_RIGHT-input" source="SmallMolecule_311e905231edca8c8fb7ef52c720ab5a" target="reactome_R-HSA-8874470_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="reactome_R-HSA-8874470_LEFT_TO_RIGHT-output--to--SmallMolecule_a80fd699ec7e5740bf2cefa8a86c6dc0" source="reactome_R-HSA-8874470_LEFT_TO_RIGHT" target="SmallMolecule_a80fd699ec7e5740bf2cefa8a86c6dc0">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="catalysis" id="Protein_c7119809efdc78f184e12b605dbb8903--to--reactome_R-HSA-8874470_LEFT_TO_RIGHT" source="Protein_c7119809efdc78f184e12b605dbb8903" target="reactome_R-HSA-8874470_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule_311e905231edca8c8fb7ef52c720ab5a--to--reactome_R-HSA-8874470_LEFT_TO_RIGHT" source="SmallMolecule_311e905231edca8c8fb7ef52c720ab5a" target="reactome_R-HSA-8874470_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="126" start.y="240" end.x="128" end.y="222" class="consumption"/>
+
+
+<spline s.x="128.000000"  s.y="222.000000" c1.x="126.000000" c1.y="240.000000" c2.x="123.000000" c2.y="267.000000" e.x="122.000000"  e.y="281.000000" />
+<target.arc start.x="123" start.y="267" end.x="122" end.y="281" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="reactome_R-HSA-8874470_LEFT_TO_RIGHT--to--SmallMolecule_a80fd699ec7e5740bf2cefa8a86c6dc0" source="reactome_R-HSA-8874470_LEFT_TO_RIGHT" target="SmallMolecule_a80fd699ec7e5740bf2cefa8a86c6dc0" class="production">
+<source.arc start.x="139" start.y="306" end.x="129" end.y="298" class="consumption"/>
+
+
+<spline s.x="129.000000"  s.y="298.000000" c1.x="139.000000" c1.y="306.000000" c2.x="154.000000" c2.y="320.000000" e.x="166.000000"  e.y="331.000000" />
+<target.arc start.x="154" start.y="320" end.x="166" end.y="331" class="production"/>
+
+</arc.spline>
+<arc.spline id="Protein_c7119809efdc78f184e12b605dbb8903--to--reactome_R-HSA-8874470_LEFT_TO_RIGHT" source="Protein_c7119809efdc78f184e12b605dbb8903" target="reactome_R-HSA-8874470_LEFT_TO_RIGHT" class="catalysis">
+<source.arc start.x="181" start.y="277" end.x="207" end.y="272" class="consumption"/>
+
+
+<spline s.x="130.000000"  s.y="288.000000" c1.x="146.000000" c1.y="285.000000" c2.x="181.000000" c2.y="277.000000" e.x="207.000000"  e.y="272.000000" />
+<target.arc start.x="146" start.y="285" end.x="130" end.y="288" class="catalysis"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info>cytoplasmic_vesicle_membrane-compartment.layer.info-cytosol-compartment.layer.info-cell_membrane</compartment.layer.info>
+</sbgn>
