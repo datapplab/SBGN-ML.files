@@ -428,6 +428,18 @@ head(kegg.species.count)
 
 
 ```
+###### KO to entrezid
+```{r, ko to uniprot}
+eg.to.ko = read.table("C:/xiaoxi/work/input/id.mapping/kegg.related/kegg.ortholog.100.download.slice/kegg.ko.to.all.species.entrez.tsv",sep="\t",stringsAsFactors = F,quote="")
+eg.to.ko[,1] = gsub("ko:","",eg.to.ko[,1])
+eg.to.ko[,2] = do.call(rbind,strsplit(eg.to.ko[,2],":"))[,2]
+dim(eg.to.ko)
+colnames(eg.to.ko) = c("KO","ENTREZID")
+tail(eg.to.ko)
+head(eg.to.ko)
+mapping.table = eg.to.ko
+save(mapping.table,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/KO_ENTREZID.RData")
+```
 ###### KO to uniprot
 ```{r, ko to uniprot}
 write.table(uniprot.to.ko,"C:/xiaoxi/work/input/id.mapping/kegg.ortholog.100.download.slice/uniprot.to.ko.tsv",row.names=F,sep="\t")
