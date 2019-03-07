@@ -613,7 +613,7 @@ all.compounds.to.compound.name = function(){
         mapping.list$compound = list()
         mapping.list$compound[[id.pair.out]] = compound.name.to.input
         head(mapping.list$compound$actor_CompoundName)
-        out.file = paste("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/cpdnames/",id.pair.out,".Rdata",sep="")
+        out.file = paste("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/",id.pair.out,".RData",sep="")
         out.file
         save(mapping.list,file=out.file)
 
