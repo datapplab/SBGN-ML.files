@@ -566,6 +566,60 @@ entrenz.to.metacyc.gene = function(){
 #     # dim(all.pairs)
 }
 
+all.compounds.to.compound.name = function(){
+        load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/chebi_CompoundName.RData")
+        head(mapping.list$compound$chebi_CompoundName)
+        chebi.to.compound.name = mapping.list$compound$chebi_CompoundName
+        head(chebi.to.compound.name)
+        chebi.to.compound.name$chebi = as.character(chebi.to.compound.name$chebi)
+        chebi.to.compound.name$CompoundName = as.character(chebi.to.compound.name$CompoundName)
+        
+    mapping.files.folder = "C:/xiaoxi/work/input/id.mapping/unichem/ChEBI.db.names"
+    
+    files = list.files(mapping.files.folder,full.names = F,pattern="txt")
+    # id.mapping.all.list
+    for (i in 1: length(files)){
+            # i=2
+    # for (i in 1:3){
+        file.name = files[i]
+        file.name = gsub(".txt","",file.name)
+        id.pair = strsplit(file.name,"_")[[1]]
+        cat("\n\n\n")
+        print(files[i])
+        file.content = read.table(paste(mapping.files.folder,files[i],sep="/")
+                                  ,header=T
+                                  ,sep="\t"
+                                  ,quote=""
+                                  ,comment.char = ""
+                                  ,stringsAsFactors = F)
+        id.pair = sort(id.pair)
+        id.pair = paste(id.pair,collapse = "_")
+        print(id.pair)
+        print(head(file.content))
+        input.type = setdiff(colnames(file.content),c("chebi"))
+        input.type
+        head(chebi.to.compound.name)
+        compound.name.to.input = merge(file.content,chebi.to.compound.name,all = F)
+        compound.name.to.input = compound.name.to.input[,c(input.type,"CompoundName")]
+        head(compound.name.to.input)
+        class(compound.name.to.input)
+        dim(compound.name.to.input)
+        class(compound.name.to.input$actor)
+        
+        id.pair.out = sort(colnames(compound.name.to.input))
+        id.pair.out = paste(id.pair.out,collapse = "_")
+        id.pair.out
+        mapping.list = list()
+        mapping.list$compound = list()
+        mapping.list$compound[[id.pair.out]] = compound.name.to.input
+        head(mapping.list$compound$actor_CompoundName)
+        out.file = paste("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/cpdnames/",id.pair.out,".Rdata",sep="")
+        out.file
+        save(mapping.list,file=out.file)
+
+    }
+}
+
 
 
 
