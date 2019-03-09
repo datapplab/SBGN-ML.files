@@ -592,6 +592,41 @@ result:
         C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\merged.tables\uniref.pathway.sbgnBiopaxProtein.RData
         uniprot.pathway.sbgnBiopaxProtein.RData
 <!-- ###################################################################### -->
+
+check examples:
+```{r}
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/UNIPROT_pathway.id.RData")
+mapping = mapping.table[mapping.table[,2] %in% c("R-HSA-877300","TOLUENE-DEG-CATECHOL-PWY"，"SMP02313","P00001"),]
+mapping = mapping[order(mapping[,2],mapping[,1]),]
+mapping = unique(mapping)
+mapping = mapping[mapping[,2] == "TOLUENE-DEG-CATECHOL-PWY",]
+mapping
+
+load("C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/metacyc/merged.tables/metacycProtein.sbgnBiopaxProtein.pathway.enzymReaction.Reaction.uniprot.mapping.RData")
+head(metacycProtein.sbgnBiopaxProtein.pathway.enzymReaction.Reaction.uniprot.mapping)
+merged = subset(metacycProtein.sbgnBiopaxProtein.pathway.enzymReaction.Reaction.uniprot.mapping
+                ,biopax.file == "TOLUENE-DEG-CATECHOL-PWY")
+subset(merged,Uniprot == "P05091")
+
+load("C:/xiaoxi/work/papers/SBGNview/package/id.mapping/id.mapping/pathway.commons.and.metacyc/entrezid.to.metacyc.pathwayCommons.with.species.info.RData")
+head(entrezid.to.metacyc.pathwayCommons.with.species.info)
+entrez.metacyc = entrezid.to.metacyc.pathwayCommons.with.species.info$ENTREZID_metacyc.SBGN
+head(entrez.metacyc)
+entrez.to.metacyc = entrez.metacyc[grepl(pattern = "TOLUENE-DEG-CATECHOL-PWY"
+                                         ,x = entrez.metacyc[,"metacyc.SBGN"])
+                                   ,
+                                   ]
+head(entrez.to.metacyc)
+
+
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENTREZID_pathway.id.RData")
+
+mapping = mapping.table[mapping.table[,2] %in% c("TOLUENE-DEG-CATECHOL-PWY"),]
+mapping
+
+
+```
+
         
 1.5  metacyc sbgn ids --> entrez
 

@@ -531,6 +531,7 @@ entrenz.to.metacyc.gene = function(){
       all.pairs
       ,2
       ,function(pair){
+              pair = c("ENTREZID","metacyc.SBGN")
         cat("\n\n\n\n\n")
         # gene.data <- sim.mol.data(mol.type = "gene", id.type = pair[1], nmol = 5000000,nexp=2)
         # in.ids = row.names(gene.data)
