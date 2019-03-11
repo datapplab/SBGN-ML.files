@@ -531,7 +531,7 @@ output:
         
         
         
-### metacyc to entrez/uniref
+### metacyc 
 
 1. metacyc to uniprot/uniref
 
@@ -645,7 +645,7 @@ output:
         C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons.and.metacyc\entrezid.to.metacyc.pathwayCommons.with.species.info.RData
         
         
-## compounds to ChEBI
+## compounds
 
 ### pathwayCommons
 
@@ -713,14 +713,54 @@ result:
         C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\metacyc\metacyc.SBGN.mappings.all.RData
 <!-- ###################################################################### -->
 
+### compound names
 
-### compound names to unichem IDs
+#### compound names to unichem IDs
 script 
 
         C:\xiaoxi\work\papers\SBGNview\package\SBGN-ML.files\R\all.ids.to.pathwayCommons.metacyc.R :: all.compounds.to.compound.name
+        
+#### cpd name to metacyc id, pathwayCommons id
+```{r}
+chebi.to.pathwayCommons = paste(in.folder,"/chebi_pathwayCommons.RData",sep="")
+fn = load(chebi.to.pathwayCommons )
+head(mapping.list$compound$chebi_pathwayCommons)
+chebi.to.pathwayCommons = mapping.list$compound$chebi_pathwayCommons
+head(chebi.to.cpd.name)
+head(chebi.to.pathwayCommons)
+merged = merge(chebi.to.cpd.name,chebi.to.pathwayCommons,by="chebi",all=F)
+head(merged)
+mapping.table = merged[,c("CompoundName","pathwayCommons")]
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+head(mapping.table)
+tail(mapping.table)
+save(mapping.table,file = paste(in.folder,"/CompoundName_pathwayCommons.RData",sep=""))
+
+# cpd name to metacyc id
+chebi.to.metacyc = paste(in.folder,"/chebi_metacyc.SBGN.RData",sep="")
+fn = load(chebi.to.metacyc )
+head(mapping.list$compound$chebi_metacyc.SBGN)
+chebi.to.metacyc = mapping.list$compound$chebi_metacyc.SBGN
+head(chebi.to.cpd.name)
+head(chebi.to.metacyc)
+merged = merge(chebi.to.cpd.name,chebi.to.metacyc,by="chebi",all=F)
+head(merged)
+mapping.table = merged[,c("CompoundName","metacyc.SBGN")]
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+head(mapping.table)
+tail(mapping.table)
+save(mapping.table,file = paste(in.folder,"/CompoundName_metacyc.SBGN.RData",sep=""))
 
 
-# Generate individual small mapping files
+
+```
+
+
+## From a list containing all mappings, Generate individual small mapping files
 ```{r}
 generate.individual.file = function(input.list,gene.or.compound,output.folder){
         pairs = names(input.list)
@@ -849,6 +889,7 @@ for (i in 1:length(result.list)){
 ```
 
 
+## other id types to pathway id: metacyc and pathwayCommons
 
 ```{r}
 
@@ -925,10 +966,10 @@ for( i in c(26,47)){
         tail(mapping.table)
 }
 
-
-
+```
+### compound name to pathway ids
+```{r}
         
-# compound name to pathway ids
 chebi.to.cpd.name.file = paste(in.folder,"/chebi_CompoundName.RData",sep="")
 fn = load(chebi.to.cpd.name.file)
 head(mapping.list$compound$chebi_CompoundName)
@@ -948,144 +989,71 @@ dim(mapping.table)
 head(mapping.table)
 tail(mapping.table)
 save(mapping.table,file = paste(in.folder,"/CompoundName_pathway.id.RData",sep=""))
-
-# cpd name to pathwayCommons id
-chebi.to.pathwayCommons = paste(in.folder,"/chebi_pathwayCommons.RData",sep="")
-fn = load(chebi.to.pathwayCommons )
-head(mapping.list$compound$chebi_pathwayCommons)
-chebi.to.pathwayCommons = mapping.list$compound$chebi_pathwayCommons
-head(chebi.to.cpd.name)
-head(chebi.to.pathwayCommons)
-merged = merge(chebi.to.cpd.name,chebi.to.pathwayCommons,by="chebi",all=F)
-head(merged)
-mapping.table = merged[,c("CompoundName","pathwayCommons")]
-dim(mapping.table)
-mapping.table = unique(mapping.table)
-dim(mapping.table)
-head(mapping.table)
-tail(mapping.table)
-save(mapping.table,file = paste(in.folder,"/CompoundName_pathwayCommons.RData",sep=""))
-
-# cpd name to metacyc id
-chebi.to.metacyc = paste(in.folder,"/chebi_metacyc.SBGN.RData",sep="")
-fn = load(chebi.to.metacyc )
-head(mapping.list$compound$chebi_metacyc.SBGN)
-chebi.to.metacyc = mapping.list$compound$chebi_metacyc.SBGN
-head(chebi.to.cpd.name)
-head(chebi.to.metacyc)
-merged = merge(chebi.to.cpd.name,chebi.to.metacyc,by="chebi",all=F)
-head(merged)
-mapping.table = merged[,c("CompoundName","metacyc.SBGN")]
-dim(mapping.table)
-mapping.table = unique(mapping.table)
-dim(mapping.table)
-head(mapping.table)
-tail(mapping.table)
-save(mapping.table,file = paste(in.folder,"/CompoundName_metacyc.SBGN.RData",sep=""))
-
-
-
 ```
-## for each species specific pathway, how many proteins does it have
+
+## metacrop
 ```{r}
-ko.to.pathway.file = "C:/xiaoxi/work/input/id.mapping/kegg/ko.to.pathway.tsv"
-download.file("http://rest.kegg.jp/link/ko/pathway",destfile = ko.to.pathway.file )
-all.ko.to.pathway = read.table(ko.to.pathway.file,header=F,stringsAsFactors = F,sep="\t")
-head(all.ko.to.pathway)
-pathway.ko.count = table(all.ko.to.pathway[,1])
-head(pathway.ko.count)
-tail(pathway.ko.count)
-
-
-all.species = read.table("C:/xiaoxi/work/input/id.mapping/kegg/kegg.ko.to.all.species.tsv",stringsAsFactors = F,header=F)
-head(all.species)
-all.species = unique(all.species[,1])
-length(all.species)
-
-out.all = matrix(ncol=4,nrow=0)
-out.all
-head(out.all)
-dim(out.all)
-
-for(i in 1:length(all.species)){
-        # i = 1
-        cat("\n\n",i)
-        print(all.species[i])
-        dlink = paste("http://rest.kegg.jp/link/",all.species[i],"/pathway",sep="")
-        loc.file = paste("C:/xiaoxi/work/input/id.mapping/kegg/kegg.species.to.gene/",all.species[i],".tsv")
-        cov.file = paste(loc.file,".pct.cover.tsv")
-        if(file.exists(cov.file)){
-                next()
-        }
-        if.downloaded = try(download.file(url = dlink,destfile = loc.file))
-        if(class(if.downloaded) == "try-error"){
-                next()
-        }
-        pathway.to.gene = read.table(loc.file,header=F,sep="\t",stringsAsFactors = F)
-        ct = table(pathway.to.gene[,1])
-        ct[ct==min(ct)]
-        ko.count.pathway = pathway.ko.count[gsub(all.species[i],"map",names(ct))]
-        percent.species.gene.vs.ko.in.pathway = ct/ko.count.pathway
-        out = data.frame(
-                pathway = names(ct)
-                ,n.gene.species.pathway = as.vector(ct)
-                ,n.ko.reference.pathway = as.vector(ko.count.pathway)
-                ,percent = as.vector(percent.species.gene.vs.ko.in.pathway)
-        )
-        out = out[order(out[,"percent"]),]
-        out.all = rbind(out.all,out)
-        write.table(out,cov.file,sep="\t",row.names=F)
-}
-
-write.table(out.all,"C:/xiaoxi/work/input/id.mapping/kegg/speciesPathwayMappedGene.refKo.numbers.tsv",sep="\t",row.names=F)
-
-head(out.all)
-species.info = gsub("[0-9]|path:","",as.character(out.all[,1]))
-head(species.info)
-head(out.all)
-dim(out.all)
-
-pathway.info = gsub("path:[a-z]+","map",as.character(out.all[,1]))
-head(pathway.info)
-out.all.backup = out.all
-out.all = out.all[!is.na(out.all[,"percent"]),]
-dim(out.all[is.na(out.all[,"percent"]),])
-
-max.cov.pathway = by(out.all,as.factor(pathway.info),
-                      function(df){
-                              max.percent.df = df[df[,"percent"] == max(df[,"percent"]),]
-                              max.percent.df = max.percent.df[1,]
-                      }
-              )
-max.cov.pathway[[1]]
-
-max.cov.pathway = do.call(rbind,max.cov.pathway )
-head(max.cov.pathway)
-                     
-
-min.gene = by(out.all,as.factor(species.info),
-              function(df){
-                      df[df[,"n.gene.species.pathway"] == min(df[,"n.gene.species.pathway"]),]
-              }
-              )
-min.gene = do.call(rbind,min.gene)
-min.gene = min.gene[order(min.gene[,"percent"]),]
-head(min.gene)
-range(min.gene[,2])
-write.table(min.gene,"C:/xiaoxi/work/input/id.mapping/kegg/pathways.with.minimum.cov.tsv",sep="\t",row.names=F)
-
-head(out.all[is.na(out.all[,4]),])
-
-min.cov = by(out.all,as.factor(species.info),
-              function(df){
-                      df[ df[,"percent"] == min(df[,"percent"]),]
-              }
-              )
-min.cov = do.call(rbind,min.cov)
-head(min.cov)
-min.cov[,4]
-range(min.cov[,2])
+library(SBGNview)
+data("pathways.info")
+    source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/parsing.utilities.R")
+    source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/plot.utilities.R")
+    source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/SBGN.to.SVG.R")
+is.metacrop = pathways.info[,"database"]== "MetaCrop"
+metacrop.ids = pathways.info[is.metacrop ,"pathway.id"]
+node.list = sbgn.nodes(input.sbgn = c( metacrop.ids
+                                       # ,metacyc.ids[1:2]
+                                        )
+                               )
+node.list$`Alanine Degradation`$all.nodes
 ```
+### compound name to pathway id
+
+```{r}
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/CompoundName_pathway.id.without.metacrop.RData")
+dim(mapping.table)
+
+for (i in 1:length(node.list)){
+        pathway = names(node.list)[i]
+        label.to.class = node.list[[i]]$all.nodes[,c("class","label")]
+        label.to.class = as.data.frame(label.to.class,stringsAsFactors=F)
+        class(label.to.class)
+        cpd.name.to.pathway = cbind(subset(label.to.class,class=="simple chemical",select="label"),pathway)
+        cpd.name.to.pathway
+        colnames(cpd.name.to.pathway) = c("CompoundName","pathway.id")
+        mapping.table = rbind(mapping.table,cpd.name.to.pathway)
+}
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+tail(mapping.table)
+head(mapping.table)
+class(mapping.table[,1])
+save(mapping.table,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENZYME_pathway.id.RData")
+```
+
+### EC number to pathway id
+
+```{r}
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENZYME_pathway.id.without.METACROP.RData")
+dim(mapping.table)
+
+for (i in 1:length(node.list)){
+        pathway = names(node.list)[i]
+        label.to.class = node.list[[i]]$all.nodes[,c("class","label")]
+        label.to.class = as.data.frame(label.to.class,stringsAsFactors=F)
+        class(label.to.class)
+        ec.to.pathway = cbind(subset(label.to.class,class=="macromolecule",select="label"),pathway)
+        ec.to.pathway
+        colnames(ec.to.pathway) = c("ENZYME","pathway.id")
+        mapping.table = rbind(mapping.table,ec.to.pathway)
+}
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+tail(mapping.table)
+head(mapping.table)
+class(mapping.table[,1])
+save(mapping.table,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENZYME_pathway.id.RData")
+```
+
 #number of kos mapped in each species-specific pathway
 ```{r,number of kos mapped in each species-specific pathway}
 
@@ -1382,6 +1350,106 @@ head(unique((as.character(species.info[species.info[,"pathway"] == pathway.large
 length(unique((as.character(species.info[species.info[,"pathway"] == pathway.largest.species.n,"species"]))))
 ```
 
+## for each species specific pathway, how many proteins does it have
+```{r}
+ko.to.pathway.file = "C:/xiaoxi/work/input/id.mapping/kegg/ko.to.pathway.tsv"
+download.file("http://rest.kegg.jp/link/ko/pathway",destfile = ko.to.pathway.file )
+all.ko.to.pathway = read.table(ko.to.pathway.file,header=F,stringsAsFactors = F,sep="\t")
+head(all.ko.to.pathway)
+pathway.ko.count = table(all.ko.to.pathway[,1])
+head(pathway.ko.count)
+tail(pathway.ko.count)
+
+
+all.species = read.table("C:/xiaoxi/work/input/id.mapping/kegg/kegg.ko.to.all.species.tsv",stringsAsFactors = F,header=F)
+head(all.species)
+all.species = unique(all.species[,1])
+length(all.species)
+
+out.all = matrix(ncol=4,nrow=0)
+out.all
+head(out.all)
+dim(out.all)
+
+for(i in 1:length(all.species)){
+        # i = 1
+        cat("\n\n",i)
+        print(all.species[i])
+        dlink = paste("http://rest.kegg.jp/link/",all.species[i],"/pathway",sep="")
+        loc.file = paste("C:/xiaoxi/work/input/id.mapping/kegg/kegg.species.to.gene/",all.species[i],".tsv")
+        cov.file = paste(loc.file,".pct.cover.tsv")
+        if(file.exists(cov.file)){
+                next()
+        }
+        if.downloaded = try(download.file(url = dlink,destfile = loc.file))
+        if(class(if.downloaded) == "try-error"){
+                next()
+        }
+        pathway.to.gene = read.table(loc.file,header=F,sep="\t",stringsAsFactors = F)
+        ct = table(pathway.to.gene[,1])
+        ct[ct==min(ct)]
+        ko.count.pathway = pathway.ko.count[gsub(all.species[i],"map",names(ct))]
+        percent.species.gene.vs.ko.in.pathway = ct/ko.count.pathway
+        out = data.frame(
+                pathway = names(ct)
+                ,n.gene.species.pathway = as.vector(ct)
+                ,n.ko.reference.pathway = as.vector(ko.count.pathway)
+                ,percent = as.vector(percent.species.gene.vs.ko.in.pathway)
+        )
+        out = out[order(out[,"percent"]),]
+        out.all = rbind(out.all,out)
+        write.table(out,cov.file,sep="\t",row.names=F)
+}
+
+write.table(out.all,"C:/xiaoxi/work/input/id.mapping/kegg/speciesPathwayMappedGene.refKo.numbers.tsv",sep="\t",row.names=F)
+
+head(out.all)
+species.info = gsub("[0-9]|path:","",as.character(out.all[,1]))
+head(species.info)
+head(out.all)
+dim(out.all)
+
+pathway.info = gsub("path:[a-z]+","map",as.character(out.all[,1]))
+head(pathway.info)
+out.all.backup = out.all
+out.all = out.all[!is.na(out.all[,"percent"]),]
+dim(out.all[is.na(out.all[,"percent"]),])
+
+max.cov.pathway = by(out.all,as.factor(pathway.info),
+                      function(df){
+                              max.percent.df = df[df[,"percent"] == max(df[,"percent"]),]
+                              max.percent.df = max.percent.df[1,]
+                      }
+              )
+max.cov.pathway[[1]]
+
+max.cov.pathway = do.call(rbind,max.cov.pathway )
+head(max.cov.pathway)
+                     
+
+min.gene = by(out.all,as.factor(species.info),
+              function(df){
+                      df[df[,"n.gene.species.pathway"] == min(df[,"n.gene.species.pathway"]),]
+              }
+              )
+min.gene = do.call(rbind,min.gene)
+min.gene = min.gene[order(min.gene[,"percent"]),]
+head(min.gene)
+range(min.gene[,2])
+write.table(min.gene,"C:/xiaoxi/work/input/id.mapping/kegg/pathways.with.minimum.cov.tsv",sep="\t",row.names=F)
+
+head(out.all[is.na(out.all[,4]),])
+
+min.cov = by(out.all,as.factor(species.info),
+              function(df){
+                      df[ df[,"percent"] == min(df[,"percent"]),]
+              }
+              )
+min.cov = do.call(rbind,min.cov)
+head(min.cov)
+min.cov[,4]
+range(min.cov[,2])
+```
 
 
 
