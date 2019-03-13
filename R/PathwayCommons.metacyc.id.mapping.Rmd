@@ -644,6 +644,365 @@ output:
 
         C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons.and.metacyc\entrezid.to.metacyc.pathwayCommons.with.species.info.RData
         
+### text/symbol/gene name to molecule id: pathwayCommons metacyc
+```{r}
+library(SBGNview)
+data("pathways.info")
+source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/parsing.utilities.R")
+source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/plot.utilities.R")
+source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/SBGN.to.SVG.R")
+is.pathwayCommons = pathways.info[,"database"] %in% c("pathwayCommons")
+pathwayCommons.ids = pathways.info[is.pathwayCommons ,"pathway.id"]
+length(pathwayCommons.ids)
+node.list.pathwayCommons = sbgn.nodes(input.sbgn = c( 
+                                        pathwayCommons.ids
+                                        # pathwayCommons.ids[1:6]
+                                        # "R-HSA-909733"
+                                        )
+                       ,sbgn.folder = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/SBGN/pathwayCommons"
+                               )
+head(node.list.pathwayCommons[[5]])
+length(node.list.pathwayCommons)
+
+is.MetaCyc = pathways.info[,"database"] %in% c("MetaCyc")
+MetaCyc.ids = pathways.info[is.MetaCyc ,"pathway.id"]
+length(MetaCyc.ids)
+node.list.MetaCyc = sbgn.nodes(input.sbgn = c( 
+                                        MetaCyc.ids
+                                        # pathwayCommons.ids[1:3]
+                                        # "R-HSA-909733"
+                                        )
+                       ,sbgn.folder = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/SBGN/MetaCyc"
+                               )
+head(node.list.MetaCyc[[5]])
+length(node.list.MetaCyc)
+node.list = c(node.list.pathwayCommons,node.list.MetaCyc)
+length(node.list)
+
+```
+### text/symbol/gene name to molecule id: pathwayCommons metacyc
+```{r}
+
+label.to.glyph.id.all = matrix(ncol=2,nrow=0)
+for (i in 1:length(node.list)){
+# for (i in 1:3){
+        print(i)
+        label.to.class = node.list[[i]][,c("class","label","glyph.id")]
+        print("generating dataframe")
+        label.to.class = as.data.frame(label.to.class,stringsAsFactors=F)
+        class(label.to.class)
+        head(label.to.class)
+        print("extracting macromolecule")
+        macromolecule.labels = subset(label.to.class,class=="macromolecule",select="label")
+        glyph.ids = subset(label.to.class,class=="macromolecule",select="glyph.id")
+        head(macromolecule.labels)
+        if(nrow(macromolecule.labels) == 0){
+                next()
+        }
+        label.to.glyph.id = cbind(macromolecule.labels,glyph.ids)
+        label.to.glyph.id = unique(label.to.glyph.id)
+        label.to.glyph.id
+        head(label.to.glyph.id)
+        colnames(label.to.glyph.id) = c("SYMBOL","molecule.id")
+        head(label.to.glyph.id)
+        label.to.glyph.id.all = rbind(label.to.glyph.id.all,label.to.glyph.id)
+}
+label.to.glyph.id.all = unique(label.to.glyph.id.all)
+label.to.glyph.id.all.no.species = label.to.glyph.id.all
+label.to.glyph.id.all = cbind(label.to.glyph.id.all
+                              ,"species")
+
+dim(label.to.glyph.id.all)
+head(label.to.glyph.id.all)
+label.to.glyph.id.all[,2] = as.character(label.to.glyph.id.all[,2])
+label.to.glyph.id.all[,3] = as.character(label.to.glyph.id.all[,3])
+class(label.to.glyph.id.all[,1])
+class(label.to.glyph.id.all[,2])
+class(label.to.glyph.id.all[,3])
+colnames(label.to.glyph.id.all)[3] = "species"
+tail(label.to.glyph.id.all)
+
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_SYMBOL.without.label.RData")
+aa
+mapping.table = mapping.list$gene[[1]]
+dim(mapping.table)
+head(mapping.table)
+mapping.table[,1] = as.character(mapping.table[,1])
+mapping.table[,2] = as.character(mapping.table[,2])
+mapping.table[,3] = as.character(mapping.table[,3])
+class(mapping.table[,1])
+class(mapping.table[,2])
+class(mapping.table[,3])
+colnames(label.to.glyph.id.all) = colnames(mapping.table)
+head(mapping.table)
+tail(label.to.glyph.id.all)
+mapping.table = rbind(mapping.table,label.to.glyph.id.all)
+head(mapping.table)
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+tail(mapping.table)
+head(mapping.table)
+class(mapping.table[,1])
+mapping.list$gene[[1]] = mapping.table
+tail(mapping.list$gene[[1]])
+save(mapping.list,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_SYMBOL.RData")
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_SYMBOL.RData")
+aa
+head(mapping.list$gene$pathwayCommons_SYMBOL)
+tail(mapping.list$gene$pathwayCommons_SYMBOL)
+dim(mapping.list$gene$pathwayCommons_SYMBOL)
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_SYMBOL.without.label.RData")
+dim(mapping.list$gene$pathwayCommons_SYMBOL)
+write.table(mapping.list$gene$pathwayCommons_SYMBOL,"C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_SYMBOL.without.label.RData.tsv",row.names=F,sep="\t")
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_SYMBOL.RData")
+dim(mapping.list$gene$pathwayCommons_SYMBOL)
+head(mapping.list$gene$pathwayCommons_SYMBOL)
+write.table(mapping.list$gene$pathwayCommons_SYMBOL,"C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_SYMBOL.RData.tsv",row.names=F,sep="\t")
+
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/metacyc.SBGN_SYMBOL.without.label.RData")
+aa
+mapping.table = mapping.list$gene[[1]]
+dim(mapping.table)
+head(mapping.table)
+mapping.table[,1] = as.character(mapping.table[,1])
+mapping.table[,2] = as.character(mapping.table[,2])
+mapping.table[,3] = as.character(mapping.table[,3])
+class(mapping.table[,1])
+class(mapping.table[,2])
+class(mapping.table[,3])
+class(label.to.glyph.id.all[,1])
+class(label.to.glyph.id.all[,2])
+class(label.to.glyph.id.all[,3])
+colnames(label.to.glyph.id.all) = colnames(mapping.table)
+head(mapping.table)
+tail(label.to.glyph.id.all)
+mapping.table = rbind(mapping.table,label.to.glyph.id.all)
+head(mapping.table)
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+tail(mapping.table)
+head(mapping.table)
+class(mapping.table[,1])
+mapping.list$gene[[1]] = mapping.table
+tail(mapping.list$gene[[1]])
+save(mapping.list,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/metacyc.SBGN_SYMBOL.RData")
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/metacyc.SBGN_SYMBOL.RData")
+aa
+head(mapping.list$gene$metacyc.SBGN_SYMBOL)
+tail(mapping.list$gene$metacyc.SBGN_SYMBOL)
+dim(mapping.list$gene$metacyc.SBGN_SYMBOL)
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/metacyc.SBGN_SYMBOL.without.label.RData")
+aa
+head(mapping.list$gene$metacyc.SBGN_SYMBOL)
+tail(mapping.list$gene$metacyc.SBGN_SYMBOL)
+dim(mapping.list$gene$metacyc.SBGN_SYMBOL)
+```
+
+
+
+
+
+
+
+### ko to glyph.ids update using label to glyph.ids
+```{r}
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/KO_metacyc.SBGN.RData")
+aa
+ko.to.metacyc = mapping.list$gene$KO_metacyc.SBGN
+colnames(ko.to.metacyc) = c("KO","glyph.id")
+head(ko.to.metacyc)
+
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/KO_pathwayCommons.RData")
+aa
+ko.to.pathwayCommons = mapping.list$gene$KO_pathwayCommons
+colnames(ko.to.pathwayCommons) = c("KO","glyph.id")
+head(ko.to.pathwayCommons)
+
+ko.to.glyph.ids = rbind(ko.to.metacyc
+                        ,ko.to.pathwayCommons)
+head(ko.to.glyph.ids)
+class(ko.to.glyph.ids[,1])
+class(ko.to.glyph.ids[,2])
+
+
+# aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_SYMBOL.issue.id.RData")
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_SYMBOL.RData")
+aa
+pathwayCommons.to.symbol = mapping.list$gene$pathwayCommons_SYMBOL
+pathwayCommons.to.symbol[grepl("Protein53117",pathwayCommons.to.symbol[,"pathwayCommons"]),]
+# pathwayCommons.to.symbol[,"pathwayCommons"] = gsub("\\.\\.\\."
+#                                                    ,":@:"
+#                                                    ,pathwayCommons.to.symbol[,"pathwayCommons"]
+#                                                    )
+# pathwayCommons.to.symbol[grepl("Protein53117",pathwayCommons.to.symbol[,"pathwayCommons"]),]
+# mapping.list$gene$pathwayCommons_SYMBOL = pathwayCommons.to.symbol
+# save(mapping.list, file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_SYMBOL.RData")
+head(pathwayCommons.to.symbol)
+
+
+# load metacyc
+# aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/metacyc.SBGN_SYMBOL.issue.id.RData")
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/metacyc.SBGN_SYMBOL.RData")
+metacyc.to.symbol = mapping.list$gene$metacyc.SBGN_SYMBOL
+head(metacyc.to.symbol)
+tail(metacyc.to.symbol)
+# metacyc.to.symbol[grepl("Protein53117",metacyc.to.symbol[,"metacyc.SBGN"]),]
+# metacyc.to.symbol[,"metacyc.SBGN"] = gsub("\\.\\.\\."
+#                                                    ,":@:"
+#                                                    ,metacyc.to.symbol[,"metacyc.SBGN"]
+#                                                    )
+# metacyc.to.symbol[grepl("Protein53117",metacyc.to.symbol[,"metacyc.SBGN"]),]
+# mapping.list$gene$metacyc.SBGN_SYMBOL = metacyc.to.symbol
+# save(mapping.list, file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/metacyc.SBGN_SYMBOL.RData")
+head(metacyc.to.symbol)
+
+colnames(pathwayCommons.to.symbol)[2] ="glyph.id"
+colnames(metacyc.to.symbol)[2] ="glyph.id"
+symbol.to.glyph.id = rbind(pathwayCommons.to.symbol
+                           ,metacyc.to.symbol)
+symbol.to.glyph.id = unique(symbol.to.glyph.id)
+head(symbol.to.glyph.id)
+dim(symbol.to.glyph.id)
+
+all.symbols = unique(symbol.to.glyph.id[,"SYMBOL"])
+head(all.symbols)
+output.type = "KO"
+input.type = "SYMBOL"
+species = "hsa"
+cpd.or.gene = "gene"
+limit.to.ids = all.symbols
+length(all.symbols)
+
+library(SBGNview)
+source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/parsing.utilities.R")
+source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/plot.utilities.R")
+source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/SBGN.to.SVG.R")
+symbol.to.ko = load.mapping.file(
+        output.type = "KO"
+        ,input.type = "SYMBOL"
+        ,species = "hsa"
+        ,cpd.or.gene = "gene"
+        ,limit.to.ids = toupper(all.symbols)
+)
+ko.to.symbol = symbol.to.ko$gene$KO_SYMBOL
+dim(ko.to.symbol)
+head(ko.to.symbol)
+
+GENENAME.to.ko = load.mapping.file(
+        output.type = "KO"
+        ,input.type = "GENENAME"
+        ,species = "hsa"
+        ,cpd.or.gene = "gene"
+        # ,limit.to.ids = toupper(all.symbols)
+        ,limit.to.ids = all.symbols
+)
+ko.to.GENENAME = GENENAME.to.ko$gene$GENENAME_KO
+dim(ko.to.GENENAME)
+head(ko.to.GENENAME)
+
+colnames(ko.to.GENENAME)[1] = "SYMBOL"
+head(ko.to.GENENAME)
+head(ko.to.symbol)
+dim(ko.to.GENENAME)
+dim(ko.to.symbol)
+ko.to.symbol = rbind(ko.to.symbol
+                     ,ko.to.GENENAME)
+dim(ko.to.symbol)
+
+###########
+head(symbol.to.glyph.id)
+symbol.to.glyph.id[grepl("Protein53117",symbol.to.glyph.id[,"glyph.id"]),]
+tail(symbol.to.glyph.id)
+class(symbol.to.glyph.id[,2])
+head(ko.to.symbol)
+ko.to.glyph.id.from.symbol = merge(ko.to.symbol,symbol.to.glyph.id,all=F)
+ko.to.glyph.id.from.symbol = ko.to.glyph.id.from.symbol[,c("KO","glyph.id")]
+ko.to.glyph.id.from.symbol = unique(ko.to.glyph.id.from.symbol)
+head(ko.to.glyph.id.from.symbol)
+dim(ko.to.glyph.id.from.symbol)
+
+mapping.list = list()
+mapping.list$gene = list()
+colnames(ko.to.glyph.id.from.symbol)[2] = "metacyc.SBGN"
+mapping.list$gene[["KO_metacyc.SBGN"]] = ko.to.glyph.id.from.symbol
+
+head(mapping.list$gene$KO_metacyc.SBGN)
+save(mapping.list,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/KO_metacyc.SBGN.RData")
+
+
+
+mapping.list = list()
+mapping.list$gene = list()
+mapping.list$gene[["KO_pathwayCommons"]] = ko.to.glyph.id.from.symbol
+head(mapping.list$gene$KO_pathwayCommons)
+class(mapping.list$gene$KO_pathwayCommons[,1])
+class(mapping.list$gene$KO_pathwayCommons[,2])
+save(mapping.list,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/KO_pathwayCommons.RData")
+
+
+```
+
+### text/symbol/gene name to pathway id: pathwayCommons metacyc
+```{r}
+label.to.pathway.all = matrix(ncol=2,nrow=0)
+for (i in 1:length(node.list)){
+        print(i)
+        pathway = names(node.list)[i]
+        pathway
+        label.to.class = node.list[[i]][,c("class","label")]
+        print("generating dataframe")
+        label.to.class = as.data.frame(label.to.class,stringsAsFactors=F)
+        class(label.to.class)
+        head(label.to.class)
+        print("extracting macromolecule")
+        macromolecule.labels = subset(label.to.class,class=="macromolecule",select="label")
+        if(nrow(macromolecule.labels) == 0){
+                next()
+        }
+        label.to.pathway = cbind(macromolecule.labels,pathway)
+        label.to.pathway = unique(label.to.pathway)
+        label.to.pathway
+        head(label.to.pathway)
+        colnames(label.to.pathway) = c("SYMBOL","pathway.id")
+        label.to.pathway.all = rbind(label.to.pathway.all,label.to.pathway)
+}
+label.to.pathway.all = unique(label.to.pathway.all)
+dim(label.to.pathway.all)
+head(label.to.pathway.all)
+# add to symbol-pathway id mapping
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/SYMBOL_pathway.id.without.node.label.RData")
+dim(mapping.table)
+mapping.table = rbind(mapping.table,label.to.pathway.all)
+head(mapping.table)
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+tail(mapping.table)
+head(mapping.table)
+class(mapping.table[,1])
+save(mapping.table,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/SYMBOL_pathway.id.RData")
+
+colnames(label.to.pathway.all)[1] = "GENENAME"
+dim(label.to.pathway.all)
+head(label.to.pathway.all)
+# add to symbol-pathway id mapping
+load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/GENENAME_pathway.id.without.node.label.RData")
+dim(mapping.table)
+head(mapping.table)
+tail(mapping.table)
+mapping.table = rbind(mapping.table,label.to.pathway.all)
+tail(mapping.table)
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+tail(mapping.table)
+head(mapping.table)
+class(mapping.table[,1])
+save(mapping.table,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/GENENAME_pathway.id.RData")
+```
+        
         
 ## compounds
 
@@ -1011,6 +1370,11 @@ node.list$`Alanine Degradation`$all.nodes
 ```{r}
 load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/CompoundName_pathway.id.without.metacrop.RData")
 dim(mapping.table)
+head(mapping.table)
+tail(mapping.table)
+class(mapping.table[,1])
+mapping.table[,1] = as.character(mapping.table[,1])
+mapping.table[,2] = as.character(mapping.table[,2])
 
 for (i in 1:length(node.list)){
         pathway = names(node.list)[i]
@@ -1024,10 +1388,12 @@ for (i in 1:length(node.list)){
 }
 dim(mapping.table)
 mapping.table = unique(mapping.table)
+dim(mapping.table)
 tail(mapping.table)
 head(mapping.table)
 class(mapping.table[,1])
-save(mapping.table,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENZYME_pathway.id.RData")
+class(mapping.table[,2])
+save(mapping.table,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/CompoundName_pathway.id.RData")
 ```
 
 ### EC number to pathway id
