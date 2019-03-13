@@ -935,11 +935,202 @@ save(mapping.list,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/dat
 
 mapping.list = list()
 mapping.list$gene = list()
+colnames(ko.to.glyph.id.from.symbol)[2] = "pathwayCommons"
 mapping.list$gene[["KO_pathwayCommons"]] = ko.to.glyph.id.from.symbol
 head(mapping.list$gene$KO_pathwayCommons)
 class(mapping.list$gene$KO_pathwayCommons[,1])
 class(mapping.list$gene$KO_pathwayCommons[,2])
 save(mapping.list,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/KO_pathwayCommons.RData")
+
+
+```
+### ko to pathway.id
+```{r}
+pathway.to.glyph.id.all = matrix(ncol=2,nrow=0)
+for (i in 1:length(node.list)){
+# for (i in 1:3){
+        print(i)
+        pathway = names(node.list[i])
+        pathway
+        label.to.class = node.list[[i]][,c("class","label","glyph.id")]
+        print("generating dataframe")
+        label.to.class = as.data.frame(label.to.class,stringsAsFactors=F)
+        class(label.to.class)
+        head(label.to.class)
+        print("extracting macromolecule")
+        macromolecule.labels = subset(label.to.class,class=="macromolecule",select="label")
+        glyph.ids = subset(label.to.class,class=="macromolecule",select="glyph.id")
+        
+        head(macromolecule.labels)
+        if(nrow(macromolecule.labels) == 0){
+                next()
+        }
+        glyph.ids
+        pathway.to.glyph.id = cbind(glyph.ids,pathway)
+        pathway.to.glyph.id = unique(pathway.to.glyph.id)
+        pathway.to.glyph.id
+        head(pathway.to.glyph.id)
+        colnames(pathway.to.glyph.id) = c("SYMBOL","molecule.id")
+        head(pathway.to.glyph.id)
+        pathway.to.glyph.id.all = rbind(pathway.to.glyph.id.all,pathway.to.glyph.id)
+}
+pathway.to.glyph.id.all = unique(pathway.to.glyph.id.all)
+head(pathway.to.glyph.id.all)
+pathway.to.glyph.id.all[pathway.to.glyph.id.all[,"metacyc.SBGN"] == "Protein_7e80572b1f17bcfea96f8380de4ff8a5_Complex_af8cc7e6370ef36100e75db9fb86daf0",]
+
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_pathway.id.RData")
+aa
+head(pathwayCommons_pathway.id)
+dim(pathwayCommons_pathway.id)
+colnames(pathway.to.glyph.id.all) = c("pathwayCommons","pathway.id")
+head(pathwayCommons_pathway.id)
+head(pathway.to.glyph.id.all)
+pathwayCommons_pathway.id = rbind(pathwayCommons_pathway.id
+                                  ,pathway.to.glyph.id.all)
+dim(pathwayCommons_pathway.id)
+pathwayCommons_pathway.id = unique(pathwayCommons_pathway.id)
+dim(pathwayCommons_pathway.id)
+mapping.table = pathwayCommons_pathway.id
+head(mapping.table)
+tail(mapping.table)
+save(mapping.table, file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_pathway.id.RData")
+
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/metacyc.SBGN_pathway.id.without.complex.member.RData")
+aa
+head(mapping.table)
+dim(mapping.table)
+colnames(pathway.to.glyph.id.all) = c("metacyc.SBGN","pathway.id")
+head(mapping.table)
+head(pathway.to.glyph.id.all)
+tail(pathway.to.glyph.id.all)
+mapping.table = rbind(mapping.table
+                                  ,pathway.to.glyph.id.all)
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+head(mapping.table)
+tail(mapping.table)
+head(pathwayCommons_pathway.id)
+save(mapping.table, file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/metacyc.SBGN_pathway.id.RData")
+metacyc.pathway.to.metacyc.glyph = mapping.table
+head(metacyc.pathway.to.metacyc.glyph)
+dim(metacyc.pathway.to.metacyc.glyph)
+
+
+```
+
+### ko to pathway.id
+```{r}
+pathway.id.to.glyphs = metacyc.pathway.to.metacyc.glyph
+colnames(pathway.id.to.glyphs)[1] = "pathwayCommons"
+pathway.id.to.glyphs = rbind(pathway.id.to.glyphs,pathwayCommons_pathway.id)
+pathway.id.to.glyphs = unique(pathway.id.to.glyphs)
+colnames(pathway.id.to.glyphs)[1] = "glyph.id"
+head(pathway.id.to.glyphs)
+tail(pathway.id.to.glyphs)
+dim(pathway.id.to.glyphs)
+dim(mapping.table)
+dim(pathwayCommons_pathway.id)
+
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/KO_metacyc.SBGN.RData")
+aa
+ko.to.metacyc = mapping.list$gene$KO_metacyc.SBGN
+colnames(ko.to.metacyc) = c("KO","glyph.id")
+head(ko.to.metacyc)
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/KO_pathwayCommons.RData")
+aa
+ko.to.pathwayCommons = mapping.list$gene$KO_pathwayCommons
+colnames(ko.to.pathwayCommons) = c("KO","glyph.id")
+head(ko.to.pathwayCommons)
+ko.to.glyph.ids = rbind(ko.to.metacyc
+                        ,ko.to.pathwayCommons)
+ko.to.glyph.ids = unique(ko.to.glyph.ids)
+head(ko.to.glyph.ids)
+class(ko.to.glyph.ids[,1])
+class(ko.to.glyph.ids[,2])
+ko.to.glyph.ids[ko.to.glyph.ids[,"glyph.id"] == "Protein_7e80572b1f17bcfea96f8380de4ff8a5_Complex_af8cc7e6370ef36100e75db9fb86daf0",]
+head(pathway.id.to.glyphs)
+ko.to.pathway.id = merge(ko.to.glyph.ids
+                         ,pathway.id.to.glyphs)
+dim(ko.to.pathway.id)
+ko.to.pathway.id = ko.to.pathway.id[,c("KO","pathway.id")]
+head(ko.to.pathway.id)
+ko.to.pathway.id = unique(ko.to.pathway.id)
+dim(ko.to.pathway.id)
+ko.to.pathway.id[ko.to.pathway.id[,"pathway.id"] == "R-HSA-909733" & ko.to.pathway.id[,"KO"] == "K11221",]
+
+aa=load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/KO_pathway.id.RData")
+aa
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+head(mapping.table)
+dim(mapping.table[mapping.table[,"pathway.id" ]== "R-HSA-909733",])
+dim(ko.to.pathway.id[ko.to.pathway.id[,"pathway.id" ]== "R-HSA-909733",])
+mapping.table.all = rbind(mapping.table,ko.to.pathway.id)
+mapping.table.all = unique(mapping.table.all)
+
+dim(mapping.table)
+dim(mapping.table.all)
+dim(ko.to.pathway.id)
+dim(mapping.table.all[mapping.table.all[,"pathway.id" ]== "R-HSA-909733",])
+mapping.table = mapping.table.all
+save(mapping.table,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/KO_pathway.id.RData")
+
+
+
+```
+
+
+### update entrez to pathway, adding complex members
+
+```{r}
+
+library(SBGNview)
+aa = load( "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/KO_ENTREZID.RData")
+aa
+head(mapping.table)
+all.entrez = unique(mapping.table[,"ENTREZID"])
+head(all.entrez)
+length(all.entrez)
+
+
+    source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/parsing.utilities.R")
+    source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/plot.utilities.R")
+    source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/SBGN.to.SVG.R")
+entrez.to.symbol = load.mapping.file(
+                        output.type = "SYMBOL"
+                        ,input.type = "ENTREZID"
+                        ,cpd.or.gene = "gene"
+                        ,species = "hsa"
+                        ,limit.to.ids = all.entrez
+)
+entrez.to.symbol = entrez.to.symbol[[1]][[1]]
+head(entrez.to.symbol)
+dim(entrez.to.symbol)
+
+aa = load( "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/SYMBOL_pathway.id.RData")
+aa
+head(mapping.table)
+head(entrez.to.symbol)
+mapping.table[mapping.table[,"pathway.id" ]== "R-HSA-909733",]
+entrez.to.pathway = merge(mapping.table,entrez.to.symbol)
+entrez.to.pathway = entrez.to.pathway[,c("ENTREZID","pathway.id")]
+head(entrez.to.pathway)
+entrez.to.pathway[entrez.to.pathway[,"pathway.id" ]== "R-HSA-909733" & entrez.to.pathway[,"ENTREZID"] == "6773",]
+
+
+aa = load( "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENTREZID_pathway.id.RData")
+aa
+head(mapping.table)
+head(entrez.to.pathway)
+mapping.table[mapping.table[,"pathway.id" ]== "R-HSA-909733" & mapping.table[,"ENTREZID"] == "6773",]
+
+mapping.table = rbind(mapping.table,entrez.to.pathway)
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+save(mapping.table, file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENTREZID_pathway.id.RData")
+
 
 
 ```
