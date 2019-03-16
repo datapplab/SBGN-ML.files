@@ -431,10 +431,13 @@ head(kegg.species.count)
 ###### KO to entrezid
 ```{r, ko to uniprot}
 eg.to.ko = read.table("C:/xiaoxi/work/input/id.mapping/kegg.related/kegg.ortholog.100.download.slice/kegg.ko.to.all.species.entrez.tsv",sep="\t",stringsAsFactors = F,quote="")
+head(eg.to.ko)
 eg.to.ko[,1] = gsub("ko:","",eg.to.ko[,1])
+eg.to.ko[,3] = do.call(rbind,strsplit(eg.to.ko[,2],":"))[,1]
 eg.to.ko[,2] = do.call(rbind,strsplit(eg.to.ko[,2],":"))[,2]
+head(eg.to.ko)
 dim(eg.to.ko)
-colnames(eg.to.ko) = c("KO","ENTREZID")
+colnames(eg.to.ko) = c("KO","ENTREZID","species")
 tail(eg.to.ko)
 head(eg.to.ko)
 mapping.table = eg.to.ko
@@ -655,8 +658,8 @@ is.pathwayCommons = pathways.info[,"database"] %in% c("pathwayCommons")
 pathwayCommons.ids = pathways.info[is.pathwayCommons ,"pathway.id"]
 length(pathwayCommons.ids)
 node.list.pathwayCommons = sbgn.nodes(input.sbgn = c( 
-                                        pathwayCommons.ids
-                                        # pathwayCommons.ids[1:6]
+                                        # pathwayCommons.ids
+                                        pathwayCommons.ids[1:6]
                                         # "R-HSA-909733"
                                         )
                        ,sbgn.folder = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/SBGN/pathwayCommons"
@@ -875,6 +878,10 @@ cpd.or.gene = "gene"
 limit.to.ids = all.symbols
 length(all.symbols)
 
+```
+#### KO to symbol and gene name using sbgnview/pathview mapping
+```{r}
+
 library(SBGNview)
 source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/parsing.utilities.R")
 source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/plot.utilities.R")
@@ -910,6 +917,10 @@ dim(ko.to.symbol)
 ko.to.symbol = rbind(ko.to.symbol
                      ,ko.to.GENENAME)
 dim(ko.to.symbol)
+
+```
+#### merge to get final table
+```{r}
 
 ###########
 head(symbol.to.glyph.id)
@@ -1019,7 +1030,6 @@ dim(metacyc.pathway.to.metacyc.glyph)
 
 ```
 
-### ko to pathway.id
 ```{r}
 pathway.id.to.glyphs = metacyc.pathway.to.metacyc.glyph
 colnames(pathway.id.to.glyphs)[1] = "pathwayCommons"
@@ -1119,16 +1129,21 @@ head(entrez.to.pathway)
 entrez.to.pathway[entrez.to.pathway[,"pathway.id" ]== "R-HSA-909733" & entrez.to.pathway[,"ENTREZID"] == "6773",]
 
 
-aa = load( "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENTREZID_pathway.id.RData")
+# aa = load( "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENTREZID_pathway.id.RData")
+aa = load( "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENTREZID_pathway.id.no.complex.members.RData")
 aa
 head(mapping.table)
 head(entrez.to.pathway)
-mapping.table[mapping.table[,"pathway.id" ]== "R-HSA-909733" & mapping.table[,"ENTREZID"] == "6773",]
+dim(mapping.table)
+dim(entrez.to.pathway)
+mapping.table[mapping.table[,"pathway.id" ]== "R-HSA-909733" & mapping.table[,"ENTREZID"] == "7297",]
+length(unique(mapping.table[mapping.table[,"pathway.id" ]== "R-HSA-909733" ,"ENTREZID"]))
 
 mapping.table = rbind(mapping.table,entrez.to.pathway)
 dim(mapping.table)
 mapping.table = unique(mapping.table)
 dim(mapping.table)
+length(unique(mapping.table[mapping.table[,"pathway.id" ]== "R-HSA-909733" ,"ENTREZID"]))
 save(mapping.table, file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENTREZID_pathway.id.RData")
 
 
