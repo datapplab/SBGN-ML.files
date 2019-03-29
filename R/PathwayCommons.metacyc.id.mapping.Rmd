@@ -437,6 +437,9 @@ eg.to.ko[,3] = do.call(rbind,strsplit(eg.to.ko[,2],":"))[,1]
 eg.to.ko[,2] = do.call(rbind,strsplit(eg.to.ko[,2],":"))[,2]
 head(eg.to.ko)
 dim(eg.to.ko)
+class(eg.to.ko[,1])
+class(eg.to.ko[,2])
+class(eg.to.ko[,3])
 colnames(eg.to.ko) = c("KO","ENTREZID","species")
 tail(eg.to.ko)
 head(eg.to.ko)
@@ -533,6 +536,29 @@ output:
         
         
         
+### plant reactome
+#### find all pathway names
+1. cat /c/xiaoxi/work/input/plant.reactome/*.txt |cut -f2|sor
+t|uniq>/c/xiaoxi/work/input/plant.reactome/all.pathways.txt
+2. cat /c/xiaoxi/work/input/plant.reactome/all.pathways.txt |
+cut -d'-' -f3|sort|uniq >/c/xiaoxi/work/input/plant.reactome
+/all.pathways.number.txt
+#### download pathways
+```{r}
+all.pathways = read.table("c:/xiaoxi/work/input/plant.reactome/all.pathways.number.txt",sep="\t",stringsAsFactors = F,header=F)
+head(all.pathways)
+dim(all.pathways)
+link = "http://plantreactome.gramene.org/ReactomeRESTfulAPI/RESTfulWS/biopaxExporter/Level3/"
+for (i in 1:nrow(all.pathways)){
+        adress = paste(link,all.pathways[i,1],sep="")
+        adress
+        download.file(adress,destfile = paste("c:/xiaoxi/work/input/plant.reactome/downloaded/",all.pathways[i,1],".biopax"),sep="")
+}
+```
+#### change biopax to sbgn
+```{r}
+
+```
         
 ### metacyc 
 
@@ -1228,6 +1254,83 @@ output:
         
         C:\xiaoxi\work\papers\SBGNview\package\id.mapping\id.mapping\pathway.commons\SBGNview.uniprot.chebi.to.SBGN.id.mapping.RData
 <!-- ###################################################################### -->
+
+#### lost reactome compounds 3/29/2019
+```{r}
+source("C:/xiaoxi/work/papers/SBGNview/package/data.package/pathway.commons/pathway.commons_SBGN.id.to.uniprot.chebi.using.biopax.R")
+
+# library(xml2) 
+biopax.file = "C:/xiaoxi/work/papers/SBGNview/package/data.package/pathway.commons/raw.data/v9/PathwayCommons9.reactome.BIOPAX.owl"
+out.list = find.id.mapping.each.biopax.file.pathwayCommons10(biopax.file)
+head(out.list$small.molecules.all)
+dim(out.list$small.molecules.all)
+cpds = out.list$small.molecules.all
+length(unique(cpds$database.ids))
+chebi.to.pc = cpds[,c("database.ids","id.q")]
+colnames(chebi.to.pc) = c("chebi","pathwayCommons")
+head(chebi.to.pc)
+chebi.to.pc[,"chebi"] = gsub("CHEBI:","",chebi.to.pc[,"chebi"])
+head(chebi.to.pc)
+
+# merge added 
+var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/chebi_pathwayCommons.RData")
+var
+chebi.to.pathwayCommons = mapping.list$compound$chebi_pathwayCommons
+var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_pathway.id.RData")
+var
+pc.to.pathway = mapping.table
+length(intersect(chebi.to.pc$pathwayCommons
+                 ,chebi.to.pathwayCommons[,"pathwayCommons"]))
+head(chebi.to.pc)
+chebi.to.pc.m = as.matrix(chebi.to.pc)
+head(chebi.to.pc.m)
+chebi.to.pc.m = chebi.to.pc.m[,colnames(chebi.to.pathwayCommons)]
+class(chebi.to.pc.m[1,1])
+class(chebi.to.pc.m[1,2])
+head(chebi.to.pc.m)
+head(chebi.to.pathwayCommons)
+dim(chebi.to.pc.m)
+dim(chebi.to.pathwayCommons)
+chebi.to.pc.all = rbind(chebi.to.pc.m,chebi.to.pathwayCommons)
+dim(chebi.to.pc.all)
+chebi.to.pc.all = unique(chebi.to.pc.all)
+dim(chebi.to.pc.all)
+dim(mapping.list$compound$chebi_pathwayCommons)
+mapping.list$compound$chebi_pathwayCommons = chebi.to.pc.all
+dim(mapping.list$compound$chebi_pathwayCommons)
+save(mapping.list,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/chebi_pathwayCommons.RData")
+
+# genereate new chebi to pathway
+head(pc.to.pathway)
+head(chebi.to.pc.all)
+pc.to.pathway.all = merge(pc.to.pathway
+                          ,chebi.to.pc.all
+                          ,all.y=T)
+head(pc.to.pathway.all)
+pc.to.pathway.all = pc.to.pathway.all[,c("chebi","pathway.id")]
+dim(pc.to.pathway.all)
+pc.to.pathway.all = unique(pc.to.pathway.all)
+dim(pc.to.pathway.all)
+head(pc.to.pathway.all)
+var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/chebi_pathway.id.RData")
+var
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+head(mapping.table)
+mapping.table.without.reactome = mapping.table
+mapping.table = rbind(mapping.table.without.reactome
+                      ,pc.to.pathway.all)
+head(mapping.table)
+dim(mapping.table)
+mapping.table = unique(mapping.table)
+dim(mapping.table)
+dim(mapping.table.without.reactome)
+head(mapping.table)
+save(mapping.table, file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/chebi_pathway.id.RData")
+
+
+
+```
         
         
 ### metacyc
