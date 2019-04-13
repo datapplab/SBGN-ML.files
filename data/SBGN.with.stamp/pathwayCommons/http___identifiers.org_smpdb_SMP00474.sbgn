@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="complex" id="Complex_2db3fec2aa000d0964552ea4b822781c" if.within.compartment="">
+      <label text="Epidermal growth factor receptor"/>
+      <bbox w="81" h="51" x="300.25" y="278.394191624432"/>
+      <glyph class="macromolecule" id="Protein_5c28887018ce00a9dd2611537d28467a_Complex_2db3fec2aa000d0964552ea4b822781c" if.within.compartment="">
+        <label text="EGFR"/>
+        <bbox w="70" h="40" x="305.75" y="283.894191624432"/>
+      </glyph>
+    </glyph>
+    <glyph class="omitted process" id="Interaction_44762b152e385e91866db1a044e973c8" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="137" y="150"/>
+    </glyph>
+    <glyph class="compartment" id="cell_membrane" if.within.compartment="">
+      <label text="cell membrane"/>
+      <bbox w="92" h="62" x="126" y="262.788383248865"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_68afdd2993b95d6471f4b2df0466fc5f" compartmentRef="cell_membrane" if.within.compartment="">
+      <label text="Cetuximab"/>
+      <bbox w="70" h="40" x="137" y="273.788383248865"/>
+    </glyph>
+    <arc class="interaction" id="Complex_2db3fec2aa000d0964552ea4b822781c--to--Interaction_44762b152e385e91866db1a044e973c8-input" source="Complex_2db3fec2aa000d0964552ea4b822781c" target="Interaction_44762b152e385e91866db1a044e973c8">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="interaction" id="Protein_68afdd2993b95d6471f4b2df0466fc5f--to--Interaction_44762b152e385e91866db1a044e973c8-input" source="Protein_68afdd2993b95d6471f4b2df0466fc5f" target="Interaction_44762b152e385e91866db1a044e973c8">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="Complex_2db3fec2aa000d0964552ea4b822781c--to--Interaction_44762b152e385e91866db1a044e973c8" source="Complex_2db3fec2aa000d0964552ea4b822781c" target="Interaction_44762b152e385e91866db1a044e973c8" class="interaction">
+      <source.arc start.x="263" start.y="246" end.x="305" end.y="278" class="consumption"/>
+      <spline s.x="305.000000" s.y="278.000000" c1.x="263.000000" c1.y="246.000000" c2.x="193.000000" c2.y="195.000000" e.x="164.000000" e.y="173.000000"/>
+      <target.arc start.x="193" start.y="195" end.x="164" end.y="173" class="interaction"/>
+    </arc.spline>
+    <arc.spline id="Protein_68afdd2993b95d6471f4b2df0466fc5f--to--Interaction_44762b152e385e91866db1a044e973c8" source="Protein_68afdd2993b95d6471f4b2df0466fc5f" target="Interaction_44762b152e385e91866db1a044e973c8" class="interaction">
+      <source.arc start.x="164" start.y="246" end.x="168" end.y="273" class="consumption"/>
+      <spline s.x="152.000000" s.y="177.000000" c1.x="156.000000" c1.y="200.000000" c2.x="164.000000" c2.y="246.000000" e.x="168.000000" e.y="273.000000"/>
+      <target.arc start.x="156" start.y="200" end.x="152" end.y="177" class="interaction"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cell_membrane</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Complex_2db3fec2aa000d0964552ea4b822781c--to--Interaction_44762b152e385e91866db1a044e973c8" source="Complex_2db3fec2aa000d0964552ea4b822781c" target="Interaction_44762b152e385e91866db1a044e973c8" class="interaction">
+<source.arc start.x="263" start.y="246" end.x="305" end.y="278" class="consumption"/>
+
+
+<spline s.x="305.000000"  s.y="278.000000" c1.x="263.000000" c1.y="246.000000" c2.x="193.000000" c2.y="195.000000" e.x="164.000000"  e.y="173.000000" />
+<target.arc start.x="193" start.y="195" end.x="164" end.y="173" class="interaction"/>
+
+</arc.spline>
+<arc.spline id="Protein_68afdd2993b95d6471f4b2df0466fc5f--to--Interaction_44762b152e385e91866db1a044e973c8" source="Protein_68afdd2993b95d6471f4b2df0466fc5f" target="Interaction_44762b152e385e91866db1a044e973c8" class="interaction">
+<source.arc start.x="164" start.y="246" end.x="168" end.y="273" class="consumption"/>
+
+
+<spline s.x="152.000000"  s.y="177.000000" c1.x="156.000000" c1.y="200.000000" c2.x="164.000000" c2.y="246.000000" e.x="168.000000"  e.y="273.000000" />
+<target.arc start.x="156" start.y="200" end.x="152" end.y="177" class="interaction"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>

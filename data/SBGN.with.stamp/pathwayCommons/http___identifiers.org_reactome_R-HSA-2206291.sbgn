@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="92" h="347.788383248865" x="145.5" y="198"/>
+    </glyph>
+    <glyph class="compartment" id="lysosomal_lumen" if.within.compartment="">
+      <label text="lysosomal lumen"/>
+      <bbox w="92" h="62" x="150" y="340.894191624432"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_9dbd8409c85ce35970b7dc24e52fcffa" compartmentRef="cytosol" if.within.compartment="">
+      <label text="Ac-CoA"/>
+      <bbox w="40" h="40" x="156.5" y="494.788383248865"/>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-2263492_LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="156.5" y="209"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_2240315c020d74fa75e43b3616407c5f" compartmentRef="lysosomal_lumen" if.within.compartment="">
+      <label text="HGSNAT substrates"/>
+      <bbox w="40" h="40" x="161" y="351.894191624432"/>
+    </glyph>
+    <arc class="consumption" id="SmallMolecule_2240315c020d74fa75e43b3616407c5f--to--reactome_R-HSA-2263492_LEFT_TO_RIGHT-input" source="SmallMolecule_2240315c020d74fa75e43b3616407c5f" target="reactome_R-HSA-2263492_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_9dbd8409c85ce35970b7dc24e52fcffa--to--reactome_R-HSA-2263492_LEFT_TO_RIGHT-input" source="SmallMolecule_9dbd8409c85ce35970b7dc24e52fcffa" target="reactome_R-HSA-2263492_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="SmallMolecule_2240315c020d74fa75e43b3616407c5f--to--reactome_R-HSA-2263492_LEFT_TO_RIGHT" source="SmallMolecule_2240315c020d74fa75e43b3616407c5f" target="reactome_R-HSA-2263492_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="187" start.y="320" end.x="192" end.y="351" class="consumption"/>
+      <spline s.x="172.000000" s.y="235.000000" c1.x="176.000000" c1.y="262.000000" c2.x="187.000000" c2.y="320.000000" e.x="192.000000" e.y="351.000000"/>
+      <target.arc start.x="176" start.y="262" end.x="172" end.y="235" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule_9dbd8409c85ce35970b7dc24e52fcffa--to--reactome_R-HSA-2263492_LEFT_TO_RIGHT" source="SmallMolecule_9dbd8409c85ce35970b7dc24e52fcffa" target="reactome_R-HSA-2263492_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="175" start.y="470" end.x="183" end.y="494" class="consumption"/>
+      <spline s.x="183.000000" s.y="494.000000" c1.x="175.000000" c1.y="470.000000" c2.x="162.000000" c2.y="430.000000" e.x="157.000000" e.y="395.000000"/>
+      <spline s.x="157.000000" s.y="395.000000" c1.x="149.000000" c1.y="336.000000" c2.x="161.000000" c2.y="265.000000" e.x="167.000000" e.y="235.000000"/>
+      <target.arc start.x="161" start.y="265" end.x="167" end.y="235" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytosol-compartment.layer.info-lysosomal_lumen</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule_2240315c020d74fa75e43b3616407c5f--to--reactome_R-HSA-2263492_LEFT_TO_RIGHT" source="SmallMolecule_2240315c020d74fa75e43b3616407c5f" target="reactome_R-HSA-2263492_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="177" start.y="320" end.x="179" end.y="351" class="consumption"/>
+
+
+<spline s.x="170.000000"  s.y="235.000000" c1.x="172.000000" c1.y="262.000000" c2.x="177.000000" c2.y="320.000000" e.x="179.000000"  e.y="351.000000" />
+<target.arc start.x="172" start.y="262" end.x="170" end.y="235" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_9dbd8409c85ce35970b7dc24e52fcffa--to--reactome_R-HSA-2263492_LEFT_TO_RIGHT" source="SmallMolecule_9dbd8409c85ce35970b7dc24e52fcffa" target="reactome_R-HSA-2263492_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="167" start.y="470" end.x="172" end.y="494" class="consumption"/>
+
+
+<spline s.x="172.000000"  s.y="494.000000" c1.x="167.000000" c1.y="470.000000" c2.x="160.000000" c2.y="430.000000" e.x="157.000000"  e.y="395.000000" />
+<spline s.x="157.000000"  s.y="395.000000" c1.x="153.000000" c1.y="336.000000" c2.x="162.000000" c2.y="265.000000" e.x="167.000000"  e.y="236.000000" />
+<target.arc start.x="162" start.y="265" end.x="167" end.y="236" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>

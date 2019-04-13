@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="integral_component_of_cytoplasmic_side_of_endoplasmic_reticulum_membrane" if.within.compartment="">
+      <label text="integral component of cytoplasmic side of endoplasmic reticulum membrane"/>
+      <bbox w="92" h="62" x="126" y="321.788383248865"/>
+    </glyph>
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="339.5" h="204.894191624432" x="126" y="198"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_1b45fa12e0e7958c48c01a283f2ef2ae" compartmentRef="cytosol" if.within.compartment="">
+      <label text="GDP-Man"/>
+      <bbox w="40" h="40" x="384.5" y="351.894191624432"/>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-4549368_LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="137" y="209"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_158eee3d20561be92154d68f71588e17" compartmentRef="integral_component_of_cytoplasmic_side_of_endoplasmic_reticulum_membrane" if.within.compartment="">
+      <label text="MDCDD"/>
+      <bbox w="40" h="40" x="137" y="332.788383248865"/>
+    </glyph>
+    <arc class="consumption" id="SmallMolecule_1b45fa12e0e7958c48c01a283f2ef2ae--to--reactome_R-HSA-4549368_LEFT_TO_RIGHT-input" source="SmallMolecule_1b45fa12e0e7958c48c01a283f2ef2ae" target="reactome_R-HSA-4549368_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_158eee3d20561be92154d68f71588e17--to--reactome_R-HSA-4549368_LEFT_TO_RIGHT-input" source="SmallMolecule_158eee3d20561be92154d68f71588e17" target="reactome_R-HSA-4549368_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="SmallMolecule_1b45fa12e0e7958c48c01a283f2ef2ae--to--reactome_R-HSA-4549368_LEFT_TO_RIGHT" source="SmallMolecule_1b45fa12e0e7958c48c01a283f2ef2ae" target="reactome_R-HSA-4549368_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="324" start.y="318" end.x="384" end.y="352" class="consumption"/>
+      <spline s.x="384.000000" s.y="352.000000" c1.x="324.000000" c1.y="318.000000" c2.x="204.000000" c2.y="252.000000" e.x="163.000000" e.y="229.000000"/>
+      <target.arc start.x="204" start.y="252" end.x="163" end.y="229" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule_158eee3d20561be92154d68f71588e17--to--reactome_R-HSA-4549368_LEFT_TO_RIGHT" source="SmallMolecule_158eee3d20561be92154d68f71588e17" target="reactome_R-HSA-4549368_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="164" start.y="305" end.x="168" end.y="332" class="consumption"/>
+      <spline s.x="152.000000" s.y="236.000000" c1.x="156.000000" c1.y="259.000000" c2.x="164.000000" c2.y="305.000000" e.x="168.000000" e.y="332.000000"/>
+      <target.arc start.x="156" start.y="259" end.x="152" end.y="236" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytosol-compartment.layer.info-integral_component_of_cytoplasmic_side_of_endoplasmic_reticulum_membrane</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule_1b45fa12e0e7958c48c01a283f2ef2ae--to--reactome_R-HSA-4549368_LEFT_TO_RIGHT" source="SmallMolecule_1b45fa12e0e7958c48c01a283f2ef2ae" target="reactome_R-HSA-4549368_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="334" start.y="330" end.x="384" end.y="359" class="consumption"/>
+
+
+<spline s.x="384.000000"  s.y="359.000000" c1.x="334.000000" c1.y="330.000000" c2.x="206.000000" c2.y="255.000000" e.x="163.000000"  e.y="230.000000" />
+<target.arc start.x="206" start.y="255" end.x="163" end.y="230" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_158eee3d20561be92154d68f71588e17--to--reactome_R-HSA-4549368_LEFT_TO_RIGHT" source="SmallMolecule_158eee3d20561be92154d68f71588e17" target="reactome_R-HSA-4549368_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="154" start.y="305" end.x="155" end.y="332" class="consumption"/>
+
+
+<spline s.x="151.000000"  s.y="236.000000" c1.x="152.000000" c1.y="259.000000" c2.x="154.000000" c2.y="305.000000" e.x="155.000000"  e.y="332.000000" />
+<target.arc start.x="152" start.y="259" end.x="151" end.y="236" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>

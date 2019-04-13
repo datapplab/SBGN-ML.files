@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="simple chemical" id="SmallMolecule82909:@:TAURINEDEG-PWY" if.within.compartment="">
+      <label text="hydroxylamine"/>
+      <bbox w="40" h="40" x="573.146283553056" y="500.706117267633"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein82855:@:TAURINEDEG-PWY" if.within.compartment="">
+      <label text="Toa"/>
+      <bbox w="70" h="40" x="489.146283553056" y="335.706117267633"/>
+    </glyph>
+    <glyph class="not" id="NOT-SmallMolecule82909" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="531.238777549749" y="659.10653955738"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule82894:@:TAURINEDEG-PWY" if.within.compartment="">
+      <label text="Hg&lt;SUP&gt;2+&lt;/SUP&gt;"/>
+      <bbox w="40" h="40" x="408.146283553056" y="665.706117267633"/>
+    </glyph>
+    <glyph class="and" id="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="486.818092296369" y="479.57621222138"/>
+    </glyph>
+    <glyph class="not" id="NOT-SmallMolecule82918" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="678.004375361415" y="447.273573531163"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein82868:@:TAURINEDEG-PWY" if.within.compartment="">
+      <label text="taurine:&amp;alpha;-ketoglutarate aminotransferase"/>
+      <bbox w="70" h="40" x="578.348323312178" y="236.445499972536"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule82882:@:TAURINEDEG-PWY" if.within.compartment="">
+      <label text="PLP"/>
+      <bbox w="40" h="40" x="707.005246592989" y="550.252532932328"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule82918:@:TAURINEDEG-PWY" if.within.compartment="">
+      <label text="L-cycloserine"/>
+      <bbox w="40" h="40" x="767.985863465452" y="768.289450296681"/>
+    </glyph>
+    <glyph class="not" id="NOT-SmallMolecule82894" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="555.688123914555" y="416.733738801456"/>
+    </glyph>
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="287.321891271876" h="422.105516097446" x="100" y="198"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule82787:@:TAURINEDEG-PWY" compartmentRef="cytosol" if.within.compartment="">
+      <label text="taurine"/>
+      <bbox w="40" h="40" x="111" y="439.175350819229"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule82832:@:TAURINEDEG-PWY" compartmentRef="cytosol" if.within.compartment="">
+      <label text="sulfoacetaldehyde"/>
+      <bbox w="40" h="40" x="146.549277067176" y="276.886662533224"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule82805:@:TAURINEDEG-PWY" compartmentRef="cytosol" if.within.compartment="">
+      <label text="2-oxoglutarate"/>
+      <bbox w="40" h="40" x="185.925631369714" y="569.105516097446"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule82821:@:TAURINEDEG-PWY" compartmentRef="cytosol" if.within.compartment="">
+      <label text="glu"/>
+      <bbox w="40" h="40" x="306.321891271876" y="209"/>
+    </glyph>
+    <glyph class="process" id="BiochemicalReaction82769RIGHT_TO_LEFT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="291.745232147213" y="421.667380493486"/>
+    </glyph>
+    <glyph class="process" id="BiochemicalReaction82769LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="205.167619431507" y="388.198105038068"/>
+    </glyph>
+    <arc class="logic arc" id="SmallMolecule82909--to--NOT-SmallMolecule82909:@:TAURINEDEG-PWY" source="SmallMolecule82909:@:TAURINEDEG-PWY" target="NOT-SmallMolecule82909">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="NOT-SmallMolecule82918--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882" source="NOT-SmallMolecule82918" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="BiochemicalReaction82769RIGHT_TO_LEFT.output--to--SmallMolecule82787" source="BiochemicalReaction82769RIGHT_TO_LEFT" target="SmallMolecule82787:@:TAURINEDEG-PWY">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="catalysis" id="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882--to--BiochemicalReaction82769LEFT_TO_RIGHT:@:TAURINEDEG-PWY" source="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" target="BiochemicalReaction82769LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="SmallMolecule82894--to--NOT-SmallMolecule82894:@:TAURINEDEG-PWY" source="SmallMolecule82894:@:TAURINEDEG-PWY" target="NOT-SmallMolecule82894">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="Protein82868--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" source="Protein82868:@:TAURINEDEG-PWY" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="NOT-SmallMolecule82909--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882" source="NOT-SmallMolecule82909" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule82805--to--BiochemicalReaction82769LEFT_TO_RIGHT.input:@:TAURINEDEG-PWY" source="SmallMolecule82805:@:TAURINEDEG-PWY" target="BiochemicalReaction82769LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule82787--to--BiochemicalReaction82769LEFT_TO_RIGHT.input:@:TAURINEDEG-PWY" source="SmallMolecule82787:@:TAURINEDEG-PWY" target="BiochemicalReaction82769LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="BiochemicalReaction82769RIGHT_TO_LEFT.output--to--SmallMolecule82805" source="BiochemicalReaction82769RIGHT_TO_LEFT" target="SmallMolecule82805:@:TAURINEDEG-PWY">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="catalysis" id="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882--to--BiochemicalReaction82769RIGHT_TO_LEFT:@:TAURINEDEG-PWY" source="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" target="BiochemicalReaction82769RIGHT_TO_LEFT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="NOT-SmallMolecule82894--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882" source="NOT-SmallMolecule82894" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule82832--to--BiochemicalReaction82769RIGHT_TO_LEFT.input:@:TAURINEDEG-PWY" source="SmallMolecule82832:@:TAURINEDEG-PWY" target="BiochemicalReaction82769RIGHT_TO_LEFT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule82821--to--BiochemicalReaction82769RIGHT_TO_LEFT.input:@:TAURINEDEG-PWY" source="SmallMolecule82821:@:TAURINEDEG-PWY" target="BiochemicalReaction82769RIGHT_TO_LEFT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="catalysis" id="Protein82855--to--BiochemicalReaction82769LEFT_TO_RIGHT:@:TAURINEDEG-PWY" source="Protein82855:@:TAURINEDEG-PWY" target="BiochemicalReaction82769LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="SmallMolecule82918--to--NOT-SmallMolecule82918:@:TAURINEDEG-PWY" source="SmallMolecule82918:@:TAURINEDEG-PWY" target="NOT-SmallMolecule82918">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="catalysis" id="Protein82855--to--BiochemicalReaction82769RIGHT_TO_LEFT:@:TAURINEDEG-PWY" source="Protein82855:@:TAURINEDEG-PWY" target="BiochemicalReaction82769RIGHT_TO_LEFT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="BiochemicalReaction82769LEFT_TO_RIGHT.output--to--SmallMolecule82821" source="BiochemicalReaction82769LEFT_TO_RIGHT" target="SmallMolecule82821:@:TAURINEDEG-PWY">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="BiochemicalReaction82769LEFT_TO_RIGHT.output--to--SmallMolecule82832" source="BiochemicalReaction82769LEFT_TO_RIGHT" target="SmallMolecule82832:@:TAURINEDEG-PWY">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="SmallMolecule82882--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" source="SmallMolecule82882:@:TAURINEDEG-PWY" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="SmallMolecule82909--to--NOT-SmallMolecule82909:@:TAURINEDEG-PWY" source="SmallMolecule82909:@:TAURINEDEG-PWY" target="NOT-SmallMolecule82909" class="logic_arc">
+      <source.arc start.x="586" start.y="572" end.x="599" end.y="540" class="consumption"/>
+      <spline s.x="599.000000" s.y="540.000000" c1.x="586.000000" c1.y="572.000000" c2.x="561.000000" c2.y="631.000000" e.x="550.000000" e.y="658.000000"/>
+      <target.arc start.x="561" start.y="631" end.x="550" end.y="658" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="NOT-SmallMolecule82918--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882" source="NOT-SmallMolecule82918" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" class="logic_arc">
+      <source.arc start.x="642" start.y="468" end.x="677" end.y="462" class="consumption"/>
+      <spline s.x="513.000000" s.y="490.000000" c1.x="548.000000" c1.y="484.000000" c2.x="642.000000" c2.y="468.000000" e.x="677.000000" e.y="462.000000"/>
+      <target.arc start.x="548" start.y="484" end.x="513" end.y="490" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction82769RIGHT_TO_LEFT--to--SmallMolecule82787" source="BiochemicalReaction82769RIGHT_TO_LEFT" target="SmallMolecule82787:@:TAURINEDEG-PWY" class="production">
+      <source.arc start.x="267" start.y="440" end.x="291" end.y="437" class="consumption"/>
+      <spline s.x="181.000000" s.y="453.000000" c1.x="216.000000" c1.y="448.000000" c2.x="267.000000" c2.y="440.000000" e.x="291.000000" e.y="437.000000"/>
+      <target.arc start.x="216" start.y="448" end.x="181" end.y="453" class="production"/>
+    </arc.spline>
+    <arc.spline id="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882--to--BiochemicalReaction82769LEFT_TO_RIGHT:@:TAURINEDEG-PWY" source="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" target="BiochemicalReaction82769LEFT_TO_RIGHT" class="catalysis">
+      <source.arc start.x="457" start.y="471" end.x="486" end.y="485" class="consumption"/>
+      <spline s.x="486.000000" s.y="485.000000" c1.x="457.000000" c1.y="471.000000" c2.x="385.000000" c2.y="436.000000" e.x="321.000000" e.y="418.000000"/>
+      <spline s.x="321.000000" s.y="418.000000" c1.x="290.000000" c1.y="409.000000" c2.x="251.000000" c2.y="404.000000" e.x="231.000000" e.y="402.000000"/>
+      <target.arc start.x="251" start.y="404" end.x="231" end.y="402" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule82894--to--NOT-SmallMolecule82894:@:TAURINEDEG-PWY" source="SmallMolecule82894:@:TAURINEDEG-PWY" target="NOT-SmallMolecule82894" class="logic_arc">
+      <source.arc start.x="477" start.y="615" end.x="453" end.y="665" class="consumption"/>
+      <spline s.x="453.000000" s.y="665.000000" c1.x="477.000000" c1.y="615.000000" c2.x="541.000000" c2.y="486.000000" e.x="562.000000" e.y="443.000000"/>
+      <target.arc start.x="541" start.y="486" end.x="562" end.y="443" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="Protein82868--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" source="Protein82868:@:TAURINEDEG-PWY" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" class="logic_arc">
+      <source.arc start.x="596" start.y="301" end.x="605" end.y="276" class="consumption"/>
+      <spline s.x="508.000000" s.y="479.000000" c1.x="520.000000" c1.y="457.000000" c2.x="544.000000" c2.y="415.000000" e.x="562.000000" e.y="378.000000"/>
+      <spline s.x="562.000000" s.y="378.000000" c1.x="579.000000" c1.y="343.000000" c2.x="596.000000" c2.y="301.000000" e.x="605.000000" e.y="276.000000"/>
+      <target.arc start.x="520" start.y="457" end.x="508" end.y="479" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="NOT-SmallMolecule82909--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882" source="NOT-SmallMolecule82909" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" class="logic_arc">
+      <source.arc start.x="532" start.y="625" end.x="541" end.y="658" class="consumption"/>
+      <spline s.x="541.000000" s.y="658.000000" c1.x="532.000000" c1.y="625.000000" c2.x="511.000000" c2.y="539.000000" e.x="503.000000" e.y="506.000000"/>
+      <target.arc start.x="511" start.y="539" end.x="503" end.y="506" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule82805--to--BiochemicalReaction82769LEFT_TO_RIGHT:@:TAURINEDEG-PWY" source="SmallMolecule82805:@:TAURINEDEG-PWY" target="BiochemicalReaction82769LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="220" start.y="530" end.x="220" end.y="569" class="consumption"/>
+      <spline s.x="220.000000" s.y="569.000000" c1.x="220.000000" c1.y="530.000000" c2.x="219.000000" c2.y="447.000000" e.x="218.000000" e.y="415.000000"/>
+      <target.arc start.x="219" start.y="447" end.x="218" end.y="415" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule82787--to--BiochemicalReaction82769LEFT_TO_RIGHT:@:TAURINEDEG-PWY" source="SmallMolecule82787:@:TAURINEDEG-PWY" target="BiochemicalReaction82769LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="182" start.y="430" end.x="171" end.y="439" class="consumption"/>
+      <spline s.x="171.000000" s.y="439.000000" c1.x="182.000000" c1.y="430.000000" c2.x="195.000000" c2.y="419.000000" e.x="204.000000" e.y="412.000000"/>
+      <target.arc start.x="195" start.y="419" end.x="204" end.y="412" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction82769RIGHT_TO_LEFT--to--SmallMolecule82805" source="BiochemicalReaction82769RIGHT_TO_LEFT" target="SmallMolecule82805:@:TAURINEDEG-PWY" class="production">
+      <source.arc start.x="282" start.y="476" end.x="297" end.y="448" class="consumption"/>
+      <spline s.x="231.000000" s.y="568.000000" c1.x="249.000000" c1.y="537.000000" c2.x="282.000000" c2.y="476.000000" e.x="297.000000" e.y="448.000000"/>
+      <target.arc start.x="249" start.y="537" end.x="231" end.y="568" class="production"/>
+    </arc.spline>
+    <arc.spline id="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882--to--BiochemicalReaction82769RIGHT_TO_LEFT:@:TAURINEDEG-PWY" source="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" target="BiochemicalReaction82769RIGHT_TO_LEFT" class="catalysis">
+      <source.arc start.x="451" start.y="478" end.x="486" end.y="488" class="consumption"/>
+      <spline s.x="486.000000" s.y="488.000000" c1.x="451.000000" c1.y="478.000000" c2.x="354.000000" c2.y="449.000000" e.x="318.000000" e.y="439.000000"/>
+      <target.arc start.x="354" start.y="449" end.x="318" end.y="439" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="NOT-SmallMolecule82894--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882" source="NOT-SmallMolecule82894" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" class="logic_arc">
+      <source.arc start.x="543" start.y="453" end.x="555" end.y="442" class="consumption"/>
+      <spline s.x="513.000000" s.y="480.000000" c1.x="525.000000" c1.y="469.000000" c2.x="543.000000" c2.y="453.000000" e.x="555.000000" e.y="442.000000"/>
+      <target.arc start.x="525" start.y="469" end.x="513" end.y="480" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule82832--to--BiochemicalReaction82769RIGHT_TO_LEFT:@:TAURINEDEG-PWY" source="SmallMolecule82832:@:TAURINEDEG-PWY" target="BiochemicalReaction82769RIGHT_TO_LEFT" class="consumption">
+      <source.arc start.x="224" start.y="345" end.x="199" end.y="316" class="consumption"/>
+      <spline s.x="199.000000" s.y="316.000000" c1.x="224.000000" c1.y="345.000000" c2.x="270.000000" c2.y="396.000000" e.x="292.000000" e.y="421.000000"/>
+      <target.arc start.x="270" start.y="396" end.x="292" end.y="421" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule82821--to--BiochemicalReaction82769RIGHT_TO_LEFT:@:TAURINEDEG-PWY" source="SmallMolecule82821:@:TAURINEDEG-PWY" target="BiochemicalReaction82769RIGHT_TO_LEFT" class="consumption">
+      <source.arc start.x="330" start.y="290" end.x="337" end.y="249" class="consumption"/>
+      <spline s.x="337.000000" s.y="249.000000" c1.x="330.000000" c1.y="290.000000" c2.x="313.000000" c2.y="385.000000" e.x="307.000000" e.y="421.000000"/>
+      <target.arc start.x="313" start.y="385" end.x="307" end.y="421" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Protein82855--to--BiochemicalReaction82769LEFT_TO_RIGHT:@:TAURINEDEG-PWY" source="Protein82855:@:TAURINEDEG-PWY" target="BiochemicalReaction82769LEFT_TO_RIGHT" class="catalysis">
+      <source.arc start.x="421" start.y="371" end.x="489" end.y="360" class="consumption"/>
+      <spline s.x="489.000000" s.y="360.000000" c1.x="421.000000" c1.y="371.000000" c2.x="277.000000" c2.y="392.000000" e.x="232.000000" e.y="399.000000"/>
+      <target.arc start.x="277" start.y="392" end.x="232" end.y="399" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule82918--to--NOT-SmallMolecule82918:@:TAURINEDEG-PWY" source="SmallMolecule82918:@:TAURINEDEG-PWY" target="NOT-SmallMolecule82918" class="logic_arc">
+      <source.arc start.x="767" start.y="733" end.x="789" end.y="768" class="consumption"/>
+      <spline s.x="690.000000" s.y="474.000000" c1.x="690.000000" c1.y="498.000000" c2.x="691.000000" c2.y="551.000000" e.x="703.000000" e.y="593.000000"/>
+      <spline s.x="703.000000" s.y="593.000000" c1.x="723.000000" c1.y="661.000000" c2.x="767.000000" c2.y="733.000000" e.x="789.000000" e.y="768.000000"/>
+      <target.arc start.x="690" start.y="498" end.x="690" end.y="474" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="Protein82855--to--BiochemicalReaction82769RIGHT_TO_LEFT:@:TAURINEDEG-PWY" source="Protein82855:@:TAURINEDEG-PWY" target="BiochemicalReaction82769RIGHT_TO_LEFT" class="catalysis">
+      <source.arc start.x="439" start.y="386" end.x="488" end.y="368" class="consumption"/>
+      <spline s.x="488.000000" s.y="368.000000" c1.x="439.000000" c1.y="386.000000" c2.x="352.000000" c2.y="417.000000" e.x="318.000000" e.y="430.000000"/>
+      <target.arc start.x="352" start.y="417" end.x="318" end.y="430" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction82769LEFT_TO_RIGHT--to--SmallMolecule82821" source="BiochemicalReaction82769LEFT_TO_RIGHT" target="SmallMolecule82821:@:TAURINEDEG-PWY" class="production">
+      <source.arc start.x="249" start.y="357" end.x="228" end.y="387" class="consumption"/>
+      <spline s.x="326.000000" s.y="249.000000" c1.x="301.000000" c1.y="284.000000" c2.x="249.000000" c2.y="357.000000" e.x="228.000000" e.y="387.000000"/>
+      <target.arc start.x="301" start.y="284" end.x="326" end.y="249" class="production"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction82769LEFT_TO_RIGHT--to--SmallMolecule82832" source="BiochemicalReaction82769LEFT_TO_RIGHT" target="SmallMolecule82832:@:TAURINEDEG-PWY" class="production">
+      <source.arc start.x="207" start.y="369" end.x="213" end.y="387" class="consumption"/>
+      <spline s.x="188.000000" s.y="317.000000" c1.x="196.000000" c1.y="337.000000" c2.x="207.000000" c2.y="369.000000" e.x="213.000000" e.y="387.000000"/>
+      <target.arc start.x="196" start.y="337" end.x="188" end.y="317" class="production"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule82882--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" source="SmallMolecule82882:@:TAURINEDEG-PWY" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" class="logic_arc">
+      <source.arc start.x="671" start.y="568" end.x="706" end.y="569" class="consumption"/>
+      <spline s.x="513.000000" s.y="505.000000" c1.x="526.000000" c1.y="517.000000" c2.x="548.000000" c2.y="534.000000" e.x="569.000000" e.y="543.000000"/>
+      <spline s.x="569.000000" s.y="543.000000" c1.x="614.000000" c1.y="562.000000" c2.x="671.000000" c2.y="568.000000" e.x="706.000000" e.y="569.000000"/>
+      <target.arc start.x="526" start.y="517" end.x="513" end.y="505" class="logic_arc"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytosol-compartment.layer.info-Protein82855-compartment.layer.info-SmallMolecule82909-compartment.layer.info-SmallMolecule82894-compartment.layer.info-Protein82868-compartment.layer.info-SmallMolecule82882-compartment.layer.info-SmallMolecule82918-compartment.layer.info-Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882-compartment.layer.info-NOT-SmallMolecule82909-compartment.layer.info-NOT-SmallMolecule82918-compartment.layer.info-NOT-SmallMolecule82894</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule82909:@:TAURINEDEG-PWY--to--NOT-SmallMolecule82909" source="SmallMolecule82909:@:TAURINEDEG-PWY" target="NOT-SmallMolecule82909" class="logic_arc">
+<source.arc start.x="576" start.y="572" end.x="586" end.y="540" class="consumption"/>
+
+
+<spline s.x="586.000000"  s.y="540.000000" c1.x="576.000000" c1.y="572.000000" c2.x="557.000000" c2.y="631.000000" e.x="549.000000"  e.y="658.000000" />
+<target.arc start.x="557" start.y="631" end.x="549" end.y="658" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="NOT-SmallMolecule82918--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" source="NOT-SmallMolecule82918" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" class="logic_arc">
+<source.arc start.x="642" start.y="468" end.x="677" end.y="462" class="consumption"/>
+
+
+<spline s.x="513.000000"  s.y="490.000000" c1.x="548.000000" c1.y="484.000000" c2.x="642.000000" c2.y="468.000000" e.x="677.000000"  e.y="462.000000" />
+<target.arc start.x="548" start.y="484" end.x="513" end.y="490" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="BiochemicalReaction82769RIGHT_TO_LEFT--to--SmallMolecule82787:@:TAURINEDEG-PWY" source="BiochemicalReaction82769RIGHT_TO_LEFT" target="SmallMolecule82787:@:TAURINEDEG-PWY" class="production">
+<source.arc start.x="261" start.y="441" end.x="291" end.y="436" class="consumption"/>
+
+
+<spline s.x="151.000000"  s.y="456.000000" c1.x="187.000000" c1.y="451.000000" c2.x="261.000000" c2.y="441.000000" e.x="291.000000"  e.y="436.000000" />
+<target.arc start.x="187" start.y="451" end.x="151" end.y="456" class="production"/>
+
+</arc.spline>
+<arc.spline id="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY--to--BiochemicalReaction82769LEFT_TO_RIGHT" source="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" target="BiochemicalReaction82769LEFT_TO_RIGHT" class="catalysis">
+<source.arc start.x="457" start.y="471" end.x="486" end.y="485" class="consumption"/>
+
+
+<spline s.x="486.000000"  s.y="485.000000" c1.x="457.000000" c1.y="471.000000" c2.x="385.000000" c2.y="436.000000" e.x="321.000000"  e.y="418.000000" />
+<spline s.x="321.000000"  s.y="418.000000" c1.x="290.000000" c1.y="409.000000" c2.x="251.000000" c2.y="404.000000" e.x="231.000000"  e.y="402.000000" />
+<target.arc start.x="251" start.y="404" end.x="231" end.y="402" class="catalysis"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule82894:@:TAURINEDEG-PWY--to--NOT-SmallMolecule82894" source="SmallMolecule82894:@:TAURINEDEG-PWY" target="NOT-SmallMolecule82894" class="logic_arc">
+<source.arc start.x="466" start.y="615" end.x="439" end.y="665" class="consumption"/>
+
+
+<spline s.x="439.000000"  s.y="665.000000" c1.x="466.000000" c1.y="615.000000" c2.x="538.000000" c2.y="486.000000" e.x="561.000000"  e.y="443.000000" />
+<target.arc start.x="538" start.y="486" end.x="561" end.y="443" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="Protein82868:@:TAURINEDEG-PWY--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" source="Protein82868:@:TAURINEDEG-PWY" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" class="logic_arc">
+<source.arc start.x="596" start.y="301" end.x="605" end.y="276" class="consumption"/>
+
+
+<spline s.x="508.000000"  s.y="479.000000" c1.x="520.000000" c1.y="457.000000" c2.x="544.000000" c2.y="415.000000" e.x="562.000000"  e.y="378.000000" />
+<spline s.x="562.000000"  s.y="378.000000" c1.x="579.000000" c1.y="343.000000" c2.x="596.000000" c2.y="301.000000" e.x="605.000000"  e.y="276.000000" />
+<target.arc start.x="520" start.y="457" end.x="508" end.y="479" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="NOT-SmallMolecule82909--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" source="NOT-SmallMolecule82909" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" class="logic_arc">
+<source.arc start.x="532" start.y="625" end.x="541" end.y="658" class="consumption"/>
+
+
+<spline s.x="541.000000"  s.y="658.000000" c1.x="532.000000" c1.y="625.000000" c2.x="511.000000" c2.y="539.000000" e.x="503.000000"  e.y="506.000000" />
+<target.arc start.x="511" start.y="539" end.x="503" end.y="506" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule82805:@:TAURINEDEG-PWY--to--BiochemicalReaction82769LEFT_TO_RIGHT" source="SmallMolecule82805:@:TAURINEDEG-PWY" target="BiochemicalReaction82769LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="209" start.y="530" end.x="207" end.y="569" class="consumption"/>
+
+
+<spline s.x="207.000000"  s.y="569.000000" c1.x="209.000000" c1.y="530.000000" c2.x="215.000000" c2.y="447.000000" e.x="217.000000"  e.y="415.000000" />
+<target.arc start.x="215" start.y="447" end.x="217" end.y="415" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule82787:@:TAURINEDEG-PWY--to--BiochemicalReaction82769LEFT_TO_RIGHT" source="SmallMolecule82787:@:TAURINEDEG-PWY" target="BiochemicalReaction82769LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="167" start.y="434" end.x="151" end.y="445" class="consumption"/>
+
+
+<spline s.x="151.000000"  s.y="445.000000" c1.x="167.000000" c1.y="434.000000" c2.x="190.000000" c2.y="419.000000" e.x="205.000000"  e.y="410.000000" />
+<target.arc start.x="190" start.y="419" end.x="205" end.y="410" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="BiochemicalReaction82769RIGHT_TO_LEFT--to--SmallMolecule82805:@:TAURINEDEG-PWY" source="BiochemicalReaction82769RIGHT_TO_LEFT" target="SmallMolecule82805:@:TAURINEDEG-PWY" class="production">
+<source.arc start.x="278" start.y="476" end.x="296" end.y="448" class="consumption"/>
+
+
+<spline s.x="218.000000"  s.y="568.000000" c1.x="239.000000" c1.y="537.000000" c2.x="278.000000" c2.y="476.000000" e.x="296.000000"  e.y="448.000000" />
+<target.arc start.x="239" start.y="537" end.x="218" end.y="568" class="production"/>
+
+</arc.spline>
+<arc.spline id="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY--to--BiochemicalReaction82769RIGHT_TO_LEFT" source="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" target="BiochemicalReaction82769RIGHT_TO_LEFT" class="catalysis">
+<source.arc start.x="451" start.y="478" end.x="486" end.y="488" class="consumption"/>
+
+
+<spline s.x="486.000000"  s.y="488.000000" c1.x="451.000000" c1.y="478.000000" c2.x="354.000000" c2.y="449.000000" e.x="318.000000"  e.y="439.000000" />
+<target.arc start.x="354" start.y="449" end.x="318" end.y="439" class="catalysis"/>
+
+</arc.spline>
+<arc.spline id="NOT-SmallMolecule82894--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" source="NOT-SmallMolecule82894" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" class="logic_arc">
+<source.arc start.x="543" start.y="453" end.x="555" end.y="442" class="consumption"/>
+
+
+<spline s.x="513.000000"  s.y="480.000000" c1.x="525.000000" c1.y="469.000000" c2.x="543.000000" c2.y="453.000000" e.x="555.000000"  e.y="442.000000" />
+<target.arc start.x="525" start.y="469" end.x="513" end.y="480" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule82832:@:TAURINEDEG-PWY--to--BiochemicalReaction82769RIGHT_TO_LEFT" source="SmallMolecule82832:@:TAURINEDEG-PWY" target="BiochemicalReaction82769RIGHT_TO_LEFT" class="consumption">
+<source.arc start.x="215" start.y="345" end.x="186" end.y="316" class="consumption"/>
+
+
+<spline s.x="186.000000"  s.y="316.000000" c1.x="215.000000" c1.y="345.000000" c2.x="267.000000" c2.y="397.000000" e.x="291.000000"  e.y="421.000000" />
+<target.arc start.x="267" start.y="397" end.x="291" end.y="421" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule82821:@:TAURINEDEG-PWY--to--BiochemicalReaction82769RIGHT_TO_LEFT" source="SmallMolecule82821:@:TAURINEDEG-PWY" target="BiochemicalReaction82769RIGHT_TO_LEFT" class="consumption">
+<source.arc start.x="319" start.y="290" end.x="324" end.y="249" class="consumption"/>
+
+
+<spline s.x="324.000000"  s.y="249.000000" c1.x="319.000000" c1.y="290.000000" c2.x="310.000000" c2.y="385.000000" e.x="306.000000"  e.y="421.000000" />
+<target.arc start.x="310" start.y="385" end.x="306" end.y="421" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Protein82855:@:TAURINEDEG-PWY--to--BiochemicalReaction82769LEFT_TO_RIGHT" source="Protein82855:@:TAURINEDEG-PWY" target="BiochemicalReaction82769LEFT_TO_RIGHT" class="catalysis">
+<source.arc start.x="421" start.y="371" end.x="489" end.y="360" class="consumption"/>
+
+
+<spline s.x="489.000000"  s.y="360.000000" c1.x="421.000000" c1.y="371.000000" c2.x="277.000000" c2.y="392.000000" e.x="232.000000"  e.y="399.000000" />
+<target.arc start.x="277" start.y="392" end.x="232" end.y="399" class="catalysis"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule82918:@:TAURINEDEG-PWY--to--NOT-SmallMolecule82918" source="SmallMolecule82918:@:TAURINEDEG-PWY" target="NOT-SmallMolecule82918" class="logic_arc">
+<source.arc start.x="758" start.y="733" end.x="776" end.y="768" class="consumption"/>
+
+
+<spline s.x="691.000000"  s.y="474.000000" c1.x="691.000000" c1.y="498.000000" c2.x="692.000000" c2.y="551.000000" e.x="703.000000"  e.y="593.000000" />
+<spline s.x="703.000000"  s.y="593.000000" c1.x="720.000000" c1.y="660.000000" c2.x="758.000000" c2.y="733.000000" e.x="776.000000"  e.y="768.000000" />
+<target.arc start.x="691" start.y="498" end.x="691" end.y="474" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="Protein82855:@:TAURINEDEG-PWY--to--BiochemicalReaction82769RIGHT_TO_LEFT" source="Protein82855:@:TAURINEDEG-PWY" target="BiochemicalReaction82769RIGHT_TO_LEFT" class="catalysis">
+<source.arc start.x="439" start.y="386" end.x="488" end.y="368" class="consumption"/>
+
+
+<spline s.x="488.000000"  s.y="368.000000" c1.x="439.000000" c1.y="386.000000" c2.x="352.000000" c2.y="417.000000" e.x="318.000000"  e.y="430.000000" />
+<target.arc start.x="352" start.y="417" end.x="318" end.y="430" class="catalysis"/>
+
+</arc.spline>
+<arc.spline id="BiochemicalReaction82769LEFT_TO_RIGHT--to--SmallMolecule82821:@:TAURINEDEG-PWY" source="BiochemicalReaction82769LEFT_TO_RIGHT" target="SmallMolecule82821:@:TAURINEDEG-PWY" class="production">
+<source.arc start.x="245" start.y="357" end.x="226" end.y="387" class="consumption"/>
+
+
+<spline s.x="313.000000"  s.y="249.000000" c1.x="291.000000" c1.y="284.000000" c2.x="245.000000" c2.y="357.000000" e.x="226.000000"  e.y="387.000000" />
+<target.arc start.x="291" start.y="284" end.x="313" end.y="249" class="production"/>
+
+</arc.spline>
+<arc.spline id="BiochemicalReaction82769LEFT_TO_RIGHT--to--SmallMolecule82832:@:TAURINEDEG-PWY" source="BiochemicalReaction82769LEFT_TO_RIGHT" target="SmallMolecule82832:@:TAURINEDEG-PWY" class="production">
+<source.arc start.x="202" start.y="369" end.x="211" end.y="387" class="consumption"/>
+
+
+<spline s.x="176.000000"  s.y="317.000000" c1.x="186.000000" c1.y="337.000000" c2.x="202.000000" c2.y="369.000000" e.x="211.000000"  e.y="387.000000" />
+<target.arc start.x="186" start.y="337" end.x="176" end.y="317" class="production"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule82882:@:TAURINEDEG-PWY--to--Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" source="SmallMolecule82882:@:TAURINEDEG-PWY" target="Protein82868-AND-NOT-SmallMolecule82909-AND-NOT-SmallMolecule82918-AND-NOT-SmallMolecule82894-AND-SmallMolecule82882:@:TAURINEDEG-PWY" class="logic_arc">
+<source.arc start.x="676" start.y="568" end.x="706" end.y="569" class="consumption"/>
+
+
+<spline s.x="513.000000"  s.y="505.000000" c1.x="526.000000" c1.y="517.000000" c2.x="548.000000" c2.y="534.000000" e.x="569.000000"  e.y="543.000000" />
+<spline s.x="569.000000"  s.y="543.000000" c1.x="616.000000" c1.y="563.000000" c2.x="676.000000" c2.y="568.000000" e.x="706.000000"  e.y="569.000000" />
+<target.arc start.x="526" start.y="517" end.x="513" end.y="505" class="logic_arc"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>

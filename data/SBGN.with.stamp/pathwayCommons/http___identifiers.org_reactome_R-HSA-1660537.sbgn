@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="golgi_membrane" if.within.compartment="">
+      <label text="golgi membrane"/>
+      <bbox w="92" h="62" x="424" y="262"/>
+    </glyph>
+    <glyph class="compartment" id="early_endosome_membrane" if.within.compartment="">
+      <label text="early endosome membrane"/>
+      <bbox w="296.166666666667" h="204.894191624433" x="100" y="242.894191624432"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_28b4d42e9105cccf039ee5fef98f50be" compartmentRef="early_endosome_membrane" if.within.compartment="">
+      <label text="PI(3,5)P2"/>
+      <bbox w="40" h="40" x="111" y="396.788383248865"/>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-1675896_LEFT_TO_RIGHT" compartmentRef="early_endosome_membrane" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="358.5" y="253.894191624432"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_65545406b1a95fbb38f8c157e6c01c0b" compartmentRef="golgi_membrane" if.within.compartment="">
+      <label text="PI(3,5)P2"/>
+      <bbox w="40" h="40" x="435" y="273"/>
+    </glyph>
+    <arc class="production" id="reactome_R-HSA-1675896_LEFT_TO_RIGHT-output--to--SmallMolecule_65545406b1a95fbb38f8c157e6c01c0b" source="reactome_R-HSA-1675896_LEFT_TO_RIGHT" target="SmallMolecule_65545406b1a95fbb38f8c157e6c01c0b">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_28b4d42e9105cccf039ee5fef98f50be--to--reactome_R-HSA-1675896_LEFT_TO_RIGHT-input" source="SmallMolecule_28b4d42e9105cccf039ee5fef98f50be" target="reactome_R-HSA-1675896_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="reactome_R-HSA-1675896_LEFT_TO_RIGHT--to--SmallMolecule_65545406b1a95fbb38f8c157e6c01c0b" source="reactome_R-HSA-1675896_LEFT_TO_RIGHT" target="SmallMolecule_65545406b1a95fbb38f8c157e6c01c0b" class="production">
+      <source.arc start.x="398" start.y="274" end.x="385" end.y="270" class="consumption"/>
+      <spline s.x="385.000000" s.y="270.000000" c1.x="398.000000" c1.y="274.000000" c2.x="417.000000" c2.y="279.000000" e.x="434.000000" e.y="283.000000"/>
+      <target.arc start.x="417" start.y="279" end.x="434" end.y="283" class="production"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule_28b4d42e9105cccf039ee5fef98f50be--to--reactome_R-HSA-1675896_LEFT_TO_RIGHT" source="SmallMolecule_28b4d42e9105cccf039ee5fef98f50be" target="reactome_R-HSA-1675896_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="226" start.y="363" end.x="176" end.y="396" class="consumption"/>
+      <spline s.x="176.000000" s.y="396.000000" c1.x="226.000000" c1.y="363.000000" c2.x="322.000000" c2.y="299.000000" e.x="358.000000" e.y="276.000000"/>
+      <target.arc start.x="322" start.y="299" end.x="358" end.y="276" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>early_endosome_membrane-compartment.layer.info-golgi_membrane</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="reactome_R-HSA-1675896_LEFT_TO_RIGHT--to--SmallMolecule_65545406b1a95fbb38f8c157e6c01c0b" source="reactome_R-HSA-1675896_LEFT_TO_RIGHT" target="SmallMolecule_65545406b1a95fbb38f8c157e6c01c0b" class="production">
+<source.arc start.x="398" start.y="275" end.x="385" end.y="271" class="consumption"/>
+
+
+<spline s.x="385.000000"  s.y="271.000000" c1.x="398.000000" c1.y="275.000000" c2.x="419.000000" c2.y="281.000000" e.x="434.000000"  e.y="286.000000" />
+<target.arc start.x="419" start.y="281" end.x="434" end.y="286" class="production"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_28b4d42e9105cccf039ee5fef98f50be--to--reactome_R-HSA-1675896_LEFT_TO_RIGHT" source="SmallMolecule_28b4d42e9105cccf039ee5fef98f50be" target="reactome_R-HSA-1675896_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="198" start.y="374" end.x="151" end.y="404" class="consumption"/>
+
+
+<spline s.x="151.000000"  s.y="404.000000" c1.x="198.000000" c1.y="374.000000" c2.x="317.000000" c2.y="300.000000" e.x="358.000000"  e.y="275.000000" />
+<target.arc start.x="317" start.y="300" end.x="358" end.y="275" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>

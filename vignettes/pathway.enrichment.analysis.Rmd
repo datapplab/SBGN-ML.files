@@ -1,0 +1,244 @@
+---
+title: "Pathway analysis using SBGNview gene set and visualization"
+author: "Xiaoxi Dong, Weijun Luo"
+date:  "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+    bookdown::html_document2:
+      fig_caption: yes
+      number_sections: yes
+      toc: yes
+editor_options: 
+  chunk_output_type: console
+bibliography: C:/xiaoxi/work/papers/SBGNview/package/SBGNview/inst/REFERENCES.bib
+---
+
+# IFNg dataset
+## Load RNA-seq data
+
+
+```{r, echo=FALSE, eval = FALSE}
+# count.data = read.table(file="C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/IFNg/nature.communication.my/analysis/normalized.counts.tsv",stringsAsFactors = F,sep="\t",header=T,check.names = F)
+# row.names(count.data) = count.data[,1]
+# count.data = count.data[,-1]
+# count.data.ifn = count.data # save(count.data.ifn,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGNview/data/count.data.ifn.RData")
+```
+
+```{r, echo=FALSE, eval = FALSE}
+# load(file = "C:/xiaoxi/work/papers/SBGNview/package/SBGNview/data/count.data.ifn.RData")
+# # data(count.data.ifn)
+# counts = count.data.ifn
+# # counts["ENSMUSG00000055170",] = c(8.763,0.1,0.1,8.763,8.763,0.1,8.763,0.1)
+# kov = 1
+# wtv = 5
+# counts["ENSMUSG00000055170",] = c(wtv,kov,kov,wtv,wtv,kov,wtv,kov)
+# head(counts)
+# tail(counts)
+# wt = c("727","732","733","734")
+# ko = c("726","738","740","741","752","753","754","755","756")
+# wt.c = rep("wt",times=length(wt))
+# names(wt.c) = wt
+# ko.c = rep("ko",times=length(ko))
+# names(ko.c) = ko
+# group.info = c(wt.c,ko.c)
+# group.info
+# colData <- DataFrame(group = group.info[colnames(counts)],
+#                      row.names=colnames(counts))
+# rowData <- DataFrame( row.names=row.names(counts)
+#                       ,ensemble = row.names(counts))
+# colData
+# rowData
+# dim(counts)
+# tail(counts)
+# counts = as.matrix(counts)
+# se = SummarizedExperiment(assays=list(counts=counts),
+#                       colData=colData
+#                      ,rowData = rowData)
+# head(assays(se)$counts)
+# IFNg = se
+# save(IFNg,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGNview/data/IFNg.RData")
+
+
+```
+
+
+
+
+
+
+
+
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+library(SummarizedExperiment)
+library(SBGNview)
+data(IFNg,package="SBGNview")
+count.data = (assays(IFNg)$counts)
+wt = colnames(IFNg)[IFNg$group == "wt"]
+ko = colnames(IFNg)[IFNg$group == "ko"]
+head(count.data)
+
+```
+## Generate data for visualization.
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+count.data = count.data[,c(which(colnames(count.data) %in% wt)
+                                    ,which(colnames(count.data) %in% ko )
+                                   )]
+mean.wt = apply(count.data[,which(colnames(count.data) %in% wt)]
+                ,1
+                ,"mean")
+head(mean.wt)
+mean.ko = apply(count.data[,which(colnames(count.data) %in% ko)],1,"mean")
+head(mean.ko)
+ensemble.to.koVsWt = mean.ko/mean.wt
+ensemble.to.koVsWt = log(ensemble.to.koVsWt)/log(2)
+head(ensemble.to.koVsWt)
+```
+
+
+
+## Run SBGNview gene set
+### Load genelist: mouse ensemble IDs.
+```{r , echo = TRUE , results = 'hide',   message = FALSE, warning = FALSE}
+library(SBGNview)
+ensemble.to.pathway = get.mol.list(
+    database = "pathwayCommons"
+    ,mol.list.ID.type = "ENSEMBL"
+    ,org = "mmu"
+    ,cpd.or.gene = "gene"
+    ,output.pathway.name = T
+)
+head(ensemble.to.pathway[[2]])
+```
+
+
+### Run gage
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+
+library(gage)
+degs = gage(exprs = count.data
+           , gsets = ensemble.to.pathway
+           , ref = which(colnames(count.data) %in% wt)
+           , samp = which(colnames(count.data) %in% ko)
+           ,compare = "as.group"
+           )
+head(degs$greater)[,c(1,4:5)]
+head(degs$less)
+less.sbgnview = degs$less
+head(less.sbgnview)
+```
+
+```{r, echo=FALSE, eval = FALSE}
+# write.table(greater,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/IFNg/tables/my.pathway.results/greater.tsv",row.names=F,sep="\t",quote=F)
+# write.table(less,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/IFNg/tables/my.pathway.results/less.tsv",row.names=F,sep="\t",quote=F)
+
+```
+
+### Run SBGNview
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+
+less.pathways = do.call(rbind,strsplit(row.names(less.sbgnview),"::"))[,1]
+head(less.pathways)
+sbgnview.obj = SBGNview(
+    gene.data = ensemble.to.koVsWt,
+    gene.id.type = "ENSEMBL",
+    input.sbgn = less.pathways[1:2],
+    output.file = "ifn.sbgnview.less",
+    show.pathway.name = T,
+    max.gene.value = 0.5,
+    min.gene.value = -0.5,
+    mid.gene.value = 0,
+    node.sum = "mean",
+    label.spliting.string = c("-","_"," "), 
+    output.format = c("png"),
+    
+    inhibition.edge.end.shift = 1,
+    font.size = 2,
+    logic.node.font.scale = 6,
+    font.size.scale.compartment = 1.5,
+    org = "mmu",
+    
+    text.length.factor.macromolecule = 0.8,
+    text.length.factor.compartment = 2,
+    text.length.factor.complex = 3,
+    if.scale.compartment.font.size = T,
+    node.width.adjust.factor.compartment = 0.058 # change font size according to the node's width, for large compartments, it is better to enlarge font size in proportion to the width
+         )
+sbgnview.obj$data$`R-HSA-877300`$glyphs.list$cell_membrane@text$font.size = 100
+sbgnview.obj$data$`R-HSA-877300`$glyphs.list$cytosol@text$font.size = 80
+sbgnview.obj
+```
+```{r ifnSBGNview, echo = FALSE,fig.cap="\\label{fig:SBGNview map from sbgnview}SBGNview"}
+library(knitr)
+include_graphics("ifn.sbgnview.less_R-HSA-877300_Interferon gamma signaling.svg")
+```
+
+
+## Analyze KEGG gene set
+### Load KEGG gene set: mouse entrez
+
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+data("kegg.gs")
+kegg.gs = kegg.gsets(species="mouse",id.type = "entrez")
+length(kegg.gs$kg.sets)
+```
+
+### Run gage using entrez ID.
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+ez.to.count = change.data.id(
+                    data.input.id = count.data
+                    ,input.type = "ENSEMBL"
+                    ,output.type = "ENTREZID"
+                    ,cpd.or.gene = "gene"
+                    ,org = "mmu"
+                )
+head(ez.to.count[[1]])
+dim(ez.to.count)
+degs = gage(exprs = ez.to.count
+           , gsets = kegg.gs$kg.sets
+           , ref = which(colnames(ez.to.count) %in% wt)
+           , samp = which(colnames(ez.to.count) %in% ko)
+           ,compare = "as.group"
+           )
+greater = degs$greater
+less = degs$less
+head(greater[,c(1,4)])
+head(less[,c(1,6)])
+```
+
+```{r, echo=FALSE, eval = FALSE}
+# write.table(greater,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/IFNg/tables/kegg.results/greater.tsv",row.names=F,sep="\t",quote=F)
+# write.table(less,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/IFNg/tables/kegg.results/less.tsv",row.names=F,sep="\t",quote=F)
+```
+
+### run pathview
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+greater.pathway = substr(row.names(greater),1,8)
+head(greater.pathway)
+
+less.pathway = substr(row.names(less),1,8)
+head(less.pathway)
+head(greater.pathway)
+head(ensemble.to.koVsWt)
+
+pathview(gene.data = ensemble.to.koVsWt
+         ,pathway.id = c(less.pathway[2],greater.pathway[2])
+         ,species = "mouse"
+         ,gene.idtype = "ENSEMBL"
+         )
+```
+```{r ifnPathview,  echo = FALSE,fig.cap="\\label{fig:KEGG map from pathview}KEGG pathway."}
+library(knitr)
+include_graphics("./mmu04141.pathview.png")
+```
+
+
+```{r, echo=FALSE, eval = FALSE}
+# save(ensemble.to.koVsWt,file = "C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/IFNg/ensemble.to.koVsWt.RData")
+```
+
+
+
+
+
+``` {r, eval = FALSE, echo=FALSE}
+rmarkdown::render("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/vignettes/pathway.enrichment.analysis.Rmd")
+```

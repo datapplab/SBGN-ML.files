@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="golgi_membrane" if.within.compartment="">
+      <label text="golgi membrane"/>
+      <bbox w="103" h="109" x="126" y="519.432650058613"/>
+    </glyph>
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="365.739794805849" h="178.341833104216" x="217.340136796101" y="221.5"/>
+    </glyph>
+    <glyph class="compartment" id="golgi-associated_vesicle_membrane" if.within.compartment="">
+      <label text="golgi-associated vesicle membrane"/>
+      <bbox w="156.646604361569" h="91" x="296.090136796101" y="528.02346701301"/>
+    </glyph>
+    <glyph class="complex" id="Complex_e5aa3a980f764a4438c8f53d8ac7fb67" compartmentRef="golgi-associated_vesicle_membrane" if.within.compartment="">
+      <label text="Connexin 43 connexon in Golgi transport vesicle"/>
+      <bbox w="81" h="51" x="360.73674115767" y="533.890426993523"/>
+      <glyph class="macromolecule" id="Protein_ea7c5a7d568c94d5c77dcfe284ad298c_Complex_e5aa3a980f764a4438c8f53d8ac7fb67" compartmentRef="golgi-associated_vesicle_membrane" if.within.compartment="">
+        <label text="GJA1"/>
+        <bbox w="70" h="40" x="366.23674115767" y="539.390426993523"/>
+        <glyph class="state variable" id="Protein_ea7c5a7d568c94d5c77dcfe284ad298c_Complex_e5aa3a980f764a4438c8f53d8ac7fb67.info.1" compartmentRef="golgi-associated_vesicle_membrane" if.within.compartment="">
+          <state value="x[2 - 382]"/>
+          <bbox w="35" h="17.5" x="366.23674115767" y="530.640426993523"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-190782_LEFT_TO_RIGHT" compartmentRef="golgi-associated_vesicle_membrane" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="307.090136796101" y="539.02346701301"/>
+    </glyph>
+    <glyph class="complex" id="Complex_25e635b8c9e1fe72350db64e63bdc928" compartmentRef="cytosol" if.within.compartment="">
+      <label text="Microtubule"/>
+      <bbox w="81" h="65" x="222.840136796101" y="307.341833104216"/>
+      <glyph class="unspecified entity" id="PhysicalEntity_8d33bd22528079e0dc004055103d49cd_Complex_25e635b8c9e1fe72350db64e63bdc928" compartmentRef="cytosol" if.within.compartment="">
+        <label text="Microtubule protofilament"/>
+        <bbox w="70" h="40" x="228.340136796101" y="312.841833104216"/>
+      </glyph>
+    </glyph>
+    <glyph class="complex" id="Complex_0129fc47d938596497ca7851be97e414" compartmentRef="cytosol" if.within.compartment="">
+      <label text="connexons in Golgi transport vesicle docked to microtubules"/>
+      <bbox w="81" h="113.75" x="485.57993160195" y="227"/>
+      <glyph class="macromolecule" id="Protein_ea7c5a7d568c94d5c77dcfe284ad298c_Complex_0129fc47d938596497ca7851be97e414" compartmentRef="cytosol" if.within.compartment="">
+        <label text="GJA1"/>
+        <bbox w="70" h="40" x="491.07993160195" y="232.5"/>
+        <glyph class="state variable" id="Protein_ea7c5a7d568c94d5c77dcfe284ad298c_Complex_0129fc47d938596497ca7851be97e414.info.1" compartmentRef="cytosol" if.within.compartment="">
+          <state value="x[2 - 382]"/>
+          <bbox w="35" h="17.5" x="491.07993160195" y="223.75"/>
+        </glyph>
+      </glyph>
+      <glyph class="unspecified entity" id="PhysicalEntity_8d33bd22528079e0dc004055103d49cd_Complex_0129fc47d938596497ca7851be97e414" compartmentRef="cytosol" if.within.compartment="">
+        <label text="Microtubule protofilament"/>
+        <bbox w="70" h="40" x="491.07993160195" y="288.25"/>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-190520_LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="391.748047196519" y="316.661365001137"/>
+    </glyph>
+    <glyph class="complex" id="Complex_936b8b05fdb6b1b2111f0f02c976d8c4" compartmentRef="golgi_membrane" if.within.compartment="">
+      <label text="Connexin 43 connexon"/>
+      <bbox w="81" h="51" x="131.5" y="524.932650058613"/>
+      <glyph class="macromolecule" id="Protein_6f6dea50c65a26d6f47baf5869992db0_Complex_936b8b05fdb6b1b2111f0f02c976d8c4" compartmentRef="golgi_membrane" if.within.compartment="">
+        <label text="GJA1"/>
+        <bbox w="70" h="40" x="137" y="530.432650058613"/>
+        <glyph class="state variable" id="Protein_6f6dea50c65a26d6f47baf5869992db0_Complex_936b8b05fdb6b1b2111f0f02c976d8c4.info.1" compartmentRef="golgi_membrane" if.within.compartment="">
+          <state value="x[2 - 382]"/>
+          <bbox w="35" h="17.5" x="137" y="521.682650058613"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <arc class="consumption" id="Complex_936b8b05fdb6b1b2111f0f02c976d8c4--to--reactome_R-HSA-190782_LEFT_TO_RIGHT-input" source="Complex_936b8b05fdb6b1b2111f0f02c976d8c4" target="reactome_R-HSA-190782_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Complex_e5aa3a980f764a4438c8f53d8ac7fb67--to--reactome_R-HSA-190520_LEFT_TO_RIGHT-input" source="Complex_e5aa3a980f764a4438c8f53d8ac7fb67" target="reactome_R-HSA-190520_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="reactome_R-HSA-190520_LEFT_TO_RIGHT-output--to--Complex_0129fc47d938596497ca7851be97e414" source="reactome_R-HSA-190520_LEFT_TO_RIGHT" target="Complex_0129fc47d938596497ca7851be97e414">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="reactome_R-HSA-190782_LEFT_TO_RIGHT-output--to--Complex_e5aa3a980f764a4438c8f53d8ac7fb67" source="reactome_R-HSA-190782_LEFT_TO_RIGHT" target="Complex_e5aa3a980f764a4438c8f53d8ac7fb67">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Complex_25e635b8c9e1fe72350db64e63bdc928--to--reactome_R-HSA-190520_LEFT_TO_RIGHT-input" source="Complex_25e635b8c9e1fe72350db64e63bdc928" target="reactome_R-HSA-190520_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="Complex_936b8b05fdb6b1b2111f0f02c976d8c4--to--reactome_R-HSA-190782_LEFT_TO_RIGHT" source="Complex_936b8b05fdb6b1b2111f0f02c976d8c4" target="reactome_R-HSA-190782_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="244" start.y="551" end.x="212" end.y="550" class="consumption"/>
+      <spline s.x="306.000000" s.y="552.000000" c1.x="285.000000" c1.y="551.000000" c2.x="244.000000" c2.y="551.000000" e.x="212.000000" e.y="550.000000"/>
+      <target.arc start.x="285" start.y="551" end.x="306" end.y="552" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Complex_e5aa3a980f764a4438c8f53d8ac7fb67--to--reactome_R-HSA-190520_LEFT_TO_RIGHT" source="Complex_e5aa3a980f764a4438c8f53d8ac7fb67" target="reactome_R-HSA-190520_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="402" start.y="484" end.x="401" end.y="533" class="consumption"/>
+      <spline s.x="401.000000" s.y="533.000000" c1.x="402.000000" c1.y="484.000000" c2.x="404.000000" c2.y="380.000000" e.x="404.000000" e.y="343.000000"/>
+      <target.arc start.x="404" start.y="380" end.x="404" end.y="343" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-190520_LEFT_TO_RIGHT--to--Complex_0129fc47d938596497ca7851be97e414" source="reactome_R-HSA-190520_LEFT_TO_RIGHT" target="Complex_0129fc47d938596497ca7851be97e414" class="production">
+      <source.arc start.x="434" start.y="318" end.x="418" end.y="324" class="consumption"/>
+      <spline s.x="485.000000" s.y="299.000000" c1.x="462.000000" c1.y="308.000000" c2.x="434.000000" c2.y="318.000000" e.x="418.000000" e.y="324.000000"/>
+      <target.arc start.x="462" start.y="308" end.x="485" end.y="299" class="production"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-190782_LEFT_TO_RIGHT--to--Complex_e5aa3a980f764a4438c8f53d8ac7fb67" source="reactome_R-HSA-190782_LEFT_TO_RIGHT" target="Complex_e5aa3a980f764a4438c8f53d8ac7fb67" class="production">
+      <source.arc start.x="341" start.y="554" end.x="333" end.y="553" class="consumption"/>
+      <spline s.x="360.000000" s.y="555.000000" c1.x="350.000000" c1.y="555.000000" c2.x="341.000000" c2.y="554.000000" e.x="333.000000" e.y="553.000000"/>
+      <target.arc start.x="350" start.y="555" end.x="360" end.y="555" class="production"/>
+    </arc.spline>
+    <arc.spline id="Complex_25e635b8c9e1fe72350db64e63bdc928--to--reactome_R-HSA-190520_LEFT_TO_RIGHT" source="Complex_25e635b8c9e1fe72350db64e63bdc928" target="reactome_R-HSA-190520_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="333" start.y="331" end.x="303" end.y="332" class="consumption"/>
+      <spline s.x="303.000000" s.y="332.000000" c1.x="333.000000" c1.y="331.000000" c2.x="371.000000" c2.y="330.000000" e.x="391.000000" e.y="330.000000"/>
+      <target.arc start.x="371" start.y="330" end.x="391" end.y="330" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>golgi-associated_vesicle_membrane-compartment.layer.info-cytosol-compartment.layer.info-golgi_membrane</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Complex_936b8b05fdb6b1b2111f0f02c976d8c4--to--reactome_R-HSA-190782_LEFT_TO_RIGHT" source="Complex_936b8b05fdb6b1b2111f0f02c976d8c4" target="reactome_R-HSA-190782_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="244" start.y="551" end.x="212" end.y="550" class="consumption"/>
+
+
+<spline s.x="306.000000"  s.y="552.000000" c1.x="285.000000" c1.y="551.000000" c2.x="244.000000" c2.y="551.000000" e.x="212.000000"  e.y="550.000000" />
+<target.arc start.x="285" start.y="551" end.x="306" end.y="552" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Complex_e5aa3a980f764a4438c8f53d8ac7fb67--to--reactome_R-HSA-190520_LEFT_TO_RIGHT" source="Complex_e5aa3a980f764a4438c8f53d8ac7fb67" target="reactome_R-HSA-190520_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="402" start.y="484" end.x="401" end.y="533" class="consumption"/>
+
+
+<spline s.x="401.000000"  s.y="533.000000" c1.x="402.000000" c1.y="484.000000" c2.x="404.000000" c2.y="380.000000" e.x="404.000000"  e.y="343.000000" />
+<target.arc start.x="404" start.y="380" end.x="404" end.y="343" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="reactome_R-HSA-190520_LEFT_TO_RIGHT--to--Complex_0129fc47d938596497ca7851be97e414" source="reactome_R-HSA-190520_LEFT_TO_RIGHT" target="Complex_0129fc47d938596497ca7851be97e414" class="production">
+<source.arc start.x="434" start.y="318" end.x="418" end.y="324" class="consumption"/>
+
+
+<spline s.x="485.000000"  s.y="299.000000" c1.x="462.000000" c1.y="308.000000" c2.x="434.000000" c2.y="318.000000" e.x="418.000000"  e.y="324.000000" />
+<target.arc start.x="462" start.y="308" end.x="485" end.y="299" class="production"/>
+
+</arc.spline>
+<arc.spline id="reactome_R-HSA-190782_LEFT_TO_RIGHT--to--Complex_e5aa3a980f764a4438c8f53d8ac7fb67" source="reactome_R-HSA-190782_LEFT_TO_RIGHT" target="Complex_e5aa3a980f764a4438c8f53d8ac7fb67" class="production">
+<source.arc start.x="341" start.y="554" end.x="333" end.y="553" class="consumption"/>
+
+
+<spline s.x="360.000000"  s.y="555.000000" c1.x="350.000000" c1.y="555.000000" c2.x="341.000000" c2.y="554.000000" e.x="333.000000"  e.y="553.000000" />
+<target.arc start.x="350" start.y="555" end.x="360" end.y="555" class="production"/>
+
+</arc.spline>
+<arc.spline id="Complex_25e635b8c9e1fe72350db64e63bdc928--to--reactome_R-HSA-190520_LEFT_TO_RIGHT" source="Complex_25e635b8c9e1fe72350db64e63bdc928" target="reactome_R-HSA-190520_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="333" start.y="334" end.x="303" end.y="337" class="consumption"/>
+
+
+<spline s.x="303.000000"  s.y="337.000000" c1.x="333.000000" c1.y="334.000000" c2.x="371.000000" c2.y="332.000000" e.x="391.000000"  e.y="330.000000" />
+<target.arc start.x="371" start.y="332" end.x="391" end.y="330" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>

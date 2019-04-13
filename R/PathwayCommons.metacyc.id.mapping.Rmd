@@ -1234,8 +1234,41 @@ head(mapping.table)
 class(mapping.table[,1])
 save(mapping.table,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/GENENAME_pathway.id.RData")
 ```
-        
-        
+## all gene ids to glyph id, pathway id
+```{r}
+library(SBGNview)
+source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/parsing.utilities.R")
+source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/plot.utilities.R")
+source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/SBGN.to.SVG.R")
+data(mapped.ids)
+class(mapped.ids)
+mapped.ids
+all.genes = mapped.ids[mapped.ids[,"cpd.or.gene"]=="gene","ID.type.1"]
+all.genes = unique(all.genes)
+all.genes
+tmp = vapply(all.genes
+       ,function(gene){
+               print(gene)
+               output.types = c("pathwayCommons","MetaCyc","pathw")
+               tmp1 = vapply(
+                       output.types
+                       ,function(output.type){
+                                ko.to.glyph.id = load.mapping.table(
+                                output.type = "KO"
+                                ,input.type = output.type
+                                ,cpd.or.gene = "gene"
+                                ,species = species
+                        )
+                       }
+               )
+               return(c(w=1))
+       }
+       ,c(w=0)
+     )
+tmp
+
+  
+```   
 ## compounds
 
 ### pathwayCommons
@@ -1257,7 +1290,7 @@ output:
 
 #### lost reactome compounds 3/29/2019
 ```{r}
-source("C:/xiaoxi/work/papers/SBGNview/package/data.package/pathway.commons/pathway.commons_SBGN.id.to.uniprot.chebi.using.biopax.R")
+
 
 # library(xml2) 
 biopax.file = "C:/xiaoxi/work/papers/SBGNview/package/data.package/pathway.commons/raw.data/v9/PathwayCommons9.reactome.BIOPAX.owl"

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="extracellular" if.within.compartment="">
+      <label text="extracellular"/>
+      <bbox w="142.5" h="313.507954103316" x="106.75" y="239.5"/>
+    </glyph>
+    <glyph class="complex" id="Complex_79b94eecb2acb53e61e2842e3eee65ed" compartmentRef="extracellular" if.within.compartment="">
+      <label text="ALB:(GCCA, TCCA)"/>
+      <bbox w="81" h="108.5" x="157.25" y="245"/>
+      <glyph class="simple chemical" id="SmallMolecule_0ba692862d029ec0348c64544d245314_Complex_79b94eecb2acb53e61e2842e3eee65ed" compartmentRef="extracellular" if.within.compartment="">
+        <label text="GCCA, TCCA"/>
+        <bbox w="40" h="40" x="162.75" y="250.5"/>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_19213fd78643e4a70778207108ec8c48_Complex_79b94eecb2acb53e61e2842e3eee65ed" compartmentRef="extracellular" if.within.compartment="">
+        <label text="ALB"/>
+        <bbox w="70" h="40" x="162.75" y="308"/>
+        <glyph class="state variable" id="Protein_19213fd78643e4a70778207108ec8c48_Complex_79b94eecb2acb53e61e2842e3eee65ed.info.1" compartmentRef="extracellular" if.within.compartment="">
+          <state value="x[25 - 609]"/>
+          <bbox w="35" h="17.5" x="162.75" y="299.25"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-5661198_LEFT_TO_RIGHT" compartmentRef="extracellular" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="117.75" y="473.841287436649"/>
+    </glyph>
+    <arc class="consumption" id="Complex_79b94eecb2acb53e61e2842e3eee65ed--to--reactome_R-HSA-5661198_LEFT_TO_RIGHT-input" source="Complex_79b94eecb2acb53e61e2842e3eee65ed" target="reactome_R-HSA-5661198_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="Complex_79b94eecb2acb53e61e2842e3eee65ed--to--reactome_R-HSA-5661198_LEFT_TO_RIGHT" source="Complex_79b94eecb2acb53e61e2842e3eee65ed" target="reactome_R-HSA-5661198_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="163" start.y="394" end.x="178" end.y="353" class="consumption"/>
+      <spline s.x="178.000000" s.y="353.000000" c1.x="163.000000" c1.y="394.000000" c2.x="144.000000" c2.y="448.000000" e.x="136.000000" e.y="473.000000"/>
+      <target.arc start.x="144" start.y="448" end.x="136" end.y="473" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>extracellular-compartment.layer.info-extracellular-compartment.layer.info-Complex_79b94eecb2acb53e61e2842e3eee65ed-compartment.layer.info-SmallMolecule_0ba692862d029ec0348c64544d245314_Complex_79b94eecb2acb53e61e2842e3eee65ed-compartment.layer.info-Protein_19213fd78643e4a70778207108ec8c48_Complex_79b94eecb2acb53e61e2842e3eee65ed-compartment.layer.info-reactome_R-HSA-5661198_LEFT_TO_RIGHT</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Complex_79b94eecb2acb53e61e2842e3eee65ed--to--reactome_R-HSA-5661198_LEFT_TO_RIGHT" source="Complex_79b94eecb2acb53e61e2842e3eee65ed" target="reactome_R-HSA-5661198_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="163" start.y="394" end.x="178" end.y="353" class="consumption"/>
+
+
+<spline s.x="178.000000"  s.y="353.000000" c1.x="163.000000" c1.y="394.000000" c2.x="144.000000" c2.y="448.000000" e.x="136.000000"  e.y="473.000000" />
+<target.arc start.x="144" start.y="448" end.x="136" end.y="473" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>

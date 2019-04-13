@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="simple chemical" id="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" if.within.compartment="">
+      <label text="3-Methylhistidine"/>
+      <bbox w="40" h="40" x="399.178593860755" y="319.380352372341"/>
+    </glyph>
+    <glyph class="process" id="Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="357" y="150"/>
+    </glyph>
+    <glyph class="compartment" id="cytoplasm" if.within.compartment="">
+      <label text="cytoplasm"/>
+      <bbox w="378.666666666667" h="62" x="100" y="223"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_5e266cb4d28c26d10b0376280709804b" compartmentRef="cytoplasm" if.within.compartment="">
+      <label text="3-Methylhistidine"/>
+      <bbox w="40" h="40" x="111" y="234"/>
+    </glyph>
+    <glyph class="process" id="Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT" compartmentRef="cytoplasm" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="441" y="234"/>
+    </glyph>
+    <arc class="production" id="Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT-output--to--SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" source="Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT" target="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e--to--Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT-input" source="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" target="Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT-output--to--SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" source="Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT" target="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_5e266cb4d28c26d10b0376280709804b--to--Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT-input" source="SmallMolecule_5e266cb4d28c26d10b0376280709804b" target="Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT--to--SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" source="Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT" target="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" class="production">
+      <source.arc start.x="448" start.y="276" end.x="451" end.y="260" class="consumption"/>
+      <spline s.x="438.000000" s.y="318.000000" c1.x="442.000000" c1.y="301.000000" c2.x="448.000000" c2.y="276.000000" e.x="451.000000" e.y="260.000000"/>
+      <target.arc start.x="442" start.y="301" end.x="438" end.y="318" class="production"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e--to--Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT" source="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" target="Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="413" start.y="283" end.x="426" end.y="319" class="consumption"/>
+      <spline s.x="426.000000" s.y="319.000000" c1.x="413.000000" c1.y="283.000000" c2.x="386.000000" c2.y="208.000000" e.x="375.000000" e.y="177.000000"/>
+      <target.arc start.x="386" start.y="208" end.x="375" end.y="177" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT--to--SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" source="Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT" target="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" class="production">
+      <source.arc start.x="390" start.y="208" end.x="379" end.y="177" class="consumption"/>
+      <spline s.x="430.000000" s.y="319.000000" c1.x="417.000000" c1.y="283.000000" c2.x="390.000000" c2.y="208.000000" e.x="379.000000" e.y="177.000000"/>
+      <target.arc start.x="417" start.y="283" end.x="430" end.y="319" class="production"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule_5e266cb4d28c26d10b0376280709804b--to--Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT" source="SmallMolecule_5e266cb4d28c26d10b0376280709804b" target="Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="248" start.y="251" end.x="181" end.y="253" class="consumption"/>
+      <spline s.x="181.000000" s.y="253.000000" c1.x="248.000000" c1.y="251.000000" c2.x="395.000000" c2.y="248.000000" e.x="440.000000" e.y="247.000000"/>
+      <target.arc start.x="395" start.y="248" end.x="440" end.y="247" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytoplasm</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT--to--SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" source="Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT" target="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" class="production">
+<source.arc start.x="443" start.y="276" end.x="449" end.y="260" class="consumption"/>
+
+
+<spline s.x="426.000000"  s.y="318.000000" c1.x="433.000000" c1.y="301.000000" c2.x="443.000000" c2.y="276.000000" e.x="449.000000"  e.y="260.000000" />
+<target.arc start.x="433" start.y="301" end.x="426" end.y="318" class="production"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e--to--Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT" source="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" target="Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="403" start.y="283" end.x="413" end.y="319" class="consumption"/>
+
+
+<spline s.x="413.000000"  s.y="319.000000" c1.x="403.000000" c1.y="283.000000" c2.x="382.000000" c2.y="208.000000" e.x="374.000000"  e.y="177.000000" />
+<target.arc start.x="382" start.y="208" end.x="374" end.y="177" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT--to--SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" source="Transport_5ee69a36a433a455e8c9f613323259cc_LEFT_TO_RIGHT" target="SmallMolecule_ee6c7d0aa88e6253a4f044a5f99bdb4e" class="production">
+<source.arc start.x="386" start.y="208" end.x="378" end.y="177" class="consumption"/>
+
+
+<spline s.x="417.000000"  s.y="319.000000" c1.x="407.000000" c1.y="283.000000" c2.x="386.000000" c2.y="208.000000" e.x="378.000000"  e.y="177.000000" />
+<target.arc start.x="407" start.y="283" end.x="417" end.y="319" class="production"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_5e266cb4d28c26d10b0376280709804b--to--Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT" source="SmallMolecule_5e266cb4d28c26d10b0376280709804b" target="Transport_369cfe9bac682feaaeac5f0cdbcfb5ee_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="211" start.y="252" end.x="151" end.y="253" class="consumption"/>
+
+
+<spline s.x="151.000000"  s.y="253.000000" c1.x="211.000000" c1.y="252.000000" c2.x="390.000000" c2.y="248.000000" e.x="440.000000"  e.y="247.000000" />
+<target.arc start.x="390" start.y="248" end.x="440" end.y="247" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>

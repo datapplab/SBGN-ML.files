@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="endoplasmic_reticulum_membrane" if.within.compartment="">
+      <label text="endoplasmic reticulum membrane"/>
+      <bbox w="257" h="227" x="100" y="198"/>
+    </glyph>
+    <glyph class="compartment" id="multivesicular_body_lumen" if.within.compartment="">
+      <label text="multivesicular body lumen"/>
+      <bbox w="92" h="62" x="262" y="357"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_839ca42aade01b8aa0ab5a28d2ffaf8f" compartmentRef="multivesicular_body_lumen" if.within.compartment="">
+      <label text="SFTPB"/>
+      <bbox w="70" h="40" x="273" y="368"/>
+      <glyph class="state variable" id="Protein_839ca42aade01b8aa0ab5a28d2ffaf8f.info.1" if.within.compartment="">
+        <state value="x[25 - 381]"/>
+        <bbox w="35" h="17.5" x="273" y="359.25"/>
+      </glyph>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_b27ebc353795fe95ed77b93632c1af6f" compartmentRef="endoplasmic_reticulum_membrane" if.within.compartment="">
+      <label text="pro-SFTPC mutants"/>
+      <bbox w="70" h="40" x="276" y="209"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein_404308078860482a119dbfa5b5a3d5ef" compartmentRef="endoplasmic_reticulum_membrane" if.within.compartment="">
+      <label text="SFTPB"/>
+      <bbox w="70" h="40" x="111" y="374"/>
+      <glyph class="state variable" id="Protein_404308078860482a119dbfa5b5a3d5ef.info.1" if.within.compartment="">
+        <state value="x[25 - 381]"/>
+        <bbox w="35" h="17.5" x="111" y="365.25"/>
+      </glyph>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-5688377_LEFT_TO_RIGHT" compartmentRef="endoplasmic_reticulum_membrane" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="133.06563198217" y="262.762569801816"/>
+    </glyph>
+    <arc class="consumption" id="Protein_b27ebc353795fe95ed77b93632c1af6f--to--reactome_R-HSA-5688377_LEFT_TO_RIGHT-input" source="Protein_b27ebc353795fe95ed77b93632c1af6f" target="reactome_R-HSA-5688377_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="Protein_404308078860482a119dbfa5b5a3d5ef--to--reactome_R-HSA-5688377_LEFT_TO_RIGHT-input" source="Protein_404308078860482a119dbfa5b5a3d5ef" target="reactome_R-HSA-5688377_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="reactome_R-HSA-5688377_LEFT_TO_RIGHT-output--to--Protein_839ca42aade01b8aa0ab5a28d2ffaf8f" source="reactome_R-HSA-5688377_LEFT_TO_RIGHT" target="Protein_839ca42aade01b8aa0ab5a28d2ffaf8f">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="Protein_b27ebc353795fe95ed77b93632c1af6f--to--reactome_R-HSA-5688377_LEFT_TO_RIGHT" source="Protein_b27ebc353795fe95ed77b93632c1af6f" target="reactome_R-HSA-5688377_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="239" start.y="249" end.x="275" end.y="239" class="consumption"/>
+      <spline s.x="275.000000" s.y="239.000000" c1.x="239.000000" c1.y="249.000000" c2.x="184.000000" c2.y="265.000000" e.x="159.000000" e.y="272.000000"/>
+      <target.arc start.x="184" start.y="265" end.x="159" end.y="272" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="Protein_404308078860482a119dbfa5b5a3d5ef--to--reactome_R-HSA-5688377_LEFT_TO_RIGHT" source="Protein_404308078860482a119dbfa5b5a3d5ef" target="reactome_R-HSA-5688377_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="146" start.y="350" end.x="146" end.y="373" class="consumption"/>
+      <spline s.x="146.000000" s.y="373.000000" c1.x="146.000000" c1.y="350.000000" c2.x="146.000000" c2.y="310.000000" e.x="146.000000" e.y="289.000000"/>
+      <target.arc start.x="146" start.y="310" end.x="146" end.y="289" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="reactome_R-HSA-5688377_LEFT_TO_RIGHT--to--Protein_839ca42aade01b8aa0ab5a28d2ffaf8f" source="reactome_R-HSA-5688377_LEFT_TO_RIGHT" target="Protein_839ca42aade01b8aa0ab5a28d2ffaf8f" class="production">
+      <source.arc start.x="186" start.y="303" end.x="160" end.y="285" class="consumption"/>
+      <spline s.x="279.000000" s.y="367.000000" c1.x="244.000000" c1.y="343.000000" c2.x="186.000000" c2.y="303.000000" e.x="160.000000" e.y="285.000000"/>
+      <target.arc start.x="244" start.y="343" end.x="279" end.y="367" class="production"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>endoplasmic_reticulum_membrane-compartment.layer.info-multivesicular_body_lumen</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Protein_b27ebc353795fe95ed77b93632c1af6f--to--reactome_R-HSA-5688377_LEFT_TO_RIGHT" source="Protein_b27ebc353795fe95ed77b93632c1af6f" target="reactome_R-HSA-5688377_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="239" start.y="249" end.x="275" end.y="239" class="consumption"/>
+
+
+<spline s.x="275.000000"  s.y="239.000000" c1.x="239.000000" c1.y="249.000000" c2.x="184.000000" c2.y="265.000000" e.x="159.000000"  e.y="272.000000" />
+<target.arc start.x="184" start.y="265" end.x="159" end.y="272" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="Protein_404308078860482a119dbfa5b5a3d5ef--to--reactome_R-HSA-5688377_LEFT_TO_RIGHT" source="Protein_404308078860482a119dbfa5b5a3d5ef" target="reactome_R-HSA-5688377_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="146" start.y="350" end.x="146" end.y="373" class="consumption"/>
+
+
+<spline s.x="146.000000"  s.y="373.000000" c1.x="146.000000" c1.y="350.000000" c2.x="146.000000" c2.y="310.000000" e.x="146.000000"  e.y="289.000000" />
+<target.arc start.x="146" start.y="310" end.x="146" end.y="289" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="reactome_R-HSA-5688377_LEFT_TO_RIGHT--to--Protein_839ca42aade01b8aa0ab5a28d2ffaf8f" source="reactome_R-HSA-5688377_LEFT_TO_RIGHT" target="Protein_839ca42aade01b8aa0ab5a28d2ffaf8f" class="production">
+<source.arc start.x="186" start.y="303" end.x="160" end.y="285" class="consumption"/>
+
+
+<spline s.x="279.000000"  s.y="367.000000" c1.x="244.000000" c1.y="343.000000" c2.x="186.000000" c2.y="303.000000" e.x="160.000000"  e.y="285.000000" />
+<target.arc start.x="244" start.y="343" end.x="279" end.y="367" class="production"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>

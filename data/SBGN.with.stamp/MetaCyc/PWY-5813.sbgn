@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="simple chemical" id="SmallMolecule137747:@:PWY-5813" if.within.compartment="">
+      <label text="diisopropyl fluorophosphate"/>
+      <bbox w="40" h="40" x="458.975608143733" y="572.040346111513"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule137734:@:PWY-5813" if.within.compartment="">
+      <label text="p-hydroxymercuribenzoate"/>
+      <bbox w="40" h="40" x="298.922958875034" y="827.524685372204"/>
+    </glyph>
+    <glyph class="not" id="NOT-SmallMolecule137747" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="193.5" y="631.980104671955"/>
+    </glyph>
+    <glyph class="not" id="NOT-SmallMolecule137734" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="162.177741736938" y="730.47847266886"/>
+    </glyph>
+    <glyph class="and" id="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="190.362730102245" y="527.279304156282"/>
+    </glyph>
+    <glyph class="complex" id="Complex137687" if.within.compartment="">
+      <label text="(+)-bornyl diphosphate synthase"/>
+      <bbox w="81" h="51" x="292.225608143733" y="617.480104671955"/>
+      <glyph class="macromolecule" id="Protein137714_Complex137687:@:PWY-5813" if.within.compartment="">
+        <label text="(+)-bornyl diphosphate synthase monomer"/>
+        <bbox w="70" h="40" x="297.725608143733" y="622.980104671955"/>
+      </glyph>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule137727:@:PWY-5813" if.within.compartment="">
+      <label text="Mg&lt;SUP&gt;2+&lt;/SUP&gt;"/>
+      <bbox w="40" h="40" x="256.292782722394" y="512.650370235465"/>
+    </glyph>
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="225.533829484147" h="245.071212854997" x="100" y="205"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule137674:@:PWY-5813" compartmentRef="cytosol" if.within.compartment="">
+      <label text="(+)-bornyl-diphosphate"/>
+      <bbox w="40" h="40" x="244.533829484147" y="216"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule137663:@:PWY-5813" compartmentRef="cytosol" if.within.compartment="">
+      <label text="geranyl diphosphate"/>
+      <bbox w="40" h="40" x="111" y="385.071212854997"/>
+    </glyph>
+    <glyph class="process" id="BiochemicalReaction137645LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="240.44914050163" y="332.368270113999"/>
+    </glyph>
+    <arc class="production" id="BiochemicalReaction137645LEFT_TO_RIGHT.output--to--SmallMolecule137674" source="BiochemicalReaction137645LEFT_TO_RIGHT" target="SmallMolecule137674:@:PWY-5813">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="SmallMolecule137747--to--NOT-SmallMolecule137747:@:PWY-5813" source="SmallMolecule137747:@:PWY-5813" target="NOT-SmallMolecule137747">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="Complex137687--to--Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" source="Complex137687" target="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="NOT-SmallMolecule137747--to--Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" source="NOT-SmallMolecule137747" target="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="catalysis" id="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727--to--BiochemicalReaction137645LEFT_TO_RIGHT" source="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" target="BiochemicalReaction137645LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="SmallMolecule137734--to--NOT-SmallMolecule137734:@:PWY-5813" source="SmallMolecule137734:@:PWY-5813" target="NOT-SmallMolecule137734">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule137663--to--BiochemicalReaction137645LEFT_TO_RIGHT.input:@:PWY-5813" source="SmallMolecule137663:@:PWY-5813" target="BiochemicalReaction137645LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="NOT-SmallMolecule137734--to--Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" source="NOT-SmallMolecule137734" target="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="logic arc" id="SmallMolecule137727--to--Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727:@:PWY-5813" source="SmallMolecule137727:@:PWY-5813" target="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="BiochemicalReaction137645LEFT_TO_RIGHT--to--SmallMolecule137674" source="BiochemicalReaction137645LEFT_TO_RIGHT" target="SmallMolecule137674:@:PWY-5813" class="production">
+      <source.arc start.x="261" start.y="312" end.x="257" end.y="331" class="consumption"/>
+      <spline s.x="274.000000" s.y="256.000000" c1.x="269.000000" c1.y="278.000000" c2.x="261.000000" c2.y="312.000000" e.x="257.000000" e.y="331.000000"/>
+      <target.arc start.x="269" start.y="278" end.x="274" end.y="256" class="production"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule137747--to--NOT-SmallMolecule137747:@:PWY-5813" source="SmallMolecule137747:@:PWY-5813" target="NOT-SmallMolecule137747" class="logic_arc">
+      <source.arc start.x="417" start.y="595" end.x="458" end.y="593" class="consumption"/>
+      <spline s.x="458.000000" s.y="593.000000" c1.x="417.000000" c1.y="595.000000" c2.x="347.000000" c2.y="600.000000" e.x="289.000000" e.y="614.000000"/>
+      <spline s.x="289.000000" s.y="614.000000" c1.x="264.000000" c1.y="620.000000" c2.x="236.000000" c2.y="631.000000" e.x="220.000000" e.y="638.000000"/>
+      <target.arc start.x="236" start.y="631" end.x="220" end.y="638" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="Complex137687--to--Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" source="Complex137687" target="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" class="logic_arc">
+      <source.arc start.x="273" start.y="595" end.x="300" end.y="617" class="consumption"/>
+      <spline s.x="217.000000" s.y="551.000000" c1.x="236.000000" c1.y="566.000000" c2.x="273.000000" c2.y="595.000000" e.x="300.000000" e.y="617.000000"/>
+      <target.arc start.x="236" start.y="566" end.x="217" end.y="551" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="NOT-SmallMolecule137747--to--Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" source="NOT-SmallMolecule137747" target="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" class="logic_arc">
+      <source.arc start.x="205" start.y="611" end.x="206" end.y="631" class="consumption"/>
+      <spline s.x="206.000000" s.y="631.000000" c1.x="205.000000" c1.y="611.000000" c2.x="204.000000" c2.y="574.000000" e.x="204.000000" e.y="554.000000"/>
+      <target.arc start.x="204" start.y="574" end.x="204" end.y="554" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727--to--BiochemicalReaction137645LEFT_TO_RIGHT" source="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" target="BiochemicalReaction137645LEFT_TO_RIGHT" class="catalysis">
+      <source.arc start.x="216" start.y="491" end.x="207" end.y="526" class="consumption"/>
+      <spline s.x="207.000000" s.y="526.000000" c1.x="216.000000" c1.y="491.000000" c2.x="241.000000" c2.y="395.000000" e.x="250.000000" e.y="359.000000"/>
+      <target.arc start.x="241" start.y="395" end.x="250" end.y="359" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule137734--to--NOT-SmallMolecule137734:@:PWY-5813" source="SmallMolecule137734:@:PWY-5813" target="NOT-SmallMolecule137734" class="logic_arc">
+      <source.arc start.x="268" start.y="804" end.x="303" end.y="827" class="consumption"/>
+      <spline s.x="303.000000" s.y="827.000000" c1.x="268.000000" c1.y="804.000000" c2.x="214.000000" c2.y="769.000000" e.x="189.000000" e.y="752.000000"/>
+      <target.arc start.x="214" start.y="769" end.x="189" end.y="752" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule137663--to--BiochemicalReaction137645LEFT_TO_RIGHT:@:PWY-5813" source="SmallMolecule137663:@:PWY-5813" target="BiochemicalReaction137645LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="201" start.y="374" end.x="181" end.y="385" class="consumption"/>
+      <spline s.x="181.000000" s.y="385.000000" c1.x="201.000000" c1.y="374.000000" c2.x="225.000000" c2.y="361.000000" e.x="240.000000" e.y="353.000000"/>
+      <target.arc start.x="225" start.y="361" end.x="240" end.y="353" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="NOT-SmallMolecule137734--to--Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" source="NOT-SmallMolecule137734" target="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" class="logic_arc">
+      <source.arc start.x="179" start.y="708" end.x="177" end.y="729" class="consumption"/>
+      <spline s.x="177.000000" s.y="729.000000" c1.x="179.000000" c1.y="708.000000" c2.x="185.000000" c2.y="665.000000" e.x="190.000000" e.y="628.000000"/>
+      <spline s.x="190.000000" s.y="628.000000" c1.x="193.000000" c1.y="602.000000" c2.x="198.000000" c2.y="571.000000" e.x="201.000000" e.y="554.000000"/>
+      <target.arc start.x="198" start.y="571" end.x="201" end.y="554" class="logic_arc"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule137727--to--Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727:@:PWY-5813" source="SmallMolecule137727:@:PWY-5813" target="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" class="logic_arc">
+      <source.arc start.x="242" start.y="537" end.x="256" end.y="535" class="consumption"/>
+      <spline s.x="217.000000" s.y="539.000000" c1.x="227.000000" c1.y="538.000000" c2.x="242.000000" c2.y="537.000000" e.x="256.000000" e.y="535.000000"/>
+      <target.arc start.x="227" start.y="538" end.x="217" end.y="539" class="logic_arc"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytosol-compartment.layer.info-Complex137687-compartment.layer.info-SmallMolecule137734-compartment.layer.info-SmallMolecule137727-compartment.layer.info-SmallMolecule137747-compartment.layer.info-Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727-compartment.layer.info-NOT-SmallMolecule137747-compartment.layer.info-NOT-SmallMolecule137734</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="BiochemicalReaction137645LEFT_TO_RIGHT--to--SmallMolecule137674:@:PWY-5813" source="BiochemicalReaction137645LEFT_TO_RIGHT" target="SmallMolecule137674:@:PWY-5813" class="production">
+<source.arc start.x="257" start.y="312" end.x="255" end.y="331" class="consumption"/>
+
+
+<spline s.x="262.000000"  s.y="256.000000" c1.x="260.000000" c1.y="278.000000" c2.x="257.000000" c2.y="312.000000" e.x="255.000000"  e.y="331.000000" />
+<target.arc start.x="260" start.y="278" end.x="262" end.y="256" class="production"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule137747:@:PWY-5813--to--NOT-SmallMolecule137747" source="SmallMolecule137747:@:PWY-5813" target="NOT-SmallMolecule137747" class="logic_arc">
+<source.arc start.x="423" start.y="594" end.x="458" end.y="592" class="consumption"/>
+
+
+<spline s.x="458.000000"  s.y="592.000000" c1.x="423.000000" c1.y="594.000000" c2.x="349.000000" c2.y="599.000000" e.x="289.000000"  e.y="614.000000" />
+<spline s.x="289.000000"  s.y="614.000000" c1.x="264.000000" c1.y="620.000000" c2.x="236.000000" c2.y="631.000000" e.x="220.000000"  e.y="638.000000" />
+<target.arc start.x="236" start.y="631" end.x="220" end.y="638" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="Complex137687--to--Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" source="Complex137687" target="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" class="logic_arc">
+<source.arc start.x="273" start.y="595" end.x="300" end.y="617" class="consumption"/>
+
+
+<spline s.x="217.000000"  s.y="551.000000" c1.x="236.000000" c1.y="566.000000" c2.x="273.000000" c2.y="595.000000" e.x="300.000000"  e.y="617.000000" />
+<target.arc start.x="236" start.y="566" end.x="217" end.y="551" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="NOT-SmallMolecule137747--to--Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" source="NOT-SmallMolecule137747" target="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" class="logic_arc">
+<source.arc start.x="205" start.y="611" end.x="206" end.y="631" class="consumption"/>
+
+
+<spline s.x="206.000000"  s.y="631.000000" c1.x="205.000000" c1.y="611.000000" c2.x="204.000000" c2.y="574.000000" e.x="204.000000"  e.y="554.000000" />
+<target.arc start.x="204" start.y="574" end.x="204" end.y="554" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727--to--BiochemicalReaction137645LEFT_TO_RIGHT" source="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" target="BiochemicalReaction137645LEFT_TO_RIGHT" class="catalysis">
+<source.arc start.x="216" start.y="491" end.x="207" end.y="526" class="consumption"/>
+
+
+<spline s.x="207.000000"  s.y="526.000000" c1.x="216.000000" c1.y="491.000000" c2.x="241.000000" c2.y="395.000000" e.x="250.000000"  e.y="359.000000" />
+<target.arc start.x="241" start.y="395" end.x="250" end.y="359" class="catalysis"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule137734:@:PWY-5813--to--NOT-SmallMolecule137734" source="SmallMolecule137734:@:PWY-5813" target="NOT-SmallMolecule137734" class="logic_arc">
+<source.arc start.x="269" start.y="811" end.x="298" end.y="832" class="consumption"/>
+
+
+<spline s.x="298.000000"  s.y="832.000000" c1.x="269.000000" c1.y="811.000000" c2.x="214.000000" c2.y="772.000000" e.x="189.000000"  e.y="753.000000" />
+<target.arc start.x="214" start.y="772" end.x="189" end.y="753" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule137663:@:PWY-5813--to--BiochemicalReaction137645LEFT_TO_RIGHT" source="SmallMolecule137663:@:PWY-5813" target="BiochemicalReaction137645LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="176" start.y="383" end.x="151" end.y="395" class="consumption"/>
+
+
+<spline s.x="151.000000"  s.y="395.000000" c1.x="176.000000" c1.y="383.000000" c2.x="218.000000" c2.y="362.000000" e.x="240.000000"  e.y="352.000000" />
+<target.arc start.x="218" start.y="362" end.x="240" end.y="352" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="NOT-SmallMolecule137734--to--Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" source="NOT-SmallMolecule137734" target="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" class="logic_arc">
+<source.arc start.x="179" start.y="708" end.x="177" end.y="729" class="consumption"/>
+
+
+<spline s.x="177.000000"  s.y="729.000000" c1.x="179.000000" c1.y="708.000000" c2.x="185.000000" c2.y="665.000000" e.x="190.000000"  e.y="628.000000" />
+<spline s.x="190.000000"  s.y="628.000000" c1.x="193.000000" c1.y="602.000000" c2.x="198.000000" c2.y="571.000000" e.x="201.000000"  e.y="554.000000" />
+<target.arc start.x="198" start.y="571" end.x="201" end.y="554" class="logic_arc"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule137727:@:PWY-5813--to--Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" source="SmallMolecule137727:@:PWY-5813" target="Complex137687-AND-NOT-SmallMolecule137747-AND-NOT-SmallMolecule137734-AND-SmallMolecule137727" class="logic_arc">
+<source.arc start.x="243" start.y="536" end.x="256" end.y="534" class="consumption"/>
+
+
+<spline s.x="217.000000"  s.y="539.000000" c1.x="227.000000" c1.y="537.000000" c2.x="243.000000" c2.y="536.000000" e.x="256.000000"  e.y="534.000000" />
+<target.arc start.x="227" start.y="537" end.x="217" end.y="539" class="logic_arc"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>

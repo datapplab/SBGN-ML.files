@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="macromolecule" id="Protein80452:@:PWY-6323" if.within.compartment="">
+      <label text="anthranilate N-benzoyltransferase"/>
+      <bbox w="70" h="40" x="510.573958519591" y="439.048181655055"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein80475:@:PWY-6323" if.within.compartment="within compartment">
+      <label text="anthranilate N-benzoyltransferase"/>
+      <bbox w="70" h="40" x="306.357983127484" y="646.177476504986"/>
+    </glyph>
+    <glyph class="macromolecule" id="Protein80462:@:PWY-6323" if.within.compartment="">
+      <label text="anthranilate N-benzoyltransferase"/>
+      <bbox w="70" h="40" x="547.674621221162" y="575.728516214245"/>
+    </glyph>
+    <glyph class="compartment" id="cytosol" if.within.compartment="within compartment">
+      <label text="cytosol"/>
+      <bbox w="345.018378932047" h="591.562719988163" x="100" y="198"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule80416:@:PWY-6323" compartmentRef="cytosol" if.within.compartment="">
+      <label text="&lt;i&gt;N&lt;/i&gt;-benzoylanthranilate"/>
+      <bbox w="40" h="40" x="118.574428228992" y="209.226643454792"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule80391:@:PWY-6323" compartmentRef="cytosol" if.within.compartment="">
+      <label text="anthranilate"/>
+      <bbox w="40" h="40" x="119.964253436042" y="738.562719988163"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule80432:@:PWY-6323" compartmentRef="cytosol" if.within.compartment="">
+      <label text="coenzyme A"/>
+      <bbox w="40" h="40" x="364.018378932047" y="209"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule80404:@:PWY-6323" compartmentRef="cytosol" if.within.compartment="">
+      <label text="benzoyl-CoA"/>
+      <bbox w="40" h="40" x="111" y="347.540953558497"/>
+    </glyph>
+    <glyph class="process" id="BiochemicalReaction80365LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="260.811068915822" y="461.164852014233"/>
+    </glyph>
+    <arc class="catalysis" id="Protein80462--to--BiochemicalReaction80365LEFT_TO_RIGHT:@:PWY-6323" source="Protein80462:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="catalysis" id="Protein80452--to--BiochemicalReaction80365LEFT_TO_RIGHT:@:PWY-6323" source="Protein80452:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="BiochemicalReaction80365LEFT_TO_RIGHT.output--to--SmallMolecule80416" source="BiochemicalReaction80365LEFT_TO_RIGHT" target="SmallMolecule80416:@:PWY-6323">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="catalysis" id="Protein80475--to--BiochemicalReaction80365LEFT_TO_RIGHT:@:PWY-6323" source="Protein80475:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule80391--to--BiochemicalReaction80365LEFT_TO_RIGHT.input:@:PWY-6323" source="SmallMolecule80391:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule80404--to--BiochemicalReaction80365LEFT_TO_RIGHT.input:@:PWY-6323" source="SmallMolecule80404:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="BiochemicalReaction80365LEFT_TO_RIGHT.output--to--SmallMolecule80432" source="BiochemicalReaction80365LEFT_TO_RIGHT" target="SmallMolecule80432:@:PWY-6323">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="Protein80462--to--BiochemicalReaction80365LEFT_TO_RIGHT:@:PWY-6323" source="Protein80462:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT" class="catalysis">
+      <source.arc start.x="479" start.y="555" end.x="547" end.y="581" class="consumption"/>
+      <spline s.x="547.000000" s.y="581.000000" c1.x="479.000000" c1.y="555.000000" c2.x="332.000000" c2.y="497.000000" e.x="287.000000" e.y="479.000000"/>
+      <target.arc start.x="332" start.y="497" end.x="287" end.y="479" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="Protein80452--to--BiochemicalReaction80365LEFT_TO_RIGHT:@:PWY-6323" source="Protein80452:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT" class="catalysis">
+      <source.arc start.x="449" start.y="464" end.x="510" end.y="461" class="consumption"/>
+      <spline s.x="510.000000" s.y="461.000000" c1.x="449.000000" c1.y="464.000000" c2.x="328.000000" c2.y="471.000000" e.x="287.000000" e.y="473.000000"/>
+      <target.arc start.x="328" start.y="471" end.x="287" end.y="473" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction80365LEFT_TO_RIGHT--to--SmallMolecule80416" source="BiochemicalReaction80365LEFT_TO_RIGHT" target="SmallMolecule80416:@:PWY-6323" class="production">
+      <source.arc start.x="247" start.y="419" end.x="267" end.y="460" class="consumption"/>
+      <spline s.x="163.000000" s.y="249.000000" c1.x="187.000000" c1.y="297.000000" c2.x="247.000000" c2.y="419.000000" e.x="267.000000" e.y="460.000000"/>
+      <target.arc start.x="187" start.y="297" end.x="163" end.y="249" class="production"/>
+    </arc.spline>
+    <arc.spline id="Protein80475--to--BiochemicalReaction80365LEFT_TO_RIGHT:@:PWY-6323" source="Protein80475:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT" class="catalysis">
+      <source.arc start.x="320" start.y="606" end.x="334" end.y="646" class="consumption"/>
+      <spline s.x="334.000000" s.y="646.000000" c1.x="320.000000" c1.y="606.000000" c2.x="290.000000" c2.y="521.000000" e.x="278.000000" e.y="488.000000"/>
+      <target.arc start.x="290" start.y="521" end.x="278" end.y="488" class="catalysis"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule80391--to--BiochemicalReaction80365LEFT_TO_RIGHT:@:PWY-6323" source="SmallMolecule80391:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="186" start.y="683" end.x="163" end.y="738" class="consumption"/>
+      <spline s.x="163.000000" s.y="738.000000" c1.x="186.000000" c1.y="683.000000" c2.x="249.000000" c2.y="533.000000" e.x="268.000000" e.y="488.000000"/>
+      <target.arc start.x="249" start.y="533" end.x="268" end.y="488" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule80404--to--BiochemicalReaction80365LEFT_TO_RIGHT:@:PWY-6323" source="SmallMolecule80404:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="196" start.y="410" end.x="170" end.y="387" class="consumption"/>
+      <spline s.x="170.000000" s.y="387.000000" c1.x="196.000000" c1.y="410.000000" c2.x="239.000000" c2.y="445.000000" e.x="260.000000" e.y="463.000000"/>
+      <target.arc start.x="239" start.y="445" end.x="260" end.y="463" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction80365LEFT_TO_RIGHT--to--SmallMolecule80432" source="BiochemicalReaction80365LEFT_TO_RIGHT" target="SmallMolecule80432:@:PWY-6323" class="production">
+      <source.arc start.x="301" start.y="419" end.x="281" end.y="460" class="consumption"/>
+      <spline s.x="388.000000" s.y="249.000000" c1.x="364.000000" c1.y="297.000000" c2.x="301.000000" c2.y="419.000000" e.x="281.000000" e.y="460.000000"/>
+      <target.arc start.x="364" start.y="297" end.x="388" end.y="249" class="production"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytosol-compartment.layer.info-Protein80475-compartment.layer.info-Protein80462-compartment.layer.info-Protein80452</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Protein80462:@:PWY-6323--to--BiochemicalReaction80365LEFT_TO_RIGHT" source="Protein80462:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT" class="catalysis">
+<source.arc start.x="479" start.y="555" end.x="547" end.y="581" class="consumption"/>
+
+
+<spline s.x="547.000000"  s.y="581.000000" c1.x="479.000000" c1.y="555.000000" c2.x="332.000000" c2.y="497.000000" e.x="287.000000"  e.y="479.000000" />
+<target.arc start.x="332" start.y="497" end.x="287" end.y="479" class="catalysis"/>
+
+</arc.spline>
+<arc.spline id="Protein80452:@:PWY-6323--to--BiochemicalReaction80365LEFT_TO_RIGHT" source="Protein80452:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT" class="catalysis">
+<source.arc start.x="449" start.y="464" end.x="510" end.y="461" class="consumption"/>
+
+
+<spline s.x="510.000000"  s.y="461.000000" c1.x="449.000000" c1.y="464.000000" c2.x="328.000000" c2.y="471.000000" e.x="287.000000"  e.y="473.000000" />
+<target.arc start.x="328" start.y="471" end.x="287" end.y="473" class="catalysis"/>
+
+</arc.spline>
+<arc.spline id="BiochemicalReaction80365LEFT_TO_RIGHT--to--SmallMolecule80416:@:PWY-6323" source="BiochemicalReaction80365LEFT_TO_RIGHT" target="SmallMolecule80416:@:PWY-6323" class="production">
+<source.arc start.x="243" start.y="419" end.x="266" end.y="460" class="consumption"/>
+
+
+<spline s.x="149.000000"  s.y="249.000000" c1.x="176.000000" c1.y="297.000000" c2.x="243.000000" c2.y="419.000000" e.x="266.000000"  e.y="460.000000" />
+<target.arc start.x="176" start.y="297" end.x="149" end.y="249" class="production"/>
+
+</arc.spline>
+<arc.spline id="Protein80475:@:PWY-6323--to--BiochemicalReaction80365LEFT_TO_RIGHT" source="Protein80475:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT" class="catalysis">
+<source.arc start.x="320" start.y="606" end.x="334" end.y="646" class="consumption"/>
+
+
+<spline s.x="334.000000"  s.y="646.000000" c1.x="320.000000" c1.y="606.000000" c2.x="290.000000" c2.y="521.000000" e.x="278.000000"  e.y="488.000000" />
+<target.arc start.x="290" start.y="521" end.x="278" end.y="488" class="catalysis"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule80391:@:PWY-6323--to--BiochemicalReaction80365LEFT_TO_RIGHT" source="SmallMolecule80391:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="175" start.y="683" end.x="149" end.y="738" class="consumption"/>
+
+
+<spline s.x="149.000000"  s.y="738.000000" c1.x="175.000000" c1.y="683.000000" c2.x="246.000000" c2.y="533.000000" e.x="267.000000"  e.y="488.000000" />
+<target.arc start.x="246" start.y="533" end.x="267" end.y="488" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule80404:@:PWY-6323--to--BiochemicalReaction80365LEFT_TO_RIGHT" source="SmallMolecule80404:@:PWY-6323" target="BiochemicalReaction80365LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="180" start.y="404" end.x="151" end.y="382" class="consumption"/>
+
+
+<spline s.x="151.000000"  s.y="382.000000" c1.x="180.000000" c1.y="404.000000" c2.x="235.000000" c2.y="445.000000" e.x="260.000000"  e.y="464.000000" />
+<target.arc start.x="235" start.y="445" end.x="260" end.y="464" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="BiochemicalReaction80365LEFT_TO_RIGHT--to--SmallMolecule80432:@:PWY-6323" source="BiochemicalReaction80365LEFT_TO_RIGHT" target="SmallMolecule80432:@:PWY-6323" class="production">
+<source.arc start.x="298" start.y="419" end.x="280" end.y="460" class="consumption"/>
+
+
+<spline s.x="375.000000"  s.y="249.000000" c1.x="353.000000" c1.y="297.000000" c2.x="298.000000" c2.y="419.000000" e.x="280.000000"  e.y="460.000000" />
+<target.arc start.x="353" start.y="297" end.x="375" end.y="249" class="production"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>

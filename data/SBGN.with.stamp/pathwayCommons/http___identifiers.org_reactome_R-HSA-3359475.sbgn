@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="mitochondrial_matrix" if.within.compartment="">
+      <label text="mitochondrial matrix"/>
+      <bbox w="276.475608143733" h="329.507808882175" x="100" y="211.598917065216"/>
+    </glyph>
+    <glyph class="complex" id="Complex_8e006a54a759c8d255151b02bece2221" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+      <label text="MMAA mutants:2xMUT:AdoCbl"/>
+      <bbox w="81" h="157.250000000001" x="232.982181282291" y="227"/>
+      <glyph class="simple chemical" id="SmallMolecule_08e331121d4ec170d5c8211767d5cced_Complex_8e006a54a759c8d255151b02bece2221" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+        <label text="AdoCbl"/>
+        <bbox w="40" h="40" x="238.482181282291" y="232.5"/>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_b259628c48abc40254ddcbf88be46f7d_Complex_8e006a54a759c8d255151b02bece2221" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+        <label text="MUT"/>
+        <bbox w="70" h="40" x="238.482181282291" y="290"/>
+        <glyph class="state variable" id="Protein_b259628c48abc40254ddcbf88be46f7d_Complex_8e006a54a759c8d255151b02bece2221.info.1" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+          <state value="x[33 - 750]"/>
+          <bbox w="35" h="17.5" x="238.482181282291" y="281.25"/>
+        </glyph>
+      </glyph>
+      <glyph class="macromolecule" id="Protein_c0c1f79b6f4e03a36796a5c30ffb81d4_Complex_8e006a54a759c8d255151b02bece2221" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+        <label text="MMAA mutants"/>
+        <bbox w="70" h="40" x="238.482181282291" y="338.750000000001"/>
+      </glyph>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule_40b9777007c283e180d20d236684185b" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+      <label text="L-MM-CoA"/>
+      <bbox w="40" h="40" x="295.475608143733" y="476.507808882175"/>
+    </glyph>
+    <glyph class="process" id="reactome_R-HSA-3322135_LEFT_TO_RIGHT" compartmentRef="mitochondrial_matrix" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="111" y="222.598917065216"/>
+    </glyph>
+    <arc class="consumption" id="Complex_8e006a54a759c8d255151b02bece2221--to--reactome_R-HSA-3322135_LEFT_TO_RIGHT-input" source="Complex_8e006a54a759c8d255151b02bece2221" target="reactome_R-HSA-3322135_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule_40b9777007c283e180d20d236684185b--to--reactome_R-HSA-3322135_LEFT_TO_RIGHT-input" source="SmallMolecule_40b9777007c283e180d20d236684185b" target="reactome_R-HSA-3322135_LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="Complex_8e006a54a759c8d255151b02bece2221--to--reactome_R-HSA-3322135_LEFT_TO_RIGHT" source="Complex_8e006a54a759c8d255151b02bece2221" target="reactome_R-HSA-3322135_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="201" start.y="271" end.x="232" end.y="286" class="consumption"/>
+      <spline s.x="232.000000" s.y="286.000000" c1.x="201.000000" c1.y="271.000000" c2.x="159.000000" c2.y="252.000000" e.x="138.000000" e.y="242.000000"/>
+      <target.arc start.x="159" start.y="252" end.x="138" end.y="242" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule_40b9777007c283e180d20d236684185b--to--reactome_R-HSA-3322135_LEFT_TO_RIGHT" source="SmallMolecule_40b9777007c283e180d20d236684185b" target="reactome_R-HSA-3322135_LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="289" start.y="454" end.x="310" end.y="476" class="consumption"/>
+      <spline s.x="310.000000" s.y="476.000000" c1.x="289.000000" c1.y="454.000000" c2.x="255.000000" c2.y="419.000000" e.x="229.000000" e.y="387.000000"/>
+      <spline s.x="229.000000" s.y="387.000000" c1.x="190.000000" c1.y="338.000000" c2.x="150.000000" c2.y="276.000000" e.x="133.000000" e.y="249.000000"/>
+      <target.arc start.x="150" start.y="276" end.x="133" end.y="249" class="consumption"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>mitochondrial_matrix-compartment.layer.info-mitochondrial_matrix-compartment.layer.info-Complex_8e006a54a759c8d255151b02bece2221-compartment.layer.info-SmallMolecule_08e331121d4ec170d5c8211767d5cced_Complex_8e006a54a759c8d255151b02bece2221-compartment.layer.info-Protein_b259628c48abc40254ddcbf88be46f7d_Complex_8e006a54a759c8d255151b02bece2221-compartment.layer.info-Protein_c0c1f79b6f4e03a36796a5c30ffb81d4_Complex_8e006a54a759c8d255151b02bece2221-compartment.layer.info-SmallMolecule_40b9777007c283e180d20d236684185b-compartment.layer.info-reactome_R-HSA-3322135_LEFT_TO_RIGHT</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="Complex_8e006a54a759c8d255151b02bece2221--to--reactome_R-HSA-3322135_LEFT_TO_RIGHT" source="Complex_8e006a54a759c8d255151b02bece2221" target="reactome_R-HSA-3322135_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="201" start.y="271" end.x="232" end.y="286" class="consumption"/>
+
+
+<spline s.x="232.000000"  s.y="286.000000" c1.x="201.000000" c1.y="271.000000" c2.x="159.000000" c2.y="252.000000" e.x="138.000000"  e.y="242.000000" />
+<target.arc start.x="159" start.y="252" end.x="138" end.y="242" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule_40b9777007c283e180d20d236684185b--to--reactome_R-HSA-3322135_LEFT_TO_RIGHT" source="SmallMolecule_40b9777007c283e180d20d236684185b" target="reactome_R-HSA-3322135_LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="281" start.y="454" end.x="299" end.y="476" class="consumption"/>
+
+
+<spline s.x="299.000000"  s.y="476.000000" c1.x="281.000000" c1.y="454.000000" c2.x="253.000000" c2.y="418.000000" e.x="229.000000"  e.y="387.000000" />
+<spline s.x="229.000000"  s.y="387.000000" c1.x="192.000000" c1.y="337.000000" c2.x="151.000000" c2.y="276.000000" e.x="133.000000"  e.y="249.000000" />
+<target.arc start.x="151" start.y="276" end.x="133" end.y="249" class="consumption"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>

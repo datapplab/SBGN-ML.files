@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn>
+  <map language="process description">
+    <glyph class="compartment" id="cytosol" if.within.compartment="">
+      <label text="cytosol"/>
+      <bbox w="390.487804071866" h="315.908891816958" x="100" y="198"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule242646:@:PWY-5816" compartmentRef="cytosol" if.within.compartment="">
+      <label text="IPP"/>
+      <bbox w="40" h="40" x="409.487804071866" y="365.9243251887"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule242630:@:PWY-5816" compartmentRef="cytosol" if.within.compartment="">
+      <label text="(2&lt;i&gt;E&lt;/i&gt;,6&lt;i&gt;E&lt;/i&gt;)-farnesyl diphosphate"/>
+      <bbox w="40" h="40" x="111" y="462.908891816958"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule242669:@:PWY-5816" compartmentRef="cytosol" if.within.compartment="">
+      <label text="diphosphate"/>
+      <bbox w="40" h="40" x="111" y="268.939758560442"/>
+    </glyph>
+    <glyph class="simple chemical" id="SmallMolecule242654:@:PWY-5816" compartmentRef="cytosol" if.within.compartment="">
+      <label text="all-&lt;i&gt;trans&lt;/i&gt;-undecaprenyl diphosphate"/>
+      <bbox w="40" h="40" x="295.475608143733" y="209"/>
+    </glyph>
+    <glyph class="process" id="BiochemicalReaction242613LEFT_TO_RIGHT" compartmentRef="cytosol" if.within.compartment="">
+      <bbox w="26.6666666666667" h="26.6666666666667" x="265.396723733867" y="430.27536301256"/>
+    </glyph>
+    <arc class="consumption" id="SmallMolecule242646--to--BiochemicalReaction242613LEFT_TO_RIGHT.input:@:PWY-5816" source="SmallMolecule242646:@:PWY-5816" target="BiochemicalReaction242613LEFT_TO_RIGHT">
+      <glyph class="cardinality" if.within.compartment="" x="0" y="0">
+        <label text="8"/>
+        <bbox w="20" h="20" x="316.5" y="425.5"/>
+        <bbox w="20" h="20" x="316.5" y="425.5"/>
+      </glyph>
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="BiochemicalReaction242613LEFT_TO_RIGHT.output--to--SmallMolecule242669" source="BiochemicalReaction242613LEFT_TO_RIGHT" target="SmallMolecule242669:@:PWY-5816">
+      <glyph class="cardinality" if.within.compartment="" x="0" y="0">
+        <label text="8"/>
+        <bbox w="20" h="20" x="177.5" y="338.5"/>
+        <bbox w="20" h="20" x="177.5" y="338.5"/>
+      </glyph>
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="consumption" id="SmallMolecule242630--to--BiochemicalReaction242613LEFT_TO_RIGHT.input:@:PWY-5816" source="SmallMolecule242630:@:PWY-5816" target="BiochemicalReaction242613LEFT_TO_RIGHT">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+    <arc class="production" id="BiochemicalReaction242613LEFT_TO_RIGHT.output--to--SmallMolecule242654" source="BiochemicalReaction242613LEFT_TO_RIGHT" target="SmallMolecule242654:@:PWY-5816">
+      <start x="0" y="0"/>
+      <end x="0" y="0"/>
+    </arc>
+  </map>
+  <edge.spline.info>
+    <arc.spline id="SmallMolecule242646--to--BiochemicalReaction242613LEFT_TO_RIGHT:@:PWY-5816" source="SmallMolecule242646:@:PWY-5816" target="BiochemicalReaction242613LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="372" start.y="410" end.x="409" end.y="398" class="consumption"/>
+      <spline s.x="409.000000" s.y="398.000000" c1.x="372.000000" c1.y="410.000000" c2.x="317.000000" c2.y="430.000000" e.x="292.000000" e.y="438.000000"/>
+      <target.arc start.x="317" start.y="430" end.x="292" end.y="438" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction242613LEFT_TO_RIGHT--to--SmallMolecule242669" source="BiochemicalReaction242613LEFT_TO_RIGHT" target="SmallMolecule242669:@:PWY-5816" class="production">
+      <source.arc start.x="243" start.y="402" end.x="266" end.y="429" class="consumption"/>
+      <spline s.x="163.000000" s.y="309.000000" c1.x="190.000000" c1.y="341.000000" c2.x="243.000000" c2.y="402.000000" e.x="266.000000" e.y="429.000000"/>
+      <target.arc start.x="190" start.y="341" end.x="163" end.y="309" class="production"/>
+    </arc.spline>
+    <arc.spline id="SmallMolecule242630--to--BiochemicalReaction242613LEFT_TO_RIGHT:@:PWY-5816" source="SmallMolecule242630:@:PWY-5816" target="BiochemicalReaction242613LEFT_TO_RIGHT" class="consumption">
+      <source.arc start.x="208" start.y="464" end.x="181" end.y="472" class="consumption"/>
+      <spline s.x="181.000000" s.y="472.000000" c1.x="208.000000" c1.y="464.000000" c2.x="245.000000" c2.y="453.000000" e.x="265.000000" e.y="447.000000"/>
+      <target.arc start.x="245" start.y="453" end.x="265" end.y="447" class="consumption"/>
+    </arc.spline>
+    <arc.spline id="BiochemicalReaction242613LEFT_TO_RIGHT--to--SmallMolecule242654" source="BiochemicalReaction242613LEFT_TO_RIGHT" target="SmallMolecule242654:@:PWY-5816" class="production">
+      <source.arc start.x="290" start.y="393" end.x="282" end.y="429" class="consumption"/>
+      <spline s.x="325.000000" s.y="249.000000" c1.x="315.000000" c1.y="292.000000" c2.x="290.000000" c2.y="393.000000" e.x="282.000000" e.y="429.000000"/>
+      <target.arc start.x="315" start.y="292" end.x="325" end.y="249" class="production"/>
+    </arc.spline>
+  </edge.spline.info>
+  <compartment.layer.info>cytosol-compartment.layer.info-cytosol-compartment.layer.info-SmallMolecule242646-compartment.layer.info-SmallMolecule242630-compartment.layer.info-SmallMolecule242669-compartment.layer.info-SmallMolecule242654-compartment.layer.info-BiochemicalReaction242613LEFT_TO_RIGHT</compartment.layer.info>
+
+
+<edge.spline.info> 
+
+<arc.spline id="SmallMolecule242646:@:PWY-5816--to--BiochemicalReaction242613LEFT_TO_RIGHT" source="SmallMolecule242646:@:PWY-5816" target="BiochemicalReaction242613LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="378" start.y="405" end.x="409" end.y="393" class="consumption"/>
+
+
+<spline s.x="409.000000"  s.y="393.000000" c1.x="378.000000" c1.y="405.000000" c2.x="319.000000" c2.y="428.000000" e.x="292.000000"  e.y="438.000000" />
+<target.arc start.x="319" start.y="428" end.x="292" end.y="438" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="BiochemicalReaction242613LEFT_TO_RIGHT--to--SmallMolecule242669:@:PWY-5816" source="BiochemicalReaction242613LEFT_TO_RIGHT" target="SmallMolecule242669:@:PWY-5816" class="production">
+<source.arc start.x="239" start.y="402" end.x="265" end.y="429" class="consumption"/>
+
+
+<spline s.x="150.000000"  s.y="309.000000" c1.x="180.000000" c1.y="341.000000" c2.x="239.000000" c2.y="402.000000" e.x="265.000000"  e.y="429.000000" />
+<target.arc start.x="180" start.y="341" end.x="150" end.y="309" class="production"/>
+
+</arc.spline>
+<arc.spline id="SmallMolecule242630:@:PWY-5816--to--BiochemicalReaction242613LEFT_TO_RIGHT" source="SmallMolecule242630:@:PWY-5816" target="BiochemicalReaction242613LEFT_TO_RIGHT" class="consumption">
+<source.arc start.x="181" start.y="469" end.x="151" end.y="477" class="consumption"/>
+
+
+<spline s.x="151.000000"  s.y="477.000000" c1.x="181.000000" c1.y="469.000000" c2.x="239.000000" c2.y="454.000000" e.x="265.000000"  e.y="447.000000" />
+<target.arc start.x="239" start.y="454" end.x="265" end.y="447" class="consumption"/>
+
+</arc.spline>
+<arc.spline id="BiochemicalReaction242613LEFT_TO_RIGHT--to--SmallMolecule242654:@:PWY-5816" source="BiochemicalReaction242613LEFT_TO_RIGHT" target="SmallMolecule242654:@:PWY-5816" class="production">
+<source.arc start.x="287" start.y="393" end.x="281" end.y="429" class="consumption"/>
+
+
+<spline s.x="312.000000"  s.y="249.000000" c1.x="304.000000" c1.y="292.000000" c2.x="287.000000" c2.y="393.000000" e.x="281.000000"  e.y="429.000000" />
+<target.arc start.x="304" start.y="292" end.x="312" end.y="249" class="production"/>
+
+</arc.spline> </edge.spline.info>
+<compartment.layer.info></compartment.layer.info>
+
+ <SBGNview.collection></SBGNview.collection> 
+</sbgn>
