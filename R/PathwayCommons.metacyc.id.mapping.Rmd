@@ -1271,7 +1271,7 @@ for(i in 1:length(all.genes.select)){
                         )
                         head(mapping.list$gene$ENTREZID_pathwayCommons)
                         dim(mapping.list$gene$ENTREZID_pathwayCommons)
-                        type.pair.name = paste(sort(c(input.type,output.type),method = "radix",decreasing = TRUE),collapse="_") # R CMD check will give different sort result if you didn't specify "method":  the default sort method depends on the locale of your system. And R CMD check uses a different locale than my interactive session.  The issue resided in this: R interactively used:LC_COLLATE=en_US.UTF-8; R CMD check used: LC_COLLATE=C; https://stackoverflow.com/questions/42272119/r-cmd-check-fails-devtoolstest-works-fine
+                        type.pair.name = paste(sort(c(gene.type,output.type),method = "radix",decreasing = TRUE),collapse="_") # R CMD check will give different sort result if you didn't specify "method":  the default sort method depends on the locale of your system. And R CMD check uses a different locale than my interactive session.  The issue resided in this: R interactively used:LC_COLLATE=en_US.UTF-8; R CMD check used: LC_COLLATE=C; https://stackoverflow.com/questions/42272119/r-cmd-check-fails-devtoolstest-works-fine
 
                         out.file = paste("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping"
                                          ,"/"
