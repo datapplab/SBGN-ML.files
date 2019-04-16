@@ -1789,6 +1789,7 @@ clean.ez.names = function(m.file){
         }
         head(mapping.table)
         ezs = mapping.table[,1]
+        head(ezs)
         if.name = grepl(pattern = "[a-zA-Z]",ezs)
         head(if.name)
         sum(if.name)
@@ -2385,8 +2386,10 @@ cpd.ids.1 = as.vector(t(unique(subset(mapped.ids.0
                                 ))))
 cpd.ids.1
 mapped.ids$cpd  = c(mapped.ids$cpd,cpd.ids.1)
+mapped.ids$gene = unique(mapped.ids$gene)
+mapped.ids$cpd = unique(mapped.ids$cpd)
 mapped.ids
-
+save(mapped.ids,file="C:/xiaoxi/work/papers/SBGNview/package/SBGNview/data/mapped.ids.RData")
 ```
 
 
