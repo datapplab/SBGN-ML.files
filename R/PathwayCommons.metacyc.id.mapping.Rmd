@@ -1779,7 +1779,30 @@ tail(mapping.table)
 head(mapping.table)
 class(mapping.table[,1])
 save(mapping.table,file="C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENZYME_pathway.id.RData")
+
+# clean gene names
+m.file = "C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENZYME_pathwayCommons.RData"
+clean.ez.names = function(m.file){
+        aa = load(file=m.file)
+        if(is.list(get(aa))){
+                mapping.table = get(aa)[[1]][[1]]
+        }
+        head(mapping.table)
+        ezs = mapping.table[,1]
+        if.name = grepl(pattern = "[a-zA-Z]",ezs)
+        head(if.name)
+        sum(if.name)
+        length(ezs)
+        dim(mapping.table)
+        mapping.table = mapping.table[!if.name,]
+        dim(mapping.table)
+        save(mapping.table,file=m.file)
+}
+
+clean.ez.names("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENZYME_pathway.id.RData")
+        
 ```
+
 
 #number of kos mapped in each species-specific pathway
 ```{r,number of kos mapped in each species-specific pathway}
@@ -2334,6 +2357,37 @@ length(setdiff(kegg.code.to.ncbi.name$name,tip.labels))
 ```
 # Check shared UNIPROT protein sets
 We think many of the pathwayCommons
+
+# mapped.ids RData
+```{r}
+library(SBGNview)
+data(mapped.ids)
+mapped.ids.0=mapped.ids
+class(mapped.ids.0)
+mapped.ids.0 = as.data.frame(mapped.ids.0,stringsAsFactors=F)
+mapped.ids
+mapped.ids = list()
+mapped.ids$gene = as.vector(t(unique(subset(mapped.ids.0
+                                ,cpd.or.gene=="gene"
+                                ,select = ID.type.1
+                                ))))
+mapped.ids$gene = mapped.ids$gene[-which(mapped.ids$gene == "uniref")]
+mapped.ids$gene  = c(mapped.ids$gene,"metacyc.SBGN","pathwayCommons")
+mapped.ids$gene  = c(mapped.ids$gene,"KO")
+
+mapped.ids$cpd = as.vector(t(unique(subset(mapped.ids.0
+                                ,cpd.or.gene=="compound"
+                                ,select = ID.type.2
+                                ))))
+cpd.ids.1 = as.vector(t(unique(subset(mapped.ids.0
+                                ,cpd.or.gene=="compound"
+                                ,select = ID.type.1
+                                ))))
+cpd.ids.1
+mapped.ids$cpd  = c(mapped.ids$cpd,cpd.ids.1)
+mapped.ids
+
+```
 
 
 
