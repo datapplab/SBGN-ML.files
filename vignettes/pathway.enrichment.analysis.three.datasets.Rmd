@@ -1,0 +1,722 @@
+---
+title: "Pathway analysis using SBGNview gene set and visualization"
+author: "Xiaoxi Dong, Weijun Luo"
+date:  "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+    bookdown::html_document2:
+      fig_caption: yes
+      number_sections: yes
+      toc: yes
+editor_options: 
+  chunk_output_type: console
+bibliography: C:/xiaoxi/work/papers/SBGNview/package/SBGNview/inst/REFERENCES.bib
+---
+
+# INFg dataset
+## Load RNA-seq data
+
+
+```{r, echo=FALSE, eval = FALSE}
+library(knitr)
+# count.data = read.table(file="C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/IFNg/nature.communication.my/analysis/normalized.counts.tsv",stringsAsFactors = F,sep="\t",header=T,check.names = F)
+# row.names(count.data) = count.data[,1]
+# count.data = count.data[,-1]
+# count.data.ifn = count.data
+# save(count.data.ifn,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGNview/data/count.data.ifn.RData")
+```
+
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+library(SBGNview)
+load(file = "C:/xiaoxi/work/papers/SBGNview/package/backup/sbgnview/2019.4.10/data/count.data.ifn.RData")
+# data(count.data.ifn)
+count.data = count.data.ifn
+head(count.data)
+
+```
+## Generate data for visualization.
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+wt = c("727","732","733","734")
+ko = c("726","738","740","741","752","753","754","755","756")
+count.data = count.data[,c(which(colnames(count.data) %in% wt)
+                                    ,which(colnames(count.data) %in% ko )
+                                   )]
+mean.wt = apply(count.data[,which(colnames(count.data) %in% wt)]
+                ,1
+                ,"mean")
+head(mean.wt)
+mean.ko = apply(count.data[,which(colnames(count.data) %in% ko)],1,"mean")
+head(mean.ko)
+ensemble.to.koVsWt = mean.ko/mean.wt
+ensemble.to.koVsWt = log(ensemble.to.koVsWt)/log(2)
+head(ensemble.to.koVsWt)
+class(ensemble.to.koVsWt)
+```
+
+
+
+## Run SBGNview gene set
+### Load genelist: mouse ensemble IDs.
+```{r , echo = TRUE , results = 'hide',   message = FALSE, warning = FALSE}
+library(SBGNview)
+ensemble.to.pathway = get.mol.list(
+    database = "pathwayCommons"
+    ,mol.list.ID.type = "ENSEMBL"
+    ,org = "mmu"
+    ,cpd.or.gene = "gene"
+    ,output.pathway.name = T
+)
+head(ensemble.to.pathway[[2]])
+length(ensemble.to.pathway)
+```
+
+
+### Run gage
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+
+library(gage)
+degs = gage(exprs = count.data
+           , gsets = ensemble.to.pathway
+           , ref = which(colnames(count.data) %in% wt)
+           , samp = which(colnames(count.data) %in% ko)
+           ,compare = "as.group"
+           )
+head(degs$greater)[,c(1,4:5)]
+head(degs$less)
+less.sbgnview = degs$less
+head(less.sbgnview)
+```
+
+```{r, echo=FALSE, eval = FALSE}
+# write.table(greater,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/IFNg/tables/my.pathway.results/greater.tsv",row.names=F,sep="\t",quote=F)
+# write.table(less,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/IFNg/tables/my.pathway.results/less.tsv",row.names=F,sep="\t",quote=F)
+
+```
+
+### Run SBGNview
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+
+less.pathways = do.call(rbind,strsplit(row.names(less.sbgnview),"::"))[,1]
+head(less.pathways)
+sbgnview.obj = SBGNview(
+            gene.data = ensemble.to.koVsWt
+         ,gene.id.type = "ENSEMBL"
+         ,input.sbgn = less.pathways[1:2]
+         ,output.file = "ifn.sbgnview.less"
+         ,show.pathway.name = T
+         ,max.gene.value = 1
+         ,min.gene.value = -1
+         ,mid.gene.value = 0
+         ,org = "mmu"
+         ,output.formats = "png"
+         )
+sbgnview.obj
+```
+```{r ifnSBGNview, echo = FALSE,fig.cap="\\label{fig:SBGNview map from sbgnview}SBGNview"}
+library(knitr)
+include_graphics("ifn.sbgnview.less_R-HSA-877300_Interferon gamma signaling.png")
+```
+
+
+## Analyze KEGG gene set
+### Load KEGG gene set: mouse entrez
+
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+data("kegg.gs")
+kegg.gs = kegg.gsets(species="mouse",id.type = "entrez")
+length(kegg.gs$kg.sets)
+```
+
+### Run gage using entrez ID.
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+ez.to.count = change.data.id(
+                    data.input.id = count.data
+                    ,input.type = "ENSEMBL"
+                    ,output.type = "ENTREZID"
+                    ,cpd.or.gene = "gene"
+                    ,org = "mmu"
+                )
+head(ez.to.count[[1]])
+dim(ez.to.count)
+degs = gage(exprs = ez.to.count
+           , gsets = kegg.gs$kg.sets
+           , ref = which(colnames(ez.to.count) %in% wt)
+           , samp = which(colnames(ez.to.count) %in% ko)
+           ,compare = "as.group"
+           )
+greater = degs$greater
+less = degs$less
+head(greater[,c(1,4)])
+head(less[,c(1,6)])
+```
+
+```{r, echo=FALSE, eval = FALSE}
+# write.table(greater,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/IFNg/tables/kegg.results/greater.tsv",row.names=F,sep="\t",quote=F)
+# write.table(less,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/IFNg/tables/kegg.results/less.tsv",row.names=F,sep="\t",quote=F)
+```
+
+### run pathview
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+greater.pathway = substr(row.names(greater),1,8)
+head(greater.pathway)
+
+less.pathway = substr(row.names(less),1,8)
+head(less.pathway)
+
+pathview(gene.data = ensemble.to.koVsWt
+         ,pathway.id = c(less.pathway[2],greater.pathway[2])
+         ,species = "mouse"
+         ,gene.idtype = "ENSEMBL"
+         )
+```
+```{r ifnPathview,  echo = FALSE,fig.cap="\\label{fig:KEGG map from pathview}Quick start example: Layout from original database."}
+include_graphics("./mmu04141.pathview.png")
+```
+
+
+```{r, echo=FALSE, eval = FALSE}
+# save(ensemble.to.koVsWt,file = "C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/IFNg/ensemble.to.koVsWt.RData")
+```
+
+
+
+
+
+
+# Cancer dataset
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+library(gageData)
+data("gse16873")
+hn=(1:6)*2-1
+dcis=(1:6)*2
+```
+
+
+
+## Analyze KEGG gene set
+### Run gage
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+data(kegg.gs)
+degs <- gage(gse16873
+               , gsets = kegg.gs
+               , ref = hn, samp = dcis)
+greater = degs$greater
+less = degs$less
+head(greater)
+head(less)
+```
+
+
+```{r, echo=FALSE, eval = FALSE}
+# write.table(greater,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/figures/figure.sbgn.manual/gage/tables/kegg/greater.tsv",row.names=F,sep="\t",quote=F)
+# write.table(less,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/figures/figure.sbgn.manual/gage/tables/kegg/less.tsv",row.names=F,sep="\t",quote=F)
+```
+
+
+## Run SBGNview gene set
+### Load gene set
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+
+ez.to.pathway.gs =  get.mol.list(
+    database = "pathwayCommons"
+    ,mol.list.ID.type = "ENTREZID"
+    ,org = "hsa"
+    ,cpd.or.gene = "gene"
+    ,output.pathway.name = T
+)
+head(ez.to.pathway.gs)
+head(names(ez.to.pathway.gs))
+```
+
+### Run gage
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+
+degs <- gage(gse16873
+           , gsets = ez.to.pathway.gs
+           , ref = hn, samp = dcis)
+greater = degs$greater
+less = degs$less
+head(row.names(greater))
+head(row.names(less))
+```
+
+
+```{r, echo=FALSE, eval = FALSE}
+# write.table(greater,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/figures/figure.sbgn.manual/gage/tables/pathway.commons//greater.tsv",row.names=F,sep="\t",quote=F)
+# write.table(less,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/figures/figure.sbgn.manual/gage/tables/pathway.commons//less.tsv",row.names=F,sep="\t",quote=F)
+```
+
+### Run SBGNview
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+
+head(gse16873)
+gse16873.d <- gse16873[ ,dcis] - gse16873[ ,hn]
+range(gse16873.d)
+head(gse16873.d)
+range(gse16873)
+
+significant.greater.pathways = unique(row.names(degs$greater)[degs$greater[,"q.val"]<0.001])
+significant.greater.pathways = significant.greater.pathways[!is.na(significant.greater.pathways)]
+significant.greater.pathways = do.call(rbind,strsplit(significant.greater.pathways,"::"))[,1]
+length(significant.greater.pathways)
+head(significant.greater.pathways)
+
+
+sbgnview.obj = SBGNview(
+            gene.data = gse16873.d
+         ,gene.id.type = "ENTREZID"
+         ,input.sbgn = significant.greater.pathways[2:3]
+         ,output.file = "cancer.greater"
+         ,show.pathway.name = F
+         ,max.gene.value = 1
+         ,min.gene.value = -1
+         ,node.sum = "sum"
+         )
+sbgnview.obj
+```
+```{r cancerGreater, echo = FALSE,fig.cap="\\label{fig:cancer greater}Cancer greater"}
+include_graphics("cancer.greater_R-HSA-983168.svg")
+```
+
+```{r, echo=FALSE, eval = FALSE}
+# save(gse16873.d,file="C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/figures/figure.sbgn.manual/gage/gse16873.d.RData")
+```
+
+```{r,eval=FALSE,echo=FALSE}
+less.pathways = do.call(rbind,strsplit(row.names(less),"::"))[,1]
+head(less.pathways)
+sbgnview.obj = SBGNview(
+            gene.data = gse16873.d
+         ,gene.id.type = "ENTREZID"
+         ,input.sbgn = less.pathways[2]
+         ,output.file = "cancer.less"
+         ,show.pathway.name = F
+         ,max.gene.value = 1
+         ,min.gene.value = -1
+         ,mid.gene.value = 0
+         ,org = "hsa"
+         ,output.formats = "png"
+         )
+sbgnview.obj
+```
+```{r cancerLess, echo = FALSE,fig.cap="\\label{fig:cancer less}Cancer less"}
+# include_graphics("cancer.less_R-HSA-156902.png")
+```
+
+# plant pen3 mutation
+```{r, echo=FALSE, eval = FALSE}
+# count.data = read.table("C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/test.dataset/plant/GDS1785.with.group.txt",sep="\t",quote = "", comment.char = "",stringsAsFactors = F,header=T)
+# count.data = count.data[!duplicated(count.data[,1]),]
+# count.data = count.data[-(1:8),]
+# head(count.data)
+# row.names(count.data) = count.data[,1]
+# group.info = count.data["group",]
+# group.info = group.info[-1]
+# group.info
+# save(group.info, file ="C:/xiaoxi/work/papers/SBGNview/package/SBGNview/data/group.info.pen3.plant.RData" )
+# count.data = count.data[,-1]
+# head(count.data[,1:4])
+# dim(count.data)
+# class(count.data[1,1])
+# count.data = count.data[-which(row.names(count.data) == "group"),]
+# for(i in 1:ncol(count.data)){
+#     count.data[,i] = as.numeric(count.data[,i])
+# }
+# head(count.data[,1:4])
+# tail(count.data[,1:4])
+# class(count.data[1,1])
+# dim(count.data)
+# count.data.pen3.plant = count.data
+# save(count.data.pen3.plant,file = "C:/xiaoxi/work/papers/SBGNview/package/SBGNview/data/count.data.pen3.plant.RData")
+```
+
+## Load gene expression data
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+
+load(file = "C:/xiaoxi/work/papers/SBGNview/package/backup/sbgnview/2019.4.10/data/count.data.pen3.plant.RData")
+load( file ="C:/xiaoxi/work/papers/SBGNview/package/backup/sbgnview/2019.4.10/data/group.info.pen3.plant.RData" )
+# data("count.data.pen3.plant")
+count.data = count.data.pen3.plant
+
+
+```
+
+## Run SBGNview gene set
+
+### Load gene list
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+enzyme.to.pathway = get.mol.list(
+                        database = "metacrop"
+                        ,mol.list.ID.type = "ENZYME"
+                        ,org = "ath"
+                        ,output.pathway.name = F
+)
+length(enzyme.to.pathway)
+```
+
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+enzyme.to.count = change.data.id(
+                    data.input.id = count.data
+                    ,input.type = "SYMBOL"
+                    ,output.type = "ENZYME"
+                    ,cpd.or.gene = "gene"
+                    ,org = "ath"
+)
+head(enzyme.to.count)
+dim(enzyme.to.count)
+enzyme.to.count["2.2.1.1",]
+```
+
+
+### Run gage
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+
+
+if.wt = which(group.info == "wild type_uninfected " )
+if.wt
+if.pen3 = which(group.info == "pen3_uninfected " )
+if.pen3
+library(gage)
+degs = gage(
+            exprs = enzyme.to.count
+           , gsets = enzyme.to.pathway
+           , ref = if.wt
+           , samp = if.pen3
+           ,compare = "as.group"
+           ,set.size = c(10,9999)
+           )
+head(degs$greater)
+less = degs$less
+head(less[,1:5])
+```
+
+### Prepare fold change data
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+
+    head(enzyme.to.count[,1:3])
+    enzyme.to.count.wt = enzyme.to.count[,if.wt]
+    dim(enzyme.to.count.wt)
+    enzyme.to.count.wt.median = apply(enzyme.to.count.wt
+                                      ,1
+                                      ,"median"
+                                      )
+    head(enzyme.to.count.wt.median)
+    
+    enzyme.to.count.pen3 = enzyme.to.count[,if.pen3]
+    dim(enzyme.to.count.pen3)
+    enzyme.to.count.pen3.median = apply(enzyme.to.count.pen3
+                                      ,1
+                                      ,"median"
+                                      )
+    head(enzyme.to.count.pen3.median)
+    enzyme.to.count.group.median = cbind(enzyme.to.count.wt.median
+                                         ,enzyme.to.count.pen3.median)
+    head(enzyme.to.count.group.median)
+    enzyme.to.ratio.pen3.vs.wt =  enzyme.to.count.pen3.median / enzyme.to.count.wt.median
+    enzyme.to.ratio.pen3.vs.wt = log(enzyme.to.ratio.pen3.vs.wt)/log(2)
+    head(enzyme.to.ratio.pen3.vs.wt)
+```
+```{r, echo=FALSE, eval = FALSE}
+# write.table(greater,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/figures/figure.sbgn.manual/plant/tables/greater.tsv",row.names=F,sep="\t",quote=F)
+# write.table(less,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/figures/figure.sbgn.manual/plant/tables/less.tsv",row.names=F,sep="\t",quote=F)
+# save(enzyme.to.ratio.pen3.vs.wt,file = "C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/figures/figure.sbgn.manual/plant/enzyme.to.ratio.pen3.vs.wt.RData")
+```
+
+
+
+
+
+### Run SBGNview
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+less.pathways = row.names(less)
+head(less.pathways)
+sbgnview.obj = SBGNview(
+        gene.data = enzyme.to.ratio.pen3.vs.wt
+     ,gene.id.type = "ENZYME"
+     ,input.sbgn = less.pathways[1:2]
+     ,output.file = "pen3.plant.less"
+     ,sbgn.gene.id.type = "ENZYME"
+     ,sbgn.id.attr = "label"
+     ,font.size = 2
+     ,show.pathway.name = F
+     ,max.gene.value = 0.3
+     ,min.gene.value = -0.3
+     ,mid.gene.value = 0
+     ,output.formats = "png"
+     )
+sbgnview.obj
+```
+```{r plant, echo = FALSE,fig.cap="\\label{fig:plant}plant"}
+include_graphics("pen3.plant.less_Calvin Cycle.svg")
+```
+
+## Analyze KEGG gene set
+### Load gene set
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+head(count.data)
+entrez.to.count = change.data.id(
+                    data.input.id = count.data
+                    ,input.type = "SYMBOL"
+                    ,output.type = "ENTREZID"
+                    ,cpd.or.gene = "gene"
+                    ,org = "ath"
+                )
+
+kegg.gs = kegg.gsets(species="ath",id.type = "entrez")
+str(kegg.gs)
+length(kegg.gs$kg.sets)
+```
+
+### Run gage
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+degs = gage(
+            exprs = entrez.to.count
+           , gsets = kegg.gs$kg.sets
+           , ref = if.wt
+           , samp = if.pen3
+           ,compare = "as.group"
+           ,set.size = c(10,9999)
+           )
+head(degs$greater)
+less = degs$less
+head(greater[,1:5])
+head(less[,1:5])
+```
+
+### Prepare fold change data for pathview
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+
+    head(entrez.to.count[,1:3])
+    entrez.to.count.wt = entrez.to.count[,if.wt]
+    dim(entrez.to.count.wt)
+    entrez.to.count.wt.median = apply(entrez.to.count.wt
+                                      ,1
+                                      ,"median"
+                                      )
+    head(entrez.to.count.wt.median)
+    
+    entrez.to.count.pen3 = entrez.to.count[,if.pen3]
+    dim(entrez.to.count.pen3)
+    entrez.to.count.pen3.median = apply(entrez.to.count.pen3
+                                      ,1
+                                      ,"median"
+                                      )
+    head(entrez.to.count.pen3.median)
+    entrez.to.count.group.median = cbind(entrez.to.count.wt.median
+                                         ,entrez.to.count.pen3.median)
+    head(entrez.to.count.group.median)
+    entrez.to.ratio.pen3.vs.wt =  entrez.to.count.pen3.median / entrez.to.count.wt.median
+    entrez.to.ratio.pen3.vs.wt = log(entrez.to.ratio.pen3.vs.wt)/log(2)
+    head(entrez.to.ratio.pen3.vs.wt)
+```
+```{r, echo=FALSE, eval = FALSE}
+# write.table(greater,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/figures/figure.sbgn.manual/plant/tables/kegg/greater.tsv",row.names=F,sep="\t",quote=F)
+# write.table(less,"C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/figures/figure.sbgn.manual/plant/tables/kegg/less.tsv",row.names=F,sep="\t",quote=F)
+# save(entrez.to.ratio.pen3.vs.wt,file = "C:/xiaoxi/work/papers/SBGNview/writing/SBGNview/figures/figure.sbgn.manual/plant/enzyme.to.ratio.pen3.vs.wt.RData")
+```
+
+
+
+### Run pathview
+```{r , echo = TRUE, results = 'hide', message = FALSE, warning = FALSE}
+less.pathway = substr(row.names(less),1,8)
+head(less.pathway)
+
+head(entrez.to.ratio.pen3.vs.wt)
+pathview(gene.data = entrez.to.ratio.pen3.vs.wt
+         ,pathway.id = less.pathway[4]
+         ,species = "ath"
+         ,gene.idtype = "ENTREZID"
+         )
+```
+```{r plantPathview, echo = FALSE,fig.cap="\\label{fig:KEGG map from pathview}Quick start example: Layout from original database."}
+include_graphics("ath00196.pathview.png")
+```
+
+
+```{r,echo=FALSE, eval=FALSE}
+# # number of species
+#     var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
+#     var
+#     data("pathways.info")
+#     head(pathways.info)
+#     pathway.to.database = pathways.info[,c("sub.database","pathway.id")]
+#     head(pathway.to.database)
+#     head(pathway.species.pct_Mapped)
+#     pathway.species.pct_Mapped.select = subset(pathway.species.pct_Mapped,pct.mapped.species.pathway >0.5)
+#     head(pathway.species.pct_Mapped.select)
+#     dim(pathway.species.pct_Mapped.select)
+#     pathway.species.select = pathway.species.pct_Mapped.select[,c("pathway","species")]
+#     head(pathway.species.select)
+#     head(pathway.species.pct_Mapped)
+#     pathway.species.database = merge(pathway.to.database,pathway.species.select
+#                                      ,by.x="pathway.id",by.y="pathway")
+#     head(pathway.species.database)
+#     count = tapply(pathway.species.database$species
+#                    ,as.factor(pathway.species.database$sub.database)
+#                    ,function(species){
+#                        length(unique(species))
+#                    }
+#                    )
+#     count
+#     # metacrop
+#     all.enzymes = as.matrix(unique(unlist(enzyme.to.pathway)))
+#     all.enzymes
+#     dim(all.enzymes)
+#     write.table(all.enzymes,"C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/MetaCrop.EC.txt",row.names=F,quote=F)
+#     # https://biodbnet-abcc.ncifcrf.gov/db/db2db.php#biodb   :: ec to taxa id
+#     head(all.enzymes)
+#     length(all.enzymes)
+#                         
+#     
+```
+
+
+```{r,echo=FALSE, eval=FALSE}
+# # number of chebi
+# ###################################
+# # chebi
+# ###################################
+# var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/chebi_pathway.id.RData")
+# chebis = mapping.table
+# head(chebis)
+# tail(chebis)
+# 
+# chebi.to.database = merge(pathway.to.database
+#                           ,chebis
+#                          ,by.x="pathway.id"
+#                           ,by.y="pathway.id")
+# head(chebi.to.database)
+# 
+# count = tapply(chebi.to.database$chebi
+#                ,as.factor(chebi.to.database$sub.database)
+#                ,function(chebis){
+#                    length(unique(chebis))
+#                }
+#                )
+# count
+#     # metacrop
+# cpd.to.pathway = get.mol.list(
+#                         database = "metacrop"
+#                         ,mol.list.ID.type = "chebi"
+#                         ,output.pathway.name = F
+#                         ,combine.duplicated.set = F
+#                         ,cpd.or.gene = "compound"
+# )
+# length(cpd.to.pathway)
+# all.cpds = unlist(cpd.to.pathway)
+# head(all.cpds)
+# length(unique(all.cpds))
+
+
+```
+
+
+
+```{r,echo=FALSE, eval=FALSE}
+# # number of genes
+# library(SBGNview)
+# var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/species.specifid.pathway_pathwayCommons/pathway.species.pct_Mapped.RData")
+# var
+# data("pathways.info")
+# head(pathways.info)
+# pathway.to.database = pathways.info[,c("sub.database","pathway.id")]
+# ###################################
+# # chebi
+# ###################################
+# # var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/UNIPROT_pathway.id.RData")
+# # var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/pathwayCommons_pathway.id.RData")
+# # var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENTREZID_pathway.id.RData")
+# var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/ENZYME_pathway.id.RData")
+# # var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/KO_pathway.id.RData")
+# # var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/SYMBOL_pathway.id.RData")
+# mols = mapping.table
+# head(mols)
+# # tail(mols)
+# 
+# mols.to.database = merge(pathway.to.database
+#                           ,mols
+#                          ,by.x="pathway.id"
+#                           ,by.y="pathway.id")
+# head(mols.to.database)
+# 
+# count = tapply(mols.to.database[,3]
+#                ,as.factor(mols.to.database$sub.database)
+#                ,function(mols){
+#                    length(unique(mols))
+#                }
+#                )
+# count
+```
+
+
+```{r,echo=FALSE, eval=FALSE}
+# #metacyc 10092
+# 
+# var = load("C:/xiaoxi/work/papers/SBGNview/package/SBGN-ML.files/data/id.mapping/SYMBOL_pathway.id.RData")
+# mols = mapping.table
+# head(mols)
+# # tail(mols)
+# 
+# mols.to.database = merge(pathway.to.database
+#                           ,mols
+#                          ,by.x="pathway.id"
+#                           ,by.y="pathway.id")
+# head(mols.to.database)
+# 
+# count = tapply(mols.to.database[,3]
+#                ,as.factor(mols.to.database$sub.database)
+#                ,function(mols){
+#                    length(unique(mols))
+#                }
+#                )
+# count
+# # metacrop
+# all.enzymes = as.matrix(unique(unlist(enzyme.to.pathway)))
+# all.enzymes
+# length(unique(as.vector(all.enzymes)))
+# dim(all.enzymes)
+# 
+
+```
+
+
+
+```{r,echo=FALSE, eval=FALSE}
+# number of genes 
+# library(SBGNview)
+# gene.to.pathway = get.mol.list(
+#                         database = "pathwayCommons"
+#                         ,mol.list.ID.type = "UNIPROT"
+#                         ,output.pathway.name = F
+#                         ,combine.duplicated.set = F
+#                         ,cpd.or.gene = "gene"
+# )
+# length(gene.to.pathway)
+# all.genes = unlist(gene.to.pathway)
+# head(all.genes)
+# length(unique(all.genes))
+```
+
+
+
+
+
+```{r,echo=FALSE, eval=FALSE}
+# #  number of kos in KEGG 
+# library(gage)
+# kegg.gs = kegg.gsets(species="ko",id.type = "entrez")
+# length(kegg.gs$kg.sets)
+# head(kegg.gs$kg.sets$`ko00010 Glycolysis / Gluconeogenesis`)
+# all.entrez = unlist(kegg.gs$kg.sets)
+# head(all.entrez)
+# length(unique(all.entrez))
+
+
+```
+
+``` {r, eval = FALSE, echo=FALSE}
+    source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/parsing.utilities.R")
+    source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/plot.utilities.R")
+    source("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/R/SBGN.to.SVG.R")
+rmarkdown::render("C:/xiaoxi/work/papers/SBGNview/package/SBGNview/vignettes/pathway.enrichment.analysis.Rmd")
+```
