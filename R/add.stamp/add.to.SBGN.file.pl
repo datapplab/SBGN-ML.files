@@ -1,4 +1,5 @@
 use strict;
+use List::Util qw[min max];
 sub addStamp{
         my ($folder) = @_;
         # `mkdir $folder.without.stamp`;
@@ -10,8 +11,25 @@ sub addStamp{
         my @files = `ls $sbgnFolder/$folder`;
         foreach my $file (@files){
                 print($file);
-                my $content = `cat $sbgnFolder/$folder/$file`;
-                $content =~s/\<\/sbgn\>/\n \<SBGNview.collection\>\<\/SBGNview.collection\> \n\<\/sbgn\>/g;
+                my $content = `cat $sbgnFolder/$folder/$file | grep 'bbox'`;
+                #my @all_xs = $content =~ /x[ ]?=[ ]?(\d+\.\d+)[^\d]/g;
+                my @all_xs = $content =~ /bbox.+x *= *"*(\d+\.?\d*)[^\d]/g;
+                my $min_x = min(@all_xs) + 10;
+                
+                #my @all_ys = $content =~ /y[ ]?=(.+) /g;
+                my @all_ys = $content =~ /bbox.+y *= *"*(\d+\.?\d*)[^\d]/g;
+                #print(@all_xs[1..4]);
+                my $min_y = min(@all_ys);
+                my $max_y = max(@all_ys) + 40;
+                print("\n\n>>>",$min_x,"<<<\n\n");
+                print("\n\n>>>",$min_y,"<<<\n\n");
+                print("\n\n>>>",$max_y,"<<<\n\n");
+                
+                
+                my $stamp = '<glyph class="macromolecule" id="stamp" > <label text="SBGNhub Pathway Collection"/> <bbox w="240" h="20" x="'.$min_x.'" y="'.$max_y.'"/> </glyph>';
+                print "$stamp\n\n";
+                
+                $content =~s/\<\/map\>/\n $stamp \n\<\/map\>/g;
                 # `cp $folder/$file $folder.without.stamp/$file`;
                 open OUT ,">$sbgnStampSolder/$folder/$file";
                 print OUT $content;
@@ -22,4 +40,3 @@ sub addStamp{
 }
 addStamp("pathwayCommons");
 addStamp("MetaCyc");
-addStamp("MetaCrop");

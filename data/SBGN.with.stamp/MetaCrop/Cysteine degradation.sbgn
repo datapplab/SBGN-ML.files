@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn xmlns="http://sbgn.org/libsbgn/pd/0.1">
+    <map>
+        <glyph id="glyph0" class="compartment">
+            <label text="cytosol">
+                <bbox y="56.0" x="136.5" h="16.0" w="47.0"/>
+            </label>
+            <bbox y="50.0" x="50.0" h="290.0" w="220.0"/>
+        </glyph>
+        <glyph id="glyph2" class="simple chemical">
+            <label text="H2O"/>
+            <bbox y="120.0" x="195.0" h="30.0" w="30.0"/>
+        </glyph>
+        <glyph id="glyph3" class="simple chemical">
+            <label text="L-cysteine"/>
+            <bbox y="90.0" x="145.0" h="30.0" w="30.0"/>
+        </glyph>
+        <glyph id="glyph6" class="simple chemical">
+            <label text="H2S"/>
+            <bbox y="260.0" x="195.0" h="30.0" w="30.0"/>
+        </glyph>
+        <glyph id="glyph4" class="simple chemical">
+            <label text="pyruvate"/>
+            <bbox y="290.0" x="145.0" h="30.0" w="30.0"/>
+        </glyph>
+        <glyph id="glyph5" class="simple chemical">
+            <label text="NH3"/>
+            <bbox y="230.0" x="215.0" h="30.0" w="30.0"/>
+        </glyph>
+        <glyph id="glyph1" class="macromolecule">
+            <label text="4.4.1.1"/>
+            <bbox y="190.0" x="71.0" h="30.0" w="54.0"/>
+        </glyph>
+        <glyph id="glyph7" orientation="vertical" class="process">
+            <bbox y="200.0" x="155.0" h="10.0" w="10.0"/>
+            <port y="195.0" x="160.0" id="glyph7.1"/>
+            <port y="215.0" x="160.0" id="glyph7.2"/>
+        </glyph>
+        <arc target="glyph2" source="glyph7.1" class="production">
+            <start y="195.0" x="160.0"/>
+            <end y="146.52332" x="200.39723"/>
+        </arc>
+        <arc target="glyph3" source="glyph7.1" class="production">
+            <start y="195.0" x="160.0"/>
+            <end y="120.0" x="160.0"/>
+        </arc>
+        <arc target="glyph6" source="glyph7.2" class="production">
+            <start y="215.0" x="160.0"/>
+            <end y="262.794" x="201.28143"/>
+        </arc>
+        <arc target="glyph4" source="glyph7.2" class="production">
+            <start y="215.0" x="160.0"/>
+            <end y="290.0" x="160.0"/>
+        </arc>
+        <arc target="glyph5" source="glyph7.2" class="production">
+            <start y="215.0" x="160.0"/>
+            <end y="237.55792" x="216.97635"/>
+        </arc>
+        <arc target="glyph7" source="glyph1" class="catalysis">
+            <start y="205.0" x="125.0"/>
+            <end y="205.0" x="155.0"/>
+        </arc>
+    </map>
+</sbgn>
