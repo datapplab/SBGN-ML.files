@@ -20,13 +20,13 @@ sub addStamp{
                 my @all_ys = $content =~ /bbox.+y *= *"*(\d+\.?\d*)[^\d]/g;
                 #print(@all_xs[1..4]);
                 my $min_y = min(@all_ys);
-                my $max_y = max(@all_ys) + 40;
+                my $max_y = max(@all_ys) + 70;
                 print("\n\n>>>",$min_x,"<<<\n\n");
                 print("\n\n>>>",$min_y,"<<<\n\n");
                 print("\n\n>>>",$max_y,"<<<\n\n");
                 
                 
-                my $stamp = '<glyph class="macromolecule" id="stamp" > <label text="SBGNhub Pathway Collection"/> <bbox w="240" h="20" x="'.$min_x.'" y="'.$max_y.'"/> </glyph>';
+                my $stamp = '<glyph class="macromolecule" id="stamp" > <label text="SBGNhub Pathway Collection"/> <bbox w="180" h="20" x="20" y="'.$max_y.'"/> </glyph>';
                 print "$stamp\n\n";
                 
                 $content =~s/\<\/map\>/\n $stamp \n\<\/map\>/g;
