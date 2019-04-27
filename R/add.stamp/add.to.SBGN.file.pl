@@ -9,12 +9,15 @@ sub addStamp{
         `mkdir $sbgnStampSolder/$folder`;
         print ($folder);
         my @files = `ls $sbgnFolder/$folder`;
+        my $n = 0;
         foreach my $file (@files){
+                $n = $n+1;
                 print($file);
                 my $content = `cat $sbgnFolder/$folder/$file | grep 'bbox'`;
                 #my @all_xs = $content =~ /x[ ]?=[ ]?(\d+\.\d+)[^\d]/g;
                 my @all_xs = $content =~ /bbox.+x *= *"*(\d+\.?\d*)[^\d]/g;
                 my $min_x = min(@all_xs) + 10;
+                my $max_x = max(@all_xs) + 10;
                 
                 #my @all_ys = $content =~ /y[ ]?=(.+) /g;
                 my @all_ys = $content =~ /bbox.+y *= *"*(\d+\.?\d*)[^\d]/g;
@@ -24,9 +27,14 @@ sub addStamp{
                 print("\n\n>>>",$min_x,"<<<\n\n");
                 print("\n\n>>>",$min_y,"<<<\n\n");
                 print("\n\n>>>",$max_y,"<<<\n\n");
+                print("\n\n>>>",$max_x,"<<<\n\n");
                 
+                my $stamp_w = $max_x/5;
+                my $stamp_h = $stamp_w / 9;
+                print("\n\n>>> ww",$stamp_w,"<<<\n\n");
+                print("\n\n>>> hh",$stamp_h,"<<<\n\n");
                 
-                my $stamp = '<glyph class="macromolecule" id="stamp" > <label text="SBGNhub Pathway Collection"/> <bbox w="180" h="20" x="20" y="'.$max_y.'"/> </glyph>';
+                my $stamp = '<glyph class="macromolecule" id="stamp" > <label text="SBGNhub Pathway Collection"/> <bbox w="'.$stamp_w.'" h="'.$stamp_h.'" x="20" y="'.$max_y.'"/> </glyph>';
                 print "$stamp\n\n";
                 
                 $content =~s/\<\/map\>/\n $stamp \n\<\/map\>/g;
@@ -35,7 +43,7 @@ sub addStamp{
                 print OUT $content;
                 close;
                # print "\n\n\n>>>,\n\n", $content," \n\n\n";
-               # die;
+              #  die if ($n>10);
         }
 }
 addStamp("pathwayCommons");
