@@ -2415,6 +2415,22 @@ mapped.ids
 save(mapped.ids,file="C:/xiaoxi/work/papers/SBGNview/package/SBGNview/data/mapped.ids.RData")
 ```
 
+# Change ID mapping RData variable names from mapping.table/mapping.list to the ID pair names
+```{r}
+in.folder = "C:/xiaoxi/work/papers/SBGNview/package/backup/sbgnview.data/2019.5.13/id.mapping"
+out.folder = paste0(in.folder,"pair.names.as.variable.name")
+dir.create(out.folder)
+mapping.files = list.files(in.folder,full.names = FALSE)
+for(i in seq_along(mapping.files)){
+        file.name = mapping.files[i]
+        in.file = paste(in.folder,file.name,sep="/")
+        pair.name = gsub(".RData","",file.name)
+        load(in.file)
+        if(is.list(in.file)){
+                in.data = mapping.list[[1]][[1]]
+        }
+}
+```
 
 
 
